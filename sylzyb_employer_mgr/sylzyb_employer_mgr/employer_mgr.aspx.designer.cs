@@ -148,13 +148,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// tbx_name 控件。
+        /// tbx_WorkerName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_name;
+        protected global::System.Web.UI.WebControls.TextBox tbx_WorkerName;
         
         /// <summary>
         /// Label5 控件。
@@ -166,13 +166,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// tbx_sfz_id 控件。
+        /// tbx_IDCard 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_sfz_id;
+        protected global::System.Web.UI.WebControls.TextBox tbx_IDCard;
         
         /// <summary>
         /// Label6 控件。
@@ -202,13 +202,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label7;
         
         /// <summary>
-        /// tbx_gangwei 控件。
+        /// tbx_GroupName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_gangwei;
+        protected global::System.Web.UI.WebControls.TextBox tbx_GroupName;
         
         /// <summary>
         /// Label8 控件。

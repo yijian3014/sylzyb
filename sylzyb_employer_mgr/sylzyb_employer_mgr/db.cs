@@ -12,7 +12,7 @@ public class db
     public SqlConnection db_con;
        public string getconstr()
     {
-        return System.Configuration.ConfigurationManager.AppSettings["jdbconn"].ToString();
+        return System.Configuration.ConfigurationManager.AppSettings["ConnectionString"].ToString();
     }
     public void open()
     {
@@ -50,5 +50,5 @@ public class db
         SqlDataReader dr = cmd.ExecuteReader();
         return dr;
     }
-
+    
 }

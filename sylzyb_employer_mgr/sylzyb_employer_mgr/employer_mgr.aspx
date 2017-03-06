@@ -48,13 +48,15 @@
           <div style="text-align:center;margin:0 auto;">
          <asp:GridView ID="GridView1" runat="server" HorizontalAlign="Center" Width="100%" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" AutoGenerateColumns="False" EnableModelValidation="True" Font-Size="Small">
              <Columns>
-                 <asp:BoundField DataField="Id" HeaderText="序号" />
-                 <asp:BoundField DataField="Name" HeaderText="姓名" />
-                 <asp:BoundField DataField="sfz_id" HeaderText="身份证" />
-                 <asp:BoundField DataField="class" HeaderText="班组" />
-                 <asp:BoundField DataField="gangwei" HeaderText="岗位" />
-                  <asp:BoundField DataField="xishu1" HeaderText="系数" />
-                  <asp:BoundField DataField="xishu2_glj" HeaderText="管理奖系数" />
+                 <asp:BoundField DataField="ID" HeaderText="序号" />
+                 <asp:BoundField DataField="WorkerName" HeaderText="姓名" />
+                 <asp:BoundField DataField="IDCard" HeaderText="身份证" />
+                 <asp:BoundField DataField="GroupName" HeaderText="班组" />
+                 <asp:BoundField DataField="Job" HeaderText="岗位" />
+                  <asp:BoundField DataField="Duties" HeaderText="职务" />
+                 
+                  <asp:BoundField DataField="WagesFactor" HeaderText="系数" />
+                  <asp:BoundField DataField="DutiesFactor" HeaderText="管理奖系数" />
 
    
              </Columns>
@@ -78,7 +80,7 @@
                         <asp:Label ID="Label4" runat="server" Text="姓名："></asp:Label>
                      </td>  
                      <td class="auto-style1">
-                        <asp:TextBox ID="tbx_name" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="tbx_WorkerName" runat="server"></asp:TextBox>
                     </td>
                     </tr>
                 <tr>
@@ -86,7 +88,7 @@
                         <asp:Label ID="Label5" runat="server" Text="身份证："></asp:Label>
                      </td>  
                      <td class="auto-style1">
-                          <asp:TextBox ID="tbx_sfz_id" runat="server"></asp:TextBox>
+                          <asp:TextBox ID="tbx_IDCard" runat="server"></asp:TextBox>
                     </td>
                      <td class="auto-style1">
                         <asp:Label ID="Label6" runat="server" Text="班组："></asp:Label>
@@ -100,7 +102,7 @@
                         <asp:Label ID="Label7" runat="server" Text="岗位："></asp:Label>
                      </td>
                     <td>
-                        <asp:TextBox ID="tbx_gangwei" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="tbx_GroupName" runat="server"></asp:TextBox>
                     </td>
                   
                
