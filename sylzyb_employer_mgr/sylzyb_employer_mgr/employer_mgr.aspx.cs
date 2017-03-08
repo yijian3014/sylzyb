@@ -7,8 +7,10 @@ using System.Web.UI.WebControls;
 using System.Data;
 /*
 界面权限定义
-添加用户：2
-删除用户：3
+员工信息查询：2
+添加员工信息：3
+编辑员工信息：5
+删除员工信息：7
 
 */
 namespace sylzyb_employer_mgr
@@ -25,9 +27,9 @@ namespace sylzyb_employer_mgr
             if (!IsPostBack)
             {
 
-                login_user.Text = Session["UserRName"].ToString();
+                login_user.Text = Session["lg_name"].ToString();
             }
-            if (Convert.ToInt64(Session["userid"].ToString().Trim()) / 1000 == 6)
+            if (Convert.ToInt64(Session["rule_code"].ToString().Trim()) / 1000 == 6)
             {
                 btn_usr_add.Visible = true;
                 btn_usr_del.Visible = true;

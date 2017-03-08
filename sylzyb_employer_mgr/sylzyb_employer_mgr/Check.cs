@@ -1,0 +1,121 @@
+﻿using System;
+using System.Web;
+using System.Data;
+using System.Web.UI;
+using System.Web.SessionState;
+
+namespace sylzyb_employer_mgr
+{
+
+    public class Check : IHttpModule
+    {
+
+        public db db_opt;
+        public DataSet ds;
+        public string errmsg;
+        /// <summary>
+        /// 您将需要在网站的 Web.config 文件中配置此模块
+        /// 并向 IIS 注册它，然后才能使用它。有关详细信息，
+        /// 请参见下面的链接: http://go.microsoft.com/?linkid=8101007
+        /// </summary>
+        #region IHttpModule Members
+
+        public void Dispose()
+        {
+            //此处放置清除代码。
+            db_opt.close();
+            ds.Clear();
+        }
+
+        public void Init(HttpApplication context)
+        {
+            // 下面是如何处理 LogRequest 事件并为其 
+            // 提供自定义日志记录实现的示例
+            context.LogRequest += new EventHandler(OnLogRequest);
+
+        }
+
+        #endregion
+
+        public void OnLogRequest(Object source, EventArgs e)
+        {
+            //可以在此处放置自定义日志记录逻辑
+        }
+        public bool user(string account, string password)
+        {
+            //通过用户名密码验证用户权限，并初化必要的SESSIONID及界面初始化序列字符串
+            Dispose();
+            string usr_sql = "select * from [dzsw].[dbo].[Syl_UserInfo] where UserName=" + account + " and UserPassWord=" + password;
+            ds = db_opt.build_dataset(usr_sql);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                System.Web.HttpContext.Current.Session["RealName"] = ds.Tables[0].Rows[0][0].ToString();
+                System.Web.HttpContext.Current.Session["IDCard"] = ds.Tables[0].Rows[0][1].ToString();
+                System.Web.HttpContext.Current.Session["UserName"] = ds.Tables[0].Rows[0][2].ToString();
+                System.Web.HttpContext.Current.Session["UserLevel"] = ds.Tables[0].Rows[0][3].ToString();
+                System.Web.HttpContext.Current.Session["UserLevelName"] = ds.Tables[0].Rows[0][4].ToString();
+                System.Web.HttpContext.Current.Session["UserPower"] = ds.Tables[0].Rows[0][5].ToString();
+                System.Web.HttpContext.Current.Session["ModulePower"] = ds.Tables[0].Rows[0][6].ToString();
+                return true;
+            }
+            else
+                return false;
+        }
+        public bool moudle(string moudlename)
+        {
+            //验证用户是否具备选择目标模块的使用权
+            try
+            {
+                Dispose();
+                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_Syl_UserPower] where PowerName=" + moudlename + " and Kind=1";
+                ds = db_opt.build_dataset(mod_chk_sql);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    if (System.Web.HttpContext.Current.Session["ModulePower"].ToString().Substring(Convert.ToInt32(ds.Tables[0].Rows[0][1].ToString()), 1) == "Y")
+                    {
+
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+                else
+                    return false;
+            }
+            catch (Exception e)
+            {
+               
+                errmsg = e.ToString();
+                return false;
+            }
+        }
+        public bool item(string itemname)
+        {
+            //通过控件名，及界面初始化序列字符串，返回界面的操作属性TRUE OR FALSE
+            try
+            {
+                Dispose();
+                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_Syl_UserPower] where PowerName=" + itemname + " and Kind=2";
+                ds = db_opt.build_dataset(mod_chk_sql);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    if (System.Web.HttpContext.Current.Session["UserPower"].ToString().Substring(Convert.ToInt32(ds.Tables[0].Rows[0][1].ToString()), 1) == "Y")
+                    {
+
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+                else
+                    return false;
+            }
+            catch (Exception e)
+            {
+                errmsg = e.ToString();
+                return false;
+            }
+
+        }
+    }
+}

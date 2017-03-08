@@ -63,6 +63,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Check.cs" />
     <Compile Include="db.cs" />
     <Compile Include="employer_mgr.aspx.cs">
       <DependentUpon>employer_mgr.aspx</DependentUpon>
