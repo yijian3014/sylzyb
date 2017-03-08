@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="employer_mgr.aspx.cs" Inherits="sylzyb_employer_mgr.employer_mgr" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EMPLOYER.aspx.cs" Inherits="sylzyb_employer_mgr.employer_mgr" %>
 
 <!DOCTYPE html>
 
@@ -25,20 +25,42 @@
             </div>
         <div style="text-align:center;margin:0 auto;width:100%;float:none;" >
     
-        <asp:Label ID="Label2" runat="server" Text="用户信息总览" Font-Bold="False" Font-Size="Larger"></asp:Label>
+        <asp:Label ID="Label2" runat="server" Text="员工信息总览" Font-Bold="False" Font-Size="Larger"></asp:Label>
 <hr  /> 
 </div>
 
         <div style="text-align:right;margin:0 auto;float:none;width:100%;">
             <table style="width:100%">
                 <tr>
-                    <td style="width:50%;text-align:left;">
-                        <asp:Button ID="btn_usr_add" runat="server" Text="添加用户" OnClick="btn_usr_add_Click" />
-                         <asp:Button ID="btn_usr_del" runat="server" Text="删除用户" OnClick="btn_usr_del_Click" />
-                         <asp:Button ID="btn_usr_edt" runat="server" Text="修改用户信息" OnClick="btn_usr_edt_Click" />
+                    <td style="width:30%;text-align:center;">
+                        <asp:Button ID="btn_emp_add" runat="server" Text="添加员工信息" OnClick="btn_emp_add_Click" />
+                         <asp:Button ID="btn_emp_del" runat="server" Text="删除员工信息" OnClick="btn_emp_del_Click" />
+                         <asp:Button ID="btn_emp_edt" runat="server" Text="修改员工信息" OnClick="btn_emp_edt_Click" />
                     
                     
                     
+                    </td>
+                    <td style="width:20%;text-align:center;">
+    <asp:Label ID="Label10" runat="server" Text="班别："></asp:Label>
+                        <asp:DropDownList ID="DropDownList1" runat="server">
+                            <asp:ListItem>甲班</asp:ListItem>
+                            <asp:ListItem>乙班</asp:ListItem>
+                            <asp:ListItem>丙班</asp:ListItem>
+                            <asp:ListItem>丁班</asp:ListItem>
+                            <asp:ListItem>常白</asp:ListItem>
+                            <asp:ListItem>管理</asp:ListItem>
+                            <asp:ListItem>其它</asp:ListItem>
+                        </asp:DropDownList>
+
+                    </td>
+   <td style="width:25%;text-align:center;">
+                        <asp:Label ID="Label27" runat="server" Text="姓名拼音简写："></asp:Label>
+
+                        <asp:TextBox ID="TextBox1" runat="server" Width="111px"></asp:TextBox>
+       </td>
+          <td style="width:10%;text-align:center;">
+                        <asp:Button ID="btn_info_cx" runat="server" Text="查询" />
+
                     </td>
                 </tr>
             </table>
@@ -63,7 +85,7 @@
          </asp:GridView>
        </div>
  
-        <div id="employer_edit" runat="server" style="width:95%;text-align:center;float:none;margin:0 auto;">
+        <div id="employer_detail" runat="server" style="width:95%;text-align:center;float:none;margin:0 auto;">
     <asp:Label ID="Label1" runat="server" Text="员工信息编辑" Font-Bold="False" Font-Size="Larger"></asp:Label>
 <hr />
             <table style="width:100%">
@@ -94,7 +116,7 @@
                         <asp:Label ID="Label6" runat="server" Text="班组："></asp:Label>
                      </td>  
                      <td class="auto-style1">
-                        <asp:TextBox ID="tbx_class" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="tbx_GroupName" runat="server"></asp:TextBox>
                     </td>
                 </tr>
                   <tr>
@@ -102,39 +124,39 @@
                         <asp:Label ID="Label7" runat="server" Text="岗位："></asp:Label>
                      </td>
                     <td>
-                        <asp:TextBox ID="tbx_GroupName" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="tbx_Job" runat="server"></asp:TextBox>
                     </td>
                   
-               
-                    <td>
-                        <asp:Label ID="Label8" runat="server" Text="系数："></asp:Label>
+                     <td>
+                        <asp:Label ID="Label11" runat="server" Text="职务："></asp:Label>
                      </td>  
                      <td>
-                        <asp:TextBox ID="tbx_xishu1" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="tbx_Duties" runat="server"></asp:TextBox>
                     </td>
                     </tr>
                 <tr>
+                     <td>
+                        <asp:Label ID="Label8" runat="server" Text="系数："></asp:Label>
+                     </td>  
+                     <td>
+                        <asp:TextBox ID="tbx_WagesFactor" runat="server"></asp:TextBox>
+                    </td>
                     <td>
                         <asp:Label ID="Label9" runat="server" Text="管理奖系数："></asp:Label>
                      </td>  
                      <td>
-                           <asp:TextBox ID="tbx_xishu2_glj" runat="server"></asp:TextBox>
+                           <asp:TextBox ID="tbx_DutiesFactor" runat="server"></asp:TextBox>
                     </td>
-                     <td>
-                      
-                     </td>  
-                     <td>
-                     
-                    </td>
+                    
                 </tr>
             </table>
        <table style="width:100%">
          
             <tr>
                <td colspan="3">  
-            <asp:Button ID="Button1" runat="server" Text="确认" Width="99px" OnClick="Button1_Click" />
+            <asp:Button ID="btn_ok" runat="server" Text="确认" Width="99px" OnClick="btn_ok_Click" />
                  
-            <asp:Button ID="Button2" runat="server" Text="取消" Width="99px" OnClick="Button2_Click" />
+            <asp:Button ID="btn_cancel" runat="server" Text="取消" Width="99px" OnClick="btn_cancel_Click" />
 </td> 
       </tr>
  </table>  

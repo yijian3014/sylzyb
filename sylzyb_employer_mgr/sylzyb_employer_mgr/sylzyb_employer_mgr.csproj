@@ -56,8 +56,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="employer_mgr.aspx" />
-    <Content Include="login.aspx" />
+    <Content Include="EMPLOYER.aspx">
+      <BrowseToURL>~/employer.aspx</BrowseToURL>
+    </Content>
+    <Content Include="KHXXGL.aspx" />
+    <Content Include="LOGIN.aspx" />
+    <Content Include="USERINFO.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -65,21 +69,35 @@
   <ItemGroup>
     <Compile Include="Check.cs" />
     <Compile Include="db.cs" />
-    <Compile Include="employer_mgr.aspx.cs">
-      <DependentUpon>employer_mgr.aspx</DependentUpon>
+    <Compile Include="EMPLOYER.aspx.cs">
+      <DependentUpon>EMPLOYER.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="employer_mgr.aspx.designer.cs">
-      <DependentUpon>employer_mgr.aspx</DependentUpon>
+    <Compile Include="EMPLOYER.aspx.designer.cs">
+      <DependentUpon>EMPLOYER.aspx</DependentUpon>
     </Compile>
-    <Compile Include="login.aspx.cs">
-      <DependentUpon>login.aspx</DependentUpon>
+    <Compile Include="KHXXGL.aspx.cs">
+      <DependentUpon>KHXXGL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="login.aspx.designer.cs">
-      <DependentUpon>login.aspx</DependentUpon>
+    <Compile Include="KHXXGL.aspx.designer.cs">
+      <DependentUpon>KHXXGL.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LOGIN.aspx.cs">
+      <DependentUpon>LOGIN.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LOGIN.aspx.designer.cs">
+      <DependentUpon>LOGIN.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="USERINFO.aspx.cs">
+      <DependentUpon>USERINFO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="USERINFO.aspx.designer.cs">
+      <DependentUpon>USERINFO.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.Debug.config">

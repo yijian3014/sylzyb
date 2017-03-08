@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="sylzyb_employer_mgr.login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LOGIN.aspx.cs" Inherits="sylzyb_employer_mgr.login" %>
 
 <!DOCTYPE html>
 
@@ -59,9 +59,9 @@
                  <td colspan="4">
                       
                      <asp:RadioButtonList ID="rbtl_mod_sel" runat="server" RepeatDirection="Horizontal">
-                         <asp:ListItem>员工信息管理</asp:ListItem>
-                         <asp:ListItem>考核信息管理</asp:ListItem>
-                         <asp:ListItem>用户信息管理</asp:ListItem>
+                         <asp:ListItem Value="EMPLOYER.aspx">员工信息管理</asp:ListItem>
+                         <asp:ListItem Value="KHXXGL.ASPX">考核信息管理</asp:ListItem>
+                         <asp:ListItem Value="USERINFO.ASPX">用户信息管理</asp:ListItem>
                      </asp:RadioButtonList>
                  </td>
                 </tr>

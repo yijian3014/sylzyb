@@ -10,7 +10,7 @@ namespace sylzyb_employer_mgr
     public class Check : IHttpModule
     {
 
-        public db db_opt;
+        public db db_opt=new db();
         public DataSet ds;
         public string errmsg;
         /// <summary>
@@ -23,8 +23,10 @@ namespace sylzyb_employer_mgr
         public void Dispose()
         {
             //此处放置清除代码。
+            if (db_opt != null )
             db_opt.close();
-            ds.Clear();
+            if (ds != null)
+                ds.Clear();
         }
 
         public void Init(HttpApplication context)
@@ -44,8 +46,8 @@ namespace sylzyb_employer_mgr
         public bool user(string account, string password)
         {
             //通过用户名密码验证用户权限，并初化必要的SESSIONID及界面初始化序列字符串
-            Dispose();
-            string usr_sql = "select * from [dzsw].[dbo].[Syl_UserInfo] where UserName=" + account + " and UserPassWord=" + password;
+         
+            string usr_sql = "select * from [dzsw].[dbo].[Syl_UserInfo] where UserName='" + account + "' and UserPassWord='" + password+"'";
             ds = db_opt.build_dataset(usr_sql);
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -56,18 +58,22 @@ namespace sylzyb_employer_mgr
                 System.Web.HttpContext.Current.Session["UserLevelName"] = ds.Tables[0].Rows[0][4].ToString();
                 System.Web.HttpContext.Current.Session["UserPower"] = ds.Tables[0].Rows[0][5].ToString();
                 System.Web.HttpContext.Current.Session["ModulePower"] = ds.Tables[0].Rows[0][6].ToString();
+                Dispose();
                 return true;
             }
             else
+            {
+                Dispose();
                 return false;
+            }
         }
         public bool moudle(string moudlename)
         {
             //验证用户是否具备选择目标模块的使用权
             try
             {
-                Dispose();
-                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_Syl_UserPower] where PowerName=" + moudlename + " and Kind=1";
+               
+                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_Syl_UserPower] where PowerName='员工-" + moudlename + "' and Kind='2'";
                 ds = db_opt.build_dataset(mod_chk_sql);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
@@ -86,6 +92,7 @@ namespace sylzyb_employer_mgr
             {
                
                 errmsg = e.ToString();
+                Dispose();
                 return false;
             }
         }
@@ -94,25 +101,30 @@ namespace sylzyb_employer_mgr
             //通过控件名，及界面初始化序列字符串，返回界面的操作属性TRUE OR FALSE
             try
             {
-                Dispose();
-                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_Syl_UserPower] where PowerName=" + itemname + " and Kind=2";
+               
+                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_Syl_UserPower] where PowerName=员工-'" + itemname + "' and Kind='1'";
                 ds = db_opt.build_dataset(mod_chk_sql);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     if (System.Web.HttpContext.Current.Session["UserPower"].ToString().Substring(Convert.ToInt32(ds.Tables[0].Rows[0][1].ToString()), 1) == "Y")
                     {
-
+                        Dispose();
                         return true;
                     }
                     else
+                    {
+                        Dispose();
                         return false;
+                    }
                 }
                 else
+                { Dispose();
                     return false;
-            }
+            } }
             catch (Exception e)
             {
                 errmsg = e.ToString();
+                Dispose();
                 return false;
             }
 
