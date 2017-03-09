@@ -51,13 +51,13 @@ namespace sylzyb_employer_mgr
             ds = db_opt.build_dataset(usr_sql);
             if (ds.Tables[0].Rows.Count > 0)
             {
-                System.Web.HttpContext.Current.Session["RealName"] = ds.Tables[0].Rows[0][0].ToString();
-                System.Web.HttpContext.Current.Session["IDCard"] = ds.Tables[0].Rows[0][1].ToString();
-                System.Web.HttpContext.Current.Session["UserName"] = ds.Tables[0].Rows[0][2].ToString();
-                System.Web.HttpContext.Current.Session["UserLevel"] = ds.Tables[0].Rows[0][3].ToString();
-                System.Web.HttpContext.Current.Session["UserLevelName"] = ds.Tables[0].Rows[0][4].ToString();
-                System.Web.HttpContext.Current.Session["UserPower"] = ds.Tables[0].Rows[0][5].ToString();
-                System.Web.HttpContext.Current.Session["ModulePower"] = ds.Tables[0].Rows[0][6].ToString();
+                System.Web.HttpContext.Current.Session["RealName"] = ds.Tables[0].Rows[0][1].ToString();
+                System.Web.HttpContext.Current.Session["IDCard"] = ds.Tables[0].Rows[0][2].ToString();
+                System.Web.HttpContext.Current.Session["UserName"] = ds.Tables[0].Rows[0][3].ToString();
+                System.Web.HttpContext.Current.Session["UserLevel"] = ds.Tables[0].Rows[0][5].ToString();
+                System.Web.HttpContext.Current.Session["UserLevelName"] = ds.Tables[0].Rows[0][6].ToString();
+                System.Web.HttpContext.Current.Session["UserPower"] = ds.Tables[0].Rows[0][7].ToString();
+                System.Web.HttpContext.Current.Session["ModulePower"] = ds.Tables[0].Rows[0][8].ToString();
                 Dispose();
                 return true;
             }
@@ -70,17 +70,23 @@ namespace sylzyb_employer_mgr
         public bool moudle(string moudlename)
         {
             //验证用户是否具备选择目标模块的使用权
+            int ss;
+            string bb = "";
             try
             {
                
-                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_Syl_UserPower] where PowerName='员工-" + moudlename + "' and Kind='2'";
+                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_UserPower] where PowerName='员工-" + moudlename + "' and Kind='2'";
                 ds = db_opt.build_dataset(mod_chk_sql);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    if (System.Web.HttpContext.Current.Session["ModulePower"].ToString().Substring(Convert.ToInt32(ds.Tables[0].Rows[0][1].ToString()), 1) == "Y")
-                    {
+                    ss = Convert.ToInt32(ds.Tables[0].Rows[0][1].ToString()) ;
+                    bb = System.Web.HttpContext.Current.Session["ModulePower"].ToString();
+                   if (System.Web.HttpContext.Current.Session["ModulePower"].ToString().Substring(Convert.ToInt32(ds.Tables[0].Rows[0][1].ToString()), 1) == "Y")
+                       
 
-                        return true;
+                        {
+
+                            return true;
                     }
                     else
                         return false;
@@ -102,7 +108,7 @@ namespace sylzyb_employer_mgr
             try
             {
                
-                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_Syl_UserPower] where PowerName=员工-'" + itemname + "' and Kind='1'";
+                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_UserPower] where PowerName='员工-" + itemname + "' and Kind='1'";
                 ds = db_opt.build_dataset(mod_chk_sql);
                 if (ds.Tables[0].Rows.Count > 0)
                 {

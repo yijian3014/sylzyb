@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EMPLOYER.aspx.cs" Inherits="sylzyb_employer_mgr.employer_mgr" %>
+﻿<%@ Page Language="C#" EnableEventValidation="false" validateRequest="false" AutoEventWireup="true" CodeBehind="EMPLOYER.aspx.cs" Inherits="sylzyb_employer_mgr.employer_mgr" %>
 
 <!DOCTYPE html>
 
@@ -67,7 +67,7 @@
          
 
         </div>
-          <div style="text-align:center;margin:0 auto;">
+          <div style="text-align:center;margin:0 auto; width:950px;height:300px;overflow:auto;">
          <asp:GridView ID="GridView1" runat="server" HorizontalAlign="Center" Width="100%" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" AutoGenerateColumns="False" EnableModelValidation="True" Font-Size="Small">
              <Columns>
                  <asp:BoundField DataField="ID" HeaderText="序号" />

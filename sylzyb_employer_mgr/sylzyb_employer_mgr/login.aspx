@@ -7,9 +7,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
    <style>
+       .dv{
+           width:980px;
+           float:none;
+           margin:auto;
+           text-align:center;
+       }
         .login_tb {
             width: 980px;
             text-align: center;
+            height:300px
         }
 
         .lb_nm_mm {
@@ -29,25 +36,12 @@
         .td_right {
             width: 25%;
         }
-       .auto-style1 {
-           width: 25%;
-           height: 22px;
-       }
-       .auto-style2 {
-           width: 25%;
-           text-align: right;
-           height: 22px;
-       }
-       .auto-style3 {
-           width: 25%;
-           text-align: left;
-           height: 22px;
-       }
+     
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div class="dv">
             <table class="login_tb">
 
                 <tr>
@@ -76,14 +70,14 @@
                     <td class="td_right"></td>
                 </tr>
                 <tr>
-                    <td class="auto-style1"></td>
-                    <td class="auto-style2">
+                    <td class="td_left"></td>
+                    <td class="lb_nm_mm">
                         <asp:Label ID="Label2" runat="server" Text="密码："></asp:Label>
                     </td>
-                    <td class="auto-style3">
+                    <td class="tbx_nm_mm">
                         <asp:TextBox ID="tbx_lg_pas" runat="server"></asp:TextBox>
                     </td>
-                    <td class="auto-style1"></td>
+                    <td class="td_left"></td>
 
                 </tr>
                 <tr>

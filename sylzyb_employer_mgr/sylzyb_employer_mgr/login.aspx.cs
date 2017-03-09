@@ -14,6 +14,7 @@ namespace sylzyb_employer_mgr
         string pageName = "";
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             System.Web.HttpContext.Current.Session["RealName"] = "";
             System.Web.HttpContext.Current.Session["IDCard"] = "";
             System.Web.HttpContext.Current.Session["UserName"] = "";
@@ -27,7 +28,7 @@ namespace sylzyb_employer_mgr
         {
             if (ck.user(tbx_lg_nm.Text.Trim(), tbx_lg_pas.Text.Trim()))
             {
-                if (ck.moudle(rbtl_mod_sel.SelectedValue.ToString()))
+                if (ck.moudle(rbtl_mod_sel.SelectedItem.Text)==false)
                     Response.Write("<java script>alert('你没有权限使用该功能！')</java script>");
 
                 else
@@ -35,7 +36,7 @@ namespace sylzyb_employer_mgr
                     Response.Redirect(pageName);
             }
             else
-                Response.Redirect(pageName);
+                Response.Write("<script>alert('你没有权限使用该功能！')</script>");
         }
 
     }
