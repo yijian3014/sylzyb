@@ -10,14 +10,40 @@
         .auto-style1 {
             height: 23px;
         }
+        .dv_gv
+        {
+            text-align:center;
+            margin:0 auto; 
+            width:95%;
+            height:300px;
+            overflow:auto;
+        }
+        .fm{
+             text-align:center;
+             width:1000px;
+             margin:0 auto;
+
+        }
+        .dv_banner{
+            text-align:right;
+            margin:0 auto;
+            float:none;
+            width:100%;
+        }
+        .dv_detail{
+            width:95%;
+            text-align:center;
+            float:none;
+            margin:0 auto;
+        }
     </style>
 </head>
 <body>
-      <form id="form1" runat="server" style="text-align:center;width:95%;margin:0 auto;" >
+      <form id="form1" runat="server" class="fm">
         <asp:Label ID="Label26" runat="server" Text="原料作业部员工信息管理" Font-Bold="True" Font-Size="Larger"></asp:Label> 
         <div style="text-align:right;">            
                <hr  />
-        <asp:Label ID="Label25" runat="server" Text="用户名："></asp:Label>
+        <asp:Label ID="Label25" runat="server" Text="用户名：" ></asp:Label>
              
         <asp:Label ID="login_user" runat="server" Text=""></asp:Label>
   <asp:Button ID="btn_back" runat="server" Text="退出" OnClick="btn_back_Click" />
@@ -29,7 +55,7 @@
 <hr  /> 
 </div>
 
-        <div style="text-align:right;margin:0 auto;float:none;width:100%;">
+        <div class="dv_banner">
             <table style="width:100%">
                 <tr>
                     <td style="width:30%;text-align:center;">
@@ -50,15 +76,16 @@
                             <asp:ListItem>常白</asp:ListItem>
                             <asp:ListItem>管理</asp:ListItem>
                             <asp:ListItem>其它</asp:ListItem>
+                            <asp:ListItem Value="*">全部</asp:ListItem>
                         </asp:DropDownList>
 
                     </td>
    <td style="width:25%;text-align:center;">
                         <asp:Label ID="Label27" runat="server" Text="姓名拼音简写："></asp:Label>
 
-                        <asp:TextBox ID="TextBox1" runat="server" Width="111px"></asp:TextBox>
+                        <asp:TextBox ID="tbx_xmsy" runat="server" Width="111px" AutoPostBack="true"  OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
        </td>
-          <td style="width:10%;text-align:center;">
+          <td style="width:5%;text-align:center;">
                         <asp:Button ID="btn_info_cx" runat="server" Text="查询" />
 
                     </td>
@@ -67,7 +94,7 @@
          
 
         </div>
-          <div style="text-align:center;margin:0 auto; width:950px;height:300px;overflow:auto;">
+          <div class="dv_gv">
          <asp:GridView ID="GridView1" runat="server" HorizontalAlign="Center" Width="100%" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" AutoGenerateColumns="False" EnableModelValidation="True" Font-Size="Small">
              <Columns>
                  <asp:BoundField DataField="ID" HeaderText="序号" />
@@ -85,7 +112,7 @@
          </asp:GridView>
        </div>
  
-        <div id="employer_detail" runat="server" style="width:95%;text-align:center;float:none;margin:0 auto;">
+        <div id="employer_detail" runat="server" class="dv_detail">
     <asp:Label ID="Label1" runat="server" Text="员工信息编辑" Font-Bold="False" Font-Size="Larger"></asp:Label>
 <hr />
             <table style="width:100%">

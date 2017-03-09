@@ -39,7 +39,7 @@ namespace sylzyb_employer_mgr
                     System.Web.HttpContext.Current.Session["UserLevelName"] = "";
                     System.Web.HttpContext.Current.Session["UserPower"] = "";
                     System.Web.HttpContext.Current.Session["ModulePower"] = "";
-                    Response.Write("<script language='javascript'>alert('您尚未登陆或登陆超时');location.href='Login.aspx';</script>");
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>alert('您尚未登陆或登陆超时');location.href='Login.aspx';</script>");
                     Response.Redirect("login.aspx");
                 }
                 else
@@ -141,9 +141,10 @@ namespace sylzyb_employer_mgr
                 db_opt.execsql(option_sql);
                 GridView1.DataSource = db_opt.build_dataset(sel_string);
                 GridView1.DataBind();
-                Response.Write("<script>alert('数据已经同步！')</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "< script>alert('数据已经同步！')</script>");
             }
-            else Response.Write("<script>alert('无效操作！')</script>");
+            else
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('无效操作！')");
 
         }
 
@@ -174,10 +175,8 @@ namespace sylzyb_employer_mgr
             tbx_Duties.Text = "";
             tbx_WagesFactor.Text = "";
             tbx_DutiesFactor.Text = "";
-            Response.Write("<script>alert('操作取消数据未同步！')</script>");
-
-
-
+            // Response.Write("<script>alert('操作取消数据未同步！');javascript:history.go(-1);</script>");
+            Page.ClientScript.RegisterStartupScript(this.GetType(),"","<script>alert('操作取消数据未同步！')");
         }
 
         protected void btn_emp_add_Click(object sender, EventArgs e)
@@ -252,14 +251,20 @@ namespace sylzyb_employer_mgr
             tbx_WagesFactor.Enabled = true;
             tbx_DutiesFactor.Enabled = true;
 
-            tbx_id.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[0].Text;
-            tbx_WorkerName.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[1].Text;
-            tbx_IDCard.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[2].Text;
-            tbx_GroupName.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[3].Text;
-            tbx_Job.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[4].Text;
-            tbx_Duties.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[5].Text;
-            tbx_WagesFactor.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[6].Text;
-            tbx_DutiesFactor.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[7].Text;
+            tbx_id.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[0].Text== "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[0].Text;
+            tbx_WorkerName.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[1].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[1].Text;
+            tbx_IDCard.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[2].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[2].Text;
+            tbx_GroupName.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[3].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[3].Text;
+            tbx_Job.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[4].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[4].Text;
+            tbx_Duties.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[5].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[5].Text;
+            tbx_WagesFactor.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[6].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[6].Text;
+            tbx_DutiesFactor.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[7].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[7].Text;
+        }
+
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            Label27.Text = NPinyin.Pinyin.GetInitials(tbx_xmsy.Text, System.Text.Encoding.Default);
+            
         }
     }
 }
