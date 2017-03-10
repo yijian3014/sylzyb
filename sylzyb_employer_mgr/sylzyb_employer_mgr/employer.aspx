@@ -83,7 +83,7 @@
    <td style="width:25%;text-align:center;">
                         <asp:Label ID="Label27" runat="server" Text="姓名拼音简写："></asp:Label>
 
-                        <asp:TextBox ID="tbx_xmsy" runat="server" Width="111px" AutoPostBack="true"  OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+                        <asp:TextBox ID="tbx_xmsy" runat="server" Width="111px" AutoPostBack="true"></asp:TextBox>
        </td>
           <td style="width:5%;text-align:center;">
                         <asp:Button ID="btn_info_cx" runat="server" Text="查询" />

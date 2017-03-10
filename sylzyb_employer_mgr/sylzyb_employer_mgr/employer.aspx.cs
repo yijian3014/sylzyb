@@ -40,7 +40,7 @@ namespace sylzyb_employer_mgr
                     System.Web.HttpContext.Current.Session["UserPower"] = "";
                     System.Web.HttpContext.Current.Session["ModulePower"] = "";
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>alert('您尚未登陆或登陆超时');location.href='Login.aspx';</script>");
-                    Response.Redirect("login.aspx");
+                   
                 }
                 else
                 {
@@ -48,9 +48,9 @@ namespace sylzyb_employer_mgr
                     sel_string = "select * from [dzsw].[dbo].[Syl_WorkerInfo] ";
                 }
             }
-            btn_emp_add.Visible = option_ck.item("添加员工信息");
-            btn_emp_edt.Visible = option_ck.item("修改员工信息");
-            btn_emp_del.Visible = option_ck.item("删除员工信息");
+            btn_emp_add.Visible = option_ck.item("员工-"+"添加员工信息");
+            btn_emp_edt.Visible = option_ck.item("员工-"+"修改员工信息");
+            btn_emp_del.Visible = option_ck.item("员工-"+"删除员工信息");
 
 
             employer_detail.Visible = false;
@@ -67,11 +67,11 @@ namespace sylzyb_employer_mgr
             tbx_DutiesFactor.Enabled = false;
 
             ds= db_opt.build_dataset(sel_string);
-
-           
             GridView1.DataSource = ds;
-
             GridView1.DataBind();
+           
+            login_user.Text = System.Web.HttpContext.Current.Session["RealName"].ToString();
+           
         }
 
         protected void btn_back_Click(object sender, EventArgs e)
@@ -82,7 +82,7 @@ namespace sylzyb_employer_mgr
       
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string sss;
+           
             for (int i = 0; i < GridView1.Rows.Count; i++)
             {
                 GridView1.Rows[i].BackColor = System.Drawing.Color.White;
@@ -124,28 +124,36 @@ namespace sylzyb_employer_mgr
         {
             btn_ok.Visible = false;
             employer_detail.Visible = false;
-            if (option_sql != "") option_sql = "";
-           if (string.Compare(option_method,"insert")==0)
-              option_sql = "insert into [dzsw].[dbo].[Syl_WorkerInfo] (WorkerName,IDCard,GroupName,Job,Duties,WagesFactor,DutiesFactor)values('"
-              + tbx_WorkerName.Text + "','" + tbx_IDCard.Text + "','" + tbx_GroupName.Text + "','" + tbx_Job.Text + "','" + tbx_Duties.Text + "','"
-              + Convert.ToDecimal(tbx_WagesFactor.Text) + "','" + Convert.ToDecimal(tbx_DutiesFactor.Text) + "')";
-            if (string.Compare(option_method,"delete") == 0)
-                option_sql = "delete  from [dzsw].[dbo].[Syl_WorkerInfo] where  ID='" + tbx_id.Text + "'";
-            if (string.Compare(option_method, "update") == 0)
-                option_sql = "update  [dzsw].[dbo].[Syl_WorkerInfo] set WorkerName='"
-                     + tbx_WorkerName.Text.Trim() + "',IDCard='" + tbx_IDCard.Text.Trim() + "',GroupName='" + tbx_GroupName.Text.Trim()
-                     + "',Job='" + tbx_Job.Text.Trim() + "',Duties='" + tbx_Duties.Text.Trim() + "',WagesFactor='"+ Convert.ToDecimal(tbx_WagesFactor.Text.Trim()) 
-                     + "',DutiesFactor='" + Convert.ToDecimal(tbx_DutiesFactor.Text.Trim()) + "' where id='"+tbx_id.Text.Trim() + "'";
-            if (option_sql != "")
+            try
             {
-                db_opt.execsql(option_sql);
-                GridView1.DataSource = db_opt.build_dataset(sel_string);
-                GridView1.DataBind();
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "< script>alert('数据已经同步！')</script>");
-            }
-            else
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('无效操作！')");
 
+
+                if (option_sql != "") option_sql = "";
+                if (string.Compare(option_method, "insert") == 0)
+                    option_sql = "insert into [dzsw].[dbo].[Syl_WorkerInfo] (WorkerName,IDCard,GroupName,Job,Duties,WagesFactor,DutiesFactor)values('"
+                    + tbx_WorkerName.Text + "','" + tbx_IDCard.Text + "','" + tbx_GroupName.Text + "','" + tbx_Job.Text + "','" + tbx_Duties.Text + "','"
+                    + Convert.ToDecimal(tbx_WagesFactor.Text) + "','" + Convert.ToDecimal(tbx_DutiesFactor.Text) + "')";
+                if (string.Compare(option_method, "delete") == 0)
+                    option_sql = "delete  from [dzsw].[dbo].[Syl_WorkerInfo] where  ID='" + tbx_id.Text + "'";
+                if (string.Compare(option_method, "update") == 0)
+                    option_sql = "update  [dzsw].[dbo].[Syl_WorkerInfo] set WorkerName='"
+                         + tbx_WorkerName.Text.Trim() + "',IDCard='" + tbx_IDCard.Text.Trim() + "',GroupName='" + tbx_GroupName.Text.Trim()
+                         + "',Job='" + tbx_Job.Text.Trim() + "',Duties='" + tbx_Duties.Text.Trim() + "',WagesFactor='" + Convert.ToDecimal(tbx_WagesFactor.Text.Trim())
+                         + "',DutiesFactor='" + Convert.ToDecimal(tbx_DutiesFactor.Text.Trim()) + "' where id='" + tbx_id.Text.Trim() + "'";
+                if (option_sql != "")
+                {
+                    db_opt.execsql(option_sql);
+                    GridView1.DataSource = db_opt.build_dataset(sel_string);
+                    GridView1.DataBind();
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('数据已经同步！');</script>");
+                }
+                else
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('无效操作！');</script>");
+            }
+            catch (Exception  opt_err)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('录入字段类型错误!"+opt_err.Message.ToString()+"');</script>");
+            }
         }
 
         protected void btn_cancel_Click(object sender, EventArgs e)
@@ -176,7 +184,8 @@ namespace sylzyb_employer_mgr
             tbx_WagesFactor.Text = "";
             tbx_DutiesFactor.Text = "";
             // Response.Write("<script>alert('操作取消数据未同步！');javascript:history.go(-1);</script>");
-            Page.ClientScript.RegisterStartupScript(this.GetType(),"","<script>alert('操作取消数据未同步！')");
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('操作取消数据未同步！"+e.ToString()+"');</script>");
+       
         }
 
         protected void btn_emp_add_Click(object sender, EventArgs e)
@@ -261,10 +270,6 @@ namespace sylzyb_employer_mgr
             tbx_DutiesFactor.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[7].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[7].Text;
         }
 
-        protected void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-            Label27.Text = NPinyin.Pinyin.GetInitials(tbx_xmsy.Text, System.Text.Encoding.Default);
-            
-        }
+       
     }
 }

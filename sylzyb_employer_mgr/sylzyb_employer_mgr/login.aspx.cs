@@ -10,11 +10,11 @@ namespace sylzyb_employer_mgr
     public partial class login : System.Web.UI.Page
     {
         public db db_opt;
-        public Check ck=new Check();
+        public Check ck = new Check();
         string pageName = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            System.Web.HttpContext.Current.Session["ISSuperUser"] = "false";
             System.Web.HttpContext.Current.Session["RealName"] = "";
             System.Web.HttpContext.Current.Session["IDCard"] = "";
             System.Web.HttpContext.Current.Session["UserName"] = "";
@@ -28,15 +28,22 @@ namespace sylzyb_employer_mgr
         {
             if (ck.user(tbx_lg_nm.Text.Trim(), tbx_lg_pas.Text.Trim()))
             {
-                if (ck.moudle(rbtl_mod_sel.SelectedItem.Text)==false)
-                    Response.Write("<java script>alert('你没有权限使用该功能！')</java script>");
-
+                if (ck.moudle(rbtl_mod_sel.SelectedItem.Text) == false)
+                {
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(),"message","<script>alert('你没有权限使用该功能！')</script>");
+                }
                 else
+                {
+                    // int i= System.String.Compare(System.Web.HttpContext.Current.Session["ISSuperUser"].ToString(), "true") ;
+                    // 0:相等，其它不等。
+                    if (System.String.Compare(System.Web.HttpContext.Current.Session["ISSuperUser"].ToString(), "true") == 0)
+                        System.Web.HttpContext.Current.Session["RealName"] = System.Web.HttpContext.Current.Session["RealName"].ToString() + "(超级用户)";
                     pageName = rbtl_mod_sel.SelectedItem.Value.ToString().Trim();
                     Response.Redirect(pageName);
+                }
             }
             else
-                Response.Write("<script>alert('你没有权限使用该功能！')</script>");
+              Page.ClientScript.RegisterStartupScript(Page.GetType(),"message", "<script>alert('你没有权限使用该功能！')</script>");
         }
 
     }
