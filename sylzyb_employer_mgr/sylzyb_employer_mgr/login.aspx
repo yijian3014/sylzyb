@@ -53,8 +53,9 @@
                  <td colspan="4">
                       
                      <asp:RadioButtonList ID="rbtl_mod_sel" runat="server" RepeatDirection="Horizontal">
+                         <asp:ListItem Value="KHXXGL.ASPX" Selected="True">考核信息管理</asp:ListItem>
                          <asp:ListItem Value="EMPLOYER.aspx">员工信息管理</asp:ListItem>
-                         <asp:ListItem Value="KHXXGL.ASPX">考核信息管理</asp:ListItem>
+                         
                          <asp:ListItem Value="USERINFO.ASPX">用户信息管理</asp:ListItem>
                      </asp:RadioButtonList>
                  </td>

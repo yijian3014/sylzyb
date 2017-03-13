@@ -41,9 +41,9 @@ namespace sylzyb_employer_mgr
                     pageName = rbtl_mod_sel.SelectedItem.Value.ToString().Trim();
                     Response.Redirect(pageName);
                 }
-            }
+            }k
             else
-              Page.ClientScript.RegisterStartupScript(Page.GetType(),"message", "<script>alert('你没有权限使用该功能！')</script>");
+              Page.ClientScript.RegisterStartupScript(Page.GetType(),"message", "<script>alert('你的登陆信息输入错误！')</script>");
         }
 
     }
