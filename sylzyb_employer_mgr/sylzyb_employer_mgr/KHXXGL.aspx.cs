@@ -10,8 +10,8 @@ namespace sylzyb_employer_mgr
 {
     public partial class KHGL : System.Web.UI.Page
     {
-        public static string sel_string = "select * from [dzsw].[dbo].SJ2B_KH_KaoHe_info where  AppraiseTime between  dateadd(month,-2,getdate()) and getdate()  order by AppraiseClass desc, AppraiseGroup,AppraiseTime";
-        BaseClass ds = new BaseClass();
+        public static string sel_string = "select * from [dzsw].[dbo].[Syl_AppraiseInfo] where  TC_DateTime between  dateadd(month,-2,getdate()) and getdate()  order by AppKind desc, AppGroup,TC_DateTime";
+        db  ds = new db();
         public DataSet ds1 = new DataSet();
         DataTable dt1 = new DataTable();
         SqlDataReader dr;
@@ -24,9 +24,7 @@ namespace sylzyb_employer_mgr
         }
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GDFK_BanLi.Visible = false;
-            dv_khfk_banli.Visible = false;
-            div_khxd.Visible = false;
+          
             if (rbl_cx.SelectedIndex == 0)
             {
                 sel_string = "select * from [dzsw].[dbo].SJ2B_KH_KaoHe_info   where  AppraiseTime between  '"
@@ -97,36 +95,7 @@ namespace sylzyb_employer_mgr
                     string Leader_3_Opinion_ = dr["Leader_3_Opinion"].ToString();
                     string Leader_3_State_ = dr["Leader_3_State"].ToString();
                     //直接将数据DR值转STRING肤质给LABEL.TEXT会报类型错误，所以用带_的由名字符变量中转一下。
-                    AppraiseID.Text = AppraiseID_;
-                    Flow_State.Text = Flow_State_;
-                    UserName.Text = UserName_;
-                    lb_tcr_usrid.Text = UserID_;
-                    tc_DataTime.Text = tc_DateTime_;
-                    AppraiseClass.Text = AppraiseClass_;
-                    AppraiseTime.Text = AppraiseTime_;
-                    AppraiseGroup.Text = AppraiseGroup_;
-                    lb_AppraiseGroupID.Text = AppraiseGroupID_;
-                    tbx_AppraiseContent.Text = AppraiseContent_;
-                    tbx_zgsh_kh_jiner.Text = kh_jiner_;
-                    lb_kh_jiner.Text = kh_jiner_;
-                    DJ_ReturnTime.Text = DJ_ReturnTime_;
-                    tbx_xd_khfk_yj.Text = KHFK_YJ_;
-                    tbx_khfk_yj.Text = KHFK_YJ_;
-                    lb_khfk_zt.Text = KHFK_ZT_;
-                    tbx_khfk_jiner.Text = kh_jiner_;
-                    lb_khfk_sj.Text = KHFK_SJ_;
-                    ClassState.Text = ClassState_;
-                    COTime1.Text = COTime_;
-
-                    tbx_ClassObjection.Text = ClassObjection_;
-                    tbx_ChargehandOpinion.Text = ChargehandOpinion_;
-                    ChargehandState.Text = ChargehandState_;
-                    tbx_Leader_1_Opinion.Text = Leader_1_Opinion_;
-                    Leader_1_State.Text = Leader_1_State_;
-                    tbx_Leader_2_Opinion.Text = Leader_2_Opinion_;
-                    Leader_2_State.Text = Leader_2_State_;
-                    tbx_Leader_3_Opinion.Text = Leader_3_Opinion_;
-                    Leader_3_State.Text = Leader_3_State_;
+                  
                 }
             }
             catch (Exception er)
@@ -138,9 +107,7 @@ namespace sylzyb_employer_mgr
         }
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GDFK_BanLi.Visible = false;
-            dv_khfk_banli.Visible = false;
-            div_khxd.Visible = true;
+          
             for (int i = 0; i < GridView1.Rows.Count; i++)
             {
                 GridView1.Rows[i].BackColor = System.Drawing.Color.White;
@@ -189,6 +156,7 @@ namespace sylzyb_employer_mgr
             else
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "<script>alert('请先从表中选择待办项');</script>");
 
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('办理考核,该功能尚未完善!');</script>");
 
         }
         protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)
@@ -199,10 +167,7 @@ namespace sylzyb_employer_mgr
                
             }
         }
-        protected void Button2_Click(object sender, EventArgs e)
-        {
-            GDFK_BanLi.Visible = false;
-        }
+     
       
 
         protected void btn_exit_Click(object sender, EventArgs e)
@@ -218,8 +183,8 @@ namespace sylzyb_employer_mgr
         protected void btn_tckh_Click(object sender, EventArgs e)
         {
 
-            Session["parent_page"] = System.IO.Path.GetFileName(Request.Path).ToString();
-            Response.Redirect("KHLR.aspx");
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('写入考核信息,该功能尚未完善!');</script>");
+
         }
 
         protected void btn_khfk_ok_Click(object sender, EventArgs e)
@@ -335,6 +300,41 @@ namespace sylzyb_employer_mgr
                 if (!bg) tbx_bg_time.Text = "正确格式:2013-04-02或2013/4/2";
                 if (!ed) tbx_ed_time.Text = "正确格式:2013-04-02或2013/4/2";
             }
+
+        }
+
+        protected void ddl_qckh_AppName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btn_qckh_ok_Click(object sender, EventArgs e)
+        {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('写入考核信息,该功能尚未完善!');</script>");
+
+        }
+
+        protected void btn_qckh_cancel_Click(object sender, EventArgs e)
+        {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('操作取消数据未同步！该功能尚未完善!" + e.ToString() + "');</script>");
+
+        }
+
+        protected void btn_shenpi_ok_Click(object sender, EventArgs e)
+        {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('审批操作！该功能尚未完善!" + e.ToString() + "');</script>");
+
+        }
+
+        protected void btn_shenpi_cancel_Click(object sender, EventArgs e)
+        {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('审批操作取消数据未同步！该功能尚未完善!" + e.ToString() + "');</script>");
+
+        }
+
+        protected void ddl_qckh_AppGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //这个方法同步填充被考核人员GRIDVIEW。编缉，但不同步到数据表，通过确定扫描GRIDVIEW 对应的单元格。
 
         }
     }

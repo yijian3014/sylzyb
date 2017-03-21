@@ -219,31 +219,41 @@
                         <asp:Label ID="Label54" runat="server" Text="被考核人班组:"></asp:Label>
                     </td>
                     <td class="sty_qckh_dv_tb2_tr_td_value">
-                        <asp:DropDownList ID="ddl_qckh_AppGroup" runat="server"></asp:DropDownList>
+                        <asp:DropDownList ID="ddl_qckh_AppGroup" runat="server" OnSelectedIndexChanged="ddl_qckh_AppGroup_SelectedIndexChanged"></asp:DropDownList>
                     </td>
 
                 </tr>
 
-                <tr>
-
-                    <td class="sty_qckh_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label56" runat="server" Text="被考核对象:"></asp:Label>
-                    </td>
-                    <td class="sty_qckh_dv_tb2_tr_td_value">
-
-                        <asp:DropDownList ID="ddl_qckh_AppName" runat="server"></asp:DropDownList>
-                    </td>
-
-                    <td class="sty_qckh_dv_tb2_tr_td_name"></td>
-                    <td class="sty_qckh_dv_tb2_tr_td_value"></td>
-                    <td class="sty_qckh_dv_tb2_tr_td_name"></td>
-                    <td class="sty_qckh_dv_tb2_tr_td_value"></td>
-                    <td class="sty_qckh_dv_tb2_tr_td_name"></td>
-                    <td class="sty_qckh_dv_tb2_tr_td_value"></td>
-
-                </tr>
             </table>
             <table id="tb3" class="sty_qckh_dv_tb3">
+                <tr>
+                      <td class="sty_qckh_dv_tb3_tr_td_name">
+                        <asp:Label ID="Label23" runat="server" Text="被考核对象:"></asp:Label>
+                    </td>
+                     </tr>
+
+                <tr>
+                    <td class="sty_qckh_dv_tb3_tr_td_value">
+
+                        <%--<asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="ddl_qckh_AppName_SelectedIndexChanged"></asp:DropDownList>--%>
+                  <asp:GridView ID="GridView2" runat="server" HorizontalAlign="Center" Width="100%" Height="100px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" AutoGenerateColumns="False" EnableModelValidation="True" OnRowCreated="GridView1_RowCreated" Font-Size="Small">
+                <Columns>
+                    <asp:BoundField DataField="ID" HeaderText="ID" Visible="False" />
+                    <asp:BoundField DataField="AppID" HeaderText="考核编号" />
+                    <asp:BoundField DataField="FS_DateTime" HeaderText="考核发生时间" />
+                    <asp:BoundField DataField="ApplicantName" HeaderText="考核提出人姓名" />
+                    <asp:BoundField DataField="ApplicantIDCard" HeaderText="考核提出人身份证号" />
+                    <asp:BoundField DataField="AppName" HeaderText="被考核人姓名" />
+                    <asp:BoundField DataField="AppIDCard" HeaderText="被考核人身份证号" />
+                    <asp:BoundField DataField="AppKind" HeaderText="考核类型" />
+                    <asp:BoundField DataField="AppAmount" HeaderText="考核金额" />
+                    <asp:BoundField DataField="AppContent" HeaderText="考核内容" />
+                    <asp:BoundField DataField="AppBy" HeaderText="考核依据" />
+                    <asp:BoundField DataField="App_State" HeaderText="考核状态" />
+                </Columns>
+            </asp:GridView>
+                          </td>
+                </tr>
                 <tr>
                     <td class="sty_qckh_dv_tb3_tr_td_name">
                         <asp:Label ID="Label58" runat="server" Text="考核内容:"></asp:Label></td>
@@ -262,10 +272,28 @@
                         <asp:TextBox ID="tbx_qckh_AppBy" runat="server" Height="141px" Width="962px"></asp:TextBox>
                     </td>
                 </tr>
+                    <tr>
+                    <td class="sty_qckh_dv_tb3_tr_td_value">
+                        <asp:DropDownList ID="ddl_next_OR_previous" runat="server">
+                            <asp:ListItem>转交下一步</asp:ListItem>
+                            <asp:ListItem>回退</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:DropDownList ID="ddl_step" runat="server">
+                            <asp:ListItem>下一步结点名</asp:ListItem>
+                        </asp:DropDownList>
+                </tr>
+                 <tr> 
+                       <td class="sty_qckh_dv_tb3_tr_td_value">
+                        <asp:CheckBoxList ID="cbl_qckh_next_persion" runat="server">
+                            <asp:ListItem>经办人列表</asp:ListItem>
+                        </asp:CheckBoxList>
+                      
+                    </td>
+                </tr>
                 <tr>
                     <td>
-                        <asp:Button ID="btn_qckh_ok" runat="server" Text="确认转交下一步" Width="99px" OnClick="Button1_Click" />
-                        <asp:Button ID="btn_qckh_cancel" runat="server" Text="取消" Width="99px" OnClick="Button2_Click" />
+                        <asp:Button ID="btn_qckh_ok" runat="server" Text="确认转交下一步" Width="99px" OnClick="btn_qckh_ok_Click" />
+                        <asp:Button ID="btn_qckh_cancel" runat="server" Text="取消" Width="99px" OnClick="btn_qckh_cancel_Click" />
                     </td>
                 </tr>
             </table>
@@ -599,13 +627,28 @@
                         <asp:TextBox ID="tbx_shenpi_yj" runat="server" Height="225px" Width="100%" TextMode="MultiLine"></asp:TextBox>
                     </td>
                 </tr>
+               <tr>
+                    <td class="sty_shenpi_dv_tb2_tr_td" style="text-align:left;" >
+                        <asp:DropDownList ID="ddl_next_step_opt" runat="server" >
+                            <asp:ListItem>会签</asp:ListItem>
+                            <asp:ListItem>转交</asp:ListItem>
+                            <asp:ListItem>回退</asp:ListItem>
+                        </asp:DropDownList>
+                      
+                    </td>
+                     </tr>
+               <tr>
+                      <td class="sty_shenpi_dv_tb2_tr_td">
+                         <asp:CheckBoxList ID="cbl_shenpi_next_persion" runat="server"></asp:CheckBoxList>
+                    </td>
+                </tr>  
                 <tr>
                     <td class="sty_shenpi_dv_tb2_tr_td">
-                        <asp:Button ID="btn_shenpi_ok" runat="server" Text="确认转交下一步" Width="99px" OnClick="Button1_Click" />
-                        <asp:Button ID="btn_shenpi_back_step" runat="server" Text="回退至上一步" />
-                        <asp:Button ID="btn_shenpi_cancel" runat="server" Text="取消" Width="99px" OnClick="Button2_Click" />
+                        <asp:Button ID="btn_shenpi_ok" runat="server" Text="确认" Width="99px" OnClick="btn_shenpi_ok_Click" />
+                        <asp:Button ID="btn_shenpi_cancel" runat="server" Text="取消" Width="99px" OnClick="btn_shenpi_cancel_Click" />
                     </td>
                 </tr>
+                 
             </table>
         </div>
 

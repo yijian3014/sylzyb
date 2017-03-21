@@ -127,28 +127,33 @@ namespace sylzyb_employer_mgr
             try
             {
 
-
-                if (option_sql != "") option_sql = "";
-                if (string.Compare(option_method, "insert") == 0)
-                    option_sql = "insert into [dzsw].[dbo].[Syl_WorkerInfo] (WorkerName,IDCard,GroupName,Job,Duties,WagesFactor,DutiesFactor)values('"
-                    + tbx_WorkerName.Text + "','" + tbx_IDCard.Text + "','" + tbx_GroupName.Text + "','" + tbx_Job.Text + "','" + tbx_Duties.Text + "','"
-                    + Convert.ToDecimal(tbx_WagesFactor.Text) + "','" + Convert.ToDecimal(tbx_DutiesFactor.Text) + "')";
-                if (string.Compare(option_method, "delete") == 0)
-                    option_sql = "delete  from [dzsw].[dbo].[Syl_WorkerInfo] where  ID='" + tbx_id.Text + "'";
-                if (string.Compare(option_method, "update") == 0)
-                    option_sql = "update  [dzsw].[dbo].[Syl_WorkerInfo] set WorkerName='"
-                         + tbx_WorkerName.Text.Trim() + "',IDCard='" + tbx_IDCard.Text.Trim() + "',GroupName='" + tbx_GroupName.Text.Trim()
-                         + "',Job='" + tbx_Job.Text.Trim() + "',Duties='" + tbx_Duties.Text.Trim() + "',WagesFactor='" + Convert.ToDecimal(tbx_WagesFactor.Text.Trim())
-                         + "',DutiesFactor='" + Convert.ToDecimal(tbx_DutiesFactor.Text.Trim()) + "' where id='" + tbx_id.Text.Trim() + "'";
-                if (option_sql != "")
+                if  (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_WorkerInfo]", "WorkerName", tbx_WorkerName.Text ))
                 {
-                    db_opt.execsql(option_sql);
-                    GridView1.DataSource = db_opt.build_dataset(sel_string);
-                    GridView1.DataBind();
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('数据已经同步！');</script>");
+                    if (option_sql != "") option_sql = "";
+                    if (string.Compare(option_method, "insert") == 0)
+                        option_sql = "insert into [dzsw].[dbo].[Syl_WorkerInfo] (WorkerName,IDCard,GroupName,Job,Duties,WagesFactor,DutiesFactor)values('"
+                        + tbx_WorkerName.Text + "','" + tbx_IDCard.Text + "','" + tbx_GroupName.Text + "','" + tbx_Job.Text + "','" + tbx_Duties.Text + "','"
+                        + Convert.ToDecimal(tbx_WagesFactor.Text) + "','" + Convert.ToDecimal(tbx_DutiesFactor.Text) + "')";
+                    if (string.Compare(option_method, "delete") == 0)
+                        option_sql = "delete  from [dzsw].[dbo].[Syl_WorkerInfo] where  ID='" + tbx_id.Text + "'";
+                    if (string.Compare(option_method, "update") == 0)
+                        option_sql = "update  [dzsw].[dbo].[Syl_WorkerInfo] set WorkerName='"
+                             + tbx_WorkerName.Text.Trim() + "',IDCard='" + tbx_IDCard.Text.Trim() + "',GroupName='" + tbx_GroupName.Text.Trim()
+                             + "',Job='" + tbx_Job.Text.Trim() + "',Duties='" + tbx_Duties.Text.Trim() + "',WagesFactor='" + Convert.ToDecimal(tbx_WagesFactor.Text.Trim())
+                             + "',DutiesFactor='" + Convert.ToDecimal(tbx_DutiesFactor.Text.Trim()) + "' where id='" + tbx_id.Text.Trim() + "'";
+                    if (option_sql != "")
+                    {
+                        db_opt.execsql(option_sql);
+                        GridView1.DataSource = db_opt.build_dataset(sel_string);
+                        GridView1.DataBind();
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('数据已经同步！');</script>");
+                    }
+                    else
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('无效操作！');</script>");
                 }
-                else
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('无效操作！');</script>");
+                else {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('该员工信息不存在于数据库！');</script>");
+                }
             }
             catch (Exception  opt_err)
             {

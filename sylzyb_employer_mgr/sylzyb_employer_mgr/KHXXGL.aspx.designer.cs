@@ -211,22 +211,22 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.DropDownList ddl_qckh_AppGroup;
         
         /// <summary>
-        /// Label56 控件。
+        /// Label23 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label56;
+        protected global::System.Web.UI.WebControls.Label Label23;
         
         /// <summary>
-        /// ddl_qckh_AppName 控件。
+        /// GridView2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_qckh_AppName;
+        protected global::System.Web.UI.WebControls.GridView GridView2;
         
         /// <summary>
         /// Label58 控件。
@@ -263,6 +263,33 @@ namespace sylzyb_employer_mgr {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbx_qckh_AppBy;
+        
+        /// <summary>
+        /// ddl_next_OR_previous 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_next_OR_previous;
+        
+        /// <summary>
+        /// ddl_step 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_step;
+        
+        /// <summary>
+        /// cbl_qckh_next_persion 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList cbl_qckh_next_persion;
         
         /// <summary>
         /// btn_qckh_ok 控件。
@@ -868,6 +895,24 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.TextBox tbx_shenpi_yj;
         
         /// <summary>
+        /// ddl_next_step_opt 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_next_step_opt;
+        
+        /// <summary>
+        /// cbl_shenpi_next_persion 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList cbl_shenpi_next_persion;
+        
+        /// <summary>
         /// btn_shenpi_ok 控件。
         /// </summary>
         /// <remarks>
@@ -875,15 +920,6 @@ namespace sylzyb_employer_mgr {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_shenpi_ok;
-        
-        /// <summary>
-        /// btn_shenpi_back_step 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_shenpi_back_step;
         
         /// <summary>
         /// btn_shenpi_cancel 控件。

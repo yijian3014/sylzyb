@@ -76,6 +76,7 @@
     <Compile Include="EMPLOYER.aspx.designer.cs">
       <DependentUpon>EMPLOYER.aspx</DependentUpon>
     </Compile>
+    <Compile Include="khgl.cs" />
     <Compile Include="KHXXGL.aspx.cs">
       <DependentUpon>KHXXGL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

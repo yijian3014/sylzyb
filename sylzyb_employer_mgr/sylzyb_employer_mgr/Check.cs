@@ -77,7 +77,7 @@ namespace sylzyb_employer_mgr
             try
             {
                
-                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_UserPower] where PowerName='" + moudlename + "' and Kind='2'";
+                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_UserPower] where PowerName='" + moudlename + "'";
                 ds = db_opt.build_dataset(mod_chk_sql);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
@@ -118,7 +118,7 @@ namespace sylzyb_employer_mgr
             try
             {
                
-                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_UserPower] where PowerName='" + itemname + "' and Kind='1'";
+                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_UserPower] where PowerName='" + itemname + "'";
                 ds = db_opt.build_dataset(mod_chk_sql);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
