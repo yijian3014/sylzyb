@@ -58,6 +58,15 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Button btn_exit;
         
         /// <summary>
+        /// dv_qicaokaohe 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dv_qicaokaohe;
+        
+        /// <summary>
         /// Label11 控件。
         /// </summary>
         /// <remarks>
@@ -220,13 +229,31 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label23;
         
         /// <summary>
-        /// GridView2 控件。
+        /// cbl_workers 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.CheckBoxList cbl_workers;
+        
+        /// <summary>
+        /// btn_appworker_add 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_appworker_add;
+        
+        /// <summary>
+        /// gv_AppWorker 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_AppWorker;
         
         /// <summary>
         /// Label58 控件。
@@ -265,22 +292,31 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.TextBox tbx_qckh_AppBy;
         
         /// <summary>
-        /// ddl_next_OR_previous 控件。
+        /// rbl_qckh_nextORprevious 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_next_OR_previous;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_qckh_nextORprevious;
         
         /// <summary>
-        /// ddl_step 控件。
+        /// rbl_qckh_step 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_step;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_qckh_step;
+        
+        /// <summary>
+        /// cb_qckh_is_huiqian 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cb_qckh_is_huiqian;
         
         /// <summary>
         /// cbl_qckh_next_persion 控件。
@@ -308,6 +344,15 @@ namespace sylzyb_employer_mgr {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_qckh_cancel;
+        
+        /// <summary>
+        /// dv_gailan 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dv_gailan;
         
         /// <summary>
         /// Label2 控件。
@@ -382,22 +427,31 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Button btn_tckh;
         
         /// <summary>
-        /// GridView1 控件。
+        /// Button1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// khxd 控件。
+        /// gv_App_gailan 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl khxd;
+        protected global::System.Web.UI.WebControls.GridView gv_App_gailan;
+        
+        /// <summary>
+        /// dv_khxd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dv_khxd;
         
         /// <summary>
         /// Label3 控件。
@@ -823,13 +877,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.GridView gv_detail_appworker;
         
         /// <summary>
-        /// shenpi 控件。
+        /// dv_shenpi 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl shenpi;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dv_shenpi;
         
         /// <summary>
         /// Label1 控件。
@@ -895,13 +949,22 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.TextBox tbx_shenpi_yj;
         
         /// <summary>
-        /// ddl_next_step_opt 控件。
+        /// ddl_shenpi_nextORprevious 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_next_step_opt;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_shenpi_nextORprevious;
+        
+        /// <summary>
+        /// ddl_shenpi_step 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_shenpi_step;
         
         /// <summary>
         /// cbl_shenpi_next_persion 控件。

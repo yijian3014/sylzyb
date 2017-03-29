@@ -69,7 +69,7 @@ namespace sylzyb_employer_mgr
                 return false;
             }
         }
-        public bool moudle(string moudlename)
+        public bool Module(string Modulename, int kind)
         {
             //验证用户是否具备选择目标模块的使用权
             int ss;
@@ -77,7 +77,7 @@ namespace sylzyb_employer_mgr
             try
             {
                
-                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_UserPower] where PowerName='" + moudlename + "'";
+                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_UserPower] where PowerName='" + Modulename + "'and kind="+kind;
                 ds = db_opt.build_dataset(mod_chk_sql);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
@@ -112,13 +112,13 @@ namespace sylzyb_employer_mgr
                 return false;
             }
         }
-        public bool item(string itemname)
+        public bool item(string itemname , int kind)
         {
             //通过控件名，及界面初始化序列字符串，返回界面的操作属性TRUE OR FALSE
             try
             {
                
-                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_UserPower] where PowerName='" + itemname + "'";
+                string mod_chk_sql = "select * from [dzsw].[dbo].[Syl_UserPower] where PowerName='" + itemname + "'and kind=" + kind;
                 ds = db_opt.build_dataset(mod_chk_sql);
                 if (ds.Tables[0].Rows.Count > 0)
                 {

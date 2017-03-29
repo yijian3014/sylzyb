@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Check.cs" />
+    <Compile Include="ConnectSQL.cs" />
     <Compile Include="db.cs" />
     <Compile Include="EMPLOYER.aspx.cs">
       <DependentUpon>EMPLOYER.aspx</DependentUpon>

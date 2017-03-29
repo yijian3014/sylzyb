@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="KHXXGL.aspx.cs" Inherits="sylzyb_employer_mgr.KHGL" %>
+﻿<%@ Page Language="C#" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="KHXXGL.aspx.cs" Inherits="sylzyb_employer_mgr.KHGL" %>
 
 <!DOCTYPE html>
 
@@ -145,6 +145,7 @@
         .sty_shenpi_dv_tb2_tr_td {
             width: 100%;
         }
+      
     </style>
 </head>
 <body>
@@ -157,7 +158,7 @@
 
             <asp:Button ID="btn_exit" runat="server" Text="退出" OnClick="btn_exit_Click" />
         </div>
-        <div id="qicaokaohe" class="sty_qckh_dv">
+        <div id="dv_qicaokaohe" runat="server"  class="sty_qckh_dv">
             <table id="tb1" class="sty_qckh_dv_tb1">
                 <tr>
                     <td>
@@ -189,7 +190,11 @@
                         <asp:Label ID="Label31" runat="server" Text="类型:"></asp:Label>
                     </td>
                     <td class="sty_qckh_dv_tb2_tr_td_value">
-                        <asp:DropDownList ID="ddl_qckh_AppKind" runat="server"></asp:DropDownList>
+                        <asp:DropDownList ID="ddl_qckh_AppKind" runat="server">
+                            <asp:ListItem>日常考核</asp:ListItem>
+                            <asp:ListItem>事故通报</asp:ListItem>
+                            <asp:ListItem>厂部考核</asp:ListItem>
+                        </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
@@ -206,20 +211,31 @@
                     </td>
                     <td class="sty_qckh_dv_tb2_tr_td_value">
                         <asp:Label ID="lb_qckh_TC_DateTime" runat="server" Text="空"></asp:Label>
+                    
                     </td>
                     <td class="sty_qckh_dv_tb2_tr_td_name">
                         <asp:Label ID="Label41" runat="server" Text="事件发生时间:"></asp:Label>
                     </td>
                     <td class="sty_qckh_dv_tb2_tr_td_value">
 
-                        <asp:TextBox ID="tbx_qckh_FS_DateTime" runat="server" Height="19px" Width="111px"></asp:TextBox>
+                        <asp:TextBox ID="tbx_qckh_FS_DateTime" runat="server" Height="19px" Width="111px" OnTextChanged="DateCheck"></asp:TextBox>
 
                     </td>
                     <td class="sty_qckh_dv_tb2_tr_td_name">
                         <asp:Label ID="Label54" runat="server" Text="被考核人班组:"></asp:Label>
                     </td>
                     <td class="sty_qckh_dv_tb2_tr_td_value">
-                        <asp:DropDownList ID="ddl_qckh_AppGroup" runat="server" OnSelectedIndexChanged="ddl_qckh_AppGroup_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:DropDownList ID="ddl_qckh_AppGroup" runat="server" OnSelectedIndexChanged="ddl_qckh_AppGroup_SelectedIndexChanged" AutoPostBack="True">
+                            <asp:ListItem></asp:ListItem>
+                            <asp:ListItem>甲班</asp:ListItem>
+                            <asp:ListItem>乙班</asp:ListItem>
+                            <asp:ListItem>丙班</asp:ListItem>
+                            <asp:ListItem>丁班</asp:ListItem>
+                            <asp:ListItem>综合组</asp:ListItem>
+                            <asp:ListItem>铸铁组</asp:ListItem>
+                            <asp:ListItem>污泥组</asp:ListItem>
+                            <asp:ListItem>机关</asp:ListItem>
+                        </asp:DropDownList>
                     </td>
 
                 </tr>
@@ -227,32 +243,47 @@
             </table>
             <table id="tb3" class="sty_qckh_dv_tb3">
                 <tr>
-                      <td class="sty_qckh_dv_tb3_tr_td_name">
+                      <td >
                         <asp:Label ID="Label23" runat="server" Text="被考核对象:"></asp:Label>
+                         
                     </td>
                      </tr>
-
                 <tr>
-                    <td class="sty_qckh_dv_tb3_tr_td_value">
+                    <td>
+ <asp:CheckBoxList ID="cbl_workers" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" AutoPostBack="True">
+   
+                          </asp:CheckBoxList>
+                        <asp:Button ID="btn_appworker_add" runat="server" OnClick="btn_appworker_add_Click" Text="添加并刷新" Visible="False" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sty_qckh_dv_tb3_tr_td_value">                    
+                        <asp:GridView ID="gv_AppWorker" runat="server" HorizontalAlign="Center" Width="100%" Height="100px" AutoGenerateColumns="False" EnableModelValidation="True" Font-Size="Small" PageSize="5" OnRowDataBound="gv_RowDataBound" OnSelectedIndexChanged="gv_SelectedIndexChanged">
+                            <Columns>
+                                <asp:BoundField DataField="ID" HeaderText="ID" Visible="False" />
+                                <asp:BoundField DataField="AppID" HeaderText="考核编号" />
+                                <asp:BoundField DataField="FS_DateTime" HeaderText="考核发生时间" />
+                                <asp:BoundField DataField="ApplicantName" HeaderText="考核提出人姓名" Visible="False" />
+                                <asp:BoundField DataField="ApplicantIDCard" HeaderText="考核提出人身份证号" Visible="False" />
+                                <asp:BoundField DataField="AppName" HeaderText="被考核人姓名" />
+                                <asp:BoundField DataField="AppIDCard" HeaderText="被考核人身份证号" />
+                                <asp:BoundField DataField="AppKind" HeaderText="考核类型" />
+                                <asp:TemplateField HeaderText="考核金额">
+                                    <ItemTemplate>
+                                       <asp:TextBox ID="tbx_gv_AppAmount" runat="server"  Width="175px" Visible="false"></asp:TextBox>
+                                        <asp:Button ID="btn_gv_AppMount_Update" runat="server" Text="更新" Visible="False" OnClick="qckh_update_AppMount"  />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <%--<asp:BoundField DataField="AppAmount" HeaderText="考核金额" />--%>
+                                <asp:BoundField DataField="AppContent" HeaderText="考核内容" />
+                                <asp:BoundField DataField="AppBy" HeaderText="考核依据" Visible="False" />
+                                <asp:BoundField DataField="App_State" HeaderText="考核状态" />
 
-                        <%--<asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="ddl_qckh_AppName_SelectedIndexChanged"></asp:DropDownList>--%>
-                  <asp:GridView ID="GridView2" runat="server" HorizontalAlign="Center" Width="100%" Height="100px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" AutoGenerateColumns="False" EnableModelValidation="True" OnRowCreated="GridView1_RowCreated" Font-Size="Small">
-                <Columns>
-                    <asp:BoundField DataField="ID" HeaderText="ID" Visible="False" />
-                    <asp:BoundField DataField="AppID" HeaderText="考核编号" />
-                    <asp:BoundField DataField="FS_DateTime" HeaderText="考核发生时间" />
-                    <asp:BoundField DataField="ApplicantName" HeaderText="考核提出人姓名" />
-                    <asp:BoundField DataField="ApplicantIDCard" HeaderText="考核提出人身份证号" />
-                    <asp:BoundField DataField="AppName" HeaderText="被考核人姓名" />
-                    <asp:BoundField DataField="AppIDCard" HeaderText="被考核人身份证号" />
-                    <asp:BoundField DataField="AppKind" HeaderText="考核类型" />
-                    <asp:BoundField DataField="AppAmount" HeaderText="考核金额" />
-                    <asp:BoundField DataField="AppContent" HeaderText="考核内容" />
-                    <asp:BoundField DataField="AppBy" HeaderText="考核依据" />
-                    <asp:BoundField DataField="App_State" HeaderText="考核状态" />
-                </Columns>
-            </asp:GridView>
-                          </td>
+
+
+                            </Columns>
+                        </asp:GridView>
+                    </td>
                 </tr>
                 <tr>
                     <td class="sty_qckh_dv_tb3_tr_td_name">
@@ -272,27 +303,28 @@
                         <asp:TextBox ID="tbx_qckh_AppBy" runat="server" Height="141px" Width="962px"></asp:TextBox>
                     </td>
                 </tr>
-                    <tr>
+                <tr>
                     <td class="sty_qckh_dv_tb3_tr_td_value">
-                        <asp:DropDownList ID="ddl_next_OR_previous" runat="server">
-                            <asp:ListItem>转交下一步</asp:ListItem>
-                            <asp:ListItem>回退</asp:ListItem>
-                        </asp:DropDownList>
-                        <asp:DropDownList ID="ddl_step" runat="server">
-                            <asp:ListItem>下一步结点名</asp:ListItem>
-                        </asp:DropDownList>
+                        <asp:RadioButtonList ID="rbl_qckh_nextORprevious" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="rbl__qckh_nextORprevious_SelectedIndexChanged" AutoPostBack="True">
+                            <asp:ListItem>转交</asp:ListItem>
+                            <asp:ListItem>删除</asp:ListItem>
+                        </asp:RadioButtonList>
+                        <asp:RadioButtonList ID="rbl_qckh_step" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" OnSelectedIndexChanged="rbl_qckh_step_SelectedIndexChanged">
+                            
+                        </asp:RadioButtonList>
+                    </td>
                 </tr>
-                 <tr> 
-                       <td class="sty_qckh_dv_tb3_tr_td_value">
-                        <asp:CheckBoxList ID="cbl_qckh_next_persion" runat="server">
-                            <asp:ListItem>经办人列表</asp:ListItem>
+                <tr>
+                    <td class="sty_qckh_dv_tb3_tr_td_value">
+                        <asp:CheckBox ID="cb_qckh_is_huiqian" runat="server" />
+                        <asp:CheckBoxList ID="cbl_qckh_next_persion" runat="server" RepeatDirection="Horizontal">
                         </asp:CheckBoxList>
-                      
+
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:Button ID="btn_qckh_ok" runat="server" Text="确认转交下一步" Width="99px" OnClick="btn_qckh_ok_Click" />
+                        <asp:Button ID="btn_qckh_ok" runat="server" Text="确认" Width="99px" OnClick="btn_qckh_ok_Click" />
                         <asp:Button ID="btn_qckh_cancel" runat="server" Text="取消" Width="99px" OnClick="btn_qckh_cancel_Click" />
                     </td>
                 </tr>
@@ -300,7 +332,7 @@
 
         </div>
 
-        <div id="gailan" class="sty_gailan_dv">
+        <div id="dv_gailan" runat="server"  class="sty_gailan_dv">
             <table class="sty_gailan_dv_tb">
                 <tr>
                     <td>
@@ -311,7 +343,7 @@
             </table>
             <table class="sty_gailan_dv_tb">
                 <tr>
-                    <td>
+                    <td >
                         <asp:RadioButtonList ID="rbl_cx" runat="server" RepeatDirection="Horizontal" TextAlign="Right" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
                             <asp:ListItem Selected="True" Value="0">总览</asp:ListItem>
                             <asp:ListItem Value="1">待办理</asp:ListItem>
@@ -320,15 +352,16 @@
                     </td>
                     <td>
                         <asp:Label ID="Label43" runat="server" Text="开始时间："></asp:Label>
-                        <asp:TextBox ID="tbx_bg_time" runat="server" OnTextChanged="tbx_time_TextChanged" Width="120px"></asp:TextBox>
+                        <asp:TextBox ID="tbx_bg_time" runat="server" OnTextChanged="DateCheck" Width="120px"></asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="Label44" runat="server" Text="结束时间："></asp:Label>
-                        <asp:TextBox ID="tbx_ed_time" runat="server" OnTextChanged="tbx_time_TextChanged" Width="120px"></asp:TextBox>
+                        <asp:TextBox ID="tbx_ed_time" runat="server" OnTextChanged="DateCheck" Width="120px"></asp:TextBox>
                         <asp:Button ID="btn_reflash" runat="server" OnClick="btn_reflash_Click" Text="刷新" />
                     </td>
                     <td>
                         <asp:Button ID="btn_tckh" runat="server" Text="提出考核" OnClick="btn_tckh_Click" />
+                        <asp:Button ID="Button1" runat="server" Text="修改考核" OnClick="btn_tckh_Click" />
                     </td>
                 </tr>
             </table>
@@ -336,7 +369,7 @@
             <table>
                 <tr>
                     <td>
-                        <asp:GridView ID="GridView1" runat="server" HorizontalAlign="Center" Width="100%" Height="200px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" AutoGenerateColumns="False" EnableModelValidation="True" OnRowCreated="GridView1_RowCreated" Font-Size="Small">
+                        <asp:GridView ID="gv_App_gailan" runat="server" HorizontalAlign="Center" Width="100%" Height="200px" OnSelectedIndexChanged="gv_App_gailan_SelectedIndexChanged" OnRowDataBound="gv_App_gailan_RowDataBound" AutoGenerateColumns="False" EnableModelValidation="True" OnRowCreated="gv_App_gailan_RowCreated" Font-Size="Small">
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False" />
                                 <asp:BoundField DataField="AppraiseID" HeaderText="编号" />
@@ -376,7 +409,7 @@
         </div>
 
 
-        <div id="khxd" runat="server" class="sty_khxd_dv">
+        <div id="dv_khxd" runat="server" class="sty_khxd_dv">
             <table class="sty_khxd_dv_tb">
                 <tr>
                     <td class="sty_khxd_dv_tb_tr_td"></td>
@@ -574,8 +607,9 @@
                 </tr>
 
             </table>
-            <asp:GridView ID="gv_detail_appworker" runat="server" HorizontalAlign="Center" Width="100%" Height="100px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" AutoGenerateColumns="False" EnableModelValidation="True" OnRowCreated="GridView1_RowCreated" Font-Size="Small">
+            <asp:GridView ID="gv_detail_appworker" runat="server" HorizontalAlign="Center" Width="100%" Height="100px" OnSelectedIndexChanged="gv_detail_SelectedIndexChanged" OnRowDataBound="gv_detail_RowDataBound" AutoGenerateColumns="False" EnableModelValidation="True" OnRowCreated="gv_detail_RowCreated" Font-Size="Small">
                 <Columns>
+                    
                     <asp:BoundField DataField="ID" HeaderText="ID" Visible="False" />
                     <asp:BoundField DataField="AppID" HeaderText="考核编号" />
                     <asp:BoundField DataField="FS_DateTime" HeaderText="考核发生时间" />
@@ -588,10 +622,12 @@
                     <asp:BoundField DataField="AppContent" HeaderText="考核内容" />
                     <asp:BoundField DataField="AppBy" HeaderText="考核依据" />
                     <asp:BoundField DataField="App_State" HeaderText="考核状态" />
+                    
                 </Columns>
+              
             </asp:GridView>
         </div>
-        <div id="shenpi" runat="server" class="sty_shenpi_dv">
+        <div id="dv_shenpi" runat="server" class="sty_shenpi_dv">
             <asp:Label ID="Label1" runat="server" Text="审批单" Font-Bold="False" Font-Size="Larger"></asp:Label>
             <hr />
             <table class="sty_shenpi_dv_tb">
@@ -629,19 +665,23 @@
                 </tr>
                <tr>
                     <td class="sty_shenpi_dv_tb2_tr_td" style="text-align:left;" >
-                        <asp:DropDownList ID="ddl_next_step_opt" runat="server" >
-                            <asp:ListItem>会签</asp:ListItem>
-                            <asp:ListItem>转交</asp:ListItem>
-                            <asp:ListItem>回退</asp:ListItem>
+                        <asp:DropDownList ID="ddl_shenpi_nextORprevious" runat="server" >
+                            <asp:ListItem Value="countersign ">会签</asp:ListItem>
+                            <asp:ListItem Value="next">转交</asp:ListItem>
+                            <asp:ListItem Value="previous">回退</asp:ListItem>
                         </asp:DropDownList>
-                      
+                        <asp:DropDownList ID="ddl_shenpi_step" runat="server">
+                            <asp:ListItem>下一步结点名</asp:ListItem>
+                        </asp:DropDownList>
                     </td>
                      </tr>
                <tr>
                       <td class="sty_shenpi_dv_tb2_tr_td">
                          <asp:CheckBoxList ID="cbl_shenpi_next_persion" runat="server"></asp:CheckBoxList>
                     </td>
-                </tr>  
+                </tr>
+                          
+               
                 <tr>
                     <td class="sty_shenpi_dv_tb2_tr_td">
                         <asp:Button ID="btn_shenpi_ok" runat="server" Text="确认" Width="99px" OnClick="btn_shenpi_ok_Click" />

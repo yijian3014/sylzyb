@@ -12,6 +12,8 @@ namespace sylzyb_employer_mgr
         public db db_opt;
         public Check ck = new Check();
         string pageName = "";
+        private int module_kind = 0;
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             System.Web.HttpContext.Current.Session["ISSuperUser"] = "false";
@@ -28,7 +30,7 @@ namespace sylzyb_employer_mgr
         {
             if (ck.user(tbx_lg_nm.Text.Trim(), tbx_lg_pas.Text.Trim()))
             {
-                if (ck.moudle(rbtl_mod_sel.SelectedItem.Text) == false)
+                if (ck.Module(rbtl_mod_sel.SelectedItem.Text,module_kind) == false)
                 {
                     Page.ClientScript.RegisterStartupScript(Page.GetType(),"message","<script>alert('你没有权限使用该功能！')</script>");
                 }
@@ -41,7 +43,7 @@ namespace sylzyb_employer_mgr
                     pageName = rbtl_mod_sel.SelectedItem.Value.ToString().Trim();
                     Response.Redirect(pageName);
                 }
-            }k
+            }
             else
               Page.ClientScript.RegisterStartupScript(Page.GetType(),"message", "<script>alert('你的登陆信息输入错误！')</script>");
         }
