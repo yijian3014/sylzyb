@@ -307,10 +307,11 @@ namespace sylzyb_employer_mgr
             dv_qicaokaohe.Visible = false;
             dv_gailan.Visible = true;
             btn_appworker_add.Visible = false;
+            khgl_qichao.update_flow(Convert.ToInt32(lb_qckh_AppraiseID.Text));
+            
+           
 
-
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('"+ds.get_newid()+ "');</script>");
-
+           
         }
 
         protected void btn_qckh_cancel_Click(object sender, EventArgs e)
@@ -377,35 +378,28 @@ namespace sylzyb_employer_mgr
                 ((GridView)sender).Rows[i].BackColor = System.Drawing.Color.White;
                 ((GridView)sender).EditIndex = -1;
             }
-            ////if (((GridView)sender).SelectedIndex >= 0)
-            //////表格表头索引是-1，要屏蔽
+            if (((GridView)sender).SelectedIndex >= 0)
+            //表格表头索引是-1，要屏蔽
 
-            ////{
-            ////    //((GridView)sender).EditIndex = ((GridView)sender).SelectedIndex;
-
-
-            ////    ((GridView)sender).Rows[((GridView)sender).SelectedIndex].BackColor = System.Drawing.Color.BlanchedAlmond;
-            ////    ((GridView)sender).Rows[((GridView)sender).SelectedIndex].Cells[6].Enabled = true;
+            {
+                ////((GridView)sender).EditIndex = ((GridView)sender).SelectedIndex;
 
 
-            ////}
-
-            gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].BackColor = System.Drawing.Color.BlanchedAlmond;
-
-            //bt.Text = "更新";
-
-            //          bt.UseSubmitBehavior = true;
-            //          bt.CausesValidation = true;
+                //((GridView)sender).Rows[((GridView)sender).SelectedIndex].BackColor = System.Drawing.Color.BlanchedAlmond;
+                //((GridView)sender).Rows[((GridView)sender).SelectedIndex].Cells[6].Enabled = true;
 
 
-            //          gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].Cells[8].Controls.Add(tb);
 
-            //          gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].Cells[8].Controls.Add(bt);
 
-            gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].Cells[8].Controls[1].Visible = true;
-            gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].Cells[8].Controls[3].Visible = true;
-            gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].Cells[8].Controls[1].Focus();
+                gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].BackColor = System.Drawing.Color.BlanchedAlmond;
 
+
+
+                gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].Cells[8].Controls[1].Visible = true;
+                gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].Cells[8].Controls[3].Visible = true;
+                gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].Cells[8].Controls[1].Focus();
+
+            }
 
         }
         //gridview 行的删除，编辑（不把数据同步至后台）只有在确定后表数据写入库。待解决问题：行数据的删除，单元格的编辑
@@ -479,7 +473,7 @@ namespace sylzyb_employer_mgr
             {
                 if (khgl_qichao.Update_AppWorkerInfo(Convert.ToInt32(lb_qckh_AppraiseID.Text), gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].Cells[6].Text.Trim(), "[AppAmount]", tmp_value))
                     ((Button)sender).Visible = false;
-                lb_qckh_AppAmount.Text =Convert.ToString ( Convert.ToDecimal(lb_qckh_AppAmount.Text) + Convert.ToDecimal(gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].Cells[6].Text.Trim()));
+                lb_qckh_AppAmount.Text =Convert.ToString(Convert.ToDecimal(lb_qckh_AppAmount.Text) + Convert.ToDecimal(((TextBox)gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].Cells[8].Controls[1]).Text));
 
             }
             else
@@ -549,13 +543,31 @@ namespace sylzyb_employer_mgr
                 cbl_qckh_next_persion.Items.Clear();
 
                 for (int i = 0; i < ds_peoples.Tables[0].Rows.Count; i++)
-                {
-                   
+                {                   
                     cbl_qckh_next_persion.Items.Add("");
                     cbl_qckh_next_persion.Items[i].Text = ds_peoples.Tables[0].Rows[i][0].ToString();
                     cbl_qckh_next_persion.Items[i].Value = ds_peoples.Tables[0].Rows[i][1].ToString();
                 }
                 cbl_qckh_next_persion.DataBind();
+            }
+        }
+
+        protected void cbl_qckh_next_persion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int sel_count = 0;
+
+                for (int i = 0; i < cbl_qckh_next_persion.Items.Count; i++)
+                    if (cbl_qckh_next_persion.Items[i].Selected)
+                        sel_count++;
+            if (cb_qckh_is_huiqian.Checked == false)
+            {
+                if (sel_count > 1)
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('只有在会签模式下才允许选择单人！');</script>");
+                    for (int i = 0; i < cbl_qckh_next_persion.Items.Count; i++)
+
+                        cbl_qckh_next_persion.Items[i].Selected = false;
+                }
             }
         }
     }

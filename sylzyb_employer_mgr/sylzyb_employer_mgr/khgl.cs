@@ -269,6 +269,14 @@ namespace sylzyb_employer_mgr
             return false;
 
         }
+        /// <summary>
+        /// 更新被考核员工信息
+        /// </summary>
+        /// <param name="AppID"></param>
+        /// <param name="IDCard"></param>
+        /// <param name="Key"></param>
+        /// <param name="Value"></param>
+        /// <returns></returns>
         public bool Update_AppWorkerInfo(int AppID, string IDCard, string Key, string Value)
         {
             string[] temp_key, temp_value;
@@ -294,6 +302,12 @@ namespace sylzyb_employer_mgr
                     }
             return false;
         }
+        /// <summary>
+        /// 删除或取消指的员工考核信息
+        /// </summary>
+        /// <param name="AppID"></param>
+        /// <param name="idcard"></param>
+        /// <returns></returns>
         public bool delete_AppWorkerInfo(int AppID, string idcard)
         {
             if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_AppWorkerinfo]", "[AppIDCard]", idcard))
@@ -386,9 +400,17 @@ namespace sylzyb_employer_mgr
                 return false;
             }
         }
+        /// <summary>
+        /// 更新两个表的信息 [dzsw].[dbo].[Syl_SylAppRun]，[dzsw].[dbo].[Syl_AppraiseInfo]
+        /// </summary>
+        /// <param name="flow_id"></param>
+        /// <returns></returns>
         public bool update_flow(int flow_id)
         {
-            //修改考核信息
+            Update_AppRun(flow_id, "", "");
+            Update_AppraiseInfo(flow_id,,);
+
+
             return true;
         }
         public bool delete_flow(int flow_id)
@@ -397,19 +419,18 @@ namespace sylzyb_employer_mgr
         }
 
         /// <summary>
-        /// 用于选择单条考核流程，可支持详单数据添充，
+        /// 用于选择单条考核流程，返回指定的考核信息，可支持详单数据添充，
         /// </summary>
         /// <param name="flow_id"></param>
         /// <returns></returns>
         public DataRow select_sigleflow(int flow_id)
         {
-            //返回指定的考核信息
             DataRow dr = null; ;
             return dr;
         }
 
         /// <summary>
-        /// 从AppRun表对被考核员工进行选择。主要用于修改被考核员工的考核信息。
+        /// 从Syl_AppWorkerinfo表对被考核员工进行选择。主要用于修改被考核员工的考核信息修改后的即时显示。
         /// </summary>
         /// <param name="flow_id"></param>
         /// <param name="bgtime"></param>

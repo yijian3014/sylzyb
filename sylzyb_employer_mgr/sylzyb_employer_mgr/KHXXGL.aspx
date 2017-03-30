@@ -243,18 +243,18 @@
             </table>
             <table id="tb3" class="sty_qckh_dv_tb3">
                 <tr>
-                      <td >
+                      <td style="text-align:left;">
                         <asp:Label ID="Label23" runat="server" Text="被考核对象:"></asp:Label>
-                         
+                          <asp:Button ID="btn_appworker_add" runat="server" OnClick="btn_appworker_add_Click" Text="添加并刷新" Visible="False" />
+                 
                     </td>
                      </tr>
                 <tr>
-                    <td>
+                    <td style="text-align:left;">
  <asp:CheckBoxList ID="cbl_workers" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" AutoPostBack="True">
    
                           </asp:CheckBoxList>
-                        <asp:Button ID="btn_appworker_add" runat="server" OnClick="btn_appworker_add_Click" Text="添加并刷新" Visible="False" />
-                    </td>
+                          </td>
                 </tr>
                 <tr>
                     <td class="sty_qckh_dv_tb3_tr_td_value">                    
@@ -300,7 +300,7 @@
                 </tr>
                 <tr>
                     <td class="sty_qckh_dv_tb3_tr_td_value">
-                        <asp:TextBox ID="tbx_qckh_AppBy" runat="server" Height="141px" Width="962px"></asp:TextBox>
+                        <asp:TextBox ID="tbx_qckh_AppBy" runat="server" Height="141px" Width="962px" TextMode="MultiLine"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -308,16 +308,22 @@
                         <asp:RadioButtonList ID="rbl_qckh_nextORprevious" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="rbl__qckh_nextORprevious_SelectedIndexChanged" AutoPostBack="True">
                             <asp:ListItem>转交</asp:ListItem>
                             <asp:ListItem>删除</asp:ListItem>
-                        </asp:RadioButtonList>
-                        <asp:RadioButtonList ID="rbl_qckh_step" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" OnSelectedIndexChanged="rbl_qckh_step_SelectedIndexChanged">
+                        </asp:RadioButtonList>   
+                      
+                           </td>
+                </tr> 
+
+                <tr>
+                    <td class="sty_qckh_dv_tb3_tr_td_value">
+                           <asp:RadioButtonList ID="rbl_qckh_step" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" OnSelectedIndexChanged="rbl_qckh_step_SelectedIndexChanged">
                             
                         </asp:RadioButtonList>
                     </td>
                 </tr>
                 <tr>
                     <td class="sty_qckh_dv_tb3_tr_td_value">
-                        <asp:CheckBox ID="cb_qckh_is_huiqian" runat="server" />
-                        <asp:CheckBoxList ID="cbl_qckh_next_persion" runat="server" RepeatDirection="Horizontal">
+                       <asp:CheckBox ID="cb_qckh_is_huiqian" runat="server" Text="允许多人会签" />
+                        <asp:CheckBoxList ID="cbl_qckh_next_persion" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" OnSelectedIndexChanged="cbl_qckh_next_persion_SelectedIndexChanged">
                         </asp:CheckBoxList>
 
                     </td>
