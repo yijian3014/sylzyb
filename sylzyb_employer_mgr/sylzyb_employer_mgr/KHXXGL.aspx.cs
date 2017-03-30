@@ -26,9 +26,11 @@ namespace sylzyb_employer_mgr
         khgl khgl_select = new khgl();
         khgl khgl_shenpi = new khgl();
         DataSet ds_worker = new DataSet();
-      static  DataSet ds_appWorker = new DataSet();
+        DataSet ds_appWorker = new DataSet();
         DataSet ds_SylAppRun = new DataSet();
-       static DataSet ds_AppraiseInfo = new DataSet();
+       DataSet ds_AppraiseInfo = new DataSet();
+        public string pub_appid = "";
+       
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -141,7 +143,7 @@ namespace sylzyb_employer_mgr
 意见汇总（书记）: lb_khxd_Styp_4_Oponion
 评论汇总（书记）: tbx_khxd_Styp_4_Comment
 意见汇总（部长）:  lb_khxd_Styp_5_Oponion
-评论汇总（部长）: tbx_khxd_Styp_5_Comment*/
+评论汇总（部长）: tbx_khxd_Styp_5_Comment
             if (ds_AppraiseInfo.Tables[0].Rows.Count > 0)
             {
                 lb_khxd_AppraiseID.Text = ds_AppraiseInfo.Tables[0].Rows[0][1].ToString();
@@ -166,8 +168,35 @@ namespace sylzyb_employer_mgr
                 tbx_khxd_Styp_4_Comment.Text = ds_AppraiseInfo.Tables[0].Rows[0][20].ToString();
                 lb_khxd_Styp_5_Oponion.Text = ds_AppraiseInfo.Tables[0].Rows[0][21].ToString();
                 tbx_khxd_Styp_5_Comment.Text = ds_AppraiseInfo.Tables[0].Rows[0][22].ToString();
+
+            }*/
+
+            if (gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text != "")
+            {
+                lb_khxd_AppraiseID.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text;
+                lb_khxd_Flow_State.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[2].Text;
+                lb_khxd_ApplicantName.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[3].Text;
+                lb_khxd_ApplicantIDCard.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[4].Text;
+                lb_khxd_AppKind.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[5].Text;
+                lb_khxd_AppAmount.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[6].Text;
+                lb_khxd_TC_DateTime.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[7].Text;
+                lb_khxd_FS_DateTime.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[8].Text;
+                lb_khxd_AppGroup.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[9].Text;
+                lb_khxd_AppName.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[10].Text;
+                lb_khxd_AppContent.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[11].Text;
+                lb_khxd_AppBy.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[12].Text;
+                lb_khxd_Styp_1_Oponion.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[13].Text;
+                tbx_khxd_Styp_1_Comment.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[14].Text;
+                lb_khxd_Styp_2_Oponion.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[15].Text;
+                tbx_khxd_Styp_2_Comment.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[16].Text;
+                lb_khxd_Styp_3_Oponion.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[17].Text;
+                tbx_khxd_Styp_3_Comment.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[18].Text;
+                lb_khxd_Styp_4_Oponion.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[19].Text;
+                tbx_khxd_Styp_4_Comment.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[20].Text;
+                lb_khxd_Styp_5_Oponion.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[21].Text;
+                tbx_khxd_Styp_5_Comment.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[22].Text;
             }
-            ds_appWorker = khgl_select.select_appworkerinfo(Convert.ToInt32(ds_AppraiseInfo.Tables[0].Rows[0][1].ToString()), tbx_bg_time.Text, tbx_ed_time.Text);
+            ds_appWorker = khgl_select.select_appworkerinfo(Convert.ToInt32(gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text), tbx_bg_time.Text, tbx_ed_time.Text);
             gv_detail_appworker.DataSource = ds_appWorker;
             gv_detail_appworker.DataBind();
         }
@@ -184,6 +213,7 @@ namespace sylzyb_employer_mgr
             {
                 gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].BackColor = System.Drawing.Color.BlanchedAlmond;
 
+               
                 get_rcd_detail();
 
                 gv_AppWorker.DataSource = ds_appWorker;

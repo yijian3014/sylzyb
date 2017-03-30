@@ -543,9 +543,9 @@ namespace sylzyb_employer_mgr
             DataSet ds = new DataSet();
             if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[ApproveIDCard]", idcard) && db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[Oponion_State]", "转交"))
 
-                ds = db_opt.build_dataset("select * from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] and a.TC_DateTime between '"
+                ds = db_opt.build_dataset("select a.* from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] and a.TC_DateTime between '"
                   + bgdatetime + "' and '" + eddatetime
-                 + "a.[Flow_State]<>'" + flow_state + "'"
+                 + "' and a.[Flow_State]='" + flow_state + "' and b.[Oponion_State]='转交' and b.[ApproveIDCard]='" + idcard
                   + "' order by  a.TC_DateTime desc, a.AppID");
             return ds;
         }
