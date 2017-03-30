@@ -59,6 +59,7 @@
     <Content Include="EMPLOYER.aspx">
       <BrowseToURL>~/employer.aspx</BrowseToURL>
     </Content>
+    <Content Include="JJHS.aspx" />
     <Content Include="KHXXGL.aspx" />
     <Content Include="LOGIN.aspx" />
     <Content Include="USERINFO.aspx" />
@@ -76,6 +77,13 @@
     </Compile>
     <Compile Include="EMPLOYER.aspx.designer.cs">
       <DependentUpon>EMPLOYER.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JJHS.aspx.cs">
+      <DependentUpon>JJHS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JJHS.aspx.designer.cs">
+      <DependentUpon>JJHS.aspx</DependentUpon>
     </Compile>
     <Compile Include="khgl.cs" />
     <Compile Include="KHXXGL.aspx.cs">

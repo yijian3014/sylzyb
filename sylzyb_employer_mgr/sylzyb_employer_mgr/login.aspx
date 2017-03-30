@@ -57,6 +57,7 @@
                          <asp:ListItem Value="EMPLOYER.aspx">员工信息管理</asp:ListItem>
                          
                          <asp:ListItem Value="USERINFO.ASPX">用户信息管理</asp:ListItem>
+                         <asp:ListItem Value="JJHS.ASPX">奖金核算</asp:ListItem>
                      </asp:RadioButtonList>
                  </td>
                 </tr>

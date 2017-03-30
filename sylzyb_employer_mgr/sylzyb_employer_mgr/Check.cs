@@ -47,7 +47,7 @@ namespace sylzyb_employer_mgr
         {
             //通过用户名密码验证用户权限，并初化必要的SESSIONID及界面初始化序列字符串
          
-            string usr_sql = "select * from [dzsw].[dbo].[Syl_UserInfo] where UserName='" + account + "' and UserPassWord='" + password+"'";
+            string usr_sql = "select * from [dzsw].[dbo].[Syl_UserInfo] where UserName='" + account + "' and UserPassWord='" + password+ "' collate Chinese_PRC_CS_AI";
             ds = db_opt.build_dataset(usr_sql);
             if (ds.Tables[0].Rows.Count > 0)
             {

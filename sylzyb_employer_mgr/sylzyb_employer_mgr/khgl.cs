@@ -50,7 +50,7 @@ namespace sylzyb_employer_mgr
 
             int i = db_opt.max_id("[AppID]", "[dzsw].[dbo].[Syl_AppraiseInfo]");
 
-            string old_id = db_opt.get_values("AppID", "[dzsw].[dbo].[Syl_SylAppRun]", "[Flow_State]='起草' and [Oponion_State] is null and [ApproveIDCard]='" + user_idcard + "'");
+            string old_id = db_opt.get_values("AppID", "[dzsw].[dbo].[Syl_SylAppRun]", "[Flow_State]='点检' and ([Oponion_State]='' OR [Oponion_State] is null) and [ApproveIDCard]='" + user_idcard + "'");
 
             if (old_id != "")
             {
@@ -61,11 +61,11 @@ namespace sylzyb_employer_mgr
             else
             {
                 if (insert_AppraiseInfo(i, "[ApplicantName],[ApplicantIDCard]", username + "," + user_idcard) &&
-             insert_AppRun(i, "[Flow_State],[ApproveName],[ApproveIDCard]", "起草," + username + "," + user_idcard))
+             insert_AppRun(i, "[Flow_State],[ApproveName],[ApproveIDCard]", "点检," + username + "," + user_idcard))
 
                     return i;
             }
-            return  -1;
+            return -1;
         }
         public String Get_idcard_str(string names)
         {
@@ -123,7 +123,7 @@ namespace sylzyb_employer_mgr
             }
             return null;
         }
-        
+
 
 
 
@@ -131,7 +131,7 @@ namespace sylzyb_employer_mgr
 
 
 
-            //----------------------------下面是对表[dzsw].[dbo].[Syl_UserInfo]的操作---------------------------//
+        //----------------------------下面是对表[dzsw].[dbo].[Syl_UserInfo]的操作---------------------------//
 
         public String[] next_select_jinbanren(int AppID, string AppState)
         {
@@ -164,24 +164,53 @@ namespace sylzyb_employer_mgr
             temp_key = key.Split(',');
             temp_value = value.Split(',');
             if (temp_value.Length > 1)
-                for (int j = 0; j < temp_value.Length-1 ; j++)
+                for (int j = 0; j < temp_value.Length - 1; j++)
                 {
                     new_value += temp_value[j].Trim() + "','";
                 }
-            new_value = new_value + temp_value[temp_value.Length - 1].Trim()+"'";//用于封口单引号
-             new_value = Convert.ToString(AppID) + ",'" + new_value;
+            new_value = new_value + temp_value[temp_value.Length - 1].Trim() + "'";//用于封口单引号
+            new_value = Convert.ToString(AppID) + ",'" + new_value;
 
             key = "AppID," + key;
-         
+
             if (db_opt.execsql("insert into [dzsw].[dbo].[Syl_AppraiseInfo](" + key + ") values (" + new_value + ")"))
                 return true;
             else
-                return false;    
+                return false;
         }
         public bool Update_AppraiseInfo(int AppID, string key, string value)
         {
-            return true;
+            string[] temp_key, temp_value;
+            string new_value = "";
+            temp_key = key.Split(',');
+            temp_value = value.Split(',');
+            if (temp_key.Length > 1)
+                for (int j = 0; j < temp_value.Length - 1; j++)
+                {
+
+                    new_value += temp_value[j].Trim() + "','";
+                }
+            new_value = new_value + temp_value[temp_value.Length - 1].Trim();
+            if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_AppraiseInfo]", "AppID", Convert.ToString(AppID)))
+            {
+                for (int i = 0; i < temp_key.Length; i++)
+                {
+                    if (temp_key[i].Trim() == "[TC_DateTime]")
+                        db_opt.execsql("  update [dzsw].[dbo].[Syl_AppraiseInfo] set   " + temp_key[i].Trim() + "=" + temp_value[i].Trim() + " where AppID=" + AppID);
+                    else
+                        db_opt.execsql("  update [dzsw].[dbo].[Syl_AppraiseInfo] set   " + temp_key[i].Trim() + "='" + temp_value[i].Trim() + "' where AppID=" + AppID);
+                }
+                return true;
+            }
+            else
+            {
+
+                return false;
+            }
+
+
         }
+
         public bool Delete_AppraiseInfo(int AppID)
         {
             return true;
@@ -254,6 +283,7 @@ namespace sylzyb_employer_mgr
             for (int i = 0; i < temp_key.Length; i++)
             {
                 if (temp_key[i] == "[AppIDCard]")
+                    //说明：需要判定[dzsw].[dbo].[Syl_AppWorkerinfo]表内是否已经存在该考核ID不存在则随意插入，存在需判定要插入的被考核人是否已经在表内，存在不插入，不存在则插入。
                     if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_AppWorkerinfo]", "AppID", Convert.ToString(AppID)))
                     {
                         if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_AppWorkerinfo]", "AppID=" + AppID + " and " + temp_key[i].Trim() + "='" + temp_value[i].Trim() + "'") == false)
@@ -331,15 +361,28 @@ namespace sylzyb_employer_mgr
             return true;
         }
 
-        public bool Update_AppRun(int AppID, string[] key, string[] value)
+        public bool Update_AppRun(int AppID, string key, string value)
         {
             //主要用于管理员对信息强制修改。
 
             return true;
         }
-        public bool Update_AppRun(int AppID, string AppState, string IDCard, string[] Key, string[] Value)
+        public bool Update_AppRun(int AppID, string AppState, string IDCard, string Key, string Value)
         {
             //主要用于更新审核信息
+            string[] temp_key, temp_value;
+            
+            temp_key = Key.Split(',');
+            temp_value = Value.Split(',');
+            if (temp_value.Length > 1)
+                for (int j = 0; j < temp_value.Length ; j++)
+                {
+                    if (db_opt.execsql("  UPDATE [dzsw].[dbo].[Syl_SylAppRun]  SET  "+ temp_key[j].Trim()+ "=" + temp_value[j].Trim()
+                        + " WHERE [AppID]=" + AppID + " and [Flow_State]='" + AppState + "' and [ApproveIDCard]='" + IDCard + "'") == false)
+                    {break; }
+                
+                }
+       
             return true;
         }
 
@@ -407,8 +450,8 @@ namespace sylzyb_employer_mgr
         /// <returns></returns>
         public bool update_flow(int flow_id)
         {
-            Update_AppRun(flow_id, "", "");
-            Update_AppraiseInfo(flow_id,,);
+            //Update_AppRun(flow_id, "", "");
+            //Update_AppraiseInfo(flow_id,,);
 
 
             return true;
@@ -475,12 +518,11 @@ namespace sylzyb_employer_mgr
         {
 
             DataSet ds = new DataSet();
-            if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[ApproveIDCard]", idcard) && (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[Opition_State]", "'未办理'")
-                || db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[Opition_State]", "'退回'")))
+            if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[ApproveIDCard]", idcard) && (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[Oponion_State]", "待办理")
+                || db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[Oponion_State]", "回退")))
 
                 ds = db_opt.build_dataset("select * from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] and a.TC_DateTime between '"
-                  + bgdatetime + "' and '" + eddatetime
-                 + "a.[Flow_State]='" + flow_state + "'"
+                  + bgdatetime + "' and '" + eddatetime+"' and a.[Flow_State]='" + flow_state
                   + "' order by  a.TC_DateTime desc, a.AppID");
             else ds = null;
             return ds;
@@ -498,7 +540,7 @@ namespace sylzyb_employer_mgr
         {
 
             DataSet ds = new DataSet();
-            if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[ApproveIDCard]", idcard) && db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[Opition_State]", "'已转交'"))
+            if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[ApproveIDCard]", idcard) && db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[Oponion_State]", "转交"))
 
                 ds = db_opt.build_dataset("select * from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] and a.TC_DateTime between '"
                   + bgdatetime + "' and '" + eddatetime
@@ -517,7 +559,7 @@ namespace sylzyb_employer_mgr
         /// <param name="next_OR_previous"></param>
         /// <param name="state"></param>
         /// <returns></returns>
-        public string[] get_step_list(string next_OR_previous, string flow_state)
+        public string[] get_step_list(int userlevel,string next_OR_previous, string flow_state)
         {
             //这个函数本质就是给出角色名，返回与给定角色名有交接关系的下一级角色名。
             // 1:部长,2:书记,3:主管领导,4:工程师,5:点检组长,6:点检
@@ -574,6 +616,13 @@ namespace sylzyb_employer_mgr
                 }
 
             }
+
+            if (userlevel ==0)
+            {
+                     value = "部长,书记,主管领导,工程师,点检组长,点检";
+
+            }
+           
             string[] ret_str;
            if(value!="")
             {

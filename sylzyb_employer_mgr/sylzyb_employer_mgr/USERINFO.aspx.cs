@@ -298,6 +298,15 @@ namespace sylzyb_employer_mgr
 
             Lb_V2_ModulePower.Text = bc.SelectSQLReturnObject("SELECT ModulePower FROM Syl_UserInfo WHERE ID=" + Lb_V2_ID.Text, "Syl_UserInfo").ToString();//将选中行的模块权限赋值给Label标签，留待使用。
 
+                                                  //为DDL_V2_QXZL（DropDawnList权限种类）添加相应数据
+            string sql = "SELECT DISTINCT(KindName),Kind FROM Syl_UserPower ORDER BY Kind ";
+            DDL_V2_QXZL.DataSource = bc.GetDataSet(sql, "Syl_UserPower");
+            DDL_V2_QXZL.DataValueField = "Kind";
+            DDL_V2_QXZL.DataTextField = "KindName";
+            DDL_V2_QXZL.DataBind();
+            //DDL_V2_QXZL.Items.Insert(0, new ListItem("所有权限", "-1"));//直接显示所有权限，因涉及改动较大所以暂时搁置。
+
+
             RfCBL_QXMX(DDL_V2_QXZL.SelectedValue);//根据选定用户的权限值刷新CBL_V2_QXMX（CheckBoxList权限明细）
 
         }
@@ -305,7 +314,7 @@ namespace sylzyb_employer_mgr
         protected void Panel4_Load(object sender, EventArgs e)//Panel4在打开时触发
         {
             if (DDL_V2_QXZL.DataValueField == "")//利用DDL_V2_QXZL.DataValueField的值来判断是否首次激活此控件，若是，则为该控件（DropDawnList）赋值，并为CBL_V2_QXMX（CheckBoxList）赋相应的值。
-            { 
+            { /*
                 //为DDL_V2_QXZL（DropDawnList权限种类）添加相应数据
                 string sql = "SELECT DISTINCT(KindName),Kind FROM Syl_UserPower ORDER BY Kind ";
                 DDL_V2_QXZL.DataSource = bc.GetDataSet(sql, "Syl_UserPower");
@@ -316,7 +325,7 @@ namespace sylzyb_employer_mgr
                 
 
                 RfCBL_QXMX(DDL_V2_QXZL.SelectedValue);//根据选定用户的权限值刷新CBL_V2_QXMX（CheckBoxList权限明细）
-               
+               */
             }
 
         }

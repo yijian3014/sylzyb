@@ -364,13 +364,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// rbl_cx 控件。
+        /// rbl_gailan_cx 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbl_cx;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_gailan_cx;
         
         /// <summary>
         /// Label43 控件。
@@ -427,15 +427,6 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Button btn_tckh;
         
         /// <summary>
-        /// Button1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
-        
-        /// <summary>
         /// gv_App_gailan 控件。
         /// </summary>
         /// <remarks>
@@ -470,6 +461,33 @@ namespace sylzyb_employer_mgr {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BTN_BLLC;
+        
+        /// <summary>
+        /// Button1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
+        
+        /// <summary>
+        /// Button2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button2;
+        
+        /// <summary>
+        /// Button3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button3;
         
         /// <summary>
         /// Label4 控件。

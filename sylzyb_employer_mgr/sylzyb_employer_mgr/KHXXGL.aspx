@@ -68,6 +68,9 @@
         .sty_gailan_dv_tb {
             width: 100%;
         }
+        .sty_gailan_dv_tb_td{
+            width:20%
+        }
         .sty_khxd_dv {
             width: 100%;
             height: auto;
@@ -146,7 +149,8 @@
             width: 100%;
         }
       
-    </style>
+              
+        </style>
 </head>
 <body>
     <form id="fm" runat="server" class="sty_fm">
@@ -162,7 +166,7 @@
             <table id="tb1" class="sty_qckh_dv_tb1">
                 <tr>
                     <td>
-                        <asp:Label ID="Label11" runat="server" Text="起草考核" Font-Bold="False" Font-Size="Larger"></asp:Label>
+                        <asp:Label ID="Label11" runat="server" Text="点检考核" Font-Bold="False" Font-Size="Larger"></asp:Label>
                     </td>
                 </tr>
             </table>
@@ -250,11 +254,10 @@
                     </td>
                      </tr>
                 <tr>
-                    <td style="text-align:left;">
- <asp:CheckBoxList ID="cbl_workers" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" AutoPostBack="True">
-   
-                          </asp:CheckBoxList>
-                          </td>
+                    <td style="text-align: left;">
+                        <asp:CheckBoxList ID="cbl_workers" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" AutoPostBack="True">
+                        </asp:CheckBoxList>
+                    </td>
                 </tr>
                 <tr>
                     <td class="sty_qckh_dv_tb3_tr_td_value">                    
@@ -322,7 +325,7 @@
                 </tr>
                 <tr>
                     <td class="sty_qckh_dv_tb3_tr_td_value">
-                       <asp:CheckBox ID="cb_qckh_is_huiqian" runat="server" Text="允许多人会签" />
+                       <asp:CheckBox ID="cb_qckh_is_huiqian" runat="server" Text="允许多人会签" OnCheckedChanged="cb_qckh_is_huiqian_CheckedChanged" AutoPostBack="True" />
                         <asp:CheckBoxList ID="cbl_qckh_next_persion" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" OnSelectedIndexChanged="cbl_qckh_next_persion_SelectedIndexChanged">
                         </asp:CheckBoxList>
 
@@ -350,7 +353,7 @@
             <table class="sty_gailan_dv_tb">
                 <tr>
                     <td >
-                        <asp:RadioButtonList ID="rbl_cx" runat="server" RepeatDirection="Horizontal" TextAlign="Right" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
+                        <asp:RadioButtonList ID="rbl_gailan_cx" runat="server" RepeatDirection="Horizontal" TextAlign="Right" AutoPostBack="True" OnSelectedIndexChanged="rbl_gailan_cx_SelectedIndexChanged">
                             <asp:ListItem Selected="True" Value="0">总览</asp:ListItem>
                             <asp:ListItem Value="1">待办理</asp:ListItem>
                             <asp:ListItem Value="2">已办结</asp:ListItem>
@@ -367,7 +370,7 @@
                     </td>
                     <td>
                         <asp:Button ID="btn_tckh" runat="server" Text="提出考核" OnClick="btn_tckh_Click" />
-                        <asp:Button ID="Button1" runat="server" Text="修改考核" OnClick="btn_tckh_Click" />
+                      
                     </td>
                 </tr>
             </table>
@@ -378,7 +381,7 @@
                         <asp:GridView ID="gv_App_gailan" runat="server" HorizontalAlign="Center" Width="100%" Height="200px" OnSelectedIndexChanged="gv_App_gailan_SelectedIndexChanged" OnRowDataBound="gv_App_gailan_RowDataBound" AutoGenerateColumns="False" EnableModelValidation="True" OnRowCreated="gv_App_gailan_RowCreated" Font-Size="Small">
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False" />
-                                <asp:BoundField DataField="AppraiseID" HeaderText="编号" />
+                                <asp:BoundField DataField="AppID" HeaderText="编号" />
                                 <asp:BoundField DataField="Flow_State" HeaderText="流转状态" />
                                 <asp:BoundField DataField="ApplicantName" HeaderText="提出人姓名" />
                                 <asp:BoundField DataField="ApplicantIDCard" HeaderText="提出人身份证号" />
@@ -423,7 +426,11 @@
                         <asp:Label ID="Label3" runat="server" Text="考核详单" Font-Bold="False" Font-Size="Larger"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_bllc">
-                        <asp:Button ID="BTN_BLLC" runat="server" Text="办理流程" OnClick="BTN_BLLC_Click" />
+
+                        <asp:Button ID="BTN_BLLC" runat="server" Text="办理流程" OnClick="BTN_BLLC_Click" Visible="False" />
+                          <asp:Button ID="Button1" runat="server" Text="修改考核" OnClick="btn_tckh_Click" Width="70px" Visible="False"/>
+                         <asp:Button ID="Button2" runat="server" Text="删除考核" OnClick="btn_tckh_Click" Width="70px" Height="21px" Visible="False"/>
+                         <asp:Button ID="Button3" runat="server" Text="强制转交或归档" OnClick="btn_tckh_Click" Width="100px" Visible="False" />
                     </td>
                 </tr>
             </table>
