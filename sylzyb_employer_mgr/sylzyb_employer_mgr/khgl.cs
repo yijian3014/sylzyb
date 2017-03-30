@@ -468,7 +468,7 @@ namespace sylzyb_employer_mgr
         /// <returns></returns>
         public DataRow select_sigleflow(int flow_id)
         {
-            DataRow dr = null; ;
+            DataRow dr = null; 
             return dr;
         }
 
@@ -483,7 +483,7 @@ namespace sylzyb_employer_mgr
         {
             //返回被考核的人员
             DataSet ds = new DataSet();
-            ds = db_opt.build_dataset("select a.* from [dzsw].[dbo].[Syl_AppWorkerinfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.AppID=b.AppID AND a.AppID="
+            ds = db_opt.build_dataset("select * from [dzsw].[dbo].[Syl_AppWorkerinfo] where AppID="
                 + flow_id);
             return ds;
         }
@@ -521,9 +521,10 @@ namespace sylzyb_employer_mgr
             if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[ApproveIDCard]", idcard) && (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[Oponion_State]", "待办理")
                 || db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[Oponion_State]", "回退")))
 
-                ds = db_opt.build_dataset("select * from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] and a.TC_DateTime between '"
-                  + bgdatetime + "' and '" + eddatetime+"' and a.[Flow_State]='" + flow_state
-                  + "' order by  a.TC_DateTime desc, a.AppID");
+                ds = db_opt.build_dataset("select a.* from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] and a.TC_DateTime between '"
+                  + bgdatetime + "' and '" + eddatetime + "' and a.[Flow_State]='" + flow_state + "' and b.[ApproveIDCard]='"+idcard
+                  + "' and (b.[Oponion_State]='回退' or b.[Oponion_State]='待办理')"
+                  + " order by  a.TC_DateTime desc, a.AppID");
             else ds = null;
             return ds;
 

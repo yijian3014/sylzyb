@@ -98,13 +98,13 @@
         }
 
         .sty_khxd_dv_tb_tr_td_name {
-            width: 15%;
+            width:15%;
             height: 20px;
             text-align: left;
         }
 
         .sty_khxd_dv_tb_tr_td_value {
-            width: 10%;
+            width:35%;
             height: 20px;
             text-align: left;
         }
@@ -378,7 +378,7 @@
             <table>
                 <tr>
                     <td>
-                        <asp:GridView ID="gv_App_gailan" runat="server" HorizontalAlign="Center" Width="100%" Height="200px" OnSelectedIndexChanged="gv_App_gailan_SelectedIndexChanged" OnRowDataBound="gv_App_gailan_RowDataBound" AutoGenerateColumns="False" EnableModelValidation="True" OnRowCreated="gv_App_gailan_RowCreated" Font-Size="Small">
+                        <asp:GridView ID="gv_App_gailan" runat="server" HorizontalAlign="Center" Width="100%" Height="200px" OnSelectedIndexChanged="gv_App_gailan_SelectedIndexChanged" OnRowDataBound="gv_App_gailan_RowDataBound" AutoGenerateColumns="False" EnableModelValidation="True" Font-Size="Small">
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False" />
                                 <asp:BoundField DataField="AppID" HeaderText="编号" />
@@ -451,18 +451,22 @@
                     <td class="sty_khxd_dv_tb_tr_td_value">
                         <asp:Label ID="lb_khxd_Flow_State" runat="server" Text="空"></asp:Label>
                     </td>
-                    <td class="sty_khxd_dv_tb_tr_td_name">
-                        <asp:Label ID="Label6" runat="server" Text="提出人姓名:"></asp:Label>
+                   
+                </tr>
+                <tr>
+                      <td class="sty_khxd_dv_tb_tr_td_name">
+ <asp:Label ID="Label6" runat="server" Text="提出人姓名:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:Label ID="lb_khxd_ApplicantName" runat="server" Text="空"></asp:Label>
+ <asp:Label ID="lb_khxd_ApplicantName" runat="server" Text="空"></asp:Label>
                     </td>
-                    <td class="sty_khxd_dv_tb_tr_td_name">
-                        <asp:Label ID="Label7" runat="server" Text="提出人身份证号:"></asp:Label>
+                       <td class="sty_khxd_dv_tb_tr_td_name">
+   <asp:Label ID="Label7" runat="server" Text="提出人身份证号:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:Label ID="lb_khxd_ApplicantIDCard" runat="server" Text="空"></asp:Label>
+ <asp:Label ID="lb_khxd_ApplicantIDCard" runat="server" Text="空"></asp:Label>
                     </td>
+
                 </tr>
                 <tr>
                     <td class="sty_khxd_dv_tb_tr_td_name">
@@ -478,7 +482,10 @@
                         <asp:Label ID="lb_khxd_AppAmount" runat="server" Text="空"></asp:Label>
                     </td>
 
-                    <td class="sty_khxd_dv_tb_tr_td_name">
+                  
+                </tr>
+                <tr>
+                        <td class="sty_khxd_dv_tb_tr_td_name">
                         <asp:Label ID="Label49" runat="server" Text="提出时间:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_value">
@@ -490,38 +497,43 @@
                     <td class="sty_khxd_dv_tb_tr_td_value">
                         <asp:Label ID="lb_khxd_FS_DateTime" runat="server" Text="空"></asp:Label>
                     </td>
-                </tr>
-
-                <tr>
-                    <td class="sty_khxd_dv_tb_tr_td_name">
-                        <asp:Label ID="Label45" runat="server" Text="被考核人所在班组:"></asp:Label>
-                    </td>
-                    <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:Label ID="lb_khxd_AppGroup" runat="server" Text="空"></asp:Label>
-                    </td>
-                    <td class="sty_khxd_dv_tb_tr_td_name">
-                        <asp:Label ID="Label9" runat="server" Text="被考核对象:"></asp:Label>
-                    </td>
-                    <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:Label ID="lb_khxd_AppName" runat="server" Text="空"></asp:Label>
-                    </td>
-
-                    <td class="sty_khxd_dv_tb_tr_td_name">
-                        <asp:Label ID="Label12" runat="server" Text="考核内容:"></asp:Label>
-                    </td>
-                    <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:Label ID="lb_khxd_AppContent" runat="server" Text="空"></asp:Label>
-                    </td>
-                    <td class="sty_khxd_dv_tb_tr_td_name">
-                        <asp:Label ID="Label19" runat="server" Text="考核依据:"></asp:Label>
-                    </td>
-                    <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:Label ID="lb_khxd_AppBy" runat="server" Text="空"></asp:Label>
-                    </td>
 
                 </tr>
+                
             </table>
             <table>
+                 <tr>
+                    <td class="sty_khxd_dv_tb2_tr_td_name">
+                     <asp:Label ID="Label45" runat="server" Text="被考核人所在班组:"></asp:Label>
+                    </td>
+                    <td class="sty_khxd_dv_tb2_tr_td_value">
+                        <asp:Label ID="lb_khxd_AppGroup" runat="server" Text="空"></asp:Label>
+                    </td>
+                </tr>
+                 <tr>
+                    <td class="sty_khxd_dv_tb2_tr_td_name">
+                      <asp:Label ID="Label9" runat="server" Text="被考核对象:"></asp:Label>
+                    </td>
+                    <td class="sty_khxd_dv_tb2_tr_td_value">
+                        <asp:Label ID="lb_khxd_AppName" runat="server" Text="空"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sty_khxd_dv_tb2_tr_td_name">
+                      <asp:Label ID="Label12" runat="server" Text="考核内容:"></asp:Label>
+                    </td>
+                    <td class="sty_khxd_dv_tb2_tr_td_value">
+                         <asp:Label ID="lb_khxd_AppContent" runat="server" Text="空"></asp:Label>
+                    </td>
+                </tr>
+                 <tr>
+                    <td class="sty_khxd_dv_tb2_tr_td_name">
+                        <asp:Label ID="Label19" runat="server" Text="考核依据:"></asp:Label>
+                    </td>
+                    <td class="sty_khxd_dv_tb2_tr_td_value">
+                         <asp:Label ID="lb_khxd_AppBy" runat="server" Text="空"></asp:Label>
+                    </td>
+                </tr>
                 <tr>
                     <td class="sty_khxd_dv_tb2_tr_td_name">
                         <asp:Label ID="Label39" runat="server" Text="意见汇总（组长）:"></asp:Label>
@@ -627,9 +639,9 @@
                     <asp:BoundField DataField="AppID" HeaderText="考核编号" />
                     <asp:BoundField DataField="FS_DateTime" HeaderText="考核发生时间" />
                     <asp:BoundField DataField="ApplicantName" HeaderText="考核提出人姓名" />
-                    <asp:BoundField DataField="ApplicantIDCard" HeaderText="考核提出人身份证号" />
+                    <asp:BoundField DataField="ApplicantIDCard" HeaderText="考核提出人身份证号" Visible="False" />
                     <asp:BoundField DataField="AppName" HeaderText="被考核人姓名" />
-                    <asp:BoundField DataField="AppIDCard" HeaderText="被考核人身份证号" />
+                    <asp:BoundField DataField="AppIDCard" HeaderText="被考核人身份证号" Visible="False" />
                     <asp:BoundField DataField="AppKind" HeaderText="考核类型" />
                     <asp:BoundField DataField="AppAmount" HeaderText="考核金额" />
                     <asp:BoundField DataField="AppContent" HeaderText="考核内容" />

@@ -26,7 +26,9 @@ namespace sylzyb_employer_mgr
         khgl khgl_select = new khgl();
         khgl khgl_shenpi = new khgl();
         DataSet ds_worker = new DataSet();
-        DataSet ds_appWorker = new DataSet();
+      static  DataSet ds_appWorker = new DataSet();
+        DataSet ds_SylAppRun = new DataSet();
+       static DataSet ds_AppraiseInfo = new DataSet();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -53,9 +55,11 @@ namespace sylzyb_employer_mgr
 
 
                     login_user.Text = System.Web.HttpContext.Current.Session["RealName"].ToString();
-                    gv_App_gailan.DataSource = khgl_select.select_zhonglan(tbx_bg_time.Text, tbx_ed_time.Text);
+                    ds_AppraiseInfo = khgl_select.select_zhonglan(tbx_bg_time.Text, tbx_ed_time.Text);
+                    gv_App_gailan.DataSource = ds_AppraiseInfo;
                     gv_App_gailan.DataBind();
 
+                  
 
 
                     dv_qicaokaohe.Visible = false;
@@ -83,60 +87,91 @@ namespace sylzyb_employer_mgr
             if (dv_gailan.Visible)
             {
                 dv_qicaokaohe.Visible = false;
-                dv_khxd.Visible = false;
+                dv_khxd.Visible = true;
                 dv_shenpi.Visible = false;
             }
 
 
         }
 
-        protected void get_sing_rec(string sel_rec)
+        protected void get_rcd_detail()
         {
-            SqlDataReader dr = ds.datareader(sel_rec);
-            try
+            /*
+           ,[AppID]
+      ,[Flow_State]
+      ,[ApplicantName]
+      ,[ApplicantIDCard]
+      ,[AppKind]
+      ,[AppAmount]
+      ,[TC_DateTime]
+      ,[FS_DateTime]
+      ,[AppGroup]
+      ,[AppName]
+      ,[AppContent]
+      ,[AppBy]
+      ,[Styp_1_Oponion]
+      ,[Styp_1_Comment]
+      ,[Styp_2_Oponion]
+      ,[Styp_2_Comment]
+      ,[Styp_3_Oponion]
+      ,[Styp_3_Comment]
+      ,[Styp_4_Oponion]
+      ,[Styp_4_Comment]
+      ,[Styp_5_Oponion]
+      ,[Styp_5_Comment]
+
+        编号: lb_khxd_AppraiseID
+      流转状态: lb_khxd_Flow_State
+      提出人姓名: lb_khxd_ApplicantName
+      提出人身份证号: lb_khxd_ApplicantIDCard
+      类型: lb_khxd_AppKind
+      金额: lb_khxd_AppAmount
+      提出时间: lb_khxd_TC_DateTime
+      事件发生时间: lb_khxd_FS_DateTime
+      被考核人所在班组: lb_khxd_AppGroup
+      被考核对象: lb_khxd_AppName
+      考核内容: lb_khxd_AppContent
+      考核依据: lb_khxd_AppBy
+      意见汇总（组长）: lb_khxd_Styp_1_Oponion
+      评论汇总（组长）: tbx_khxd_Styp_1_Comment
+      意见汇总（工程师）: lb_khxd_Styp_2_Oponion
+      批评论汇总（工程师）: tbx_khxd_Styp_2_Comment
+      意见汇总（区域主管）: lb_khxd_Styp_3_Oponion
+      评论汇总（区域主管）: tbx_khxd_Styp_3_Comment"
+意见汇总（书记）: lb_khxd_Styp_4_Oponion
+评论汇总（书记）: tbx_khxd_Styp_4_Comment
+意见汇总（部长）:  lb_khxd_Styp_5_Oponion
+评论汇总（部长）: tbx_khxd_Styp_5_Comment*/
+            if (ds_AppraiseInfo.Tables[0].Rows.Count > 0)
             {
-                while (dr.Read())
-                {
-
-                    string ID_ = dr["ID"].ToString();
-                    string AppraiseID_ = dr["AppraiseID"].ToString();
-                    string Flow_State_ = dr["Flow_State"].ToString();
-                    string UserID_ = dr["UserID"].ToString();
-                    string UserName_ = dr["UserName"].ToString();
-                    string tc_DateTime_ = dr["tc_DateTime"].ToString();
-                    string AppraiseClass_ = dr["AppraiseClass"].ToString();
-                    string AppraiseTime_ = dr["AppraiseTime"].ToString();
-                    string AppraiseGroup_ = dr["AppraiseGroup"].ToString();
-                    string AppraiseGroupID_ = dr["AppraiseGroupID"].ToString();
-                    string AppraiseContent_ = dr["AppraiseContent"].ToString();
-                    string kh_jiner_ = dr["kh_jiner"].ToString();
-                    string DJ_ReturnTime_ = dr["DJ_ReturnTime"].ToString();
-                    string KHFK_YJ_ = dr["KHFK_YJ"].ToString();
-                    string KHFK_ZT_ = dr["KHFK_ZT"].ToString();
-                    string KHFK_SJ_ = dr["KHFK_SJ"].ToString();
-                    string ClassState_ = dr["ClassState"].ToString();
-                    string ClassObjection_ = dr["ClassObjection"].ToString();
-                    string COTime_ = dr["COTime"].ToString();
-                    string ChargehandOpinion_ = dr["ChargehandOpinion"].ToString();
-                    string ChargehandState_ = dr["ChargehandState"].ToString();
-                    string Leader_1_Opinion_ = dr["Leader_1_Opinion"].ToString();
-                    string Leader_1_State_ = dr["Leader_1_State"].ToString();
-                    string Leader_2_Opinion_ = dr["Leader_2_Opinion"].ToString();
-                    string Leader_2_State_ = dr["Leader_2_State"].ToString();
-                    string Leader_3_Opinion_ = dr["Leader_3_Opinion"].ToString();
-                    string Leader_3_State_ = dr["Leader_3_State"].ToString();
-
-
-                }
+                lb_khxd_AppraiseID.Text = ds_AppraiseInfo.Tables[0].Rows[0][1].ToString();
+                lb_khxd_Flow_State.Text = ds_AppraiseInfo.Tables[0].Rows[0][2].ToString();
+                lb_khxd_ApplicantName.Text = ds_AppraiseInfo.Tables[0].Rows[0][3].ToString();
+                lb_khxd_ApplicantIDCard.Text = ds_AppraiseInfo.Tables[0].Rows[0][4].ToString();
+                lb_khxd_AppKind.Text = ds_AppraiseInfo.Tables[0].Rows[0][5].ToString();
+                lb_khxd_AppAmount.Text = ds_AppraiseInfo.Tables[0].Rows[0][6].ToString();
+                lb_khxd_TC_DateTime.Text = ds_AppraiseInfo.Tables[0].Rows[0][7].ToString();
+                lb_khxd_FS_DateTime.Text = ds_AppraiseInfo.Tables[0].Rows[0][8].ToString();
+                lb_khxd_AppGroup.Text = ds_AppraiseInfo.Tables[0].Rows[0][9].ToString();
+                lb_khxd_AppName.Text = ds_AppraiseInfo.Tables[0].Rows[0][10].ToString();
+                lb_khxd_AppContent.Text = ds_AppraiseInfo.Tables[0].Rows[0][12].ToString();
+                lb_khxd_AppBy.Text = ds_AppraiseInfo.Tables[0].Rows[0][11].ToString();
+                lb_khxd_Styp_1_Oponion.Text = ds_AppraiseInfo.Tables[0].Rows[0][13].ToString();
+                tbx_khxd_Styp_1_Comment.Text = ds_AppraiseInfo.Tables[0].Rows[0][14].ToString();
+                lb_khxd_Styp_2_Oponion.Text = ds_AppraiseInfo.Tables[0].Rows[0][15].ToString();
+                tbx_khxd_Styp_2_Comment.Text = ds_AppraiseInfo.Tables[0].Rows[0][16].ToString();
+                lb_khxd_Styp_3_Oponion.Text = ds_AppraiseInfo.Tables[0].Rows[0][17].ToString();
+                tbx_khxd_Styp_3_Comment.Text = ds_AppraiseInfo.Tables[0].Rows[0][18].ToString();
+                lb_khxd_Styp_4_Oponion.Text = ds_AppraiseInfo.Tables[0].Rows[0][19].ToString();
+                tbx_khxd_Styp_4_Comment.Text = ds_AppraiseInfo.Tables[0].Rows[0][20].ToString();
+                lb_khxd_Styp_5_Oponion.Text = ds_AppraiseInfo.Tables[0].Rows[0][21].ToString();
+                tbx_khxd_Styp_5_Comment.Text = ds_AppraiseInfo.Tables[0].Rows[0][22].ToString();
             }
-            catch (Exception er)
-            {
-
-                Response.Write(er.Message.ToString());
-
-            }
+            ds_appWorker = khgl_select.select_appworkerinfo(Convert.ToInt32(ds_AppraiseInfo.Tables[0].Rows[0][1].ToString()), tbx_bg_time.Text, tbx_ed_time.Text);
+            gv_detail_appworker.DataSource = ds_appWorker;
+            gv_detail_appworker.DataBind();
         }
-        protected void gv_App_gailan_SelectedIndexChanged(object sender, EventArgs e)
+    protected void gv_App_gailan_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             for (int i = 0; i < gv_App_gailan.Rows.Count; i++)
@@ -149,8 +184,10 @@ namespace sylzyb_employer_mgr
             {
                 gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].BackColor = System.Drawing.Color.BlanchedAlmond;
 
+                get_rcd_detail();
 
-                khgl_select.select_sigleflow(gv_App_gailan.SelectedIndex);
+                gv_AppWorker.DataSource = ds_appWorker;
+                gv_AppWorker.DataBind();
 
             }
 
@@ -188,14 +225,6 @@ namespace sylzyb_employer_mgr
 
             Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('办理考核,该功能尚未完善!');</script>");
 
-        }
-        protected void gv_App_gailan_RowCreated(object sender, GridViewRowEventArgs e)
-        {
-
-            if (e.Row.Cells.Count == 22)
-            {
-
-            }
         }
 
 
@@ -262,7 +291,7 @@ namespace sylzyb_employer_mgr
                 TimeSpan midTime = DateTime.Parse(tbx_ed_time.Text) - DateTime.Parse(tbx_bg_time.Text);
 
                 if (midTime.Days > 0)
-                   rbl_gailan_cx_SelectedIndexChanged(sender, e);
+                    rbl_gailan_cx_SelectedIndexChanged(sender, e);
                 else { tbx_bg_time.Text = "开发始日期不能大于结束日期"; tbx_bg_time.ForeColor = System.Drawing.Color.Red; }
             }
             else
@@ -296,12 +325,12 @@ namespace sylzyb_employer_mgr
 
 
             khgl_qichao.Update_AppRun(Convert.ToInt32(lb_qckh_AppraiseID.Text), lb_qckh_Flow_State.Text, Session["IDCard"].ToString(), "[ApproveOponion],[App_Comment],[Oponion_State],[Oponion_DateTime]", "'"
-                + tbx_qckh_AppContent.Text + "','" + tbx_qckh_AppBy.Text + "','" 
+                + tbx_qckh_AppContent.Text + "','" + tbx_qckh_AppBy.Text + "','"
                 + rbl_qckh_nextORprevious.SelectedItem.Text + "',getdate()");
 
 
             khgl_qichao.Update_AppraiseInfo(Convert.ToInt32(lb_qckh_AppraiseID.Text), "[Flow_State],[AppKind] ,[AppAmount] ,[TC_DateTime] ,[FS_DateTime],[AppGroup],[AppName] ,[AppContent] ,[AppBy]", rbl_qckh_step.SelectedItem.Text
-                +","+ddl_qckh_AppKind.SelectedItem.Text.Trim()+ "," + lb_qckh_AppAmount.Text + ",getdate()," 
+                + "," + ddl_qckh_AppKind.SelectedItem.Text.Trim() + "," + lb_qckh_AppAmount.Text + ",getdate(),"
                 + tbx_qckh_FS_DateTime.Text.Trim() + "," + ddl_qckh_AppGroup.SelectedItem.Text.Trim() + "," + AppName_str.Trim()
                 + "," + tbx_qckh_AppContent.Text.Trim() + "," + tbx_qckh_AppBy.Text.Trim());
 
@@ -309,8 +338,8 @@ namespace sylzyb_employer_mgr
             {
                 if (cbl_qckh_next_persion.Items[i].Selected)
 
-                    khgl_qichao.insert_AppRun(Convert.ToInt32(lb_qckh_AppraiseID.Text), "[Flow_State],[ApproveName],[ApproveIDCard],[Oponion_State]", rbl_qckh_step.SelectedItem.Text 
-                        + "," + cbl_qckh_next_persion.Items[i].Text.Trim() + "," + cbl_qckh_next_persion.Items[i].Value.Trim()+",待办理");
+                    khgl_qichao.insert_AppRun(Convert.ToInt32(lb_qckh_AppraiseID.Text), "[Flow_State],[ApproveName],[ApproveIDCard],[Oponion_State]", rbl_qckh_step.SelectedItem.Text
+                        + "," + cbl_qckh_next_persion.Items[i].Text.Trim() + "," + cbl_qckh_next_persion.Items[i].Value.Trim() + ",待办理");
             }
 
         }
@@ -433,7 +462,7 @@ namespace sylzyb_employer_mgr
         {
             lb_qckh_AppraiseID.Text = Convert.ToString(khgl_qichao.build_newid(Session["RealName"].ToString(), Session["IDCard"].ToString()));
             lb_qckh_Flow_State.Text = "点检";
-            ddl_qckh_AppKind.SelectedIndex=-1;
+            ddl_qckh_AppKind.SelectedIndex = -1;
             lb_qckh_ApplicantName.Text = Session["RealName"].ToString();
             lb_qckh_AppAmount.Text = "0";
             lb_qckh_TC_DateTime.Text = DateTime.Now.ToString();
@@ -562,7 +591,7 @@ namespace sylzyb_employer_mgr
                 cbl_qckh_next_persion.Items.Clear();
 
                 for (int i = 0; i < ds_peoples.Tables[0].Rows.Count; i++)
-                {                   
+                {
                     cbl_qckh_next_persion.Items.Add("");
                     cbl_qckh_next_persion.Items[i].Text = ds_peoples.Tables[0].Rows[i][0].ToString();
                     cbl_qckh_next_persion.Items[i].Value = ds_peoples.Tables[0].Rows[i][1].ToString();
@@ -575,9 +604,9 @@ namespace sylzyb_employer_mgr
         {
             int sel_count = 0;
 
-                for (int i = 0; i < cbl_qckh_next_persion.Items.Count; i++)
-                    if (cbl_qckh_next_persion.Items[i].Selected)
-                        sel_count++;
+            for (int i = 0; i < cbl_qckh_next_persion.Items.Count; i++)
+                if (cbl_qckh_next_persion.Items[i].Selected)
+                    sel_count++;
             if (cb_qckh_is_huiqian.Checked == false)
             {
                 if (sel_count > 1)
@@ -601,26 +630,36 @@ namespace sylzyb_employer_mgr
         {
             if (rbl_gailan_cx.SelectedIndex == 0)
             {
+                ds_AppraiseInfo = khgl_select.select_zhonglan(tbx_bg_time.Text, tbx_ed_time.Text);
 
-                gv_App_gailan.DataSource = khgl_select.select_zhonglan(tbx_bg_time.Text, tbx_ed_time.Text);
-                gv_App_gailan.DataBind();
+                gv_App_gailan.DataSource = ds_AppraiseInfo;
+
                 BTN_BLLC.Visible = false;
                 dv_gailan.Visible = true;
             }
             if (rbl_gailan_cx.SelectedIndex == 1)
             {
+                ds_AppraiseInfo = khgl_select.select_daiban(tbx_bg_time.Text, tbx_ed_time.Text, Session["IDCARD"].ToString(), Session["UserLevelName"].ToString());
 
-                gv_App_gailan.DataSource = khgl_select.select_daiban(tbx_bg_time.Text, tbx_ed_time.Text, Session["IDCARD"].ToString(), Session["UserLevelName"].ToString());
+
+                gv_App_gailan.DataSource = ds_AppraiseInfo;
 
 
                 BTN_BLLC.Visible = true;
             }
             if (rbl_gailan_cx.SelectedIndex == 2)
             {
-                gv_App_gailan.DataSource = khgl_select.select_yibanjie(tbx_bg_time.Text, tbx_ed_time.Text, Session["IDCARD"].ToString(), Session["UserLevelName"].ToString());
+                ds_AppraiseInfo = khgl_select.select_yibanjie(tbx_bg_time.Text, tbx_ed_time.Text, Session["IDCARD"].ToString(), Session["UserLevelName"].ToString());
+
+                gv_App_gailan.DataSource = ds_AppraiseInfo;
                 BTN_BLLC.Visible = false;
             }
+
             gv_App_gailan.DataBind();
+            ds_appWorker = khgl_select.select_appworkerinfo(Convert.ToInt32(ds_AppraiseInfo.Tables[0].Rows[0][1].ToString()), tbx_bg_time.Text, tbx_ed_time.Text);
+            gv_detail_appworker.DataSource = ds_appWorker;
+            gv_detail_appworker.DataBind();
+            
         }
     }
 }
