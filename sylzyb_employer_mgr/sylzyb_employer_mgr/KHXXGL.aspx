@@ -250,14 +250,23 @@
                       <td style="text-align:left;">
                         <asp:Label ID="Label23" runat="server" Text="被考核对象:"></asp:Label>
                           <asp:Button ID="btn_appworker_add" runat="server" OnClick="btn_appworker_add_Click" Text="添加并刷新" Visible="False" />
-                 
+                     
                     </td>
+                    
                      </tr>
                 <tr>
                     <td style="text-align: left;">
                         <asp:CheckBoxList ID="cbl_workers" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" AutoPostBack="True">
                         </asp:CheckBoxList>
                     </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                    <asp:CheckBox ID="cb_qckh_ksfz" runat="server" Text="快速值赋值：" Visible="False" OnCheckedChanged="cb_qckh_ksfz_CheckedChanged" AutoPostBack="True" />
+                        <asp:TextBox ID="tbx_qckh_ksfz" runat="server" Enabled="False" Visible="False" >0</asp:TextBox>
+                        <asp:Label ID="lb_qckh_yuan" runat="server" Text="元"></asp:Label>
+                    </td>
+
                 </tr>
                 <tr>
                     <td class="sty_qckh_dv_tb3_tr_td_value">                    
@@ -273,7 +282,7 @@
                                 <asp:BoundField DataField="AppKind" HeaderText="考核类型" />
                                 <asp:TemplateField HeaderText="考核金额">
                                     <ItemTemplate>
-                                       <asp:TextBox ID="tbx_gv_AppAmount" runat="server"  Width="175px" Visible="false"></asp:TextBox>
+                                       <asp:TextBox ID="tbx_gv_AppAmount" runat="server"  Width="175px" Visible="False" ></asp:TextBox>
                                         <asp:Button ID="btn_gv_AppMount_Update" runat="server" Text="更新" Visible="False" OnClick="qckh_update_AppMount"  />
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -390,7 +399,7 @@
                                 <asp:BoundField DataField="TC_DateTime" HeaderText="提出时间" />
                                 <asp:BoundField DataField="FS_DateTime" HeaderText="事件发生时间" />
                                 <asp:BoundField DataField="AppGroup" HeaderText="被考核人所在班组" />
-                                <asp:BoundField DataField="AppName" HeaderText="被考核对象" />
+                                <asp:BoundField DataField="AppNames" HeaderText="被考核对象" />
                                 <asp:BoundField DataField="AppContent" HeaderText="考核内容" />
                                 <asp:BoundField DataField="AppBy" HeaderText="考核依据" />
 
@@ -515,7 +524,7 @@
                       <asp:Label ID="Label9" runat="server" Text="被考核对象:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb2_tr_td_value">
-                        <asp:Label ID="lb_khxd_AppName" runat="server" Text="空"></asp:Label>
+                        <asp:Label ID="lb_khxd_AppNames" runat="server" Text="空"></asp:Label>
                     </td>
                 </tr>
                 <tr>
