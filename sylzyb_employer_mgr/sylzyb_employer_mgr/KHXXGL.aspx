@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="KHXXGL.aspx.cs" Inherits="sylzyb_employer_mgr.KHGL" %>
+﻿<%@ Page Language="C#" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="KHXXGL.aspx.cs" MaintainScrollPositionOnPostBack = "true"  Inherits="sylzyb_employer_mgr.KHGL" %>
 
 <!DOCTYPE html>
 
@@ -133,7 +133,7 @@
         }
 
         .sty_shenpi_dv_tb_tr_td {
-            width: 15%;
+            width: 11%;
         }
 
         .sty_shenpi_dv_tb2 {
@@ -147,6 +147,23 @@
 
         .sty_shenpi_dv_tb2_tr_td {
             width: 100%;
+        }
+      
+              
+        .auto-style1 {
+            width: 100%;
+            height: 30px;
+        }
+      
+              
+        .auto-style2 {
+            margin-bottom: 0px;
+        }
+      
+              
+        .auto-style3 {
+            width: 100%;
+            text-align: center;
         }
       
               
@@ -191,6 +208,18 @@
                         <asp:Label ID="lb_qckh_ApplicantName" runat="server" Text="空"></asp:Label>
                     </td>
                     <td class="sty_qckh_dv_tb2_tr_td_name">
+                        <asp:Label ID="Label33" runat="server" Text="考核级别:"></asp:Label>
+                    </td>
+                    <td class="sty_qckh_dv_tb2_tr_td_value">
+                        <asp:DropDownList ID="ddl_qckh_Applevel" runat="server">
+                            <asp:ListItem>厂部考核</asp:ListItem>
+                            <asp:ListItem>作业部考核</asp:ListItem>
+                            <asp:ListItem>班组考核</asp:ListItem>
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+<td class="sty_qckh_dv_tb2_tr_td_name">
                         <asp:Label ID="Label31" runat="server" Text="类型:"></asp:Label>
                     </td>
                     <td class="sty_qckh_dv_tb2_tr_td_value">
@@ -200,9 +229,6 @@
                             <asp:ListItem>厂部考核</asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                </tr>
-                <tr>
-
                     <td class="sty_qckh_dv_tb2_tr_td_name">
                         <asp:Label ID="Label36" runat="server" Text="金额:"></asp:Label>
                     </td>
@@ -218,17 +244,19 @@
                     
                     </td>
                     <td class="sty_qckh_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label41" runat="server" Text="事件发生时间:"></asp:Label>
+                        <asp:Label ID="Label41" runat="server" Text="发生时间:"></asp:Label>
                     </td>
                     <td class="sty_qckh_dv_tb2_tr_td_value">
 
                         <asp:TextBox ID="tbx_qckh_FS_DateTime" runat="server" Height="19px" Width="111px" OnTextChanged="DateCheck"></asp:TextBox>
 
                     </td>
-                    <td class="sty_qckh_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label54" runat="server" Text="被考核人班组:"></asp:Label>
-                    </td>
-                    <td class="sty_qckh_dv_tb2_tr_td_value">
+                    </tr>
+                    <tr>
+                      <td class="sty_qckh_dv_tb2_tr_td_name">
+                        <asp:Label ID="Label32" runat="server" Text="涉及班组:"></asp:Label>
+                         </td>
+                         <td class="sty_qckh_dv_tb2_tr_td_value">
                         <asp:DropDownList ID="ddl_qckh_AppGroup" runat="server" OnSelectedIndexChanged="ddl_qckh_AppGroup_SelectedIndexChanged" AutoPostBack="True">
                             <asp:ListItem></asp:ListItem>
                             <asp:ListItem>甲班</asp:ListItem>
@@ -241,19 +269,29 @@
                             <asp:ListItem>机关</asp:ListItem>
                         </asp:DropDownList>
                     </td>
+                    <td class="sty_qckh_dv_tb2_tr_td_name">
+                        <asp:Label ID="Label23" runat="server" Text="涉及核人员:"></asp:Label>
+                        </td>
+                        <td class="sty_qckh_dv_tb2_tr_td_value">
+                  
+                              <asp:CheckBox ID="cb_qckh_ksfz" runat="server" Text="快速值赋值：" Visible="False" OnCheckedChanged="cb_qckh_ksfz_CheckedChanged" AutoPostBack="True" />
+                  
+                        </td>
+                        <td class="sty_qckh_dv_tb2_tr_td_value">
+                        <asp:TextBox ID="tbx_qckh_ksfz" runat="server" Enabled="False" Visible="False" CssClass="auto-style2" >0</asp:TextBox>
+                       
+                        </td>
+                        <td class="sty_qckh_dv_tb2_tr_td_value">
+ <asp:Label ID="lb_qckh_yuan" runat="server" Text="元"></asp:Label>
+                        </td>
+                    
+                     </tr>
 
-                </tr>
+           
 
             </table>
             <table id="tb3" class="sty_qckh_dv_tb3">
-                <tr>
-                      <td style="text-align:left;">
-                        <asp:Label ID="Label23" runat="server" Text="被考核对象:"></asp:Label>
-                          <asp:Button ID="btn_appworker_add" runat="server" OnClick="btn_appworker_add_Click" Text="添加并刷新" Visible="False" />
-                     
-                    </td>
-                    
-                     </tr>
+               
                 <tr>
                     <td style="text-align: left;">
                         <asp:CheckBoxList ID="cbl_workers" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" AutoPostBack="True">
@@ -261,15 +299,14 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align: left;">
-                    <asp:CheckBox ID="cb_qckh_ksfz" runat="server" Text="快速值赋值：" Visible="False" OnCheckedChanged="cb_qckh_ksfz_CheckedChanged" AutoPostBack="True" />
-                        <asp:TextBox ID="tbx_qckh_ksfz" runat="server" Enabled="False" Visible="False" >0</asp:TextBox>
-                        <asp:Label ID="lb_qckh_yuan" runat="server" Text="元"></asp:Label>
+                    <td style="text-align: right;">
+                          <asp:Button ID="btn_appworker_add" runat="server" OnClick="btn_appworker_add_Click" Text="添加并刷新" Visible="False" />
+                     
                     </td>
 
                 </tr>
                 <tr>
-                    <td class="sty_qckh_dv_tb3_tr_td_value">                    
+                    <td class="auto-style3">                    
                         <asp:GridView ID="gv_AppWorker" runat="server" HorizontalAlign="Center" Width="100%" Height="100px" AutoGenerateColumns="False" EnableModelValidation="True" Font-Size="Small" PageSize="5" OnRowDataBound="gv_RowDataBound" OnSelectedIndexChanged="gv_SelectedIndexChanged">
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False" />
@@ -279,6 +316,7 @@
                                 <asp:BoundField DataField="ApplicantIDCard" HeaderText="考核提出人身份证号" Visible="False" />
                                 <asp:BoundField DataField="AppName" HeaderText="被考核人姓名" />
                                 <asp:BoundField DataField="AppIDCard" HeaderText="被考核人身份证号" />
+                                <asp:BoundField DataField="Applevel" HeaderText="考核级别" />
                                 <asp:BoundField DataField="AppKind" HeaderText="考核类型" />
                                 <asp:TemplateField HeaderText="考核金额">
                                     <ItemTemplate>
@@ -319,10 +357,9 @@
                     <td class="sty_qckh_dv_tb3_tr_td_value">
                         <asp:RadioButtonList ID="rbl_qckh_nextORprevious" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="rbl__qckh_nextORprevious_SelectedIndexChanged" AutoPostBack="True">
                             <asp:ListItem>转交</asp:ListItem>
-                            <asp:ListItem>删除</asp:ListItem>
                         </asp:RadioButtonList>   
                       
-                           </td>
+                          </td>
                 </tr> 
 
                 <tr>
@@ -366,6 +403,7 @@
                             <asp:ListItem Selected="True" Value="0">总览</asp:ListItem>
                             <asp:ListItem Value="1">待办理</asp:ListItem>
                             <asp:ListItem Value="2">已办结</asp:ListItem>
+                           
                         </asp:RadioButtonList>
                     </td>
                     <td>
@@ -378,7 +416,15 @@
                         <asp:Button ID="btn_reflash" runat="server" OnClick="btn_reflash_Click" Text="刷新" />
                     </td>
                     <td>
-                        <asp:Button ID="btn_tckh" runat="server" Text="提出考核" OnClick="btn_tckh_Click" />
+                        <asp:Button ID="btn_qckh" runat="server" Text="提出" OnClick="btn_qckh_Click" />
+                      
+                          <asp:Button ID="btn_xgkh" runat="server" Text="修改" OnClick="btn_xgkh_Click" />
+                         <asp:Button ID="btn_sckh" runat="server" Text="删除" OnClick="btn_sckh_Click"/>
+                      
+                        <asp:Button ID="btn_shenpikaohe" runat="server" Text="审批" OnClick="btn_shenpikaohe_Click" Visible="False" />
+                      
+                        <asp:Button ID="btn_khgd" runat="server" Text="归档" OnClick="btn_khgd_Click" />
+                         <asp:Button ID="btn_qzsx" runat="server" Text="强制升效" OnClick="btn_khgd_Click" />
                       
                     </td>
                 </tr>
@@ -394,6 +440,7 @@
                                 <asp:BoundField DataField="Flow_State" HeaderText="流转状态" />
                                 <asp:BoundField DataField="ApplicantName" HeaderText="提出人姓名" />
                                 <asp:BoundField DataField="ApplicantIDCard" HeaderText="提出人身份证号" />
+                                <asp:BoundField DataField="Applevel" HeaderText="级别" />
                                 <asp:BoundField DataField="AppKind" HeaderText="类型" />
                                 <asp:BoundField DataField="AppAmount" HeaderText="金额" />
                                 <asp:BoundField DataField="TC_DateTime" HeaderText="提出时间" />
@@ -404,20 +451,20 @@
                                 <asp:BoundField DataField="AppBy" HeaderText="考核依据" />
 
                                 <%--一级审批--%>
-                                <asp:BoundField DataField="Styp_1_Oponion" HeaderText="意见汇总（组长）" />
-                                <asp:BoundField DataField="Styp_1_Comment" HeaderText="评论汇总（组长）" Visible="False" />
+                                <asp:BoundField DataField="step_1_Oponion" HeaderText="意见汇总（组长）" />
+                                <asp:BoundField DataField="step_1_Comment" HeaderText="评论汇总（组长）" Visible="False" />
                                 <%--二级审批--%>
-                                <asp:BoundField DataField="Styp_2_Oponion" HeaderText="意见汇总（工程师）" />
-                                <asp:BoundField DataField="Styp_2_Comment" HeaderText="批评论汇总（工程师）" Visible="False" />
+                                <asp:BoundField DataField="step_2_Oponion" HeaderText="意见汇总（工程师）" />
+                                <asp:BoundField DataField="step_2_Comment" HeaderText="批评论汇总（工程师）" Visible="False" />
                                 <%--三级审批--%>
-                                <asp:BoundField DataField="Styp_3_Oponion" HeaderText="意见汇总（区域主管）" />
-                                <asp:BoundField DataField="Styp_3_Comment" HeaderText="评论汇总（区域主管）" Visible="False" />
+                                <asp:BoundField DataField="step_3_Oponion" HeaderText="意见汇总（区域主管）" />
+                                <asp:BoundField DataField="step_3_Comment" HeaderText="评论汇总（区域主管）" Visible="False" />
                                 <%--四级审批--%>
-                                <asp:BoundField DataField="Styp_4_Oponion" HeaderText="意见汇总（书记）" />
-                                <asp:BoundField DataField="Styp_4_Comment" HeaderText="评论汇总（书记）" Visible="False" />
+                                <asp:BoundField DataField="step_4_Oponion" HeaderText="意见汇总（书记）" />
+                                <asp:BoundField DataField="step_4_Comment" HeaderText="评论汇总（书记）" Visible="False" />
                                 <%--五级审批--%>
-                                <asp:BoundField DataField="Styp_5_Oponion" HeaderText="意见汇总（部长）" />
-                                <asp:BoundField DataField="Styp_5_Comment" HeaderText="评论汇总（部长）" Visible="False" />
+                                <asp:BoundField DataField="step_5_Oponion" HeaderText="意见汇总（部长）" />
+                                <asp:BoundField DataField="step_5_Comment" HeaderText="评论汇总（部长）" Visible="False" />
                             </Columns>
                         </asp:GridView>
                     </td>
@@ -436,11 +483,7 @@
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_bllc">
 
-                        <asp:Button ID="BTN_BLLC" runat="server" Text="办理流程" OnClick="BTN_BLLC_Click" Visible="False" />
-                          <asp:Button ID="Button1" runat="server" Text="修改考核" OnClick="btn_tckh_Click" Width="70px" Visible="False"/>
-                         <asp:Button ID="Button2" runat="server" Text="删除考核" OnClick="btn_tckh_Click" Width="70px" Height="21px" Visible="False"/>
-                         <asp:Button ID="Button3" runat="server" Text="强制转交或归档" OnClick="btn_tckh_Click" Width="100px" Visible="False" />
-                    </td>
+                        &nbsp;</td>
                 </tr>
             </table>
 
@@ -479,49 +522,58 @@
                 </tr>
                 <tr>
                     <td class="sty_khxd_dv_tb_tr_td_name">
+                        <asp:Label ID="Label30" runat="server" Text="考核等级:"></asp:Label>
+                    </td>
+                    <td class="sty_khxd_dv_tb_tr_td_value">
+                        <asp:Label ID="lb_khxd_Applevel" runat="server" Text="空"></asp:Label>
+                    </td>
+                    <td class="sty_khxd_dv_tb_tr_td_name">
                         <asp:Label ID="Label8" runat="server" Text="类型:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_value">
                         <asp:Label ID="lb_khxd_AppKind" runat="server" Text="空"></asp:Label>
                     </td>
-                    <td class="sty_khxd_dv_tb_tr_td_name">
+                 
+
+                  
+                </tr>
+                <tr>
+                       <td class="sty_khxd_dv_tb_tr_td_name">
                         <asp:Label ID="Label47" runat="server" Text="金额:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_value">
                         <asp:Label ID="lb_khxd_AppAmount" runat="server" Text="空"></asp:Label>
                     </td>
-
-                  
-                </tr>
-                <tr>
                         <td class="sty_khxd_dv_tb_tr_td_name">
                         <asp:Label ID="Label49" runat="server" Text="提出时间:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_value">
                         <asp:Label ID="lb_khxd_TC_DateTime" runat="server" Text="空"></asp:Label>
                     </td>
-                    <td class="sty_khxd_dv_tb_tr_td_name">
-                        <asp:Label ID="Label51" runat="server" Text="事件发生时间:"></asp:Label>
+                   
+                     </tr>
+                <tr>
+                 <td class="sty_khxd_dv_tb_tr_td_name">
+                        <asp:Label ID="Label51" runat="server" Text="发生时间:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_value">
                         <asp:Label ID="lb_khxd_FS_DateTime" runat="server" Text="空"></asp:Label>
                     </td>
-
+                    
+                   <td class="sty_khxd_dv_tb_tr_td_name">
+                     <asp:Label ID="Label45" runat="server" Text="涉及班组:"></asp:Label>
+                    </td>
+                    <td class="sty_khxd_dv_tb_tr_td_value">
+                          <asp:Label ID="lb_khxd_AppGroup" runat="server" Text="空"></asp:Label>
+                    </td>      
                 </tr>
                 
             </table>
-            <table>
+            <table class="sty_khxd_dv_tb">
+                
                  <tr>
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                     <asp:Label ID="Label45" runat="server" Text="被考核人所在班组:"></asp:Label>
-                    </td>
-                    <td class="sty_khxd_dv_tb2_tr_td_value">
-                        <asp:Label ID="lb_khxd_AppGroup" runat="server" Text="空"></asp:Label>
-                    </td>
-                </tr>
-                 <tr>
-                    <td class="sty_khxd_dv_tb2_tr_td_name">
-                      <asp:Label ID="Label9" runat="server" Text="被考核对象:"></asp:Label>
+                      <asp:Label ID="Label9" runat="server" Text="涉及人员:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb2_tr_td_value">
                         <asp:Label ID="lb_khxd_AppNames" runat="server" Text="空"></asp:Label>
@@ -545,98 +597,98 @@
                 </tr>
                 <tr>
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label39" runat="server" Text="意见汇总（组长）:"></asp:Label>
+                        <asp:Label ID="Label39" runat="server" Text="组长意见:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb2_tr_td_value">
-                        <asp:Label ID="lb_khxd_Styp_1_Oponion" runat="server" Text="空"></asp:Label>
+                        <asp:Label ID="lb_khxd_step_1_Oponion" runat="server" Text="空"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label14" runat="server" Text="评论汇总（组长）:"></asp:Label>
+                        <asp:Label ID="Label14" runat="server" Text="组长评论:"></asp:Label>
                     </td>
 
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:TextBox ID="tbx_khxd_Styp_1_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"></asp:TextBox>
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label53" runat="server" Text="意见汇总（工程师）:" Visible="False"></asp:Label>
-                    </td>
-                    <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:Label ID="lb_khxd_Styp_2_Oponion" runat="server" Text="空" Visible="False"></asp:Label>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label35" runat="server" Text="批评论汇总（工程师）:"></asp:Label>
-                    </td>
-
-                    <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:TextBox ID="tbx_khxd_Styp_2_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="tbx_khxd_Step_1_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"></asp:TextBox>
                     </td>
                 </tr>
 
 
                 <tr>
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label16" runat="server" Text="意见汇总（区域主管）:" Visible="False"></asp:Label>
+                        <asp:Label ID="Label53" runat="server" Text="工程师意见:" Visible="False"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:Label ID="lb_khxd_Styp_3_Oponion" runat="server" Text="空" Visible="False"></asp:Label>
+                        <asp:Label ID="lb_khxd_step_2_Oponion" runat="server" Text="空" Visible="False"></asp:Label>
                     </td>
                 </tr>
-
                 <tr>
-
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label17" runat="server" Text="评论汇总（区域主管）:" Visible="False"></asp:Label>
+                        <asp:Label ID="Label35" runat="server" Text="工程师评论:"></asp:Label>
                     </td>
 
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:TextBox ID="tbx_khxd_Styp_3_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine" Visible="False"></asp:TextBox>
+                        <asp:TextBox ID="tbx_khxd_step_2_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"></asp:TextBox>
                     </td>
                 </tr>
 
 
                 <tr>
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label18" runat="server" Text="意见汇总（书记）:" Visible="False"></asp:Label>
+                        <asp:Label ID="Label16" runat="server" Text="区域主管意见:" Visible="False"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:Label ID="lb_khxd_Styp_4_Oponion" runat="server" Text="空" Visible="False"></asp:Label>
+                        <asp:Label ID="lb_khxd_step_3_Oponion" runat="server" Text="空" Visible="False"></asp:Label>
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td class="sty_khxd_dv_tb2_tr_td_name">
+                        <asp:Label ID="Label17" runat="server" Text="区域主管评论:" Visible="False"></asp:Label>
+                    </td>
+
+                    <td class="sty_khxd_dv_tb_tr_td_value">
+                        <asp:TextBox ID="tbx_khxd_step_3_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine" Visible="False"></asp:TextBox>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="sty_khxd_dv_tb2_tr_td_name">
+                        <asp:Label ID="Label18" runat="server" Text="书记意见:" Visible="False"></asp:Label>
+                    </td>
+                    <td class="sty_khxd_dv_tb_tr_td_value">
+                        <asp:Label ID="lb_khxd_step_4_Oponion" runat="server" Text="空" Visible="False"></asp:Label>
 
                     </td>
                 </tr>
 
                 <tr>
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label20" runat="server" Text="评论汇总（书记）:"></asp:Label>
+                        <asp:Label ID="Label20" runat="server" Text="书记评论:"></asp:Label>
                     </td>
 
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:TextBox ID="tbx_khxd_Styp_4_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="tbx_khxd_step_4_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
 
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label21" runat="server" Text="意见汇总（部长）:"></asp:Label>
+                        <asp:Label ID="Label21" runat="server" Text="部长意见:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:Label ID="lb_khxd_Styp_5_Oponion" runat="server" Text="空"></asp:Label>
+                        <asp:Label ID="lb_khxd_step_5_Oponion" runat="server" Text="空"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label22" runat="server" Text="评论汇总（部长）:"></asp:Label>
+                        <asp:Label ID="Label22" runat="server" Text="部长评论:"></asp:Label>
                     </td>
 
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:TextBox ID="tbx_khxd_Styp_5_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="tbx_khxd_step_5_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"></asp:TextBox>
                     </td>
                 </tr>
 
@@ -649,8 +701,9 @@
                     <asp:BoundField DataField="FS_DateTime" HeaderText="考核发生时间" />
                     <asp:BoundField DataField="ApplicantName" HeaderText="考核提出人姓名" />
                     <asp:BoundField DataField="ApplicantIDCard" HeaderText="考核提出人身份证号" Visible="False" />
-                    <asp:BoundField DataField="AppName" HeaderText="被考核人姓名" />
-                    <asp:BoundField DataField="AppIDCard" HeaderText="被考核人身份证号" Visible="False" />
+                    <asp:BoundField DataField="AppName" HeaderText="相关人姓名" />
+                    <asp:BoundField DataField="AppIDCard" HeaderText="相关人身份证号" Visible="False" />
+                    <asp:BoundField DataField="Applevel" HeaderText="考核级别" />
                     <asp:BoundField DataField="AppKind" HeaderText="考核类型" />
                     <asp:BoundField DataField="AppAmount" HeaderText="考核金额" />
                     <asp:BoundField DataField="AppContent" HeaderText="考核内容" />
@@ -662,7 +715,7 @@
             </asp:GridView>
         </div>
         <div id="dv_shenpi" runat="server" class="sty_shenpi_dv">
-            <asp:Label ID="Label1" runat="server" Text="审批单" Font-Bold="False" Font-Size="Larger"></asp:Label>
+            <asp:Label ID="Label1" runat="server" Text="审批" Font-Bold="False" Font-Size="Larger"></asp:Label>
             <hr />
             <table class="sty_shenpi_dv_tb">
                 <tr>
@@ -676,14 +729,35 @@
                             <asp:ListItem>不同意</asp:ListItem>
                         </asp:DropDownList>
                     </td>
-                    <td class="sty_shenpi_dv_tb_tr_td"></td>
-                    <td class="sty_shenpi_dv_tb_tr_td"></td>
-                    <td class="sty_shenpi_dv_tb_tr_td">
+                     <td class="sty_shenpi_dv_tb_tr_td">
                         <asp:Label ID="Label27" runat="server" Text="考核总金额:"></asp:Label>
                     </td>
                     <td class="sty_shenpi_dv_tb_tr_td">
-                        <asp:TextBox ID="tbx_shenpi_kh_zhongjinger" runat="server" Height="16px" Width="100%" Enabled="False"></asp:TextBox>
+                         <asp:Label ID="lb_shenpi_kh_zhongjinger" runat="server" Text="空"></asp:Label>
                     </td>
+                    
+                     <td class="sty_shenpi_dv_tb_tr_td">
+
+                        <asp:Label ID="Label24" runat="server" Text="审批模式："></asp:Label>
+
+                    </td>
+                    <td class="sty_shenpi_dv_tb_tr_td">
+
+                        <asp:Label ID="lb_shenpi_shenpimoshi" runat="server" Text="空"></asp:Label>
+
+                    </td>
+                   
+                    <td class="sty_shenpi_dv_tb_tr_td">
+
+                        <asp:Label ID="Label61" runat="server" Text="未会签人员："></asp:Label>
+
+                    </td>
+                    <td class="sty_shenpi_dv_tb_tr_td">
+
+                        <asp:Label ID="lb_shenpi_wei_huiqianren" runat="server" Text="空"></asp:Label>
+
+                    </td>
+                   
                 </tr>
             </table>
             <table class="sty_shenpi_dv_tb">
@@ -699,33 +773,40 @@
                 </tr>
                <tr>
                     <td class="sty_shenpi_dv_tb2_tr_td" style="text-align:left;" >
-                        <asp:DropDownList ID="ddl_shenpi_nextORprevious" runat="server" >
-                            <asp:ListItem Value="countersign ">会签</asp:ListItem>
-                            <asp:ListItem Value="next">转交</asp:ListItem>
-                            <asp:ListItem Value="previous">回退</asp:ListItem>
-                        </asp:DropDownList>
-                        <asp:DropDownList ID="ddl_shenpi_step" runat="server">
-                            <asp:ListItem>下一步结点名</asp:ListItem>
-                        </asp:DropDownList>
+                        <asp:CheckBox ID="cb_shenpi_qzzj" runat="server" Text="强制" />
+                          <asp:RadioButtonList ID="rbl_shenpi_nextORprevious" runat="server" AutoPostBack="True" OnSelectedIndexChanged="rbl_shenpi_nextORprevious_SelectedIndexChanged" RepeatDirection="Horizontal">
+                              <asp:ListItem>转交</asp:ListItem>
+                              <asp:ListItem>回退</asp:ListItem>                            
+                        </asp:RadioButtonList>
+
+
+                        <asp:CheckBox ID="cb_shenpi_is_huiqian" runat="server" Text="允许多人会签" OnCheckedChanged="cb_shenpi_is_huiqian_CheckedChanged" AutoPostBack="True" />
                     </td>
-                     </tr>
-               <tr>
-                      <td class="sty_shenpi_dv_tb2_tr_td">
-                         <asp:CheckBoxList ID="cbl_shenpi_next_persion" runat="server"></asp:CheckBoxList>
+               </tr>
+                <tr>
+                    <td class="auto-style1" style="text-align: left;">
+                        <asp:RadioButtonList ID="rbl_shenpi_step" runat="server" OnSelectedIndexChanged="rbl_shenpi_step_SelectedIndexChanged" AutoPostBack="True"></asp:RadioButtonList>
+
                     </td>
                 </tr>
-                          
-               
+                <tr>
+                    <td class="sty_shenpi_dv_tb2_tr_td" style="text-align: left;">
+                        <asp:CheckBoxList ID="cbl_shenpi_next_persion" runat="server" OnSelectedIndexChanged="cbl_shenpi_next_persion_SelectedIndexChanged" AutoPostBack="True">
+                        </asp:CheckBoxList>
+                    </td>
+                </tr>
+
+
                 <tr>
                     <td class="sty_shenpi_dv_tb2_tr_td">
-                        <asp:Button ID="btn_shenpi_ok" runat="server" Text="确认" Width="99px" OnClick="btn_shenpi_ok_Click" />
-                        <asp:Button ID="btn_shenpi_cancel" runat="server" Text="取消" Width="99px" OnClick="btn_shenpi_cancel_Click" />
+                        <asp:Button ID="btn_shenpi_ok" runat="server" Text="确认并返回" Width="99px" OnClick="btn_shenpi_ok_Click" />
+                        <asp:Button ID="btn_shenpi_cancel" runat="server" Text="取消并返回" Width="99px" OnClick="btn_shenpi_cancel_Click" />
                     </td>
                 </tr>
                  
             </table>
         </div>
-
+       
 
 
     </form>

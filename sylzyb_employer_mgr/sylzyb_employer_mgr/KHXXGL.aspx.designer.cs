@@ -130,6 +130,24 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label lb_qckh_ApplicantName;
         
         /// <summary>
+        /// Label33 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label33;
+        
+        /// <summary>
+        /// ddl_qckh_Applevel 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_qckh_Applevel;
+        
+        /// <summary>
         /// Label31 控件。
         /// </summary>
         /// <remarks>
@@ -202,13 +220,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.TextBox tbx_qckh_FS_DateTime;
         
         /// <summary>
-        /// Label54 控件。
+        /// Label32 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label54;
+        protected global::System.Web.UI.WebControls.Label Label32;
         
         /// <summary>
         /// ddl_qckh_AppGroup 控件。
@@ -227,24 +245,6 @@ namespace sylzyb_employer_mgr {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label23;
-        
-        /// <summary>
-        /// btn_appworker_add 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_appworker_add;
-        
-        /// <summary>
-        /// cbl_workers 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList cbl_workers;
         
         /// <summary>
         /// cb_qckh_ksfz 控件。
@@ -272,6 +272,24 @@ namespace sylzyb_employer_mgr {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lb_qckh_yuan;
+        
+        /// <summary>
+        /// cbl_workers 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList cbl_workers;
+        
+        /// <summary>
+        /// btn_appworker_add 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_appworker_add;
         
         /// <summary>
         /// gv_AppWorker 控件。
@@ -445,13 +463,58 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Button btn_reflash;
         
         /// <summary>
-        /// btn_tckh 控件。
+        /// btn_qckh 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_tckh;
+        protected global::System.Web.UI.WebControls.Button btn_qckh;
+        
+        /// <summary>
+        /// btn_xgkh 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_xgkh;
+        
+        /// <summary>
+        /// btn_sckh 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_sckh;
+        
+        /// <summary>
+        /// btn_shenpikaohe 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_shenpikaohe;
+        
+        /// <summary>
+        /// btn_khgd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_khgd;
+        
+        /// <summary>
+        /// btn_qzsx 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_qzsx;
         
         /// <summary>
         /// gv_App_gailan 控件。
@@ -479,42 +542,6 @@ namespace sylzyb_employer_mgr {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label3;
-        
-        /// <summary>
-        /// BTN_BLLC 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BTN_BLLC;
-        
-        /// <summary>
-        /// Button1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
-        
-        /// <summary>
-        /// Button2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
-        
-        /// <summary>
-        /// Button3 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
         
         /// <summary>
         /// Label4 控件。
@@ -587,6 +614,24 @@ namespace sylzyb_employer_mgr {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lb_khxd_ApplicantIDCard;
+        
+        /// <summary>
+        /// Label30 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label30;
+        
+        /// <summary>
+        /// lb_khxd_Applevel 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_khxd_Applevel;
         
         /// <summary>
         /// Label8 控件。
@@ -742,13 +787,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label39;
         
         /// <summary>
-        /// lb_khxd_Styp_1_Oponion 控件。
+        /// lb_khxd_step_1_Oponion 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb_khxd_Styp_1_Oponion;
+        protected global::System.Web.UI.WebControls.Label lb_khxd_step_1_Oponion;
         
         /// <summary>
         /// Label14 控件。
@@ -760,13 +805,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label14;
         
         /// <summary>
-        /// tbx_khxd_Styp_1_Comment 控件。
+        /// tbx_khxd_Step_1_Comment 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_khxd_Styp_1_Comment;
+        protected global::System.Web.UI.WebControls.TextBox tbx_khxd_Step_1_Comment;
         
         /// <summary>
         /// Label53 控件。
@@ -778,13 +823,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label53;
         
         /// <summary>
-        /// lb_khxd_Styp_2_Oponion 控件。
+        /// lb_khxd_step_2_Oponion 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb_khxd_Styp_2_Oponion;
+        protected global::System.Web.UI.WebControls.Label lb_khxd_step_2_Oponion;
         
         /// <summary>
         /// Label35 控件。
@@ -796,13 +841,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label35;
         
         /// <summary>
-        /// tbx_khxd_Styp_2_Comment 控件。
+        /// tbx_khxd_step_2_Comment 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_khxd_Styp_2_Comment;
+        protected global::System.Web.UI.WebControls.TextBox tbx_khxd_step_2_Comment;
         
         /// <summary>
         /// Label16 控件。
@@ -814,13 +859,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label16;
         
         /// <summary>
-        /// lb_khxd_Styp_3_Oponion 控件。
+        /// lb_khxd_step_3_Oponion 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb_khxd_Styp_3_Oponion;
+        protected global::System.Web.UI.WebControls.Label lb_khxd_step_3_Oponion;
         
         /// <summary>
         /// Label17 控件。
@@ -832,13 +877,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label17;
         
         /// <summary>
-        /// tbx_khxd_Styp_3_Comment 控件。
+        /// tbx_khxd_step_3_Comment 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_khxd_Styp_3_Comment;
+        protected global::System.Web.UI.WebControls.TextBox tbx_khxd_step_3_Comment;
         
         /// <summary>
         /// Label18 控件。
@@ -850,13 +895,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label18;
         
         /// <summary>
-        /// lb_khxd_Styp_4_Oponion 控件。
+        /// lb_khxd_step_4_Oponion 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb_khxd_Styp_4_Oponion;
+        protected global::System.Web.UI.WebControls.Label lb_khxd_step_4_Oponion;
         
         /// <summary>
         /// Label20 控件。
@@ -868,13 +913,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label20;
         
         /// <summary>
-        /// tbx_khxd_Styp_4_Comment 控件。
+        /// tbx_khxd_step_4_Comment 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_khxd_Styp_4_Comment;
+        protected global::System.Web.UI.WebControls.TextBox tbx_khxd_step_4_Comment;
         
         /// <summary>
         /// Label21 控件。
@@ -886,13 +931,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label21;
         
         /// <summary>
-        /// lb_khxd_Styp_5_Oponion 控件。
+        /// lb_khxd_step_5_Oponion 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb_khxd_Styp_5_Oponion;
+        protected global::System.Web.UI.WebControls.Label lb_khxd_step_5_Oponion;
         
         /// <summary>
         /// Label22 控件。
@@ -904,13 +949,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label22;
         
         /// <summary>
-        /// tbx_khxd_Styp_5_Comment 控件。
+        /// tbx_khxd_step_5_Comment 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_khxd_Styp_5_Comment;
+        protected global::System.Web.UI.WebControls.TextBox tbx_khxd_step_5_Comment;
         
         /// <summary>
         /// gv_detail_appworker 控件。
@@ -967,13 +1012,49 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label27;
         
         /// <summary>
-        /// tbx_shenpi_kh_zhongjinger 控件。
+        /// lb_shenpi_kh_zhongjinger 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbx_shenpi_kh_zhongjinger;
+        protected global::System.Web.UI.WebControls.Label lb_shenpi_kh_zhongjinger;
+        
+        /// <summary>
+        /// Label24 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label24;
+        
+        /// <summary>
+        /// lb_shenpi_shenpimoshi 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_shenpi_shenpimoshi;
+        
+        /// <summary>
+        /// Label61 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label61;
+        
+        /// <summary>
+        /// lb_shenpi_wei_huiqianren 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_shenpi_wei_huiqianren;
         
         /// <summary>
         /// Label13 控件。
@@ -994,22 +1075,40 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.TextBox tbx_shenpi_yj;
         
         /// <summary>
-        /// ddl_shenpi_nextORprevious 控件。
+        /// cb_shenpi_qzzj 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_shenpi_nextORprevious;
+        protected global::System.Web.UI.WebControls.CheckBox cb_shenpi_qzzj;
         
         /// <summary>
-        /// ddl_shenpi_step 控件。
+        /// rbl_shenpi_nextORprevious 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_shenpi_step;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_shenpi_nextORprevious;
+        
+        /// <summary>
+        /// cb_shenpi_is_huiqian 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cb_shenpi_is_huiqian;
+        
+        /// <summary>
+        /// rbl_shenpi_step 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_shenpi_step;
         
         /// <summary>
         /// cbl_shenpi_next_persion 控件。
