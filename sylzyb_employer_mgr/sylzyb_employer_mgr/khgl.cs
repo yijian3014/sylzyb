@@ -44,8 +44,8 @@ namespace sylzyb_employer_mgr
         /// <summary>
         /// 生成新的考核ID，同时初始化对应的表
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="user_idcard"></param>
+        /// <param name="username">用户名</param>
+        /// <param name="user_idcard">用户身份证号</param>
         /// <returns></returns>
         public int build_newid(string username, string user_idcard)
         {
@@ -73,21 +73,23 @@ namespace sylzyb_employer_mgr
         /// <summary>
         /// 作用：1，消除字符串中的单引号引发的数据库存取错误，2加入操作者姓名，操作时间，日志化操作信息
         /// </summary>
-        /// <param name="cv_str"></param>
-        /// <param name="opt_name"></param>
+        /// <param name="cv_str">待转换字符串</param>
+        /// <param name="opt_name">操作用户名</param>
+        ///  <param name="opt_kind">操作种类：0：仅作单引号，逗号过滤。1：仅添加操作者信息</param>
         /// <returns></returns>
         public string convert_str(string cv_str,string opt_name,int opt_kind)
         {
-            if(opt_kind==0)
-
-               cv_str = cv_str.Replace("'", "+char(44)+");
-            cv_str =cv_str.Replace("'", "''");
- 
+            if (opt_kind == 0)
+            {
+                cv_str = cv_str.Replace("'", "+char(44)+");
+                cv_str = cv_str.Replace("'", "''");
+            }
             if(opt_kind==1)
             cv_str += "'+ Char(13)+Char(10)+'该信息由:" + opt_name + " 编辑于: "+DateTime.Now.ToString()+"'+Char(13)+Char(10)+'";
 
            return cv_str;
         }
+
         public String Get_idcard_str(string names)
         {
             string idcard = "";
@@ -104,7 +106,6 @@ namespace sylzyb_employer_mgr
         }
 
         public string Get_name_str(string idcards)
-
         {
             string name = "";
             idcards = idcards.Replace(",", "','"); //需要将IDCARDS字符串处理成"'skdks','safdf','sadfasdf')"
@@ -163,6 +164,12 @@ namespace sylzyb_employer_mgr
         //----------------------------------------------------------------------//
 
         //----------------------------下面是对表[dzsw].[dbo].[Syl_WorkerInfo]的操作---------------------------//
+        
+            /// <summary>
+            /// 选择指定条件的员工数据集。
+            /// </summary>
+            /// <param name="where"></param>
+            /// <returns></returns>
         public DataSet select_WorkerInfo(string where)
         {
             DataSet ds = new DataSet();
@@ -178,6 +185,14 @@ namespace sylzyb_employer_mgr
 
 
         //----------------------------下面是对表[dzsw].[dbo].[Syl_AppraiseInfo]的操作---------------------------//
+
+        /// <summary>
+        /// 向dzsw].[dbo].[Syl_AppraiseInfo]插入考核信息。
+        /// </summary>
+        /// <param name="AppID"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public bool insert_AppraiseInfo(int AppID, string key, string value)
         {
             string[] temp_key, temp_value;
@@ -194,12 +209,20 @@ namespace sylzyb_employer_mgr
             new_value = Convert.ToString(AppID) + ",'" + new_value;
            new_value = new_value.Replace("+char(44)+", ",");
            key = "AppID," + key;
-
+//需要做一个字符串处理函数，返回值为K,K,K,K V,V,V,V 或K=V,K=V,K=V 唯一的问题是处理好逗号，单引号
             if (db_opt.execsql("insert into [dzsw].[dbo].[Syl_AppraiseInfo](" + key + ") values (" + new_value + ")"))
                 return true;
             else
                 return false;
         }
+
+        /// <summary>
+        /// 更新表[dzsw].[dbo].[Syl_AppraiseInfo]数据
+        /// </summary>
+        /// <param name="AppID"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public bool Update_AppraiseInfo(int AppID, string key, string value)
         {
             string[] temp_key, temp_value;
@@ -454,6 +477,16 @@ namespace sylzyb_employer_mgr
 
             return true;
         }
+        /// <summary>
+        /// //主要用于更新审核信息
+        /// </summary>
+        /// <param name="AppID"></param>
+        /// <param name="AppState"></param>
+        /// <param name="IDCard"></param>
+        /// <param name="Key"></param>
+        /// <param name="Value"></param>
+        /// <param name="is_qiangzhi"></param>
+        /// <returns></returns>
         public bool Update_AppRun(int AppID, string AppState, string IDCard, string Key, string Value,int is_qiangzhi)
         {
             //主要用于更新审核信息
@@ -563,25 +596,58 @@ namespace sylzyb_employer_mgr
 
             return true;
         }
-        public bool delete_AppFlow(int flow_id)
+        public bool delete_AppFlow(int AppID)
         {
-            if (db_opt.execsql("delete * from [dzsw].[dbo].[Syl_AppraiseInfo] where AppID=" + flow_id) && db_opt.execsql("delete * from [dzsw].[dbo].[Syl_AppWorkerinfo] where AppID="
-                + flow_id) && db_opt.execsql("delete * from [dzsw].[dbo].[Syl_SylAppRun] where AppID=" + flow_id))
+            if (db_opt.execsql("delete * from [dzsw].[dbo].[Syl_AppraiseInfo] where AppID=" + AppID)
+                && db_opt.execsql("delete * from [dzsw].[dbo].[Syl_AppWorkerinfo] where AppID=" + AppID) 
+                && db_opt.execsql("delete * from [dzsw].[dbo].[Syl_SylAppRun] where AppID=" + AppID))
                 return true;
             else
                 return false;
         }
-        public bool guidang_AppFlow(int flow_id)
+        /// <summary>
+        /// 删除考核流程。即使强制模式，一般用户强制升效一个流程也只能是待办项里的。只有管理员或办事员可以将任意节点的考核直接升效。修改，归档，也是同理。
+        /// </summary>
+        /// <param name="AppID">流程ID</param>
+        /// <param name="Flow_State">流程当前状态</param>
+        /// <param name="IDCard">操作人身份证号</param>
+        /// <param name="UserLevel">操作人角色等级</param>
+        /// <param name="Oponion_State">当前办理状态：回退，待办理</param>
+        /// <param name="is_qiangzhi">是否为强制模式</param>
+        /// <returns></returns>
+        public bool delete_AppFlow(int AppID, string Flow_State, string IDCard, string UserLevel, string Oponion_State, string is_qiangzhi)
         {
-            if(db_opt.execsql("update [dzsw].[dbo].[Syl_AppraiseInfo] set [Flow_State]= '办事员' where AppID = "
-                + flow_id)&& db_opt.execsql("update [dzsw].[dbo].[Syl_AppWorkerinfo]  set [App_State]= '升效' where AppID = "
-                + flow_id)&& db_opt.execsql("update [dzsw].[dbo].[Syl_SylAppRun] set [Flow_State]= '办事员' where AppID = " + flow_id))
+            if (db_opt.execsql("delete * from [dzsw].[dbo].[Syl_AppraiseInfo] where AppID=" + AppID)
+                && db_opt.execsql("delete * from [dzsw].[dbo].[Syl_AppWorkerinfo] where AppID=" + AppID)
+                && db_opt.execsql("delete * from [dzsw].[dbo].[Syl_SylAppRun] where AppID=" + AppID))
+                return true;
+            else
+                return false;
+        }
+        /// <summary>
+        /// 归档考核流程，使考核升效。即使强制模式，一般用户强制升效一个流程也只能是待办项里的。只有管理员或办事员可以将任意节点的考核直接升效。修改，删除，也是同理。
+        /// </summary>
+        /// <param name="AppID">流程ID</param>
+        /// <param name="Flow_State">流程当前状态</param>
+        /// <param name="IDCard">操作人身份证号</param>
+        /// <param name="UserLevel">操作人角色等级</param>
+        /// <param name="Oponion_State">当前办理状态：回退，待办理</param>
+        /// <param name="is_qiangzhi">是否为强制模式</param>
+        /// <returns></returns>
+        public bool guidang_AppFlow(int AppID,string ApproveIDCard)
+        {
+            if(db_opt.execsql("update [dzsw].[dbo].[Syl_AppraiseInfo] set [Flow_State]= '升效' where AppID = " + AppID)
+                && db_opt.execsql("update [dzsw].[dbo].[Syl_AppWorkerinfo]  set [App_State]= '升效' where AppID = " + AppID)
+                /// && db_opt.execsql("update [dzsw].[dbo].[Syl_SylAppRun] set [Oponion_State]= '升效',[Oponion_DateTime]=getdate() where AppID = " + AppID+ " and ApproveIDCard='" + ApproveIDCard + "'"))
+                && db_opt.execsql("delete [dzsw].[dbo].[Syl_SylAppRun]  where AppID = " + AppID))
 
-            return true;
+                return true;
             else 
             return false;
 
         }
+
+
         /// <summary>
         /// 用于选择单条考核流程，返回指定的考核信息，可支持详单数据添充，
         /// </summary>

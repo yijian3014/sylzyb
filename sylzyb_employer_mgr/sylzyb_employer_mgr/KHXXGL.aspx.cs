@@ -19,6 +19,7 @@ namespace sylzyb_employer_mgr
         Check ck_opt = new Check();
         private int module_kind = 0;
 
+        khgl khgl_gl = new khgl();
         khgl khgl_qichao = new khgl();
         khgl khgl_select = new khgl();
         khgl khgl_shenpi = new khgl();
@@ -510,8 +511,8 @@ namespace sylzyb_employer_mgr
                         khgl_shenpi.insert_AppRun(Convert.ToInt32(lb_khxd_AppraiseID.Text), "[Flow_State],[ApproveName],[ApproveIDCard],[Oponion_State]", rbl_shenpi_step.SelectedItem.Text
                                 + "," + cbl_shenpi_next_persion.Items[i].Text.Trim() + "," + cbl_shenpi_next_persion.Items[i].Value.Trim() + ",待办理");
                     }
-                    UI_disp_code = 0;
-                    Page_Load(sender, e);
+                    UI_disp_code =0;
+                   
                 }
                 else
                 {
@@ -520,7 +521,7 @@ namespace sylzyb_employer_mgr
             }
             else
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('有会签人员没有审理该考核。要强制转交请选择“强制”模式。');</script>");
-
+            Page_Load(sender, e);
         }
 
         protected void btn_shenpi_cancel_Click(object sender, EventArgs e)
@@ -859,7 +860,7 @@ namespace sylzyb_employer_mgr
                 btn_sckh.Visible = true;
                 btn_qckh.Visible = true;
                 btn_qzsx.Visible = true;
-                dv_gailan.Visible = false;
+                dv_gailan.Visible = true;
                 dv_shenpi.Visible = false;
             }
             if (rbl_gailan_cx.SelectedIndex == 2)
@@ -916,28 +917,63 @@ namespace sylzyb_employer_mgr
 
         protected void btn_xgkh_Click(object sender, EventArgs e)
         {
+            if ((Convert.ToInt32(Session["UserLevel"].ToString()) == 7) || (gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[4].ToString() == Session["IDCard"].ToString()) &&
+                 gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[2].ToString() == Session["UserLevelName"].ToString())
+                { cb_qckh_ksfz.Visible = false;
+                tbx_qckh_ksfz.Visible = false;
+                tbx_qckh_ksfz.Enabled = false;
+                lb_qckh_yuan.Visible = false;
+                tbx_qckh_ksfz.Text = "";
+                dv_qicaokaohe.Visible = true;
+                dv_gailan.Visible = false;
+                edit_kaohe_init(Convert.ToInt32(gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text));
 
-            cb_qckh_ksfz.Visible = false;
-            tbx_qckh_ksfz.Visible = false;
-            tbx_qckh_ksfz.Enabled = false;
-            lb_qckh_yuan.Visible = false;
-            tbx_qckh_ksfz.Text = "";
-            dv_qicaokaohe.Visible = true;
-            dv_gailan.Visible = false;
-            if ((Convert.ToInt32(Session["UserLevel"].ToString()) == 0) || (Convert.ToInt32(Session["UserLevel"].ToString()) == 7) || 
-                (gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[4].ToString() == Session["IDCard"].ToString())&&
-                gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[2].ToString()== Session["UserLevelName"].ToString())
-            {
-                edit_kaohe_init(Convert.ToInt32(gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[4].ToString()))
+                UI_disp_code = 1;
             }
-
-
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('不允许修改，请联系办事员确认管理权限！');</script>");
+            }
         }
-        public bool edit_kaohe_init(int AppID)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="AppID"></param>
+        /// <returns></returns>
+        public void edit_kaohe_init(int AppID)
         {
-           
+            
+            lb_qckh_AppraiseID.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][1].ToString();
+            lb_qckh_Flow_State.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][2].ToString();
+lb_qckh_ApplicantName.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][3].ToString();
+            ddl_qckh_Applevel.SelectedItem.Text= ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][5].ToString();
+            ddl_qckh_AppKind.SelectedItem.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][6].ToString();
+            
+            lb_qckh_AppAmount.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][7].ToString();
+            lb_qckh_TC_DateTime.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][8].ToString();
+            tbx_qckh_FS_DateTime.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][9].ToString();
+ddl_qckh_AppGroup.SelectedItem.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][10].ToString();
+            tbx_qckh_AppContent.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][12].ToString();
+            tbx_qckh_AppBy.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][13].ToString();
+            
 
-            return true;
+            //rbl_qckh_nextORprevious.SelectedItem.Text= ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][14].ToString();
+
+ //           cbl_qckh_next_persion.Items.Clear();
+ //           cbl_qckh_next_persion.DataBind();
+ //           cb_qckh_is_huiqian.Checked = false;
+
+ //           rbl_qckh_step.Items.Clear();
+ //           rbl_qckh_step.DataBind();
+
+ //           tbx_qckh_ksfz.Text = "0";
+ //           cb_qckh_ksfz.Checked = false;
+ //cbl_workers.Items.Clear();
+ //           cbl_workers.DataBind();
+ //   gv_AppWorker.DataSource = null;
+ //           gv_AppWorker.DataBind();
+
+
         }
 
 
@@ -946,6 +982,15 @@ namespace sylzyb_employer_mgr
             string shenpi_wei_huiqianren = "";
             lb_shenpi_kh_zhongjinger.Text = lb_khxd_AppAmount.Text;
             shenpi_wei_huiqianren = khgl_shenpi.select_wei_huiqianren(Convert.ToInt32(lb_khxd_AppraiseID.Text), Session["IDCard"].ToString());
+            tbx_shenpi_yj.Text = "";
+            cb_shenpi_is_huiqian.Checked = false;
+            cb_shenpi_qzzj.Checked = false;
+            rbl_shenpi_nextORprevious.SelectedIndex = -1;
+            rbl_shenpi_step.Items.Clear();
+            rbl_shenpi_step.Visible = false;
+            cbl_shenpi_next_persion.Items.Clear();
+            cbl_shenpi_next_persion.Visible = true;
+
             if (shenpi_wei_huiqianren != "空")
             {
 
@@ -965,23 +1010,83 @@ namespace sylzyb_employer_mgr
 
         protected void btn_sckh_Click(object sender, EventArgs e)
         {
-            if( khgl_shenpi. delete_AppFlow(Convert.ToInt32(gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].ToString())))
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('编号："+gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].ToString()+"的考核已经删除');</script>");
-            else
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert(编号：" + gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].ToString() + "的考核无法删除');</script>");
 
+            if (Session["UserLevelName"].ToString()== "办事员")
+            {
+                if (ds_AppraiseInfo != null)
+                    if (ds_AppraiseInfo.Tables.Count > 0)
+                        if (ds_AppraiseInfo.Tables[0].Rows.Count > 0 && gv_App_gailan.SelectedIndex != -1 && gv_App_gailan.SelectedIndex != 0)
+                        {
+                            if (khgl_shenpi.delete_AppFlow(Convert.ToInt32(ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][1].ToString())))
+                            {
+                                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('编号：" + gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].ToString() + "的考核已经删除');</script>");
+                            }
+
+                            else
+                            {
+
+                                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('编号：" + gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].ToString() + "的考核无法删除');</script>");
+
+                            }
+                        }
+                        else
+                        {
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('没有要删除的流程，请选择！');</script>");
+
+                        }
+
+            }
+           
+            else 
+            {
+                if (ds_AppraiseInfo != null)
+                    if (ds_AppraiseInfo.Tables.Count > 0)
+                        if (ds_AppraiseInfo.Tables[0].Rows.Count > 0 && gv_App_gailan.SelectedIndex != -1 && gv_App_gailan.SelectedIndex != 0)
+                            if (Session["UserLevelName"].ToString() == ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][1].ToString())
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('一般用户只允许在流程运转至起草阶段，才允许删除自己发的流程！');</script>");
+            }
+
+
+
+
+            UI_disp_code = 0;
+           
 
         }
 
 
         protected void btn_khgd_Click(object sender, EventArgs e)
         {
-            if (khgl_shenpi.guidang_AppFlow(Convert.ToInt32(gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].ToString())))
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('待办表中所有考核数据已经归档！');</script>");
+
+            if (Session["UserLevelName"].ToString() == "办事员")
+            {
+                if (ds_AppraiseInfo != null)
+                    if (ds_AppraiseInfo.Tables.Count > 0)
+                        if (ds_AppraiseInfo.Tables[0].Rows.Count > 0)
+                        {
+                            if (rbl_gailan_cx.SelectedItem.Text == "待办理")
+                            {
+                                for (int i = 0; i < gv_App_gailan.Rows.Count; i++)
+                                {
+                                    khgl_gl.guidang_AppFlow(Convert.ToInt32(ds_AppraiseInfo.Tables[0].Rows[i][1].ToString()),Session["IDCard"].ToString());
+                                }
+                                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('待办表中所有考核数据已经归档！');</script>");
+                            }
+                            else
+                            {
+
+                                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('只有在强升效才能操作总览或已经办结表中数据！');</script>");
+
+                            }
+
+                        }
+            }
+
+
             else
 
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('待办表中考核数据归档失败！');</script>");
-
+            UI_disp_code = 0;
         }
 
         protected void rbl_shenpi_nextORprevious_SelectedIndexChanged(object sender, EventArgs e)
