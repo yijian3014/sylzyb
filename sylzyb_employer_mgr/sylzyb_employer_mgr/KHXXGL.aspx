@@ -421,7 +421,7 @@
                         <asp:Button ID="btn_qckh" runat="server" Text="提出" OnClick="btn_qckh_Click" />
                       
                           <asp:Button ID="btn_xgkh" runat="server" Text="修改" OnClick="btn_xgkh_Click" Visible="False" />
-                         <asp:Button ID="btn_sckh" runat="server" Text="删除" OnClick="btn_sckh_Click" Visible="False"/>
+                         <asp:Button ID="btn_sckh" runat="server" Text="删除" OnClick="btn_sckh_Click" Visible="False" Width="40px"/>
                       
                         <asp:Button ID="btn_shenpikaohe" runat="server" Text="审批" OnClick="btn_shenpikaohe_Click" Visible="False" />
                       
@@ -783,7 +783,7 @@
                         </asp:RadioButtonList>
 
 
-                        <asp:CheckBox ID="cb_shenpi_is_huiqian" runat="server" Text="允许多人会签" OnCheckedChanged="cb_shenpi_is_huiqian_CheckedChanged" AutoPostBack="True" />
+                        <asp:CheckBox ID="cb_shenpi_is_huiqian" runat="server" Text="下一步允许多人会签" OnCheckedChanged="cb_shenpi_is_huiqian_CheckedChanged" AutoPostBack="True" />
                     </td>
                </tr>
                 <tr>

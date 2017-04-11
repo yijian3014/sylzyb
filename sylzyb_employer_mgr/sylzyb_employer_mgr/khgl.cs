@@ -117,7 +117,7 @@ namespace sylzyb_employer_mgr
             string name = "";
             idcards = idcards.Replace(",", "','"); //需要将IDCARDS字符串处理成"'skdks','safdf','sadfasdf')"
             
-            data_reader = db_opt.datareader("select WorkerName from [dzsw].[dbo].[Syl_WorkerInfo] where IDCard in '%" + idcards + "%'");
+            data_reader = db_opt.datareader("select WorkerName from [dzsw].[dbo].[Syl_WorkerInfo] where IDCard like '%" + idcards + "%'");
             while (data_reader.Read())
             {
                 name = name + data_reader["WorkerName"].ToString() + ",";
@@ -639,19 +639,37 @@ namespace sylzyb_employer_mgr
         /// <param name="Oponion_State">当前办理状态：回退，待办理</param>
         /// <param name="is_qiangzhi">是否为强制模式</param>
         /// <returns></returns>
-        public bool guidang_AppFlow(int AppID,string ApproveIDCard)
+        public bool guidang_AppFlow(int AppID, string ApproveIDCard)
         {
-            if(db_opt.execsql("update [dzsw].[dbo].[Syl_AppraiseInfo] set [Flow_State]= '生效' where AppID = " + AppID)
+            if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "ApproveIDCard='" + ApproveIDCard + "' and  [Oponion_DateTime] is null") == false)
+                insert_AppRun(AppID, "[Flow_State],[ApproveName],[ApproveIDCard],[Oponion_State]", "生效," +Get_name_str(ApproveIDCard)+","+ ApproveIDCard+",生效");
+
+            if (db_opt.execsql("update [dzsw].[dbo].[Syl_AppraiseInfo] set [Flow_State]= '生效',[Admin_Opt]='归档',[Admin_Opt_Comment]='考核已经生效，数据已归档！' where AppID = " + AppID)
                 && db_opt.execsql("update [dzsw].[dbo].[Syl_AppWorkerinfo]  set [App_State]= '生效' where AppID = " + AppID)
-                /// && db_opt.execsql("update [dzsw].[dbo].[Syl_SylAppRun] set [Oponion_State]= '生效',[Oponion_DateTime]=getdate() where AppID = " + AppID+ " and ApproveIDCard='" + ApproveIDCard + "'"))
-                && db_opt.execsql("delete [dzsw].[dbo].[Syl_SylAppRun]  where AppID = " + AppID))
+                  && db_opt.execsql("update [dzsw].[dbo].[Syl_SylAppRun] set [ApproveOponion]='归档',[App_Comment]='考核已经生效，数据已归档！' ,[Oponion_State]='生效',[Oponion_DateTime]=getdate() where AppID = " + AppID + " and [Oponion_DateTime] is null"))
+
+
+
+                //&& db_opt.execsql("update [dzsw].[dbo].[Syl_SylAppRun] set [ApproveOponion]='归档',[App_Comment]='考核已经生效，数据已归档！' ,[Oponion_State]='生效',[Oponion_DateTime]=getdate() where AppID = " + AppID + " and ApproveIDCard='" + ApproveIDCard + "'"))
+
+            {
+
+                db_opt.execsql("delete [dzsw].[dbo].[Syl_SylAppRun]  where [Oponion_DateTime]<dateadd(month,-2, getdate())");
+                db_opt.execsql("delete [dzsw].[dbo].[Syl_AppWorkerinfo]  where [FS_DateTime]<dateadd(year,-2,getdate())");
 
                 return true;
-            else 
-            return false;
+            }
+            else
+                return false;
 
         }
-
+        public bool weijingbanren_fengkou(int AppID, string wei_ApproveIDCard, string ApproveIDCard)
+        {
+            if(db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[AppID]="+ AppID + "and ApproveIDCard='" + wei_ApproveIDCard + "' and  [Oponion_DateTime] is null"))
+                db_opt.execsql("update [dzsw].[dbo].[Syl_SylAppRun] set [ApproveOponion]='(强制)归档',[App_Comment]='考核已经被 "+Get_name_str(ApproveIDCard)+ " （强制）生效，数据已归档！' ,[Oponion_State]='（强制）生效',[Oponion_DateTime]=getdate() where AppID = " + AppID + " and ApproveIDCard='" + wei_ApproveIDCard + "'and  [Oponion_DateTime] is null");
+       
+            return true;
+        }
 
         /// <summary>
         /// 用于选择单条考核流程，返回指定的考核信息，可支持详单数据添充，
@@ -734,11 +752,11 @@ namespace sylzyb_employer_mgr
         {
 
             DataSet ds = new DataSet();
-            if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[ApproveIDCard]", idcard) && db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[Oponion_State]", "转交"))
+     
 
-                ds = db_opt.build_dataset("select a.* from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] and a.TC_DateTime between '"
+                ds = db_opt.build_dataset("select distinct a.* from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] and a.TC_DateTime between '"
                   + bgdatetime + "' and '" + eddatetime
-                 + "' and b.[Flow_State]='" + flow_state + "' and( b.[Oponion_State] like '%转交%' or  b.[Oponion_State] like '%回退%') and b.[ApproveIDCard]='" + idcard
+                 + "' and (b.[Flow_State]='" + flow_state + "' or a.[Flow_State] like '%生效%') and( b.[Oponion_State] like '%转交%' or  b.[Oponion_State] like '%回退%'or  b.[Oponion_State] like '%会签%'or  b.[Oponion_State] like '%生效%') and b.[ApproveIDCard]='" + idcard
                   + "' order by  a.TC_DateTime desc, a.AppID");
             return ds;
         }

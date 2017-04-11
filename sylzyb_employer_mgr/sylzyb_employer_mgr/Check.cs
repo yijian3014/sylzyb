@@ -122,7 +122,7 @@ namespace sylzyb_employer_mgr
                 ds = db_opt.build_dataset(mod_chk_sql);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    if (System.Web.HttpContext.Current.Session["UserPower"].ToString().Substring(Convert.ToInt32(ds.Tables[0].Rows[0][1].ToString()), 1) == "S")
+                    if (System.Web.HttpContext.Current.Session["UserPower"].ToString().Substring(Convert.ToInt32(ds.Tables[0].Rows[0][1].ToString()), 1) == "Y")
                     {
                         
                         Dispose();
