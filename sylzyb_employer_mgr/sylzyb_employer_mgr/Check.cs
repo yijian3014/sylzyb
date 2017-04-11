@@ -83,7 +83,7 @@ namespace sylzyb_employer_mgr
                 {
                     ss = Convert.ToInt32(ds.Tables[0].Rows[0][1].ToString()) ;
                     bb = System.Web.HttpContext.Current.Session["ModulePower"].ToString();
-                    if (System.Web.HttpContext.Current.Session["ModulePower"].ToString().Substring(Convert.ToInt32(ds.Tables[0].Rows[0][1].ToString()) - 1, 1) == "Y")
+                    if (System.Web.HttpContext.Current.Session["ModulePower"].ToString().Substring(0, 1) == "Y")
                     {
 
                         System.Web.HttpContext.Current.Session["ISSuperUser"] = "true";
@@ -122,7 +122,7 @@ namespace sylzyb_employer_mgr
                 ds = db_opt.build_dataset(mod_chk_sql);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    if (System.Web.HttpContext.Current.Session["UserPower"].ToString().Substring(Convert.ToInt32(ds.Tables[0].Rows[0][1].ToString()), 1) == "Y")
+                    if (System.Web.HttpContext.Current.Session["UserPower"].ToString().Substring(Convert.ToInt32(ds.Tables[0].Rows[0][1].ToString()), 1) == "S")
                     {
                         
                         Dispose();

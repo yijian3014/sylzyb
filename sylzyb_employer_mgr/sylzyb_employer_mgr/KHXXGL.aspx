@@ -215,6 +215,7 @@
                             <asp:ListItem>厂部考核</asp:ListItem>
                             <asp:ListItem>作业部考核</asp:ListItem>
                             <asp:ListItem>班组考核</asp:ListItem>
+                           
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -227,6 +228,7 @@
                             <asp:ListItem>日常考核</asp:ListItem>
                             <asp:ListItem>事故通报</asp:ListItem>
                             <asp:ListItem>厂部考核</asp:ListItem>
+                             <asp:ListItem>自主改善</asp:ListItem>
                         </asp:DropDownList>
                     </td>
                     <td class="sty_qckh_dv_tb2_tr_td_name">
@@ -355,7 +357,7 @@
                 </tr>
                 <tr>
                     <td class="sty_qckh_dv_tb3_tr_td_value">
-                        <asp:RadioButtonList ID="rbl_qckh_nextORprevious" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="rbl__qckh_nextORprevious_SelectedIndexChanged" AutoPostBack="True">
+                        <asp:RadioButtonList ID="rbl_qckh_nextORprevious" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="rbl_qckh_nextORprevious_SelectedIndexChanged" AutoPostBack="True">
                             <asp:ListItem>转交</asp:ListItem>
                         </asp:RadioButtonList>   
                       
@@ -379,7 +381,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Button ID="btn_qckh_ok" runat="server" Text="确认" Width="99px" OnClick="btn_qckh_ok_Click" />
+                        <asp:Button ID="btn_qckh_ok" runat="server" Text="确认并返回" Width="99px" OnClick="btn_qckh_ok_Click" />
                         <asp:Button ID="btn_qckh_cancel" runat="server" Text="取消" Width="99px" OnClick="btn_qckh_cancel_Click" />
                     </td>
                 </tr>
@@ -418,13 +420,13 @@
                     <td>
                         <asp:Button ID="btn_qckh" runat="server" Text="提出" OnClick="btn_qckh_Click" />
                       
-                          <asp:Button ID="btn_xgkh" runat="server" Text="修改" OnClick="btn_xgkh_Click" />
-                         <asp:Button ID="btn_sckh" runat="server" Text="删除" OnClick="btn_sckh_Click"/>
+                          <asp:Button ID="btn_xgkh" runat="server" Text="修改" OnClick="btn_xgkh_Click" Visible="False" />
+                         <asp:Button ID="btn_sckh" runat="server" Text="删除" OnClick="btn_sckh_Click" Visible="False"/>
                       
                         <asp:Button ID="btn_shenpikaohe" runat="server" Text="审批" OnClick="btn_shenpikaohe_Click" Visible="False" />
                       
-                        <asp:Button ID="btn_khgd" runat="server" Text="归档" OnClick="btn_khgd_Click" />
-                         <asp:Button ID="btn_qzsx" runat="server" Text="强制升效" OnClick="btn_khgd_Click" />
+                        <asp:Button ID="btn_khgd" runat="server" Text="归档" OnClick="btn_khgd_Click" Visible="False" />
+                         <asp:Button ID="btn_qzsx" runat="server" Text="强制生效" OnClick="btn_qzsx_Click" Visible="False" />
                       
                     </td>
                 </tr>
@@ -616,10 +618,10 @@
 
                 <tr>
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label53" runat="server" Text="工程师意见:" Visible="False"></asp:Label>
+                        <asp:Label ID="Label53" runat="server" Text="工程师意见:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:Label ID="lb_khxd_step_2_Oponion" runat="server" Text="空" Visible="False"></asp:Label>
+                        <asp:Label ID="lb_khxd_step_2_Oponion" runat="server" Text="空"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -635,31 +637,31 @@
 
                 <tr>
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label16" runat="server" Text="区域主管意见:" Visible="False"></asp:Label>
+                        <asp:Label ID="Label16" runat="server" Text="区域主管意见:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:Label ID="lb_khxd_step_3_Oponion" runat="server" Text="空" Visible="False"></asp:Label>
+                        <asp:Label ID="lb_khxd_step_3_Oponion" runat="server" Text="空"></asp:Label>
                     </td>
                 </tr>
 
                 <tr>
 
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label17" runat="server" Text="区域主管评论:" Visible="False"></asp:Label>
+                        <asp:Label ID="Label17" runat="server" Text="区域主管评论:"></asp:Label>
                     </td>
 
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:TextBox ID="tbx_khxd_step_3_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine" Visible="False"></asp:TextBox>
+                        <asp:TextBox ID="tbx_khxd_step_3_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"></asp:TextBox>
                     </td>
                 </tr>
 
 
                 <tr>
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label18" runat="server" Text="书记意见:" Visible="False"></asp:Label>
+                        <asp:Label ID="Label18" runat="server" Text="书记意见:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:Label ID="lb_khxd_step_4_Oponion" runat="server" Text="空" Visible="False"></asp:Label>
+                        <asp:Label ID="lb_khxd_step_4_Oponion" runat="server" Text="空"></asp:Label>
 
                     </td>
                 </tr>
@@ -777,6 +779,7 @@
                           <asp:RadioButtonList ID="rbl_shenpi_nextORprevious" runat="server" AutoPostBack="True" OnSelectedIndexChanged="rbl_shenpi_nextORprevious_SelectedIndexChanged" RepeatDirection="Horizontal">
                               <asp:ListItem>转交</asp:ListItem>
                               <asp:ListItem>回退</asp:ListItem>                            
+                              <asp:ListItem>会签</asp:ListItem>
                         </asp:RadioButtonList>
 
 

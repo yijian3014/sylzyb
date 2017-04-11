@@ -81,22 +81,29 @@ namespace sylzyb_employer_mgr
         {
             if (opt_kind == 0)
             {
-                cv_str = cv_str.Replace("'", "+char(44)+");
+                cv_str = cv_str.Replace(",", "+char(44)+");
                 cv_str = cv_str.Replace("'", "''");
             }
             if(opt_kind==1)
             cv_str += "'+ Char(13)+Char(10)+'该信息由:" + opt_name + " 编辑于: "+DateTime.Now.ToString()+"'+Char(13)+Char(10)+'";
+            if (opt_kind == 3)
+            {
+                cv_str = cv_str.Replace(",", "+char(44)+");
+                cv_str = cv_str.Replace("'", "''");
+                cv_str += "'+ Char(13)+Char(10)+'该信息由:" + opt_name + " 编辑于: " + DateTime.Now.ToString() + "'+Char(13)+Char(10)+'";
+            }
 
-           return cv_str;
+                return cv_str;
         }
 
         public String Get_idcard_str(string names)
         {
             string idcard = "";
 
-            names = names.Replace(",", "','");   //需要将NAMES字符串处理成"'skdks','safdf','sadfasdf')"
+            names = names.Replace("(超级用户)", "");   //需要将NAMES字符串处理成"'skdks','safdf','sadfasdf')"
+           
 
-            data_reader = db_opt.datareader("select IDCard from [dzsw].[dbo].[Syl_WorkerInfo] where WorkerName in( '" + names + "'");
+            data_reader = db_opt.datareader("select IDCard from [dzsw].[dbo].[Syl_WorkerInfo] where WorkerName in ( '" + names + "')");
             while (data_reader.Read())
             {
                 idcard = idcard + data_reader["IDCard"].ToString() + ",";
@@ -109,6 +116,7 @@ namespace sylzyb_employer_mgr
         {
             string name = "";
             idcards = idcards.Replace(",", "','"); //需要将IDCARDS字符串处理成"'skdks','safdf','sadfasdf')"
+            
             data_reader = db_opt.datareader("select WorkerName from [dzsw].[dbo].[Syl_WorkerInfo] where IDCard in '%" + idcards + "%'");
             while (data_reader.Read())
             {
@@ -140,8 +148,8 @@ namespace sylzyb_employer_mgr
             }
             if (System.String.Compare(direction, "回退") == 0)
             {
-                return db_opt.build_dataset("select ApproveName,[ApproveIDCard] from[dzsw].[dbo].[Syl_SylAppRun] where [Flow_State]='"
-                    + StateName + "' and AppID=" + AppID);
+                return db_opt.build_dataset("select distinct ApproveName,[ApproveIDCard] from[dzsw].[dbo].[Syl_SylAppRun] where [Flow_State]='"
+                    + StateName + "' and AppID=" + AppID + " and Oponion_State like '%转交%' ");
             }
             return null;
         }
@@ -232,11 +240,10 @@ namespace sylzyb_employer_mgr
             if (temp_key.Length > 1)
                 for (int j = 0; j < temp_value.Length - 1; j++)
                 {
-
                     new_value += temp_value[j].Trim() + "','";
                 }
             new_value = new_value + temp_value[temp_value.Length - 1].Trim();
-           
+
             if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_AppraiseInfo]", "AppID", Convert.ToString(AppID)))
             {
                 for (int i = 0; i < temp_key.Length; i++)
@@ -250,11 +257,8 @@ namespace sylzyb_employer_mgr
             }
             else
             {
-
                 return false;
             }
-
-
         }
 
         public bool Delete_AppraiseInfo(int AppID)
@@ -427,7 +431,16 @@ namespace sylzyb_employer_mgr
 
 
         }
+        public bool delete_AppWorkerInfo(int AppID)
+        {
+            if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_AppWorkerinfo]", "[AppID]=" + AppID))
 
+                if (db_opt.execsql("delete from [dzsw].[dbo].[Syl_AppWorkerinfo] where AppID=" + AppID ))
+                    return true;
+            return false;
+
+
+        }
 
         //----------------------------------------------------------------------//
 
@@ -471,12 +484,6 @@ namespace sylzyb_employer_mgr
 
         }
 
-        public bool Update_AppRun(int AppID, string key, string value)
-        {
-            //主要用于管理员对信息强制修改。
-
-            return true;
-        }
         /// <summary>
         /// //主要用于更新审核信息
         /// </summary>
@@ -487,7 +494,7 @@ namespace sylzyb_employer_mgr
         /// <param name="Value"></param>
         /// <param name="is_qiangzhi"></param>
         /// <returns></returns>
-        public bool Update_AppRun(int AppID, string AppState, string IDCard, string Key, string Value,int is_qiangzhi)
+        public bool Update_AppRun(int AppID, string AppState, string IDCard, string Key, string Value, bool is_qiangzhi)
         {
             //主要用于更新审核信息
             string[] temp_key, temp_value;
@@ -495,33 +502,38 @@ namespace sylzyb_employer_mgr
             temp_key = Key.Split(',');
             temp_value = Value.Split(',');
             if (temp_value.Length > 1)
-                if(is_qiangzhi==0)
-                for (int i = 0; i < temp_value.Length; i++)
+            {
+                if (is_qiangzhi == false)
                 {
-                    if (temp_key[i] == "[Oponion_DateTime]")
+                    for (int i = 0; i < temp_value.Length; i++)
                     {
-                        db_opt.execsql("  UPDATE [dzsw].[dbo].[Syl_SylAppRun]  SET  " + temp_key[i].Trim() + "=" + temp_value[i].Trim()
-                          + " WHERE [AppID]=" + AppID + " and [Flow_State]='" + AppState + "' and [ApproveIDCard]='" + IDCard + "'");
+                        if (temp_key[i] == "[Oponion_DateTime]")
+                        {
+                            db_opt.execsql("  UPDATE [dzsw].[dbo].[Syl_SylAppRun]  SET  " + temp_key[i].Trim() + "=" + temp_value[i].Trim()
+                              + " WHERE [AppID]=" + AppID + " and [Flow_State]='" + AppState + "' and [ApproveIDCard]='" + IDCard + "' and [Oponion_DateTime] is null");
+                        }
+                        else db_opt.execsql("  UPDATE [dzsw].[dbo].[Syl_SylAppRun]  SET  " + temp_key[i].Trim() + "='" + temp_value[i].Trim().Replace("+char(44)+", ",")
+                            + "' WHERE [AppID]=" + AppID + " and [Flow_State]='" + AppState + "' and [ApproveIDCard]='" + IDCard + "'and [Oponion_DateTime] is null");
                     }
-                    else db_opt.execsql("  UPDATE [dzsw].[dbo].[Syl_SylAppRun]  SET  " + temp_key[i].Trim() + "='" + temp_value[i].Trim().Replace("+char(44)+",",")
-                        + "' WHERE [AppID]=" + AppID + " and [Flow_State]='" + AppState + "' and [ApproveIDCard]='" + IDCard + "'");
-                 
-
                 }
-            if(is_qiangzhi == 1)
-                for (int j = 0; j < temp_value.Length; j++)
+                if (is_qiangzhi )//只有在会签模式时需要更新其它会签人数据
                 {
-                    if (temp_key[j] == "[Oponion_DateTime]")
+                   
+                    for (int j = 0; j < temp_value.Length; j++)
                     {
-                        db_opt.execsql("  UPDATE [dzsw].[dbo].[Syl_SylAppRun]  SET  " + temp_key[j].Trim() + "=" + temp_value[j].Trim()
-                          + " WHERE [AppID]=" + AppID + " and [Flow_State]='" + AppState + "' and [ApproveIDCard]!='" + IDCard + "'");
+                        if (temp_key[j] == "[Oponion_DateTime]")
+                        {
+                            db_opt.execsql("  UPDATE [dzsw].[dbo].[Syl_SylAppRun]  SET  " + temp_key[j].Trim() + "=" + temp_value[j].Trim()
+                              + " WHERE [AppID]=" + AppID + " and [Flow_State]='" + AppState + "' and [ApproveIDCard]!='" + IDCard + "'and [Oponion_DateTime] is null");
+                        }
+                        else db_opt.execsql("  UPDATE [dzsw].[dbo].[Syl_SylAppRun]  SET  " + temp_key[j].Trim() + "='" + temp_value[j].Trim().Replace("+char(44)+", ",")
+                            + "' WHERE [AppID]=" + AppID + " and [Flow_State]='" + AppState + "' and [ApproveIDCard]!='" + IDCard + "'and [Oponion_DateTime] is null");
+
+
                     }
-                    else db_opt.execsql("  UPDATE [dzsw].[dbo].[Syl_SylAppRun]  SET  " + temp_key[j].Trim() + "='" + temp_value[j].Trim().Replace("+char(44)+", ",")
-                        + "' WHERE [AppID]=" + AppID + " and [Flow_State]='" + AppState + "' and [ApproveIDCard]!='" + IDCard + "'");
-
-
                 }
-
+              
+            }
             return true;
         }
 
@@ -588,14 +600,7 @@ namespace sylzyb_employer_mgr
         /// </summary>
         /// <param name="flow_id"></param>
         /// <returns></returns>
-        public bool update_flow(int flow_id)
-        {
-            //Update_AppRun(flow_id, "", "");
-            //Update_AppraiseInfo(flow_id,,);
 
-
-            return true;
-        }
         public bool delete_AppFlow(int AppID)
         {
             if (db_opt.execsql("delete * from [dzsw].[dbo].[Syl_AppraiseInfo] where AppID=" + AppID)
@@ -606,7 +611,7 @@ namespace sylzyb_employer_mgr
                 return false;
         }
         /// <summary>
-        /// 删除考核流程。即使强制模式，一般用户强制升效一个流程也只能是待办项里的。只有管理员或办事员可以将任意节点的考核直接升效。修改，归档，也是同理。
+        /// 删除考核流程。即使强制模式，一般用户强制生效一个流程也只能是待办项里的。只有管理员或办事员可以将任意节点的考核直接生效。修改，归档，也是同理。
         /// </summary>
         /// <param name="AppID">流程ID</param>
         /// <param name="Flow_State">流程当前状态</param>
@@ -625,7 +630,7 @@ namespace sylzyb_employer_mgr
                 return false;
         }
         /// <summary>
-        /// 归档考核流程，使考核升效。即使强制模式，一般用户强制升效一个流程也只能是待办项里的。只有管理员或办事员可以将任意节点的考核直接升效。修改，删除，也是同理。
+        /// 归档考核流程，使考核生效。即使强制模式，一般用户强制生效一个流程也只能是待办项里的。只有管理员或办事员可以将任意节点的考核直接生效。修改，删除，也是同理。
         /// </summary>
         /// <param name="AppID">流程ID</param>
         /// <param name="Flow_State">流程当前状态</param>
@@ -636,9 +641,9 @@ namespace sylzyb_employer_mgr
         /// <returns></returns>
         public bool guidang_AppFlow(int AppID,string ApproveIDCard)
         {
-            if(db_opt.execsql("update [dzsw].[dbo].[Syl_AppraiseInfo] set [Flow_State]= '升效' where AppID = " + AppID)
-                && db_opt.execsql("update [dzsw].[dbo].[Syl_AppWorkerinfo]  set [App_State]= '升效' where AppID = " + AppID)
-                /// && db_opt.execsql("update [dzsw].[dbo].[Syl_SylAppRun] set [Oponion_State]= '升效',[Oponion_DateTime]=getdate() where AppID = " + AppID+ " and ApproveIDCard='" + ApproveIDCard + "'"))
+            if(db_opt.execsql("update [dzsw].[dbo].[Syl_AppraiseInfo] set [Flow_State]= '生效' where AppID = " + AppID)
+                && db_opt.execsql("update [dzsw].[dbo].[Syl_AppWorkerinfo]  set [App_State]= '生效' where AppID = " + AppID)
+                /// && db_opt.execsql("update [dzsw].[dbo].[Syl_SylAppRun] set [Oponion_State]= '生效',[Oponion_DateTime]=getdate() where AppID = " + AppID+ " and ApproveIDCard='" + ApproveIDCard + "'"))
                 && db_opt.execsql("delete [dzsw].[dbo].[Syl_SylAppRun]  where AppID = " + AppID))
 
                 return true;
@@ -710,7 +715,7 @@ namespace sylzyb_employer_mgr
 
                 ds = db_opt.build_dataset("select a.* from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] and a.TC_DateTime between '"
                   + bgdatetime + "' and '" + eddatetime + "' and a.[Flow_State]='" + flow_state + "' and b.[ApproveIDCard]='" + idcard
-                  + "' and (b.[Oponion_State]='回退' or b.[Oponion_State]='待办理')"
+                  + "' and  b.[Oponion_State]='待办理'"
                   + " order by  a.TC_DateTime desc, a.AppID");
             else
                 ds = null;
@@ -733,7 +738,7 @@ namespace sylzyb_employer_mgr
 
                 ds = db_opt.build_dataset("select a.* from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] and a.TC_DateTime between '"
                   + bgdatetime + "' and '" + eddatetime
-                 + "' and b.[Flow_State]='" + flow_state + "' and( b.[Oponion_State]='转交'or b.[Oponion_State]='(强制)转交') and b.[ApproveIDCard]='" + idcard
+                 + "' and b.[Flow_State]='" + flow_state + "' and( b.[Oponion_State] like '%转交%' or  b.[Oponion_State] like '%回退%') and b.[ApproveIDCard]='" + idcard
                   + "' order by  a.TC_DateTime desc, a.AppID");
             return ds;
         }
@@ -758,6 +763,10 @@ namespace sylzyb_employer_mgr
             {
                 switch (flow_state)
                 {
+                    case "办事员":
+                        value = "部长,书记,主管领导,工程师,点检组长,点检";
+                        break;
+                         
                     case "部长":
                         value = "办事员";
                         break;
@@ -785,7 +794,7 @@ namespace sylzyb_employer_mgr
                 switch (flow_state)
                 {
                     case "办事员":
-                        value = "部长";
+                        value = "部长,书记,主管领导,工程师,点检组长,点检";
                         break;
                     case "部长":
                         value = "书记";
