@@ -67,8 +67,8 @@ namespace sylzyb_employer_mgr
             tbx_GroupName.Enabled = false;
             tbx_Job.Enabled = false;
             tbx_Duties.Enabled = false;
-            tbx_WagesFactor.Enabled = false;
-            tbx_DutiesFactor.Enabled = false;
+            tbx_SalaryCoefficient.Enabled = false;
+            tbx_DutyCoefficient.Enabled = false;
 
             ds = db_opt.build_dataset(sel_string);
             GridView1.DataSource = ds;
@@ -107,8 +107,8 @@ namespace sylzyb_employer_mgr
                     tbx_GroupName.Text = dr_select_row["GroupName"].ToString();
                     tbx_Job.Text = dr_select_row["Job"].ToString();
                     tbx_Duties.Text = dr_select_row["Duties"].ToString();
-                    tbx_WagesFactor.Text = dr_select_row["WagesFactor"].ToString();
-                    tbx_DutiesFactor.Text = dr_select_row["DutiesFactor"].ToString();
+                    tbx_SalaryCoefficient.Text = dr_select_row["SalaryCoefficient"].ToString();
+                    tbx_DutyCoefficient.Text = dr_select_row["DutyCoefficient"].ToString();
                 }
             }
         }
@@ -137,13 +137,13 @@ namespace sylzyb_employer_mgr
                 {
                     throw new Exception("身份证号: " + tbx_IDCard.Text.Trim());
                 }
-                if (Regex.IsMatch(tbx_WagesFactor.Text, @"^\d{1,}$|^\d{1,}.\d{1,}$") == false)
+                if (Regex.IsMatch(tbx_SalaryCoefficient.Text, @"^\d{1,}$|^\d{1,}.\d{1,}$") == false)
                 {
-                    throw new Exception("工资系数: " + tbx_WagesFactor.Text);
+                    throw new Exception("工资系数: " + tbx_SalaryCoefficient.Text);
                 }
-                if (Regex.IsMatch(tbx_DutiesFactor.Text, @"^\d{1,}$|^\d{1,}.\d{1,}$") == false)
+                if (Regex.IsMatch(tbx_DutyCoefficient.Text, @"^\d{1,}$|^\d{1,}.\d{1,}$") == false)
                 {
-                    throw new Exception("管理奖系统:" + tbx_DutiesFactor.Text);
+                    throw new Exception("管理奖系统:" + tbx_DutyCoefficient.Text);
                 }
 
 
@@ -151,11 +151,11 @@ namespace sylzyb_employer_mgr
                 if (string.Compare(option_method, "insert") == 0 && !bool_isexist)
                 {
                   
-                    option_sql = "insert into [dzsw].[dbo].[Syl_WorkerInfo] (WorkerName,IDCard,GroupName,Job,Duties,WagesFactor,DutiesFactor)values('"
+                    option_sql = "insert into [dzsw].[dbo].[Syl_WorkerInfo] (WorkerName,IDCard,GroupName,Job,Duties,SalaryCoefficient,DutyCoefficient)values('"
                     + tbx_WorkerName.Text + "','" + tbx_IDCard.Text.Trim() + "','"
                     + tbx_GroupName.Text + "','" + tbx_Job.Text + "','" + tbx_Duties.Text + "','"
-                    + Convert.ToDecimal(tbx_DutiesFactor.Text.Trim()) + "','"
-                    + Convert.ToDecimal(tbx_DutiesFactor.Text.Trim()) + "')";
+                    + Convert.ToDecimal(tbx_DutyCoefficient.Text.Trim()) + "','"
+                    + Convert.ToDecimal(tbx_DutyCoefficient.Text.Trim()) + "')";
                 }
                 else
                  if (string.Compare(option_method, "insert") == 0 && bool_isexist)
@@ -173,8 +173,8 @@ namespace sylzyb_employer_mgr
                    option_sql = "update  [dzsw].[dbo].[Syl_WorkerInfo] set WorkerName='" + tbx_WorkerName.Text.Trim()
                         + "',IDCard='" + tbx_IDCard.Text.Trim()
                         + "',GroupName='" + tbx_GroupName.Text.Trim() + "',Job='" + tbx_Job.Text.Trim() + "',Duties='" + tbx_Duties.Text.Trim()
-                        + "',WagesFactor='" + Convert.ToDecimal(tbx_WagesFactor.Text.Trim())
-                        + "',DutiesFactor='" + Convert.ToDecimal(tbx_DutiesFactor.Text.Trim())
+                        + "',SalaryCoefficient='" + Convert.ToDecimal(tbx_SalaryCoefficient.Text.Trim())
+                        + "',DutyCoefficient='" + Convert.ToDecimal(tbx_DutyCoefficient.Text.Trim())
                         + "' where id='" + tbx_id.Text.Trim() + "'";
                 }
                 else
@@ -217,8 +217,8 @@ namespace sylzyb_employer_mgr
             tbx_GroupName.Enabled = false;
             tbx_Job.Enabled = false;
             tbx_Duties.Enabled = false;
-            tbx_WagesFactor.Enabled = false;
-            tbx_DutiesFactor.Enabled = false;
+            tbx_SalaryCoefficient.Enabled = false;
+            tbx_DutyCoefficient.Enabled = false;
 
             tbx_id.Text = "";
             tbx_WorkerName.Text = "";
@@ -226,8 +226,8 @@ namespace sylzyb_employer_mgr
             tbx_GroupName.Text = "";
             tbx_Job.Text = "";
             tbx_Duties.Text = "";
-            tbx_WagesFactor.Text = "";
-            tbx_DutiesFactor.Text = "";
+            tbx_SalaryCoefficient.Text = "";
+            tbx_DutyCoefficient.Text = "";
             // Response.Write("<script>alert('操作取消数据未同步！');javascript:history.go(-1);</script>");
             Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('操作取消数据未同步！" + e.ToString() + "');</script>");
 
@@ -247,8 +247,8 @@ namespace sylzyb_employer_mgr
             tbx_GroupName.Enabled = true;
             tbx_Job.Enabled = true;
             tbx_Duties.Enabled = true;
-            tbx_WagesFactor.Enabled = true;
-            tbx_DutiesFactor.Enabled = true;
+            tbx_SalaryCoefficient.Enabled = true;
+            tbx_DutyCoefficient.Enabled = true;
 
             tbx_id.Text = db_opt.max_id("id", "[dzsw].[dbo].[Syl_WorkerInfo]").ToString(); 
             tbx_WorkerName.Text = "";
@@ -256,8 +256,8 @@ namespace sylzyb_employer_mgr
             tbx_GroupName.Text = "";
             tbx_Job.Text = "";
             tbx_Duties.Text = "";
-            tbx_WagesFactor.Text = "";
-            tbx_DutiesFactor.Text = "";
+            tbx_SalaryCoefficient.Text = "";
+            tbx_DutyCoefficient.Text = "";
 
         }
 
@@ -275,8 +275,8 @@ namespace sylzyb_employer_mgr
             tbx_GroupName.Enabled = false;
             tbx_Job.Enabled = false;
             tbx_Duties.Enabled = false;
-            tbx_WagesFactor.Enabled = false;
-            tbx_DutiesFactor.Enabled = false;
+            tbx_SalaryCoefficient.Enabled = false;
+            tbx_DutyCoefficient.Enabled = false;
 
             tbx_id.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[0].Text;
             tbx_WorkerName.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[1].Text;
@@ -284,8 +284,8 @@ namespace sylzyb_employer_mgr
             tbx_GroupName.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[3].Text;
             tbx_Job.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[4].Text;
             tbx_Duties.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[5].Text;
-            tbx_WagesFactor.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[6].Text;
-            tbx_DutiesFactor.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[7].Text;
+            tbx_SalaryCoefficient.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[6].Text;
+            tbx_DutyCoefficient.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[7].Text;
         }
 
         protected void btn_emp_edt_Click(object sender, EventArgs e)
@@ -301,8 +301,8 @@ namespace sylzyb_employer_mgr
             tbx_GroupName.Enabled = true;
             tbx_Job.Enabled = true;
             tbx_Duties.Enabled = true;
-            tbx_WagesFactor.Enabled = true;
-            tbx_DutiesFactor.Enabled = true;
+            tbx_SalaryCoefficient.Enabled = true;
+            tbx_DutyCoefficient.Enabled = true;
 
 
             if (GridView1.SelectedIndex==0)
@@ -315,8 +315,8 @@ namespace sylzyb_employer_mgr
                 tbx_GroupName.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[3].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[3].Text;
                 tbx_Job.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[4].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[4].Text;
                 tbx_Duties.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[5].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[5].Text;
-                tbx_WagesFactor.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[6].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[6].Text;
-                tbx_DutiesFactor.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[7].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[7].Text;
+                tbx_SalaryCoefficient.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[6].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[6].Text;
+                tbx_DutyCoefficient.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[7].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[7].Text;
             }
         }
 

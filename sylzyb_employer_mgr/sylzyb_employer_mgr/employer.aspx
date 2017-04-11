@@ -104,8 +104,8 @@
                  <asp:BoundField DataField="Job" HeaderText="岗位" />
                   <asp:BoundField DataField="Duties" HeaderText="职务" />
                  
-                  <asp:BoundField DataField="WagesFactor" HeaderText="系数" />
-                  <asp:BoundField DataField="DutiesFactor" HeaderText="管理奖系数" />
+                  <asp:BoundField DataField="SalaryCoefficient" HeaderText="系数" />
+                  <asp:BoundField DataField="DutyCoefficient" HeaderText="管理奖系数" />
 
    
              </Columns>
@@ -166,13 +166,13 @@
                         <asp:Label ID="Label8" runat="server" Text="系数："></asp:Label>
                      </td>  
                      <td>
-                        <asp:TextBox ID="tbx_WagesFactor" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="tbx_SalaryCoefficient" runat="server"></asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="Label9" runat="server" Text="管理奖系数："></asp:Label>
                      </td>  
                      <td>
-                           <asp:TextBox ID="tbx_DutiesFactor" runat="server"></asp:TextBox>
+                           <asp:TextBox ID="tbx_DutyCoefficient" runat="server"></asp:TextBox>
                     </td>
                     
                 </tr>
