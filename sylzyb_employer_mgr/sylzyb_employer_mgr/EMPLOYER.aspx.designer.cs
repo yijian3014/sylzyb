@@ -310,6 +310,24 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.TextBox tbx_DutyCoefficient;
         
         /// <summary>
+        /// Label13 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label13;
+        
+        /// <summary>
+        /// ddl_is_paiqian 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_is_paiqian;
+        
+        /// <summary>
         /// btn_ok 控件。
         /// </summary>
         /// <remarks>

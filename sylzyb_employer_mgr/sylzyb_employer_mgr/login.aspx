@@ -47,7 +47,7 @@
                 <tr>
 
                     <td colspan="4">
-                        <asp:Label ID="Label3" runat="server" Text="员工管理" Font-Size="X-Large"></asp:Label></td>
+                        <asp:Label ID="Label26" runat="server" Text="原料作业部信息管理平台" Font-Bold="True" Font-Size="X-Large"  ></asp:Label> 
                 </tr>
                 <tr>
                  <td colspan="4">

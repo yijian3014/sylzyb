@@ -81,12 +81,12 @@
 
                     </td>
    <td style="width:25%;text-align:center;">
-                        <asp:Label ID="Label27" runat="server" Text="姓名拼音简写："></asp:Label>
+                        <asp:Label ID="Label27" runat="server" Text="姓名拼音简写：" Visible="False"></asp:Label>
 
-                        <asp:TextBox ID="tbx_xmsy" runat="server" Width="111px" AutoPostBack="true"></asp:TextBox>
+                        <asp:TextBox ID="tbx_xmsy" runat="server" Width="111px" AutoPostBack="true" Visible="False"></asp:TextBox>
        </td>
           <td style="width:5%;text-align:center;">
-                        <asp:Button ID="btn_info_cx" runat="server" Text="查询" />
+                        <asp:Button ID="btn_info_cx" runat="server" Text="查询" OnClick="btn_info_cx_Click" Visible="False" />
 
                     </td>
                 </tr>
@@ -106,6 +106,9 @@
                  
                   <asp:BoundField DataField="SalaryCoefficient" HeaderText="系数" />
                   <asp:BoundField DataField="DutyCoefficient" HeaderText="管理奖系数" />
+
+   
+                 <asp:BoundField HeaderText="派遣" DataField="Is_PaiQian"/>
 
    
              </Columns>
@@ -173,6 +176,26 @@
                      </td>  
                      <td>
                            <asp:TextBox ID="tbx_DutyCoefficient" runat="server"></asp:TextBox>
+                    </td>
+                    
+                </tr>
+                  <tr>
+                     <td>
+                        <asp:Label ID="Label13" runat="server" Text="是否为派遣员工:"></asp:Label>
+                     </td>  
+                     <td>
+                       <asp:DropDownList ID="ddl_is_paiqian" runat="server" Height="19px" Width="144px">
+                           <asp:ListItem></asp:ListItem>
+                           <asp:ListItem>否</asp:ListItem>
+                           <asp:ListItem>是</asp:ListItem>
+                         </asp:DropDownList>
+
+                    </td>
+                    <td>
+                      
+                     </td>  
+                     <td>
+                        
                     </td>
                     
                 </tr>

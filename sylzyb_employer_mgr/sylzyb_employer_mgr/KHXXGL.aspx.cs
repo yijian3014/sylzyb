@@ -760,54 +760,60 @@ namespace sylzyb_employer_mgr
         {
             decimal tmp_sum = 0;
             decimal tmp_ksfz = 0;
-            if (Regex.IsMatch(tbx_qckh_ksfz.Text, @"\d{1,}.\d{1,}|[-]\d{1,}.\d{1,}|\d{1,}|[-]\d{1,}") && (tbx_qckh_ksfz.Text != ""))
+            try
             {
-                tmp_ksfz = Convert.ToDecimal(tbx_qckh_ksfz.Text);
-            }
-            else
-            {
-                tmp_ksfz = 0;
-            }
-
-            if (khgl_qichao.IsExists("[dzsw].[dbo].[Syl_AppWorkerinfo]", "[AppID] =" + Convert.ToInt32(lb_qckh_AppraiseID.Text)))
-            {
-                khgl_qichao.delete_AppWorkerInfo(Convert.ToInt32(lb_qckh_AppraiseID.Text));
-          }
-            for (int i = 0; i < cbl_workers.Items.Count; i++)
-            {
-                if (cbl_workers.Items[i].Selected)
+                if (Regex.IsMatch(tbx_qckh_ksfz.Text, @"\d{1,}.\d{1,}|[-]\d{1,}.\d{1,}|\d{1,}|[-]\d{1,}") && (tbx_qckh_ksfz.Text != ""))
                 {
-                    if (lb_qckh_ApplicantName.Text == Session["RealName"].ToString().Trim())
+                    tmp_ksfz = Convert.ToDecimal(tbx_qckh_ksfz.Text);
+                }
+                else
+                {
+                    throw new Exception("快速赋值金额填写格式错误！");
+                }
+
+                if (khgl_qichao.IsExists("[dzsw].[dbo].[Syl_AppWorkerinfo]", "[AppID] =" + Convert.ToInt32(lb_qckh_AppraiseID.Text)))
+                {
+                    khgl_qichao.delete_AppWorkerInfo(Convert.ToInt32(lb_qckh_AppraiseID.Text));
+                }
+                for (int i = 0; i < cbl_workers.Items.Count; i++)
+                {
+                    if (cbl_workers.Items[i].Selected)
                     {
-                        khgl_qichao.insert_single_AppWorkerInfo(Convert.ToInt32(lb_qckh_AppraiseID.Text), cbl_workers.Items[i].Value, 
-                            "[ApplicantName],[ApplicantIDCard],[AppName],[AppIDCard],[AppAmount],[App_State]",
-                            Session["RealName"].ToString().Trim()+ "," + Session["IDCard"].ToString().Trim() + "," 
-                            + cbl_workers.Items[i].Text.Trim() + "," + cbl_workers.Items[i].Value + ","  + tmp_ksfz + ",未生效");
+                        if (lb_qckh_ApplicantName.Text == Session["RealName"].ToString().Trim())
+                        {
+                            khgl_qichao.insert_single_AppWorkerInfo(Convert.ToInt32(lb_qckh_AppraiseID.Text), cbl_workers.Items[i].Value,
+                                "[ApplicantName],[ApplicantIDCard],[AppName],[AppIDCard],[AppAmount],[App_State]",
+                                Session["RealName"].ToString().Trim() + "," + Session["IDCard"].ToString().Trim() + ","
+                                + cbl_workers.Items[i].Text.Trim() + "," + cbl_workers.Items[i].Value + "," + tmp_ksfz + ",未生效");
+                        }
+                        else
+                            khgl_qichao.insert_single_AppWorkerInfo(Convert.ToInt32(lb_qckh_AppraiseID.Text), cbl_workers.Items[i].Value,
+                                "[ApplicantName],[ApplicantIDCard],[AppName],[AppIDCard],[AppAmount],[App_State]",
+                                lb_qckh_ApplicantName.Text + "," + khgl_qichao.Get_idcard_str(lb_qckh_ApplicantName.Text) + ","
+                                + cbl_workers.Items[i].Text.Trim() + "," + cbl_workers.Items[i].Value + "," + tmp_ksfz + ",未生效");
+
+
                     }
-                    else
-                        khgl_qichao.insert_single_AppWorkerInfo(Convert.ToInt32(lb_qckh_AppraiseID.Text), cbl_workers.Items[i].Value, 
-                            "[ApplicantName],[ApplicantIDCard],[AppName],[AppIDCard],[AppAmount],[App_State]",
-                            lb_qckh_ApplicantName.Text + "," +khgl_qichao.Get_idcard_str(lb_qckh_ApplicantName.Text) + "," 
-                            + cbl_workers.Items[i].Text.Trim() + "," + cbl_workers.Items[i].Value + "," + tmp_ksfz + ",未生效");
-
-
                 }
+                ds_appWorker = khgl_qichao.select_appworkerinfo(Convert.ToInt32(lb_qckh_AppraiseID.Text), tbx_bg_time.Text, tbx_ed_time.Text);
+                gv_AppWorker.DataSource = ds_appWorker;
+                gv_AppWorker.DataBind();
+                for (int i = 0; i < ds_appWorker.Tables[0].Rows.Count; i++)
+                    if (ds_appWorker.Tables[0].Rows[i][9].ToString() != "")
+                    {
+
+                        gv_AppWorker.Rows[i].Cells[9].Controls[1].Visible = true;
+                        ((TextBox)gv_AppWorker.Rows[i].Cells[9].Controls[1]).Text = ds_appWorker.Tables[0].Rows[i][9].ToString();
+                        tmp_sum += Convert.ToDecimal(ds_appWorker.Tables[0].Rows[i][9].ToString());
+                    }
+
+                lb_qckh_AppAmount.Text = tmp_sum.ToString();
             }
-            ds_appWorker = khgl_qichao.select_appworkerinfo(Convert.ToInt32(lb_qckh_AppraiseID.Text), tbx_bg_time.Text, tbx_ed_time.Text);
-            gv_AppWorker.DataSource = ds_appWorker;
-            gv_AppWorker.DataBind();
-            for (int i = 0; i < ds_appWorker.Tables[0].Rows.Count; i++)
-                if (ds_appWorker.Tables[0].Rows[i][9].ToString() != "")
-                {
-
-                    gv_AppWorker.Rows[i].Cells[9].Controls[1].Visible = true;
-                    ((TextBox)gv_AppWorker.Rows[i].Cells[9].Controls[1]).Text = ds_appWorker.Tables[0].Rows[i][9].ToString();
-                    tmp_sum += Convert.ToDecimal(ds_appWorker.Tables[0].Rows[i][9].ToString());
-                }
-
-            lb_qckh_AppAmount.Text = tmp_sum.ToString();
-        }
-
+            catch (Exception err)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('"+err.Message+"');</script>");
+            }
+}
 
         protected void rbl_qckh_nextORprevious_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1292,57 +1298,67 @@ ddl_qckh_AppGroup.SelectedItem.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gail
         protected void btn_qzsx_Click(object sender, EventArgs e)
         {
             string weihuiqianren = khgl_gl.select_wei_huiqianren(Convert.ToInt32(lb_khxd_AppraiseID.Text), Session["IDCard"].ToString());
-            string[] whqr = null; 
+            string[] whqr = null;
             //未会签人，有两种情况，包含当前用户与不包含当前用户，封口可以理解为封别人的口，当管理员操作时，意味着封所在未办理人的口。
-            if (ck_opt.item("强制生效",1))
+            try
             {
-                if (ds_AppraiseInfo != null)
-                    if (ds_AppraiseInfo.Tables.Count > 0)
-                        if (ds_AppraiseInfo.Tables[0].Rows.Count > 0)
-                        {
-                            if (ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][2].ToString() != "生效")
+                if (ck_opt.item("强制生效", 1))
+                {
+                    if (ds_AppraiseInfo != null)
+                        if (ds_AppraiseInfo.Tables.Count > 0)
+                            if (ds_AppraiseInfo.Tables[0].Rows.Count > 0)
                             {
-                                //存在问题，如果会签人之一使用强制升效，其它会签人怎么办？目前
-                                if (khgl_gl.select_shenpi_renshu(Convert.ToInt32(lb_khxd_AppraiseID.Text), lb_khxd_Flow_State.Text.Trim()) > 1
-                                                                  && weihuiqianren != "空")
+                                if (ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][2].ToString() != "生效")
                                 {
-                                    whqr = weihuiqianren.Split(',');
-                                    for (int i = 0; i < whqr.Length; i++)
+                                    //存在问题，如果会签人之一使用强制升效，其它会签人怎么办？目前
+                                    if (khgl_gl.select_shenpi_renshu(Convert.ToInt32(lb_khxd_AppraiseID.Text), lb_khxd_Flow_State.Text.Trim()) > 1
+                                                                      && weihuiqianren != "空")
                                     {
-                                        khgl_gl.weijingbanren_fengkou(Convert.ToInt32(ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][1].ToString()),khgl_gl.Get_idcard_str(whqr[i].Trim()), Session["IDCard"].ToString());
-                                    }
+                                        whqr = weihuiqianren.Split(',');
+                                        for (int i = 0; i < whqr.Length; i++)
+                                        {
+                                            khgl_gl.weijingbanren_fengkou(Convert.ToInt32(ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][1].ToString()), khgl_gl.Get_idcard_str(whqr[i].Trim()), Session["IDCard"].ToString());
+                                        }
                                         Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('有会签人员没有审理该考核。强制升效会忽略这些人员！');</script>");
+
+                                    }
+
+
+
+                                    if (khgl_gl.guidang_AppFlow(Convert.ToInt32(ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][1].ToString()), Session["IDCard"].ToString()))
+
+                                        throw new Exception("编号：" + ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][1].ToString() + "已经生效");
+                                    else
+
+                                        throw new Exception("强制生效操作失败!");
+
                                 }
 
 
-
-                                if (khgl_gl.guidang_AppFlow(Convert.ToInt32(ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][1].ToString()), Session["IDCard"].ToString()))
-
-                                    Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('编号：" + ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][1].ToString() + "已经生效');</script>");
                                 else
-                                    Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('强制生效操作失败');</script>");
+                                {
+
+
+                                    throw new Exception("该考核已经生效，无需再操作！");
+                                }
 
                             }
 
+                }
 
-                            else
-                            {
 
-                                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('该考核已经生效，无需再操作！');</script>");
+                else
 
-                            }
-
-                        }
-
+                   throw new Exception("你的权限验证失效，请联系管理员！");
+                UI_disp_code = 0;
+                rbl_gailan_cx_SelectedIndexChanged(sender, e);
             }
-
-
-            else
-
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('你的权限验证失效，请联系管理员！');</script>");
-            UI_disp_code = 0;
-            rbl_gailan_cx_SelectedIndexChanged(sender, e);
+            catch (Exception err)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('"+err.Message+"');</script>");
+            }
         }
 
-          }
+     
+    }
 }

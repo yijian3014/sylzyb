@@ -69,6 +69,7 @@ namespace sylzyb_employer_mgr
             tbx_Duties.Enabled = false;
             tbx_SalaryCoefficient.Enabled = false;
             tbx_DutyCoefficient.Enabled = false;
+            ddl_is_paiqian.Enabled = false;
 
             ds = db_opt.build_dataset(sel_string);
             GridView1.DataSource = ds;
@@ -109,6 +110,7 @@ namespace sylzyb_employer_mgr
                     tbx_Duties.Text = dr_select_row["Duties"].ToString();
                     tbx_SalaryCoefficient.Text = dr_select_row["SalaryCoefficient"].ToString();
                     tbx_DutyCoefficient.Text = dr_select_row["DutyCoefficient"].ToString();
+                    ddl_is_paiqian.SelectedItem.Text = dr_select_row["Is_PaiQian"].ToString();
                 }
             }
         }
@@ -151,11 +153,12 @@ namespace sylzyb_employer_mgr
                 if (string.Compare(option_method, "insert") == 0 && !bool_isexist)
                 {
                   
-                    option_sql = "insert into [dzsw].[dbo].[Syl_WorkerInfo] (WorkerName,IDCard,GroupName,Job,Duties,SalaryCoefficient,DutyCoefficient)values('"
+                    option_sql = "insert into [dzsw].[dbo].[Syl_WorkerInfo] (WorkerName,IDCard,GroupName,Job,Duties,SalaryCoefficient,DutyCoefficient,Is_PaiQian)values('"
                     + tbx_WorkerName.Text + "','" + tbx_IDCard.Text.Trim() + "','"
                     + tbx_GroupName.Text + "','" + tbx_Job.Text + "','" + tbx_Duties.Text + "','"
                     + Convert.ToDecimal(tbx_DutyCoefficient.Text.Trim()) + "','"
-                    + Convert.ToDecimal(tbx_DutyCoefficient.Text.Trim()) + "')";
+                    + Convert.ToDecimal(tbx_DutyCoefficient.Text.Trim()) + "','"
+                    +ddl_is_paiqian.SelectedItem.Text+"')";
                 }
                 else
                  if (string.Compare(option_method, "insert") == 0 && bool_isexist)
@@ -169,12 +172,13 @@ namespace sylzyb_employer_mgr
 
                 if (string.Compare(option_method, "update") == 0 && bool_isexist)
                 {
-                  
-                   option_sql = "update  [dzsw].[dbo].[Syl_WorkerInfo] set WorkerName='" + tbx_WorkerName.Text.Trim()
-                        + "',IDCard='" + tbx_IDCard.Text.Trim()
-                        + "',GroupName='" + tbx_GroupName.Text.Trim() + "',Job='" + tbx_Job.Text.Trim() + "',Duties='" + tbx_Duties.Text.Trim()
-                        + "',SalaryCoefficient='" + Convert.ToDecimal(tbx_SalaryCoefficient.Text.Trim())
-                        + "',DutyCoefficient='" + Convert.ToDecimal(tbx_DutyCoefficient.Text.Trim())
+
+                    option_sql = "update  [dzsw].[dbo].[Syl_WorkerInfo] set WorkerName='" + tbx_WorkerName.Text.Trim()
+                         + "',IDCard='" + tbx_IDCard.Text.Trim()
+                         + "',GroupName='" + tbx_GroupName.Text.Trim() + "',Job='" + tbx_Job.Text.Trim() + "',Duties='" + tbx_Duties.Text.Trim()
+                         + "',SalaryCoefficient='" + Convert.ToDecimal(tbx_SalaryCoefficient.Text.Trim())
+                         + "',DutyCoefficient='" + Convert.ToDecimal(tbx_DutyCoefficient.Text.Trim())
+                         + "',Is_PaiQian='" + ddl_is_paiqian.SelectedItem.Text
                         + "' where id='" + tbx_id.Text.Trim() + "'";
                 }
                 else
@@ -219,6 +223,7 @@ namespace sylzyb_employer_mgr
             tbx_Duties.Enabled = false;
             tbx_SalaryCoefficient.Enabled = false;
             tbx_DutyCoefficient.Enabled = false;
+            ddl_is_paiqian.Enabled = false;
 
             tbx_id.Text = "";
             tbx_WorkerName.Text = "";
@@ -228,6 +233,7 @@ namespace sylzyb_employer_mgr
             tbx_Duties.Text = "";
             tbx_SalaryCoefficient.Text = "";
             tbx_DutyCoefficient.Text = "";
+            ddl_is_paiqian.SelectedIndex = -1;
             // Response.Write("<script>alert('操作取消数据未同步！');javascript:history.go(-1);</script>");
             Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('操作取消数据未同步！" + e.ToString() + "');</script>");
 
@@ -249,6 +255,7 @@ namespace sylzyb_employer_mgr
             tbx_Duties.Enabled = true;
             tbx_SalaryCoefficient.Enabled = true;
             tbx_DutyCoefficient.Enabled = true;
+            ddl_is_paiqian.Enabled = true;
 
             tbx_id.Text = db_opt.max_id("id", "[dzsw].[dbo].[Syl_WorkerInfo]").ToString(); 
             tbx_WorkerName.Text = "";
@@ -258,7 +265,7 @@ namespace sylzyb_employer_mgr
             tbx_Duties.Text = "";
             tbx_SalaryCoefficient.Text = "";
             tbx_DutyCoefficient.Text = "";
-
+            ddl_is_paiqian.SelectedIndex = -1;
         }
 
         protected void btn_emp_del_Click(object sender, EventArgs e)
@@ -277,6 +284,7 @@ namespace sylzyb_employer_mgr
             tbx_Duties.Enabled = false;
             tbx_SalaryCoefficient.Enabled = false;
             tbx_DutyCoefficient.Enabled = false;
+            ddl_is_paiqian.Enabled = false; 
 
             tbx_id.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[0].Text;
             tbx_WorkerName.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[1].Text;
@@ -286,6 +294,7 @@ namespace sylzyb_employer_mgr
             tbx_Duties.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[5].Text;
             tbx_SalaryCoefficient.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[6].Text;
             tbx_DutyCoefficient.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[7].Text;
+            ddl_is_paiqian.SelectedItem.Text= GridView1.Rows[GridView1.SelectedIndex].Cells[8].Text;
         }
 
         protected void btn_emp_edt_Click(object sender, EventArgs e)
@@ -303,6 +312,7 @@ namespace sylzyb_employer_mgr
             tbx_Duties.Enabled = true;
             tbx_SalaryCoefficient.Enabled = true;
             tbx_DutyCoefficient.Enabled = true;
+            ddl_is_paiqian.Enabled = true;
 
 
             if (GridView1.SelectedIndex==0)
@@ -317,9 +327,15 @@ namespace sylzyb_employer_mgr
                 tbx_Duties.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[5].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[5].Text;
                 tbx_SalaryCoefficient.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[6].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[6].Text;
                 tbx_DutyCoefficient.Text = GridView1.Rows[GridView1.SelectedIndex].Cells[7].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[7].Text;
+                ddl_is_paiqian.SelectedItem.Text= GridView1.Rows[GridView1.SelectedIndex].Cells[8].Text == "&nbsp;" ? "" : GridView1.Rows[GridView1.SelectedIndex].Cells[8].Text;
+
             }
+
         }
 
+        protected void btn_info_cx_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
