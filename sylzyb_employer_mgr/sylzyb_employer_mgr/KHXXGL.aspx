@@ -276,11 +276,11 @@
                         </td>
                         <td class="sty_qckh_dv_tb2_tr_td_value">
                   
-                              <asp:CheckBox ID="cb_qckh_ksfz" runat="server" Text="快速值赋值：" Visible="False" OnCheckedChanged="cb_qckh_ksfz_CheckedChanged" AutoPostBack="True" />
+                              <asp:CheckBox ID="cb_qckh_ksfz" runat="server" Text="快速值赋值：" OnCheckedChanged="cb_qckh_ksfz_CheckedChanged" AutoPostBack="True" />
                   
                         </td>
                         <td class="sty_qckh_dv_tb2_tr_td_value">
-                        <asp:TextBox ID="tbx_qckh_ksfz" runat="server" Enabled="False" Visible="False" CssClass="auto-style2" >0</asp:TextBox>
+                        <asp:TextBox ID="tbx_qckh_ksfz" runat="server" Enabled="False" CssClass="auto-style2" >0</asp:TextBox>
                        
                         </td>
                         <td class="sty_qckh_dv_tb2_tr_td_value">
@@ -302,7 +302,7 @@
                 </tr>
                 <tr>
                     <td style="text-align: right;">
-                          <asp:Button ID="btn_appworker_add" runat="server" OnClick="btn_appworker_add_Click" Text="添加并刷新" Visible="False" />
+                          <asp:Button ID="btn_appworker_add" runat="server" OnClick="btn_appworker_add_Click" Text="添加并刷新" />
                      
                     </td>
 
@@ -382,6 +382,7 @@
                 <tr>
                     <td>
                         <asp:Button ID="btn_qckh_ok" runat="server" Text="确认并返回" Width="99px" OnClick="btn_qckh_ok_Click" />
+                        <asp:Button ID="btn_xgkh_ok" runat="server" Text="修改并返回" Width="99px" OnClick="btn_xgkh_ok_Click" />
                         <asp:Button ID="btn_qckh_cancel" runat="server" Text="取消" Width="99px" OnClick="btn_qckh_cancel_Click" />
                     </td>
                 </tr>
@@ -412,23 +413,36 @@
                         <asp:Label ID="Label43" runat="server" Text="开始时间："></asp:Label>
                         <asp:TextBox ID="tbx_bg_time" runat="server" OnTextChanged="DateCheck" Width="120px"></asp:TextBox>
                     </td>
-                    <td>
+                    <td style="text-align:left;">
                         <asp:Label ID="Label44" runat="server" Text="结束时间："></asp:Label>
                         <asp:TextBox ID="tbx_ed_time" runat="server" OnTextChanged="DateCheck" Width="120px"></asp:TextBox>
                         <asp:Button ID="btn_reflash" runat="server" OnClick="btn_reflash_Click" Text="刷新" />
                     </td>
-                    <td>
-                        <asp:Button ID="btn_qckh" runat="server" Text="提出" OnClick="btn_qckh_Click" />
+                  
+                </tr>
+                <tr >
+                    <td style="text-align:left;">
+                         <asp:Button ID="btn_qckh" runat="server" Text="提出" OnClick="btn_qckh_Click" Width="60px"/>
                       
-                          <asp:Button ID="btn_xgkh" runat="server" Text="修改" OnClick="btn_xgkh_Click" Visible="False" />
-                         <asp:Button ID="btn_sckh" runat="server" Text="删除" OnClick="btn_sckh_Click" Visible="False" Width="40px"/>
+                          <asp:Button ID="btn_xgkh" runat="server" Text="修改" OnClick="btn_xgkh_Click" Visible="False" Width="60px"/>
+                         <asp:Button ID="btn_sckh" runat="server" Text="删除" OnClick="btn_sckh_Click" Visible="False" Width="60px"/>
                       
-                        <asp:Button ID="btn_shenpikaohe" runat="server" Text="审批" OnClick="btn_shenpikaohe_Click" Visible="False" />
+                        <asp:Button ID="btn_shenpikaohe" runat="server" Text="审批" OnClick="btn_shenpikaohe_Click" Visible="False" Width="60px"/>
                       
-                        <asp:Button ID="btn_khgd" runat="server" Text="归档" OnClick="btn_khgd_Click" Visible="False" />
-                         <asp:Button ID="btn_qzsx" runat="server" Text="强制生效" OnClick="btn_qzsx_Click" Visible="False" />
-                      
+                        <asp:Button ID="btn_khgd" runat="server" Text="归档" OnClick="btn_khgd_Click" Visible="False" Width="60px"/>
                     </td>
+                    
+                     <td>
+                          
+                    </td>
+                     <td style="text-align:left;">
+                         <asp:Button ID="btn_qzzj" runat="server" Text="强制转交" OnClick="btn_qzzj_Click" Visible="False" />
+                         <asp:Button ID="btn_qzsc" runat="server" Text="强制删除" OnClick="btn_qzsc_Click" Visible="False" />
+                          <asp:Button ID="btn_qzxg" runat="server" Text="强制修改" OnClick="btn_qzxg_Click" Visible="False" />
+                          <asp:Button ID="btn_qzsx" runat="server" Text="强制生效" OnClick="btn_qzsx_Click" Visible="False" />
+                    </td>
+                   
+
                 </tr>
             </table>
 
@@ -594,7 +608,8 @@
                         <asp:Label ID="Label19" runat="server" Text="考核依据:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb2_tr_td_value">
-                         <asp:Label ID="lb_khxd_AppBy" runat="server" Text="空"></asp:Label>
+                     
+                        <asp:TextBox ID="tbx_khxd_AppBy" runat="server"  Width="100%" Hight="auto" TextMode="MultiLine"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -695,7 +710,7 @@
                 </tr>
 
             </table>
-            <asp:GridView ID="gv_detail_appworker" runat="server" HorizontalAlign="Center" Width="100%" Height="100px" OnSelectedIndexChanged="gv_detail_SelectedIndexChanged" OnRowDataBound="gv_detail_RowDataBound" AutoGenerateColumns="False" EnableModelValidation="True" OnRowCreated="gv_detail_RowCreated" Font-Size="Small">
+            <asp:GridView ID="gv_detail_appworker" runat="server" HorizontalAlign="Center" Width="100%" Height="100px" AutoGenerateColumns="False" EnableModelValidation="True" Font-Size="Small">
                 <Columns>
                     
                     <asp:BoundField DataField="ID" HeaderText="ID" Visible="False" />

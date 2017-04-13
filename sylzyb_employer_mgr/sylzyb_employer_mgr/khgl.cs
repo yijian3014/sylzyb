@@ -52,7 +52,7 @@ namespace sylzyb_employer_mgr
 
             int i = db_opt.max_id("[AppID]", "[dzsw].[dbo].[Syl_AppraiseInfo]");
 
-            string old_id = db_opt.get_values("AppID", "[dzsw].[dbo].[Syl_SylAppRun]", "[Flow_State]='点检' and ([Oponion_State]='' OR [Oponion_State] is null) and [ApproveIDCard]='" + user_idcard + "'");
+            string old_id = db_opt.get_values("AppID", "[dzsw].[dbo].[Syl_SylAppRun]", "[Flow_State]='起草' and ([Oponion_State]='' OR [Oponion_State] is null) and [ApproveIDCard]='" + user_idcard + "'");
 
             if (old_id != "")
             {
@@ -63,7 +63,7 @@ namespace sylzyb_employer_mgr
             else
             {
                 if (insert_AppraiseInfo(i, "[ApplicantName],[ApplicantIDCard]", username + "," + user_idcard) &&
-             insert_AppRun(i, "[Flow_State],[ApproveName],[ApproveIDCard]", "点检," + username + "," + user_idcard))
+             insert_AppRun(i, "[Flow_State],[ApproveName],[ApproveIDCard]", "起草," + username + "," + user_idcard))
 
                     return i;
             }
@@ -260,27 +260,6 @@ namespace sylzyb_employer_mgr
                 return false;
             }
         }
-
-        public bool Delete_AppraiseInfo(int AppID)
-        {
-            return true;
-        }
-        public DataSet select_AppraiseInfo(int AppID)
-        {
-            DataSet ds = new DataSet();
-            return ds;
-        }
-        public DataSet select_AppraiseInfo(string fieldWhere)
-        {
-            DataSet ds = new DataSet();
-            return ds;
-        }
-        public DataSet select_AppraiseInfo(string bgtime, string edtime)
-        {
-            DataSet ds = new DataSet();
-            return ds;
-        }
-
 
         //----------------------------------------------------------------------//
 
@@ -574,26 +553,38 @@ namespace sylzyb_employer_mgr
         }
 
         //----------------------------------------------------------------------//
-
+        /// 下面功能用于发考核，修改、删除考核的操作。
 
 
         /// <summary>
         /// 下面功能用于发考核，修改、删除考核的操作。
         /// </summary>
         /// <param name="flow_id"></param>
-        /// <returns></returns>
-        public bool insert_flow(int flow_id, string[] key, string[] value)
+        /// <returns></returns>nextORprevious
+        public bool update_flow(int flow_id, string state_now, string IDCard,string AppContent,
+            string AppBy,string nextORprevious,string Applevel,string AppKind,string AppAmount,string FS_DateTime,
+            string AppGroup,string AppName_str,string step)
         {
-            //插入新生成的考核，除此之外还包括插入被考核员工考核金额，下一步待办人人员列表写入考核运行表。
+            //将填写的流程信息写入三个表。这里对AppWorkerInfo的列新是部分的，按列形式统一填充的，在每人加扣多少钱的操信息在添加并刷新按钮中已经完成。
+            string RealName = Get_name_str(IDCard);
+            if (Update_AppRun(flow_id, state_now, IDCard, "[ApproveOponion],[App_Comment],[Oponion_State],[Oponion_DateTime]", convert_str(AppContent, RealName, 0)
+                   + "," + convert_str(AppBy, RealName, 0)
+               + "," + nextORprevious + ",getdate()", false) &&
 
-            if (insert_AppraiseInfo(flow_id, key[0], value[0]) && insert_AppRun(flow_id, key[1], value[1]) && insert_AppWorkerInfo(flow_id, key[3], value[3]))
+             Update_AppraiseInfo(flow_id, "[Flow_State],[Applevel],[AppKind] ,[AppAmount] ,[TC_DateTime] ,[FS_DateTime],[AppGroup],[AppNames] ,[AppContent] ,[AppBy]", step
+                 + "," + Applevel + "," + AppKind + "," + AppAmount + ",getdate(),"
+                 + FS_DateTime + "," + AppGroup + "," + AppName_str
+                 + "," + convert_str(AppContent, RealName, 0)
+                 + "," + convert_str(AppBy, RealName, 0)) &&
 
+             Update_AppWorkerInfo(flow_id, "[FS_DateTime],[AppLevel],[AppKind],[AppContent],[AppBy]", FS_DateTime
+                + "," + Applevel + "," + AppKind
+                 + "," + convert_str(AppContent, RealName, 0)
+                 + "," + convert_str(AppBy, RealName, 0)))
                 return true;
-            else
-            {
-                delete_AppFlow(flow_id);
-                return false;
-            }
+            else 
+             return false;
+           
         }
         /// <summary>
         /// 更新两个表的信息 [dzsw].[dbo].[Syl_SylAppRun]，[dzsw].[dbo].[Syl_AppraiseInfo]
@@ -603,9 +594,9 @@ namespace sylzyb_employer_mgr
 
         public bool delete_AppFlow(int AppID)
         {
-            if (db_opt.execsql("delete * from [dzsw].[dbo].[Syl_AppraiseInfo] where AppID=" + AppID)
-                && db_opt.execsql("delete * from [dzsw].[dbo].[Syl_AppWorkerinfo] where AppID=" + AppID) 
-                && db_opt.execsql("delete * from [dzsw].[dbo].[Syl_SylAppRun] where AppID=" + AppID))
+            if (db_opt.execsql("delete  from [dzsw].[dbo].[Syl_AppraiseInfo] where AppID=" + AppID)
+                && db_opt.execsql("delete  from [dzsw].[dbo].[Syl_AppWorkerinfo] where AppID=" + AppID) 
+                && db_opt.execsql("delete  from [dzsw].[dbo].[Syl_SylAppRun] where AppID=" + AppID))
                 return true;
             else
                 return false;
@@ -836,7 +827,7 @@ namespace sylzyb_employer_mgr
 
             }
 
-            if (userlevel == 0)
+            if (userlevel == 0||userlevel==7)
             {
                 value = "部长,书记,主管领导,工程师,点检组长,点检";
 

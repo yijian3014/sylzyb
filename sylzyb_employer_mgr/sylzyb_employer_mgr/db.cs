@@ -47,6 +47,7 @@ public class db
         SqlDataAdapter rs = new SqlDataAdapter(sql, db_con);
         DataSet ds = new DataSet();
         rs.Fill(ds);
+        close();
         return ds;
       
     }
@@ -105,6 +106,7 @@ public class db
             {
                 tmp_str += ds.Tables[0].Rows[0][i].ToString().Trim();
             }
+            close();
             return tmp_str;
         }
         else return "";

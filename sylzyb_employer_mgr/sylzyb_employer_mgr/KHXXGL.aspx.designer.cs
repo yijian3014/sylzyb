@@ -382,6 +382,15 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Button btn_qckh_ok;
         
         /// <summary>
+        /// btn_xgkh_ok 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_xgkh_ok;
+        
+        /// <summary>
         /// btn_qckh_cancel 控件。
         /// </summary>
         /// <remarks>
@@ -506,6 +515,33 @@ namespace sylzyb_employer_mgr {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_khgd;
+        
+        /// <summary>
+        /// btn_qzzj 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_qzzj;
+        
+        /// <summary>
+        /// btn_qzsc 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_qzsc;
+        
+        /// <summary>
+        /// btn_qzxg 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_qzxg;
         
         /// <summary>
         /// btn_qzsx 控件。
@@ -769,13 +805,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label19;
         
         /// <summary>
-        /// lb_khxd_AppBy 控件。
+        /// tbx_khxd_AppBy 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb_khxd_AppBy;
+        protected global::System.Web.UI.WebControls.TextBox tbx_khxd_AppBy;
         
         /// <summary>
         /// Label39 控件。
