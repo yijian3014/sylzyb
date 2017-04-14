@@ -120,7 +120,7 @@ namespace sylzyb_employer_mgr
 
 //-------------------------------------------------------------------------------修改用户权限中的方法开始
         public void RFGVPower()//刷新修改权限页面中的用户信息表
-        {
+        { 
             GV_V2_Power.DataSource = bc.GetDataSet("SELECT * FROM Syl_UserInfo WHERE UserLevel!=0 ORDER BY UserLevel","Syl_UserInfo");
             GV_V2_Power.DataKeyNames = new string[] { "ID"};
             GV_V2_Power.DataBind();
@@ -298,13 +298,12 @@ namespace sylzyb_employer_mgr
 
             Lb_V2_ModulePower.Text = bc.SelectSQLReturnObject("SELECT ModulePower FROM Syl_UserInfo WHERE ID=" + Lb_V2_ID.Text, "Syl_UserInfo").ToString();//将选中行的模块权限赋值给Label标签，留待使用。
 
-                                                  //为DDL_V2_QXZL（DropDawnList权限种类）添加相应数据
+            //为DDL_V2_QXZL（DropDawnList权限种类）添加相应数据
             string sql = "SELECT DISTINCT(KindName),Kind FROM Syl_UserPower ORDER BY Kind ";
             DDL_V2_QXZL.DataSource = bc.GetDataSet(sql, "Syl_UserPower");
             DDL_V2_QXZL.DataValueField = "Kind";
             DDL_V2_QXZL.DataTextField = "KindName";
             DDL_V2_QXZL.DataBind();
-            //DDL_V2_QXZL.Items.Insert(0, new ListItem("所有权限", "-1"));//直接显示所有权限，因涉及改动较大所以暂时搁置。
 
 
             RfCBL_QXMX(DDL_V2_QXZL.SelectedValue);//根据选定用户的权限值刷新CBL_V2_QXMX（CheckBoxList权限明细）
@@ -312,9 +311,9 @@ namespace sylzyb_employer_mgr
         }
 
         protected void Panel4_Load(object sender, EventArgs e)//Panel4在打开时触发
-        {
+        {/*
             if (DDL_V2_QXZL.DataValueField == "")//利用DDL_V2_QXZL.DataValueField的值来判断是否首次激活此控件，若是，则为该控件（DropDawnList）赋值，并为CBL_V2_QXMX（CheckBoxList）赋相应的值。
-            { /*
+            { 
                 //为DDL_V2_QXZL（DropDawnList权限种类）添加相应数据
                 string sql = "SELECT DISTINCT(KindName),Kind FROM Syl_UserPower ORDER BY Kind ";
                 DDL_V2_QXZL.DataSource = bc.GetDataSet(sql, "Syl_UserPower");
@@ -325,9 +324,9 @@ namespace sylzyb_employer_mgr
                 
 
                 RfCBL_QXMX(DDL_V2_QXZL.SelectedValue);//根据选定用户的权限值刷新CBL_V2_QXMX（CheckBoxList权限明细）
-               */
+               
             }
-
+            */
         }
 
         protected void DDL_V2_QXZL_SelectedIndexChanged(object sender, EventArgs e)//修改DDL_V2_QXZL（权限种类DropDawnList）时触发。
@@ -549,7 +548,7 @@ namespace sylzyb_employer_mgr
                 {
                     if (TB_V4_IDCard.Text.Length == 18)//判断身份证号是否输入了18位。
                     {
-                        if (Convert.ToInt32(bc.SelectSQLReturnObject("SELECT COUNT(UserName) FROM Syl_UserInfo WHERE UserName='" + TB_V4_UserName.Text+"'", "Syl_UserInfo")) == 0)//判断数据库中是否有与所添加用户相同的用户名。
+                        if (Convert.ToInt32(bc.SelectSQLReturnObject("SELECT COUNT(UserName) FROM Syl_UserInfo WHERE UserName='" + TB_V4_UserName.Text + "' collate Chinese_PRC_CS_AI", "Syl_UserInfo")) == 0)//判断数据库中是否有与所添加用户相同的用户名。
                         {
                             if (Convert.ToInt32(bc.SelectSQLReturnObject("SELECT COUNT(IDCard) FROM Syl_UserInfo WHERE IDCard='" + TB_V4_IDCard.Text+"'", "Syl_UserInfo")) == 0)//判断数据库中是否有与所添加用户相同的身份证号。
                             {
