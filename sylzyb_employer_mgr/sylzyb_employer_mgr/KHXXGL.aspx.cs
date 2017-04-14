@@ -387,7 +387,7 @@ namespace sylzyb_employer_mgr
                 dv_gailan.Visible = true;
                 btn_appworker_add.Enabled= false;
 
-                khgl_qichao.Update_AppRun(Convert.ToInt32(lb_qckh_AppraiseID.Text), Session["UserLevelName"].ToString(), Session["IDCard"].ToString(), "[ApproveOponion],[App_Comment],[Oponion_State],[Oponion_DateTime]",
+                khgl_qichao.Update_AppRun(Convert.ToInt32(lb_qckh_AppraiseID.Text),"起草", Session["IDCard"].ToString(), "[ApproveOponion],[App_Comment],[Oponion_State],[Oponion_DateTime]",
                      khgl_shenpi.convert_str(tbx_qckh_AppContent.Text, Session["RealName"].ToString(), 0)
                     + "," + khgl_shenpi.convert_str(tbx_qckh_AppBy.Text, Session["RealName"].ToString(), 0)
                 + "," + rbl_qckh_nextORprevious.SelectedItem.Text + ",getdate()", false);
@@ -655,7 +655,7 @@ namespace sylzyb_employer_mgr
                     }
             btn_appworker_add.Enabled  = true;
             cb_qckh_ksfz.Enabled = true;
-            tbx_qckh_ksfz.Enabled= true;
+          
         }
 
 
@@ -697,7 +697,7 @@ namespace sylzyb_employer_mgr
         }
         public void qicaokaohe_init()
         {
-            lb_qckh_AppraiseID.Text = Convert.ToString(khgl_qichao.build_newid(Session["RealName"].ToString(), Session["IDCard"].ToString()));
+            lb_qckh_AppraiseID.Text = Convert.ToString(khgl_qichao.build_newid(Session["RealName"].ToString(), Session["UserLevelName"].ToString(), Session["IDCard"].ToString()));
             lb_qckh_Flow_State.Text = Session["UserLevelName"].ToString();
             ddl_qckh_Applevel.SelectedIndex = 0;
             ddl_qckh_AppKind.SelectedIndex = 0;
@@ -1007,7 +1007,7 @@ namespace sylzyb_employer_mgr
             if ((Convert.ToInt32(Session["UserLevel"].ToString()) == 7 || gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[4].Text.Trim() == Session["IDCard"].ToString().Trim())
                 && gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[2].Text.Trim() == Session["UserLevelName"].ToString().Trim())
             {
-                cb_qckh_ksfz.Visible = false;
+                cb_qckh_ksfz.Enabled  = false;
               
                 tbx_qckh_ksfz.Enabled = false;
                 lb_qckh_yuan.Visible = false;
@@ -1438,7 +1438,7 @@ namespace sylzyb_employer_mgr
             try { 
             if (ck_opt.item("强制修改", 1))
             {
-                cb_qckh_ksfz.Visible = false;
+                cb_qckh_ksfz.Enabled = false;
                 tbx_qckh_ksfz.Enabled = false;
                 lb_qckh_yuan.Visible = false;
                 tbx_qckh_ksfz.Text = "";

@@ -47,12 +47,12 @@ namespace sylzyb_employer_mgr
         /// <param name="username">用户名</param>
         /// <param name="user_idcard">用户身份证号</param>
         /// <returns></returns>
-        public int build_newid(string username, string user_idcard)
+        public int build_newid(string username, string UserLevelName, string user_idcard)
         {
 
             int i = db_opt.max_id("[AppID]", "[dzsw].[dbo].[Syl_AppraiseInfo]");
 
-            string old_id = db_opt.get_values("AppID", "[dzsw].[dbo].[Syl_SylAppRun]", "[Flow_State]='起草' and ([Oponion_State]='' OR [Oponion_State] is null) and [ApproveIDCard]='" + user_idcard + "'");
+            string old_id = db_opt.get_values("AppID", "[dzsw].[dbo].[Syl_SylAppRun]", "[Flow_State]='" + UserLevelName+"+(起草)' and ([Oponion_State]='' OR [Oponion_State] is null) and [ApproveIDCard]='" + user_idcard + "'");
 
             if (old_id != "")
             {
@@ -63,7 +63,7 @@ namespace sylzyb_employer_mgr
             else
             {
                 if (insert_AppraiseInfo(i, "[ApplicantName],[ApplicantIDCard]", username + "," + user_idcard) &&
-             insert_AppRun(i, "[Flow_State],[ApproveName],[ApproveIDCard]", "起草," + username + "," + user_idcard))
+             insert_AppRun(i, "[Flow_State],[ApproveName],[ApproveIDCard]", UserLevelName + "(起草)," + username + "," + user_idcard))
 
                     return i;
             }
@@ -489,10 +489,10 @@ namespace sylzyb_employer_mgr
                         if (temp_key[i] == "[Oponion_DateTime]")
                         {
                             db_opt.execsql("  UPDATE [dzsw].[dbo].[Syl_SylAppRun]  SET  " + temp_key[i].Trim() + "=" + temp_value[i].Trim()
-                              + " WHERE [AppID]=" + AppID + " and [Flow_State]='" + AppState + "' and [ApproveIDCard]='" + IDCard + "' and [Oponion_DateTime] is null");
+                              + " WHERE [AppID]=" + AppID + " and [Flow_State] like '%" + AppState + "%' and [ApproveIDCard]='" + IDCard + "' and [Oponion_DateTime] is null");
                         }
                         else db_opt.execsql("  UPDATE [dzsw].[dbo].[Syl_SylAppRun]  SET  " + temp_key[i].Trim() + "='" + temp_value[i].Trim().Replace("+char(44)+", ",")
-                            + "' WHERE [AppID]=" + AppID + " and [Flow_State]='" + AppState + "' and [ApproveIDCard]='" + IDCard + "'and [Oponion_DateTime] is null");
+                            + "' WHERE [AppID]=" + AppID + " and [Flow_State] like '%" + AppState + "%' and [ApproveIDCard]='" + IDCard + "'and [Oponion_DateTime] is null");
                     }
                 }
                 if (is_qiangzhi )//只有在会签模式时需要更新其它会签人数据
@@ -503,10 +503,10 @@ namespace sylzyb_employer_mgr
                         if (temp_key[j] == "[Oponion_DateTime]")
                         {
                             db_opt.execsql("  UPDATE [dzsw].[dbo].[Syl_SylAppRun]  SET  " + temp_key[j].Trim() + "=" + temp_value[j].Trim()
-                              + " WHERE [AppID]=" + AppID + " and [Flow_State]='" + AppState + "' and [ApproveIDCard]!='" + IDCard + "'and [Oponion_DateTime] is null");
+                              + " WHERE [AppID]=" + AppID + " and [Flow_State] like '%" + AppState + "%' and [ApproveIDCard]!='" + IDCard + "'and [Oponion_DateTime] is null");
                         }
                         else db_opt.execsql("  UPDATE [dzsw].[dbo].[Syl_SylAppRun]  SET  " + temp_key[j].Trim() + "='" + temp_value[j].Trim().Replace("+char(44)+", ",")
-                            + "' WHERE [AppID]=" + AppID + " and [Flow_State]='" + AppState + "' and [ApproveIDCard]!='" + IDCard + "'and [Oponion_DateTime] is null");
+                            + "' WHERE [AppID]=" + AppID + " and [Flow_State] like '%" + AppState + "%' and [ApproveIDCard]!='" + IDCard + "'and [Oponion_DateTime] is null");
 
 
                     }
@@ -747,7 +747,7 @@ namespace sylzyb_employer_mgr
 
                 ds = db_opt.build_dataset("select distinct a.* from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] and a.TC_DateTime between '"
                   + bgdatetime + "' and '" + eddatetime
-                 + "' and (b.[Flow_State]='" + flow_state + "' or a.[Flow_State] like '%生效%') and( b.[Oponion_State] like '%转交%' or  b.[Oponion_State] like '%回退%'or  b.[Oponion_State] like '%会签%'or  b.[Oponion_State] like '%生效%') and b.[ApproveIDCard]='" + idcard
+                 + "' and (b.[Flow_State]='" + flow_state + "' or a.[Flow_State] like '%生效%'or b.[Flow_State] like '%起草%') and( b.[Oponion_State] like '%转交%' or  b.[Oponion_State] like '%回退%'or  b.[Oponion_State] like '%会签%'or  b.[Oponion_State] like '%生效%') and b.[ApproveIDCard]='" + idcard
                   + "' order by  a.TC_DateTime desc, a.AppID");
             return ds;
         }

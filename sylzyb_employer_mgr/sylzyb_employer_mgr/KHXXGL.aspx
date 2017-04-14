@@ -177,7 +177,7 @@
             <asp:Label ID="Label25" runat="server" Text="用户名："></asp:Label>
             <asp:Label ID="login_user" runat="server" Text=""></asp:Label>
 
-            <asp:Button ID="btn_exit" runat="server" Text="退出" OnClick="btn_exit_Click" />
+            <asp:Button ID="btn_exit" runat="server" Text="退出登陆" OnClick="btn_exit_Click" />
         </div>
         <div id="dv_qicaokaohe" runat="server"  class="sty_qckh_dv">
             <table id="tb1" class="sty_qckh_dv_tb1">
