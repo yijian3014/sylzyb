@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
 using System.Text.RegularExpressions;
+
 namespace sylzyb_employer_mgr
 {
     public partial class KHGL : System.Web.UI.Page
@@ -65,7 +66,8 @@ namespace sylzyb_employer_mgr
                     btn_qzxg.Enabled = ck_opt.item("强制修改", 1);
                     btn_qzzj.Enabled = ck_opt.item("强制转交", 1);
                     btn_qzsx.Enabled = ck_opt.item("强制生效", 1);
-                    btn_sckh.Visible = false;
+                    btn_qckh.Enabled = ck_opt.item("起草考核", 1);
+                   btn_sckh.Visible = false;
                     btn_khgd.Visible = false;
                     btn_xgkh.Visible = false;
 
@@ -289,23 +291,34 @@ namespace sylzyb_employer_mgr
 
         protected void btn_qckh_Click(object sender, EventArgs e)
         {
-            UI_disp_code = 1;
-            cb_qckh_ksfz.Enabled = false;
-            tbx_qckh_ksfz.Enabled = false;
-            lb_qckh_yuan.Visible = false;
-            tbx_qckh_ksfz.Text = "";
-            dv_qicaokaohe.Visible = true;
-            dv_gailan.Visible = false;
+            try
+            {
+                if (Session["UserLevelName"].ToString() == "管理员")
+                {
+                    throw new Exception("管理员主要用于管理信息平台数据，不允许发起流程！");
+                }
+                UI_disp_code = 1;
+                cb_qckh_ksfz.Enabled = false;
+                tbx_qckh_ksfz.Enabled = false;
+                lb_qckh_yuan.Visible = false;
+                tbx_qckh_ksfz.Text = "";
+                dv_qicaokaohe.Visible = true;
+                dv_gailan.Visible = false;
 
-            btn_xgkh_ok.Visible = false;
-            btn_qckh_ok.Visible = true ;
-            rbl_qckh_nextORprevious.Enabled = true;
-     
-            cb_qckh_is_huiqian.Enabled = true;
-        
+                btn_xgkh_ok.Visible = false;
+                btn_qckh_ok.Visible = true;
+                rbl_qckh_nextORprevious.Enabled = true;
 
-            qicaokaohe_init();
+                cb_qckh_is_huiqian.Enabled = true;
 
+
+                qicaokaohe_init();
+            }
+            catch (Exception err)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('"+err.Message+"');</script>");
+
+            }
 
         }
 
@@ -1166,7 +1179,7 @@ namespace sylzyb_employer_mgr
         protected void btn_khgd_Click(object sender, EventArgs e)
         {
 
-            if (Session["UserLevelName"].ToString() == "办事员" || Session["UserLevelName"].ToString() == "管理员")
+            if (Session["UserLevelName"].ToString() == "办事员" )
             {
                 if (ds_AppraiseInfo != null)
                     if (ds_AppraiseInfo.Tables.Count > 0)
@@ -1397,7 +1410,7 @@ namespace sylzyb_employer_mgr
                 {
                     if (ds_AppraiseInfo != null)
                         if (ds_AppraiseInfo.Tables.Count > 0)
-                            if (ds_AppraiseInfo.Tables[0].Rows.Count > 0 && gv_App_gailan.SelectedIndex != -1 && gv_App_gailan.SelectedIndex != 0)
+                            if (ds_AppraiseInfo.Tables[0].Rows.Count > 0 && gv_App_gailan.SelectedIndex != -1)
                             {
 
 
