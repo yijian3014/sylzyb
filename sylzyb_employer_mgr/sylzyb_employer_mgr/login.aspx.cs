@@ -28,6 +28,7 @@ namespace sylzyb_employer_mgr
 
         protected void btn_login_Click(object sender, EventArgs e)
         {
+            
             if (ck.user(tbx_lg_nm.Text.Trim(), tbx_lg_pas.Text.Trim()))
             {
                 if (ck.Module(rbtl_mod_sel.SelectedItem.Text,module_kind) == false)

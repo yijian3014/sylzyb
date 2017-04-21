@@ -226,8 +226,7 @@
                     <td class="sty_qckh_dv_tb2_tr_td_value">
                         <asp:DropDownList ID="ddl_qckh_AppKind" runat="server">
                             <asp:ListItem>日常考核</asp:ListItem>
-                            <asp:ListItem>事故通报</asp:ListItem>
-                            <asp:ListItem>厂部考核</asp:ListItem>
+                            <asp:ListItem>事故通报</asp:ListItem>                        
                              <asp:ListItem>自主改善</asp:ListItem>
                         </asp:DropDownList>
                     </td>
@@ -382,7 +381,7 @@
                 <tr>
                     <td>
                         <asp:Button ID="btn_qckh_ok" runat="server" Text="确认并返回" Width="99px" OnClick="btn_qckh_ok_Click" />
-                        <asp:Button ID="btn_xgkh_ok" runat="server" Text="修改并返回" Width="99px" OnClick="btn_xgkh_ok_Click" />
+                        <asp:Button ID="btn_xgkh_ok" runat="server" Text="修改并返回" Width="99px" OnClick="btn_xgkh_ok_Click" style="height: 21px" />
                         <asp:Button ID="btn_qckh_cancel" runat="server" Text="取消" Width="99px" OnClick="btn_qckh_cancel_Click" />
                     </td>
                 </tr>
@@ -803,13 +802,13 @@
                </tr>
                 <tr>
                     <td class="auto-style1" style="text-align: left;">
-                        <asp:RadioButtonList ID="rbl_shenpi_step" runat="server" OnSelectedIndexChanged="rbl_shenpi_step_SelectedIndexChanged" AutoPostBack="True"></asp:RadioButtonList>
+                        <asp:RadioButtonList ID="rbl_shenpi_step" runat="server" OnSelectedIndexChanged="rbl_shenpi_step_SelectedIndexChanged" AutoPostBack="True" RepeatDirection="Horizontal"></asp:RadioButtonList>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="sty_shenpi_dv_tb2_tr_td" style="text-align: left;">
-                        <asp:CheckBoxList ID="cbl_shenpi_next_persion" runat="server" OnSelectedIndexChanged="cbl_shenpi_next_persion_SelectedIndexChanged" AutoPostBack="True">
+                        <asp:CheckBoxList ID="cbl_shenpi_next_persion" runat="server" OnSelectedIndexChanged="cbl_shenpi_next_persion_SelectedIndexChanged" AutoPostBack="True" RepeatDirection="Horizontal">
                         </asp:CheckBoxList>
                     </td>
                 </tr>

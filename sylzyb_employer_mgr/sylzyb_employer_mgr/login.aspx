@@ -62,6 +62,7 @@
                          
                          <asp:ListItem Value="USERINFO.ASPX">用户信息管理</asp:ListItem>
                          <asp:ListItem Value="JJHS.ASPX">奖金核算</asp:ListItem>
+                         <asp:ListItem Value="Report.aspx">报表</asp:ListItem>
                      </asp:RadioButtonList>
                  </td>
                 </tr>
@@ -94,7 +95,7 @@
                 </tr>
                 <tr>
                     <td style="text-align:center;" colspan="4">
-                        <asp:Label ID="Label3" runat="server" Text="平台所有操作生成的数据属测试数据，未正式升效！" ForeColor="Red" Font-Size="Small"></asp:Label>
+                        <asp:Label ID="Label3" runat="server" Text="平台所有操作生成的数据属测试数据，未正式生效！" ForeColor="Red" Font-Size="Small"></asp:Label>
                     </td>
                 </tr>
             </table>

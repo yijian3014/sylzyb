@@ -64,6 +64,9 @@
     <Content Include="KHXXGL.aspx" />
     <Content Include="LOGIN.aspx" />
     <Content Include="Report.aspx" />
+    <Content Include="rpt_jiangjin.aspx" />
+    <Content Include="rpt_khlc.aspx" />
+    <Content Include="rpt_khzj.aspx" />
     <Content Include="USERINFO.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -110,9 +113,31 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report.aspx.cs">
       <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Report.aspx.designer.cs">
       <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_jiangjin.aspx.cs">
+      <DependentUpon>rpt_jiangjin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="rpt_jiangjin.aspx.designer.cs">
+      <DependentUpon>rpt_jiangjin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_khlc.aspx.cs">
+      <DependentUpon>rpt_khlc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="rpt_khlc.aspx.designer.cs">
+      <DependentUpon>rpt_khlc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="rpt_khzj.aspx.cs">
+      <DependentUpon>rpt_khzj.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="rpt_khzj.aspx.designer.cs">
+      <DependentUpon>rpt_khzj.aspx</DependentUpon>
     </Compile>
     <Compile Include="USERINFO.aspx.cs">
       <DependentUpon>USERINFO.aspx</DependentUpon>
@@ -142,7 +167,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="rpt_jiangjin.rdlc" />
+    <EmbeddedResource Include="rpt_khzj.rdlc" />
+    <EmbeddedResource Include="rpt_kh_lc.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
