@@ -22,16 +22,26 @@ namespace sylzyb_employer_mgr
         SqlDataReader dr;
         public static string lb;
         ReportDataSource res = new ReportDataSource();
-
+        Check ck = new Check();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (ck.item("考核金额报表", 5))
+            {
+                if (!IsPostBack)
             {
 
                 tbx_bg_date.Text = DateTime.Now.Date.AddMonths(-1).ToShortDateString();
                 tbx_ed_date.Text = DateTime.Now.Date.AddDays(1).ToShortDateString();
                 btn_cx_Click(sender, e);
 
+                    this.Page.Visible = true;
+                }
+            }
+            else
+            {
+                btn_exit_Click(sender, e);
+                this.Page.Visible = false;
+                throw new Exception("你没权限使用该模块功能");
             }
 
         }

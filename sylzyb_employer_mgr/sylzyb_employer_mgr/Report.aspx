@@ -13,6 +13,9 @@
            <asp:Button ID="btn_rpt_khlc" runat="server" Text="考核流程信息报表" OnClick="btn_rpt_khlc_Click" />
            <asp:Button ID="btn_rpt_khzj" runat="server" Text="考核资金信息报表" OnClick="btn_rpt_khzj_Click" />
            <asp:Button ID="bgn_rpt_jiangjin" runat="server" Text="奖金核算信息报表" OnClick="bgn_rpt_jiangjin_Click" />
+           
+            <asp:Button ID="btn_exit" runat="server" Text="退出登陆" OnClick="btn_exit_Click" />
+        
            </div> 
       <div style="text-align:center">
           <asp:Panel id="pnl_khlc" style="width:1024px auto;text-align:center;float:none;margin:auto;" runat="server" Visible="False">

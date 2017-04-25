@@ -167,7 +167,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="rpt_jiangjin.rdlc" />
+    <EmbeddedResource Include="rpt_banzhu_jiangjin.rdlc" />
+    <EmbeddedResource Include="rpt_geren_jiangjin.rdlc" />
     <EmbeddedResource Include="rpt_khzj.rdlc" />
     <EmbeddedResource Include="rpt_kh_lc.rdlc" />
   </ItemGroup>

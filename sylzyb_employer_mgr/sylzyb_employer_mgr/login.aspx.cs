@@ -28,12 +28,14 @@ namespace sylzyb_employer_mgr
 
         protected void btn_login_Click(object sender, EventArgs e)
         {
-            
-            if (ck.user(tbx_lg_nm.Text.Trim(), tbx_lg_pas.Text.Trim()))
+            try
             {
-                if (ck.Module(rbtl_mod_sel.SelectedItem.Text,module_kind) == false)
+
+                if (ck.user(tbx_lg_nm.Text.Trim(), tbx_lg_pas.Text.Trim()) != true)
+                    throw new Exception("你的登陆信息输入错误!");
+                if (ck.Module(rbtl_mod_sel.SelectedItem.Text, module_kind) == false)
                 {
-                    Page.ClientScript.RegisterStartupScript(Page.GetType(),"message","<script>alert('你没有权限使用该功能！')</script>");
+                    throw new Exception("你没有权限使用该功能！");
                 }
                 else
                 {
@@ -44,9 +46,12 @@ namespace sylzyb_employer_mgr
                     pageName = rbtl_mod_sel.SelectedItem.Value.ToString().Trim();
                     Response.Redirect(pageName);
                 }
+
             }
-            else
-              Page.ClientScript.RegisterStartupScript(Page.GetType(),"message", "<script>alert('你的登陆信息输入错误！')</script>");
+            catch (Exception err)
+            {
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "message", "<script>alert('" + err.Message + "')</script>");
+            }
         }
 
     }

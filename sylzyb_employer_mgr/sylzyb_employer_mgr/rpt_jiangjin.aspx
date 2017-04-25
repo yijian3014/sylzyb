@@ -27,39 +27,7 @@
                     <td>
 <asp:Button ID="Button11" runat="server" Text="结束时间" OnClick="btn_ed_time_Click" />
                    </td>
-                   <%-- <td>
-  <asp:Label ID="Label9" runat="server" Text="流程级别：" ></asp:Label>
-                   </td>
-                   <td>
-                       <asp:DropDownList ID="ddl_lcjb" runat="server" Height="16px" Width="50px" AutoPostBack="True" OnSelectedIndexChanged="ddl_lcjb_SelectedIndexChanged">
-                           <asp:ListItem>全部</asp:ListItem>
-                           <asp:ListItem>厂部考核</asp:ListItem>
-                           <asp:ListItem>作业部考核</asp:ListItem>
-                           <asp:ListItem>班组考核</asp:ListItem>
-                       </asp:DropDownList>
-                   </td>
-                   <td>
-                       <asp:Label ID="Label10" runat="server" Text="流程类别："></asp:Label>
-                   </td>
-                   <td>
-                       <asp:DropDownList ID="ddl_lclb" runat="server" Height="16px" Width="50px" AutoPostBack="True" OnSelectedIndexChanged="ddl_lclb_SelectedIndexChanged">
-                           <asp:ListItem>全部</asp:ListItem>
-                           <asp:ListItem>日常考核</asp:ListItem>
-                           <asp:ListItem>事故通报</asp:ListItem>
-                           <asp:ListItem>自主改善</asp:ListItem>
-                       </asp:DropDownList>
-                   </td>
-                    <td>
-   <asp:Label ID="Label11" runat="server" Text="流程状态："></asp:Label>
-                   </td>
-                    <td>
- 
-            <asp:DropDownList ID="ddl_lczt" runat="server" Height="16px" Width="50px" AutoPostBack="True" OnSelectedIndexChanged="ddl_lczt_SelectedIndexChanged">
-                <asp:ListItem>全部</asp:ListItem>
-                <asp:ListItem>生效</asp:ListItem>
-                <asp:ListItem>流转中</asp:ListItem>             
-            </asp:DropDownList>
-                   </td>--%>
+                  
                     <td>
                         <asp:Label ID="Label12" runat="server" Text="班别："></asp:Label>
                    </td>
@@ -79,6 +47,8 @@
                    </td>
                          <td>
    <asp:Button ID="btn_cx" runat="server" OnClick="btn_cx_Click" Text="查询" Width="50px" />
+                             <asp:Button ID="btn_banzhu" runat="server" Text="班组" OnClick="btn_banzhu_Click" />
+                             <asp:Button ID="btn_geren" runat="server" Text="个人" OnClick="btn_geren_Click" />
                    </td>
                    <td>
                          <asp:Button ID="btn_exit" runat="server" Text="退出" OnClick="btn_exit_Click" />
@@ -111,22 +81,28 @@
   </div>
        
 
-    <div style="text-align:center;margin:0 auto;width:950px;float:none; height:760px;overflow:auto;">
+    <div style="text-align:center;margin:0 auto;width:950px;float:none; height:auto;overflow:auto;">
         
 
-        <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="12pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="100%" Height="611px" ShowBackButton="False" ShowFindControls="False" >
-                     
+        <rsweb:ReportViewer ID="rv_banzhu_jiangjin" runat="server" Font-Names="Verdana" Font-Size="12pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="100%" Height="300px" ShowBackButton="False" ShowFindControls="False" >
+           
         </rsweb:ReportViewer>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dzswConnectionString %>" 
-            SelectCommand="SELECT * FROM [dzsw].[dbo].[Syl_Bonus_Group]" OnSelecting="SqlDataSource1_Selecting">
-        </asp:SqlDataSource>
+           <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dzswConnectionString %>" 
+            SelectCommand="SELECT * FROM [Syl_Bonus_Group]">
+        </asp:SqlDataSource> 
+
+
+       <rsweb:ReportViewer ID="rv_geren_jiangjin" runat="server" Font-Names="Verdana" Font-Size="12pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="100%" Height="300px" ShowBackButton="False" ShowFindControls="False" ProcessingMode="Remote" >
+         
+            
+        </rsweb:ReportViewer>
          <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:dzswConnectionString %>" 
-            SelectCommand="SELECT * FROM [dzsw].[dbo].[Syl_Bonus_Person]" OnSelecting="SqlDataSource1_Selecting">
+            SelectCommand="SELECT * FROM [Syl_Bonus_Person]">
          </asp:SqlDataSource>
-         <asp:ScriptManager ID="ScriptManager1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
     </div>
-     </div>
+    </div>
     </form>
 </body>
 </html>

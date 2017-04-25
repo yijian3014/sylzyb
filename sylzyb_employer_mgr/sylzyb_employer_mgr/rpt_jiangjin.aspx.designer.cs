@@ -85,6 +85,24 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Button btn_cx;
         
         /// <summary>
+        /// btn_banzhu 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_banzhu;
+        
+        /// <summary>
+        /// btn_geren 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_geren;
+        
+        /// <summary>
         /// btn_exit 控件。
         /// </summary>
         /// <remarks>
@@ -148,13 +166,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Button Button13;
         
         /// <summary>
-        /// ReportViewer1 控件。
+        /// rv_banzhu_jiangjin 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::Microsoft.Reporting.WebForms.ReportViewer ReportViewer1;
+        protected global::Microsoft.Reporting.WebForms.ReportViewer rv_banzhu_jiangjin;
         
         /// <summary>
         /// SqlDataSource1 控件。
@@ -164,6 +182,15 @@ namespace sylzyb_employer_mgr {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        
+        /// <summary>
+        /// rv_geren_jiangjin 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::Microsoft.Reporting.WebForms.ReportViewer rv_geren_jiangjin;
         
         /// <summary>
         /// SqlDataSource2 控件。
