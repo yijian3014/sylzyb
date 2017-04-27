@@ -44,11 +44,21 @@
                             <asp:ListItem>污泥组</asp:ListItem>
                             <asp:ListItem>机关</asp:ListItem>
             </asp:DropDownList>
+                       
+
+                    </td>
+                   <td>
+<asp:RadioButtonList ID="rbl_banzhuORgeren" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
+    <asp:ListItem Selected="True">班组</asp:ListItem>
+                                 <asp:ListItem>个人</asp:ListItem>
+                             </asp:RadioButtonList> 
                    </td>
-                         <td>
-   <asp:Button ID="btn_cx" runat="server" OnClick="btn_cx_Click" Text="查询" Width="50px" />
-                             <asp:Button ID="btn_banzhu" runat="server" Text="班组" OnClick="btn_banzhu_Click" />
-                             <asp:Button ID="btn_geren" runat="server" Text="个人" OnClick="btn_geren_Click" />
+                         <td> 
+                             
+                                 
+   <asp:Button ID="btn_cx" runat="server" OnClick="btn_cx_Click" Text="查询" Width="50px" Height="21px" />
+
+
                    </td>
                    <td>
                          <asp:Button ID="btn_exit" runat="server" Text="退出" OnClick="btn_exit_Click" />
@@ -82,20 +92,27 @@
        
 
     <div style="text-align:center;margin:0 auto;width:950px;float:none; height:auto;overflow:auto;">
-        
-
-        <rsweb:ReportViewer ID="rv_banzhu_jiangjin" runat="server" Font-Names="Verdana" Font-Size="12pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="100%" Height="300px" ShowBackButton="False" ShowFindControls="False" >
+          
+        <rsweb:ReportViewer ID="rv_jiangjin" runat="server" Font-Names="Verdana" Font-Size="12pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="100%" Height="500px" ShowBackButton="False" ShowFindControls="False" >
            
         </rsweb:ReportViewer>
+      
+
+
+      <%--  <rsweb:ReportViewer ID="rv_banzhu_jiangjin" runat="server" Font-Names="Verdana" Font-Size="12pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="100%" Height="200px" ShowBackButton="False" ShowFindControls="False" >
+           
+        </rsweb:ReportViewer>
+<rsweb:ReportViewer ID="rv_geren_jiangjin" runat="server" Font-Names="Verdana" Font-Size="12pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="100%" Height="200px" ShowBackButton="False" ShowFindControls="False">
+         
+            
+        </rsweb:ReportViewer>     
+--%>
            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dzswConnectionString %>" 
             SelectCommand="SELECT * FROM [Syl_Bonus_Group]">
         </asp:SqlDataSource> 
 
 
-       <rsweb:ReportViewer ID="rv_geren_jiangjin" runat="server" Font-Names="Verdana" Font-Size="12pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="100%" Height="300px" ShowBackButton="False" ShowFindControls="False" ProcessingMode="Remote" >
-         
-            
-        </rsweb:ReportViewer>
+    
          <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:dzswConnectionString %>" 
             SelectCommand="SELECT * FROM [Syl_Bonus_Person]">
          </asp:SqlDataSource>
