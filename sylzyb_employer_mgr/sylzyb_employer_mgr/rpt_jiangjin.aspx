@@ -97,16 +97,6 @@
            
         </rsweb:ReportViewer>
       
-
-
-      <%--  <rsweb:ReportViewer ID="rv_banzhu_jiangjin" runat="server" Font-Names="Verdana" Font-Size="12pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="100%" Height="200px" ShowBackButton="False" ShowFindControls="False" >
-           
-        </rsweb:ReportViewer>
-<rsweb:ReportViewer ID="rv_geren_jiangjin" runat="server" Font-Names="Verdana" Font-Size="12pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="100%" Height="200px" ShowBackButton="False" ShowFindControls="False">
-         
-            
-        </rsweb:ReportViewer>     
---%>
            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dzswConnectionString %>" 
             SelectCommand="SELECT * FROM [Syl_Bonus_Group]">
         </asp:SqlDataSource> 
