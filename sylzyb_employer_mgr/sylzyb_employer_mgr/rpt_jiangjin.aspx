@@ -64,6 +64,7 @@
                          <asp:Button ID="btn_exit" runat="server" Text="退出" OnClick="btn_exit_Click" />
                    </td>
                </tr>
+              
            </table>
           
             </div> 
@@ -97,18 +98,34 @@
            
         </rsweb:ReportViewer>
       
-           <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dzswConnectionString %>" 
+           <asp:SqlDataSource ID="sds_banzhujiangjin_table" runat="server" ConnectionString="<%$ ConnectionStrings:dzswConnectionString %>" 
             SelectCommand="SELECT * FROM [Syl_Bonus_Group]">
         </asp:SqlDataSource> 
+           
 
 
     
-         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:dzswConnectionString %>" 
+         <asp:SqlDataSource ID="sds_gerenjiangjin_table" runat="server" ConnectionString="<%$ ConnectionStrings:dzswConnectionString %>" 
+            SelectCommand="SELECT * FROM [Syl_Bonus_Person]">
+         </asp:SqlDataSource>
+
+        
+
+         <rsweb:ReportViewer ID="rv_cht_fenxi" runat="server" Font-Names="Verdana" Font-Size="12pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="100%" Height="500px" ShowBackButton="False" ShowFindControls="False" >
+           
+        </rsweb:ReportViewer>
+ <asp:SqlDataSource ID="sds_banzhujiangjin_cht" runat="server" ConnectionString="<%$ ConnectionStrings:dzswConnectionString %>" 
+            SelectCommand="SELECT * FROM [Syl_Bonus_Group]">
+        </asp:SqlDataSource> 
+ <asp:SqlDataSource ID="sds_gerenjiangjin_cht" runat="server" ConnectionString="<%$ ConnectionStrings:dzswConnectionString %>" 
             SelectCommand="SELECT * FROM [Syl_Bonus_Person]">
          </asp:SqlDataSource>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
     </div>
+      <div id="dv_tend_fx">
+
+      </div>
     </div>
     </form>
 </body>

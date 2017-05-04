@@ -166,22 +166,49 @@ namespace sylzyb_employer_mgr {
         protected global::Microsoft.Reporting.WebForms.ReportViewer rv_jiangjin;
         
         /// <summary>
-        /// SqlDataSource1 控件。
+        /// sds_banzhujiangjin_table 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.SqlDataSource sds_banzhujiangjin_table;
         
         /// <summary>
-        /// SqlDataSource2 控件。
+        /// sds_gerenjiangjin_table 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
+        protected global::System.Web.UI.WebControls.SqlDataSource sds_gerenjiangjin_table;
+        
+        /// <summary>
+        /// rv_cht_fenxi 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::Microsoft.Reporting.WebForms.ReportViewer rv_cht_fenxi;
+        
+        /// <summary>
+        /// sds_banzhujiangjin_cht 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource sds_banzhujiangjin_cht;
+        
+        /// <summary>
+        /// sds_gerenjiangjin_cht 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource sds_gerenjiangjin_cht;
         
         /// <summary>
         /// ScriptManager1 控件。

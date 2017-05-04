@@ -15,8 +15,10 @@ namespace sylzyb_employer_mgr
     public partial class rpt_jiangjin : System.Web.UI.Page
     {
 
-        public static string sel_string1 = "SELECT * FROM[dzsw].[dbo].[Syl_Bonus_Group]";
-        public static string sel_string2 = "SELECT * FROM [dzsw].[dbo].[Syl_Bonus_Person]";
+        public static string sel_str_banzhu_table = "SELECT * FROM[dzsw].[dbo].[Syl_Bonus_Group]";
+        public static string sel_str_banzhu_cht = "SELECT * FROM[dzsw].[dbo].[Syl_Bonus_Group]";
+        public static string sel_str_geren_table = "SELECT * FROM [dzsw].[dbo].[Syl_Bonus_Person]";
+        public static string sel_str_geren_cht= "SELECT * FROM [dzsw].[dbo].[Syl_Bonus_Person]";
         db ds = new db();
         public DataSet ds1 = new DataSet();
         DataTable dt1 = new DataTable();
@@ -114,25 +116,51 @@ public static event EventHandler<EventArgs> OnEvent;
                 lc_banbie_g = " and [G_GroupName]='" + ddl_banbie.Text + "'";
             }
 
-            sel_string1 = "SELECT [ID],[G_BonusDate],[OrderOfShow],[G_GroupName] ,[G_Coefficient],[G_BaseBonus] ,[G_DueBonus] ,[G_PlantApp],[G_DepartmentApp],[G_Other1] ,[G_Other2] ,[NumOfPeople],[G_ActualBonus] ,[AverageBonus] FROM[dzsw].[dbo].[Syl_Bonus_Group] WHERE [G_BonusDate] BETWEEN '"
+            sel_str_banzhu_table = "SELECT [ID],[G_BonusDate],[OrderOfShow],[G_GroupName] ,[G_Coefficient],[G_BaseBonus] ,[G_DueBonus] ,[G_PlantApp],[G_DepartmentApp],[G_Other1] ,[G_Other2] ,[NumOfPeople],[G_ActualBonus] ,[AverageBonus] FROM[dzsw].[dbo].[Syl_Bonus_Group] WHERE [G_BonusDate] BETWEEN '"
                 + bgmonth + "' AND '" + edmonth + "'"
                + lc_banbie_g
                 + " order by [G_BonusDate] ,[G_GroupName],[OrderOfShow] asc";
-            SqlDataSource1.SelectCommand = sel_string1;
-  sel_string2 = "SELECT [ID],[P_BonusDate],[P_GroupName],[WorkerName],[IDCard],[P_Coefficient],[P_BaseBonus],[P_DueBonus],[P_PlantApp],[P_DepartmentApp],[P_GroupApp],[P_Other1],[P_Other2],[P_Other3],[P_Other4],[P_Other5],[DutyBonus],[P_ActualBonus] FROM [dzsw].[dbo].[Syl_Bonus_Person] WHERE [P_BonusDate] BETWEEN '"
+            sds_banzhujiangjin_table.SelectCommand = sel_str_banzhu_table;
+
+            sel_str_banzhu_cht = "SELECT [ID],[G_BonusDate],[OrderOfShow],[G_GroupName] ,[G_Coefficient],[G_BaseBonus] ,[G_DueBonus] ,[G_PlantApp],[G_DepartmentApp],[G_Other1] ,[G_Other2] ,[NumOfPeople],[G_ActualBonus] ,[AverageBonus] FROM[dzsw].[dbo].[Syl_Bonus_Group] WHERE [G_BonusDate] BETWEEN '"
+                + bgmonth + "' AND '" + edmonth + "'"
+               + lc_banbie_g + " AND G_GroupName!='总计'"
+                + " order by [G_BonusDate] ,[G_GroupName],[OrderOfShow] asc";
+            sds_banzhujiangjin_cht.SelectCommand = sel_str_banzhu_cht;
+
+
+
+            sel_str_geren_table = "SELECT [ID],[P_BonusDate],[P_GroupName],[WorkerName],[IDCard],[P_Coefficient],[P_BaseBonus],[P_DueBonus],[P_PlantApp],[P_DepartmentApp],[P_GroupApp],[P_Other1],[P_Other2],[P_Other3],[P_Other4],[P_Other5],[DutyBonus],[P_ActualBonus] FROM [dzsw].[dbo].[Syl_Bonus_Person] WHERE [P_BonusDate] BETWEEN '"
                + bgmonth + "' AND '" + edmonth + "'"
                + lc_banbie_p
                + " order by [P_BonusDate] ,[WorkerName]";
-            SqlDataSource2.SelectCommand = sel_string2;
+  sds_gerenjiangjin_table.SelectCommand = sel_str_geren_table;
+
+
+            sel_str_geren_cht = "SELECT [ID],[P_BonusDate],[P_GroupName],[WorkerName],[IDCard],[P_Coefficient],[P_BaseBonus],[P_DueBonus],[P_PlantApp],[P_DepartmentApp],[P_GroupApp],[P_Other1],[P_Other2],[P_Other3],[P_Other4],[P_Other5],[DutyBonus],[P_ActualBonus] FROM [dzsw].[dbo].[Syl_Bonus_Person] WHERE [P_BonusDate] BETWEEN '"
+           + bgmonth + "' AND '" + edmonth + "'"
+           + lc_banbie_p+ " AND P_GroupName!='总计'"
+           + " order by [P_BonusDate] ,[WorkerName]";
+            sds_gerenjiangjin_cht.SelectCommand = sel_str_geren_cht;
+
+
             if (rbl_banzhuORgeren.SelectedItem.Text == "班组")
             {
                 rv_jiangjin.LocalReport.DataSources.Clear();
                 string path = Path.Combine(Server.MapPath(@"\"), "rpt_banzhu_jiangjin.rdlc");
                 rv_jiangjin.ProcessingMode = ProcessingMode.Local;
                 rv_jiangjin.LocalReport.ReportPath = path;
-                ReportDataSource rpt_datasource = new ReportDataSource("DataSet1", SqlDataSource1);
-                rv_jiangjin.LocalReport.DataSources.Add(rpt_datasource);
+                ReportDataSource rpt_DS_table = new ReportDataSource("DataSet1", sds_banzhujiangjin_table);
+                rv_jiangjin.LocalReport.DataSources.Add(rpt_DS_table);
+                ReportDataSource rpt_DS_cht = new ReportDataSource("DataSet2", sds_banzhujiangjin_cht);
+                rv_jiangjin.LocalReport.DataSources.Add(rpt_DS_cht);
+
+
+
                 rv_jiangjin.LocalReport.Refresh();
+
+                
+
             }
             else
             {
@@ -140,8 +168,12 @@ public static event EventHandler<EventArgs> OnEvent;
                 string path = Path.Combine(Server.MapPath(@"\"), "rpt_geren_jiangjin.rdlc");
                 rv_jiangjin.ProcessingMode = ProcessingMode.Local;
                 rv_jiangjin.LocalReport.ReportPath = path;
-                ReportDataSource rpt_datasource = new ReportDataSource("DataSet1", SqlDataSource2);
-                rv_jiangjin.LocalReport.DataSources.Add(rpt_datasource);
+                ReportDataSource rpt_ds_table = new ReportDataSource("DataSet1", sds_gerenjiangjin_table);
+                rv_jiangjin.LocalReport.DataSources.Add(rpt_ds_table);
+
+                ReportDataSource rpt_ds_cht = new ReportDataSource("DataSet2", sds_gerenjiangjin_cht);
+                rv_jiangjin.LocalReport.DataSources.Add(rpt_ds_cht);
+
                 rv_jiangjin.LocalReport.Refresh();
             }
 
@@ -184,7 +216,9 @@ public static event EventHandler<EventArgs> OnEvent;
             btn_cx_Click(sender, e);
         }
 
-
-    
+        protected void RadioButtonList1_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

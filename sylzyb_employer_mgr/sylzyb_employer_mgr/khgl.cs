@@ -773,7 +773,7 @@ namespace sylzyb_employer_mgr
                 switch (flow_state)
                 {
                     case "办事员":
-                        value = "部长,书记,主管领导,工程师,点检组长,点检";
+                        value = "部长,书记,主管领导,工程师,点检组长,安全员,点检";
                         break;
                          
                     case "部长":
@@ -791,9 +791,13 @@ namespace sylzyb_employer_mgr
                     case "点检组长":
                         value = "工程师";
                         break;
+                    case "安全员":
+                        value = "工程师";
+                        break;
                     case "点检":
                         value = "点检组长,工程师";
                         break;
+
 
                 }
 
@@ -803,7 +807,7 @@ namespace sylzyb_employer_mgr
                 switch (flow_state)
                 {
                     case "办事员":
-                        value = "部长,书记,主管领导,工程师,点检组长,点检";
+                        value = "部长,书记,主管领导,工程师,点检组长,安全员,点检";
                         break;
                     case "部长":
                         value = "书记";
@@ -815,10 +819,13 @@ namespace sylzyb_employer_mgr
                         value = "工程师";
                         break;
                     case "工程师":
-                        value = "点检组长,点检";
+                        value = "点检组长,安全员,点检";
                         break;
                     case "点检组长":
                         value = "点检";
+                        break;
+                    case "安全员":
+                        value = "";
                         break;
                     case "点检":
                         value = "";
@@ -827,9 +834,9 @@ namespace sylzyb_employer_mgr
 
             }
 
-            if (userlevel == 0||userlevel==7)
+            if (userlevel == 0||userlevel==8)
             {
-                value = "部长,书记,主管领导,工程师,点检组长,点检";
+                value = "部长,书记,主管领导,工程师,点检组长,安全员,点检";
 
             }
 

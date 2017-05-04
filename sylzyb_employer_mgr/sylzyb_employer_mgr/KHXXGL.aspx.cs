@@ -925,7 +925,7 @@ namespace sylzyb_employer_mgr
                 step = khgl_qichao.get_step_list(Convert.ToInt32(Session["userlevel"].ToString()), rbl_qckh_nextORprevious.SelectedItem.Text, lb_qckh_Flow_State.Text);
                 if (step != null)
                 {
-                    if (step.Length > 1)
+                    if (step.Length >= 1)
                         foreach (string tmp_str in step)
                         {
                             rbl_qckh_step.Items.Add(tmp_str);

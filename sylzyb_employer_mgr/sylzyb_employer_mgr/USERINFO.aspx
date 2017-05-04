@@ -159,8 +159,9 @@
                                     <asp:ListItem Value="4">工程师</asp:ListItem>
                                     <asp:ListItem Value="5">点检组长</asp:ListItem>
                                     <asp:ListItem Value="6">点检</asp:ListItem>
-                                    <asp:ListItem Value="7">办事员</asp:ListItem>
-                                    <asp:ListItem Value="8">其它</asp:ListItem>
+                                    <asp:ListItem Value="7">安全员</asp:ListItem>
+                                    <asp:ListItem Value="8">办事员</asp:ListItem>
+                                    <asp:ListItem Value="9">其它</asp:ListItem>
                                 </asp:DropDownList>
                                 &nbsp;&nbsp;
                                 <asp:Label ID="Label13" runat="server" Text="身份证号：" Font-Size="Medium"></asp:Label>
@@ -202,8 +203,9 @@
                                     <asp:ListItem Value="4">工程师</asp:ListItem>
                                     <asp:ListItem Value="5">点检组长</asp:ListItem>
                                     <asp:ListItem Value="6">点检</asp:ListItem>
-                                    <asp:ListItem Value="7">办事员</asp:ListItem>
-                                    <asp:ListItem Value="8">其它</asp:ListItem>
+                                    <asp:ListItem Value="7">安全员</asp:ListItem>
+                                    <asp:ListItem Value="8">办事员</asp:ListItem>
+                                    <asp:ListItem Value="9">其它</asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 <br />
