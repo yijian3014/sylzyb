@@ -459,7 +459,7 @@ namespace sylzyb_employer_mgr
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('" + err.Message + "');</script>");
 
-            }
+           }
 
         }
 
@@ -883,14 +883,14 @@ namespace sylzyb_employer_mgr
                         if (lb_qckh_ApplicantName.Text == Session["RealName"].ToString().Trim())
                         {
                             khgl_qichao.insert_single_AppWorkerInfo(Convert.ToInt32(lb_qckh_AppraiseID.Text), cbl_workers.Items[i].Value,
-                                "[ApplicantName],[ApplicantIDCard],[AppName],[AppIDCard],[AppAmount],[App_State]",
-                                Session["RealName"].ToString().Trim() + "," + Session["IDCard"].ToString().Trim() + ","
+                                "[ApplicantName],[GroupName],[ApplicantIDCard],[AppName],[AppIDCard],[AppAmount],[App_State]",
+                                Session["RealName"].ToString().Trim() + "," +ddl_qckh_AppGroup.SelectedItem.Text.Trim()+ "," + Session["IDCard"].ToString().Trim() + ","
                                 + cbl_workers.Items[i].Text.Trim() + "," + cbl_workers.Items[i].Value + "," + tmp_ksfz + ",未生效");
                         }
                         else
                             khgl_qichao.insert_single_AppWorkerInfo(Convert.ToInt32(lb_qckh_AppraiseID.Text), cbl_workers.Items[i].Value,
-                                "[ApplicantName],[ApplicantIDCard],[AppName],[AppIDCard],[AppAmount],[App_State]",
-                                lb_qckh_ApplicantName.Text + "," + khgl_qichao.Get_idcard_str(lb_qckh_ApplicantName.Text) + ","
+                                "[ApplicantName],[GroupName],[ApplicantIDCard],[AppName],[AppIDCard],[AppAmount],[App_State]",
+                                lb_qckh_ApplicantName.Text + "," + ddl_qckh_AppGroup.SelectedItem.Text.Trim() + "," + khgl_qichao.Get_idcard_str(lb_qckh_ApplicantName.Text) + ","
                                 + cbl_workers.Items[i].Text.Trim() + "," + cbl_workers.Items[i].Value + "," + tmp_ksfz + ",未生效");
 
 
@@ -900,12 +900,12 @@ namespace sylzyb_employer_mgr
                 gv_AppWorker.DataSource = ds_appWorker;
                 gv_AppWorker.DataBind();
                 for (int i = 0; i < ds_appWorker.Tables[0].Rows.Count; i++)
-                    if (ds_appWorker.Tables[0].Rows[i][9].ToString() != "")
+                    if (ds_appWorker.Tables[0].Rows[i][10].ToString() != "")
                     {
 
                         gv_AppWorker.Rows[i].Cells[9].Controls[1].Visible = true;
-                        ((TextBox)gv_AppWorker.Rows[i].Cells[9].Controls[1]).Text = ds_appWorker.Tables[0].Rows[i][9].ToString();
-                        tmp_sum += Convert.ToDecimal(ds_appWorker.Tables[0].Rows[i][9].ToString());
+                        ((TextBox)gv_AppWorker.Rows[i].Cells[9].Controls[1]).Text = ds_appWorker.Tables[0].Rows[i][10].ToString();
+                        tmp_sum += Convert.ToDecimal(ds_appWorker.Tables[0].Rows[i][10].ToString());
                     }
 
                 lb_qckh_AppAmount.Text = tmp_sum.ToString();
@@ -918,28 +918,36 @@ namespace sylzyb_employer_mgr
 
         protected void rbl_qckh_nextORprevious_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string[] step;
-
-            if (rbl_qckh_nextORprevious.SelectedItem.Text == "转交")
+            try
             {
-                step = khgl_qichao.get_step_list(Convert.ToInt32(Session["userlevel"].ToString()), rbl_qckh_nextORprevious.SelectedItem.Text, lb_qckh_Flow_State.Text);
-                if (step != null)
+                string[] step;
+
+                if (rbl_qckh_nextORprevious.SelectedItem.Text == "转交")
                 {
-                    if (step.Length >= 1)
-                        foreach (string tmp_str in step)
-                        {
-                            rbl_qckh_step.Items.Add(tmp_str);
-                        }
-                    rbl_qckh_step.DataBind();
+                    step = khgl_qichao.get_step_list(Convert.ToInt32(Session["userlevel"].ToString()), rbl_qckh_nextORprevious.SelectedItem.Text, lb_qckh_Flow_State.Text);
+                    if (step != null)
+                    {
+                        if (step.Length >= 1)
+                            foreach (string tmp_str in step)
+                            {
+                                rbl_qckh_step.Items.Add(tmp_str);
+                            }
+                        rbl_qckh_step.DataBind();
+                    }
+                    else
+                    {
+                       throw new Exception("下一步为空，流程运转出错!请联系管理员！");
+                    }
                 }
                 else
                 {
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('下一步为空，流程运转出错！');</script>");
+                    throw new Exception("没选定下一步操作方式，请选定！");
                 }
             }
-            else
+            catch (Exception err)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('起草人删除考核功能未完善');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('"+err.Message+"');</script>");
+
             }
         }
 

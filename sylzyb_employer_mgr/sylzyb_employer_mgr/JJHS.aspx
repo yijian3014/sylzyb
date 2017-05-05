@@ -21,9 +21,7 @@
         </asp:Panel>
         <asp:Button ID="Bt_Select" runat="server" Height="21px" Text="奖金查询" Width="90px" OnClick="Bt_Select_Click" />
         <asp:Button ID="Bt_Input" runat="server" Height="21px" Text="奖金录入" Width="90px" OnClick="Bt_Input_Click" />
-        <asp:Button ID="Bt_Compute" runat="server" Height="21px" Text="奖金核算" Width="90px" />
-        <asp:Button ID="Bt_Report" runat="server" Height="21px" Text="相关报表" Width="90px" />
-        <asp:Button ID="Bt_Return" runat="server" Height="21px" Text="返回首页" Width="90px" />
+        <asp:Button ID="Bt_Return" runat="server" Height="21px" Text="返回首页" Width="90px" OnClick="Bt_Return_Click" />
         <br />
 <br />
     <asp:MultiView ID="MultiView1" runat="server">
@@ -62,7 +60,7 @@
                         <asp:ListItem>综合组</asp:ListItem>
                         <asp:ListItem>铸铁组</asp:ListItem>
                         <asp:ListItem>污泥组</asp:ListItem>
-                        <asp:ListItem>车间机关</asp:ListItem>
+                        <asp:ListItem>机关</asp:ListItem>
                         <asp:ListItem>车间领导</asp:ListItem>
                     </asp:DropDownList>
                     &nbsp;&nbsp;<asp:Button ID="Bt_V1_Select" runat="server" Text="查询" Width="75px" OnClick="Bt_V1_Select_Click" />
@@ -78,7 +76,6 @@
                         <asp:BoundField DataField="G_DueBonus" HeaderText="应得奖金" />
                         <asp:BoundField DataField="G_PlantApp" HeaderText="厂部考核" />
                         <asp:BoundField DataField="G_DepartmentApp" HeaderText="部门考核" />
-                        <asp:BoundField DataField="G_GroupApp" HeaderText="班组考核" />
                         <asp:BoundField DataField="G_ActualBonus" HeaderText="实际奖金" />
                         <asp:BoundField DataField="AverageBonus" HeaderText="平均奖" />
                     </Columns>

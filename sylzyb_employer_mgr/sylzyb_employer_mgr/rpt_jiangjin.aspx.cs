@@ -101,6 +101,9 @@ public static event EventHandler<EventArgs> OnEvent;
             string lc_banbie_p = "";//班别 
             string bgmonth;
             string edmonth;
+
+            tbx_ed_date.Text = Convert.ToDateTime(tbx_ed_date.Text).AddMonths(1).ToString();
+
             if (Convert.ToDateTime(tbx_bg_date.Text.Trim()).Month < 10)
                 bgmonth = Convert.ToDateTime(tbx_bg_date.Text.Trim()).Year.ToString() + '0' + Convert.ToDateTime(tbx_bg_date.Text.Trim()).Month.ToString();
             else
@@ -117,7 +120,7 @@ public static event EventHandler<EventArgs> OnEvent;
             }
 
             sel_str_banzhu_table = "SELECT [ID],[G_BonusDate],[OrderOfShow],[G_GroupName] ,[G_Coefficient],[G_BaseBonus] ,[G_DueBonus] ,[G_PlantApp],[G_DepartmentApp],[G_Other1] ,[G_Other2] ,[NumOfPeople],[G_ActualBonus] ,[AverageBonus] FROM[dzsw].[dbo].[Syl_Bonus_Group] WHERE [G_BonusDate] BETWEEN '"
-                + bgmonth + "' AND '" + edmonth + "'"
+                + bgmonth + "' and  '" + edmonth + "' "
                + lc_banbie_g
                 + " order by [G_BonusDate] ,[G_GroupName],[OrderOfShow] asc";
             sds_banzhujiangjin_table.SelectCommand = sel_str_banzhu_table;
@@ -131,7 +134,7 @@ public static event EventHandler<EventArgs> OnEvent;
 
 
             sel_str_geren_table = "SELECT [ID],[P_BonusDate],[P_GroupName],[WorkerName],[IDCard],[P_Coefficient],[P_BaseBonus],[P_DueBonus],[P_PlantApp],[P_DepartmentApp],[P_GroupApp],[P_Other1],[P_Other2],[P_Other3],[P_Other4],[P_Other5],[DutyBonus],[P_ActualBonus] FROM [dzsw].[dbo].[Syl_Bonus_Person] WHERE [P_BonusDate] BETWEEN '"
-               + bgmonth + "' AND '" + edmonth + "'"
+               + bgmonth + "' and  '" + edmonth + "' "
                + lc_banbie_p
                + " order by [P_BonusDate] ,[WorkerName]";
   sds_gerenjiangjin_table.SelectCommand = sel_str_geren_table;

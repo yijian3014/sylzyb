@@ -409,11 +409,11 @@
                         </asp:RadioButtonList>
                     </td>
                     <td>
-                        <asp:Label ID="Label43" runat="server" Text="开始时间："></asp:Label>
+                        <asp:Label ID="Label43" runat="server" Text="（提出）开始时间："></asp:Label>
                         <asp:TextBox ID="tbx_bg_time" runat="server" OnTextChanged="DateCheck" Width="120px"></asp:TextBox>
                     </td>
                     <td style="text-align:left;">
-                        <asp:Label ID="Label44" runat="server" Text="结束时间："></asp:Label>
+                        <asp:Label ID="Label44" runat="server" Text="（提出）结束时间："></asp:Label>
                         <asp:TextBox ID="tbx_ed_time" runat="server" OnTextChanged="DateCheck" Width="120px"></asp:TextBox>
                         <asp:Button ID="btn_reflash" runat="server" OnClick="btn_reflash_Click" Text="刷新" />
                     </td>

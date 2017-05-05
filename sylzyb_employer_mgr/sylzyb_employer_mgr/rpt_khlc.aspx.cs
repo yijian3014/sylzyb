@@ -108,8 +108,8 @@ namespace sylzyb_employer_mgr
                 lc_banbie = " and AppGroup='" + ddl_banbie.Text + "'";
 
 
-            sel_string = "SELECT [id],[AppID] ,[Flow_State],[ApplicantName],[ApplicantIDCard],[Applevel],[AppKind],[AppAmount],[TC_DateTime],[FS_DateTime],[AppGroup],[AppNames],[AppContent],[AppBy],[Step_1_Oponion],[Step_2_Oponion],[Step_3_Oponion],[Step_4_Oponion],[Step_5_Oponion] ,[Admin_Opt_Comment]  from [dzsw].[dbo].[Syl_AppraiseInfo] WHERE TC_DateTime BETWEEN '"
-                + tbx_bg_date.Text.Trim() + "' AND '" + tbx_ed_date.Text.Trim() + "'"
+            sel_string = "SELECT [id],[AppID] ,[Flow_State],[ApplicantName],[ApplicantIDCard],[Applevel],[AppKind],[AppAmount],[TC_DateTime],[FS_DateTime],[AppGroup],[AppNames],[AppContent],[AppBy],[Step_1_Oponion],[Step_2_Oponion],[Step_3_Oponion],[Step_4_Oponion],[Step_5_Oponion] ,[Admin_Opt_Comment]  from [dzsw].[dbo].[Syl_AppraiseInfo] WHERE FS_DateTime BETWEEN '"
+                + tbx_bg_date.Text.Trim() + "' and dateadd(day,1,convert(datetime, '" + tbx_ed_date.Text.Trim() + "')) "
                 + lczt + lcjb + lclb + lc_banbie
                 + " order by TC_DateTime ,AppGroup,Applevel,AppKind";
 

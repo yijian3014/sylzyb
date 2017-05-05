@@ -107,8 +107,8 @@ namespace sylzyb_employer_mgr
 
 
 
-            sel_string = "SELECT [ID],[AppID],[FS_DateTime],[ApplicantName],[ApplicantIDCard],[AppName],[AppIDCard],[AppLevel],[AppKind],[AppAmount],[AppContent] ,[AppBy],[App_State]  FROM[dzsw].[dbo].[Syl_AppWorkerinfo] WHERE FS_DateTime BETWEEN '"
-                + tbx_bg_date.Text.Trim() + "' AND '" + tbx_ed_date.Text.Trim() + "'"
+            sel_string = "SELECT [ID],[AppID],[FS_DateTime],[ApplicantName],[ApplicantIDCard],[AppName],[GroupName],[AppIDCard],[AppLevel],[AppKind],[AppAmount],[AppContent] ,[AppBy],[App_State]  FROM[dzsw].[dbo].[Syl_AppWorkerinfo] WHERE FS_DateTime BETWEEN '"
+                + tbx_bg_date.Text.Trim() + "' and dateadd(day,1,convert(datetime, '" + tbx_ed_date.Text.Trim() + "')) "               
                 + lczt + lcjb + lclb 
                 + " order by [FS_DateTime] ,Applevel,AppKind ,App_State asc";
 

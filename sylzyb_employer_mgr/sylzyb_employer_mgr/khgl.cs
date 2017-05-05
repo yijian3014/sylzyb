@@ -702,8 +702,9 @@ namespace sylzyb_employer_mgr
 
             DataSet ds = new DataSet();
             ds = db_opt.build_dataset("select * from [dzsw].[dbo].[Syl_AppraiseInfo] where TC_DateTime between '"
-                + bgdatetime + "' and '" + eddatetime
-            + "' order by  TC_DateTime desc, AppID");
+                + bgdatetime + "' and dateadd(day,1,convert(datetime, '" + eddatetime
+                + "')) order by  TC_DateTime desc, AppID");
+             
 
             return ds;
         }
@@ -723,7 +724,8 @@ namespace sylzyb_employer_mgr
                 || db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[Oponion_State]", "回退")))
 
                 ds = db_opt.build_dataset("select a.* from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] and a.TC_DateTime between '"
-                  + bgdatetime + "' and '" + eddatetime + "' and a.[Flow_State]='" + flow_state + "' and b.[ApproveIDCard]='" + idcard
+                  + bgdatetime + "' and dateadd(day,1,convert(datetime, '" + eddatetime
+                + "'))  and a.[Flow_State]='" + flow_state + "' and b.[ApproveIDCard]='" + idcard
                   + "' and  b.[Oponion_State]='待办理'"
                   + " order by  a.TC_DateTime desc, a.AppID");
             else
@@ -746,8 +748,8 @@ namespace sylzyb_employer_mgr
      
 
                 ds = db_opt.build_dataset("select distinct a.* from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] and a.TC_DateTime between '"
-                  + bgdatetime + "' and '" + eddatetime
-                 + "' and (b.[Flow_State]='" + flow_state + "' or a.[Flow_State] like '%生效%'or b.[Flow_State] like '%起草%') and( b.[Oponion_State] like '%转交%' or  b.[Oponion_State] like '%回退%'or  b.[Oponion_State] like '%会签%'or  b.[Oponion_State] like '%生效%') and b.[ApproveIDCard]='" + idcard
+                  + bgdatetime + "' and dateadd(day,1,convert(datetime, '" + eddatetime
+                + "'))   and (b.[Flow_State]='" + flow_state + "' or a.[Flow_State] like '%生效%'or b.[Flow_State] like '%起草%') and( b.[Oponion_State] like '%转交%' or  b.[Oponion_State] like '%回退%'or  b.[Oponion_State] like '%会签%'or  b.[Oponion_State] like '%生效%') and b.[ApproveIDCard]='" + idcard
                   + "' order by  a.TC_DateTime desc, a.AppID");
             return ds;
         }

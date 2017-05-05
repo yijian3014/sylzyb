@@ -52,14 +52,12 @@ namespace sylzyb_employer_mgr
         {
             if (CheckUserPower(9) || CheckUserPower(10))//判断用户是否至少拥有奖金查询以及奖金核算之中的一种权限。
             {
-                if (Bt_Input.Visible || Bt_Compute.Visible || Bt_Report.Visible)
+                if (Bt_Input.Visible)
                 {
                     if (!CheckUserPower(10))//若用户没有奖金核算权限（第10位，PS：为进入if判断所以取判断的相反值）则隐藏相应按钮，并跳转至奖金查询页面
                     {
                         //隐藏相应按钮。
                         Bt_Input.Visible = false;
-                        Bt_Compute.Visible = false;
-                        Bt_Report.Visible = false;
                         //跳转至奖金查询页面。
                         MultiView1.ActiveViewIndex = 0;
                         ChangeV1DateDDL();//根据当前日期自动修改日期DropDownList中的数据及选中项。
@@ -234,6 +232,8 @@ namespace sylzyb_employer_mgr
                     }
                     else
                     {//第二次点击Bt_V2_Insert时执行存储过程，将数据提交至数据库。
+                        Bt_V2_Insert.Visible = false;//点击提交后为防止用户重复点击，将提交按钮隐藏。
+
                         string sql, sqlString;
                         sqlString = "server=DBCLUSERVER;uid=admin;pwd=admin;database=dzsw";
                         sql = "Syl_Bonus_BaseInput";
@@ -248,11 +248,13 @@ namespace sylzyb_employer_mgr
                         sqlCon.Open();
                         if (sqlCmd.ExecuteNonQuery() > 0)
                         {//检查执行存储过程的返回行数，若不大于0则视为执行失败，提醒用户重试。
-                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "message", "<script language='javascript' defer>alert('提交成功，请移至奖金核算页面，进行下一步计算。');</script>");
+                            Page.ClientScript.RegisterStartupScript(Page.GetType(), "message", "<script language='javascript' defer>alert('提交成功。');</script>");
+                            Bt_V2_Insert.Visible = true;//存储过程执行完毕后显示提交按钮。
                         }
                         else
-                        { 
+                        {
                             Page.ClientScript.RegisterStartupScript(Page.GetType(), "message", "<script language='javascript' defer>alert('提交失败，请重试。');</script>");
+                            Bt_V2_Insert.Visible = true;//存储过程执行完毕后显示提交按钮。
                         }
                         sqlCon.Close();
                     }
@@ -271,7 +273,15 @@ namespace sylzyb_employer_mgr
         }
 
 
+
 //-------------------------------------------------------------------奖金录入页面中的代码结束
+//-------------------------------------------------------------------返回登录界面
+        protected void Bt_Return_Click(object sender, EventArgs e)
+        {
+            Response.Write("<script language='javascript'>location.href='Login.aspx';</script>");
+            Response.End();
+        }
+
 //=================================================================================================各页面使用的代码结束
     }
 }

@@ -30,11 +30,11 @@ namespace sylzyb_employer_mgr
         /// <param name="wheres">用逗号分割的条件</param>
         /// <param name="is_comp_rate"></param>
         /// <returns></returns>
-        public bool init_ds(string table_names, string fields,string wheres, bool is_comp_rate)
+        public bool init_ds(string table_names, string fields, string wheres, bool is_comp_rate)
         {
             try
             {
-                
+
                 string[] table_name;
                 string[] field;
                 string[] where;
@@ -43,21 +43,37 @@ namespace sylzyb_employer_mgr
                 where = wheres.Split(',');
                 if (ds != null)
                     ds.Clear();
-                for(int i=0;i<table_name.Length;i++)
+                for (int i = 0; i < table_name.Length; i++)
                 {
                     ds = db_opt.build_dataset("select " + field[i] + " from " + table_name[i] + " where " + where[i]);
 
                 }
-            return true;
-        }
+                return true;
+            }
             catch (Exception err)
             {
 
 
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>alert('"+err.Message+"');location.href='Login.aspx';</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>alert('" + err.Message + "');location.href='Login.aspx';</script>");
                 return false;
             }
-}
+        }
+        public bool init_cht(string kind, DataTable dt, string time_field, string fields)
+        {
+            try
+            {
+                
+
+                return true;
+            }
+            catch (Exception err)
+            {
+
+
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>alert('" + err.Message + "');location.href='Login.aspx';</script>");
+                return false;
+            }
+        }
         public bool init_cht(string kind,DataSet ds, string time_fields,string values_fields,string rate_fields)
         {
             try

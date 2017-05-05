@@ -19,16 +19,16 @@
   <asp:TextBox ID="tbx_bg_date" runat="server" Enabled="False" Width="94px"></asp:TextBox> 
                    </td>
                     <td>
-  <asp:Button ID="btn_bg_date" runat="server" Text="开始时间" OnClick="btn_bg_date_Click" />
+  <asp:Button ID="btn_bg_date" runat="server" Text="(发生)开始时间" OnClick="btn_bg_date_Click" Width="99px" />
                    </td>
                     <td>
   <asp:TextBox ID="tbx_ed_date" runat="server" Enabled="False" Width="94px"></asp:TextBox> 
                    </td>
                     <td>
-<asp:Button ID="btn_ed_time" runat="server" Text="结束时间" OnClick="btn_ed_time_Click" />
+<asp:Button ID="btn_ed_time" runat="server" Text="(发生)结束时间" OnClick="btn_ed_time_Click" Width="99px" />
                    </td>
                     <td>
-  <asp:Label ID="Label1" runat="server" Text="流程级别：" ></asp:Label>
+  <asp:Label ID="Label1" runat="server" Text="级别：" ></asp:Label>
                    </td>
                    <td>
                        <asp:DropDownList ID="ddl_lcjb" runat="server" Height="16px" Width="50px" AutoPostBack="True" OnSelectedIndexChanged="ddl_lcjb_SelectedIndexChanged">
@@ -39,7 +39,7 @@
                        </asp:DropDownList>
                    </td>
                    <td>
-                       <asp:Label ID="Label4" runat="server" Text="流程类别："></asp:Label>
+                       <asp:Label ID="Label4" runat="server" Text="类别："></asp:Label>
                    </td>
                    <td>
                        <asp:DropDownList ID="ddl_lclb" runat="server" Height="16px" Width="50px" AutoPostBack="True" OnSelectedIndexChanged="ddl_lclb_SelectedIndexChanged">
@@ -50,7 +50,7 @@
                        </asp:DropDownList>
                    </td>
                     <td>
-   <asp:Label ID="Label2" runat="server" Text="流程状态："></asp:Label>
+   <asp:Label ID="Label2" runat="server" Text="状态："></asp:Label>
                    </td>
                     <td>
  
