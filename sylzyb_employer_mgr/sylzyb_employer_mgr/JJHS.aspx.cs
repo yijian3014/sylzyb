@@ -242,6 +242,7 @@ namespace sylzyb_employer_mgr
                         sqlCmd.CommandType = CommandType.StoredProcedure;
 
                         sqlCmd.Parameters.Add("@CFZJ", SqlDbType.Decimal).Value =Convert.ToInt32(TB_V2_CFZJ.Text);
+                        sqlCmd.Parameters.Add("@ZZGS", SqlDbType.Decimal).Value = TB_V2_ZZGS.Text;
                         sqlCmd.Parameters.Add("@LDJJ", SqlDbType.Decimal).Value = TB_V2_LDJJ.Text;
                         sqlCmd.Parameters.Add("@GLJ", SqlDbType.Decimal).Value = TB_V2_GLJ.Text;
                         sqlCmd.Parameters.Add("@BonusDate", SqlDbType.Int).Value = DDL_V2_Year.Text + DDL_V2_Month.Text;

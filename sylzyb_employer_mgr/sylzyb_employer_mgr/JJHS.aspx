@@ -13,7 +13,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style="width: 900px; height: 767px;">
+    <div style="width: 900px; height: 944px;">
     
         <asp:Panel ID="Panel1" runat="server" Height="68px" HorizontalAlign="Center">
             <br />
@@ -151,6 +151,11 @@
                     <asp:Label ID="Label8" runat="server" Text="厂发总奖："></asp:Label>
                     <asp:Label ID="Label11" runat="server" ForeColor="White" Text="间隔"></asp:Label>
                     <asp:TextBox ID="TB_V2_CFZJ" runat="server" MaxLength="10"></asp:TextBox>
+                    <br />
+                    <br />
+                    <asp:Label ID="Label18" runat="server" Text="自主改善："></asp:Label>
+                    <asp:Label ID="Label19" runat="server" ForeColor="White" Text="间隔"></asp:Label>
+                    <asp:TextBox ID="TB_V2_ZZGS" runat="server" MaxLength="10"></asp:TextBox>
                     <br />
                     <br />
                     <asp:Label ID="Label9" runat="server" Text="车间领导奖金："></asp:Label>
