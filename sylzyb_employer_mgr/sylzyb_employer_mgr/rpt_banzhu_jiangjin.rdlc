@@ -874,7 +874,7 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox10">
+                    <Textbox Name="G_Other21">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -890,7 +890,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox10</rd:DefaultName>
+                      <rd:DefaultName>G_Other21</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1003,7 +1003,6 @@
         <RepeatRowHeaders>true</RepeatRowHeaders>
         <FixedRowHeaders>true</FixedRowHeaders>
         <DataSetName>DataSet1</DataSetName>
-        <Left>0.06715cm</Left>
         <Height>1.2cm</Height>
         <Width>35cm</Width>
         <Style>
@@ -1013,23 +1012,11 @@
           <TextAlign>Center</TextAlign>
         </Style>
       </Tablix>
-      <Line Name="Line1">
-        <Top>1.58432cm</Top>
-        <Left>0.06715cm</Left>
-        <Height>0cm</Height>
-        <Width>25.82333cm</Width>
-        <ZIndex>1</ZIndex>
-        <Style>
-          <Border>
-            <Style>Solid</Style>
-          </Border>
-        </Style>
-      </Line>
     </ReportItems>
     <Height>6.82584in</Height>
     <Style />
   </Body>
-  <Width>13.80596in</Width>
+  <Width>13.77953in</Width>
   <Page>
     <PageHeight>15.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>

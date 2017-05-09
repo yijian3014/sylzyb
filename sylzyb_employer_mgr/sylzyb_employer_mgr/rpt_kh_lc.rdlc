@@ -30,7 +30,7 @@
               <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.39417cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
@@ -187,7 +187,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>考核提出人姓名</Value>
+                              <Value>提出人姓名</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -219,7 +219,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>考核事件发生时间</Value>
+                              <Value>事件发生时间</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1671,7 +1671,7 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Height>1.2cm</Height>
-        <Width>60cm</Width>
+        <Width>59.89417cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1679,14 +1679,14 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>3.97917in</Height>
+    <Height>6.5in</Height>
     <Style />
   </Body>
-  <Width>25.59055in</Width>
+  <Width>23.5908in</Width>
   <Page>
-    <PageHeight>15.7cm</PageHeight>
+    <PageHeight>10cm</PageHeight>
     <PageWidth>21cm</PageWidth>
-    <InteractiveHeight>15.7cm</InteractiveHeight>
+    <InteractiveHeight>10.7cm</InteractiveHeight>
     <InteractiveWidth>21cm</InteractiveWidth>
     <LeftMargin>2cm</LeftMargin>
     <RightMargin>2cm</RightMargin>

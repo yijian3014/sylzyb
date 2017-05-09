@@ -125,11 +125,11 @@ public static event EventHandler<EventArgs> OnEvent;
                 + " order by [G_BonusDate] ,[G_GroupName],[OrderOfShow] asc";
             sds_banzhujiangjin_table.SelectCommand = sel_str_banzhu_table;
 
-            sel_str_banzhu_cht = "SELECT [ID],[G_BonusDate],[OrderOfShow],[G_GroupName] ,[G_Coefficient],[G_BaseBonus] ,[G_DueBonus] ,[G_PlantApp],[G_DepartmentApp],[G_Other1] ,[G_Other2] ,[NumOfPeople],[G_ActualBonus] ,[AverageBonus] FROM[dzsw].[dbo].[Syl_Bonus_Group] WHERE [G_BonusDate] BETWEEN '"
-                + bgmonth + "' AND '" + edmonth + "'"
-               + lc_banbie_g + " AND G_GroupName!='总计'"
-                + " order by [G_BonusDate] ,[G_GroupName],[OrderOfShow] asc";
-            sds_banzhujiangjin_cht.SelectCommand = sel_str_banzhu_cht;
+            //sel_str_banzhu_cht = "SELECT [ID],[G_BonusDate],[OrderOfShow],[G_GroupName] ,[G_Coefficient],[G_BaseBonus] ,[G_DueBonus] ,[G_PlantApp],[G_DepartmentApp],[G_Other1] ,[G_Other2] ,[NumOfPeople],[G_ActualBonus] ,[AverageBonus] FROM[dzsw].[dbo].[Syl_Bonus_Group] WHERE [G_BonusDate] BETWEEN '"
+            //    + bgmonth + "' AND '" + edmonth + "'"
+            //   + lc_banbie_g + " AND G_GroupName!='总计'"
+            //    + " order by [G_BonusDate] ,[G_GroupName],[OrderOfShow] asc";
+            //sds_banzhujiangjin_cht.SelectCommand = sel_str_banzhu_cht;
 
 
 
@@ -140,11 +140,11 @@ public static event EventHandler<EventArgs> OnEvent;
   sds_gerenjiangjin_table.SelectCommand = sel_str_geren_table;
 
 
-            sel_str_geren_cht = "SELECT [ID],[P_BonusDate],[P_GroupName],[WorkerName],[IDCard],[P_Coefficient],[P_BaseBonus],[P_DueBonus],[P_PlantApp],[P_DepartmentApp],[P_GroupApp],[P_Other1],[P_Other2],[P_Other3],[P_Other4],[P_Other5],[DutyBonus],[P_ActualBonus] FROM [dzsw].[dbo].[Syl_Bonus_Person] WHERE [P_BonusDate] BETWEEN '"
-           + bgmonth + "' AND '" + edmonth + "'"
-           + lc_banbie_p+ " AND P_GroupName!='总计'"
-           + " order by [P_BonusDate] ,[WorkerName]";
-            sds_gerenjiangjin_cht.SelectCommand = sel_str_geren_cht;
+           // sel_str_geren_cht = "SELECT [ID],[P_BonusDate],[P_GroupName],[WorkerName],[IDCard],[P_Coefficient],[P_BaseBonus],[P_DueBonus],[P_PlantApp],[P_DepartmentApp],[P_GroupApp],[P_Other1],[P_Other2],[P_Other3],[P_Other4],[P_Other5],[DutyBonus],[P_ActualBonus] FROM [dzsw].[dbo].[Syl_Bonus_Person] WHERE [P_BonusDate] BETWEEN '"
+           //+ bgmonth + "' AND '" + edmonth + "'"
+           //+ lc_banbie_p+ " AND P_GroupName!='总计'"
+           //+ " order by [P_BonusDate] ,[WorkerName]";
+           // sds_gerenjiangjin_cht.SelectCommand = sel_str_geren_cht;
 
 
             if (rbl_banzhuORgeren.SelectedItem.Text == "班组")
@@ -155,8 +155,8 @@ public static event EventHandler<EventArgs> OnEvent;
                 rv_jiangjin.LocalReport.ReportPath = path;
                 ReportDataSource rpt_DS_table = new ReportDataSource("DataSet1", sds_banzhujiangjin_table);
                 rv_jiangjin.LocalReport.DataSources.Add(rpt_DS_table);
-                ReportDataSource rpt_DS_cht = new ReportDataSource("DataSet2", sds_banzhujiangjin_cht);
-                rv_jiangjin.LocalReport.DataSources.Add(rpt_DS_cht);
+                //ReportDataSource rpt_DS_cht = new ReportDataSource("DataSet2", sds_banzhujiangjin_cht);
+                //rv_jiangjin.LocalReport.DataSources.Add(rpt_DS_cht);
 
 
 
@@ -174,8 +174,8 @@ public static event EventHandler<EventArgs> OnEvent;
                 ReportDataSource rpt_ds_table = new ReportDataSource("DataSet1", sds_gerenjiangjin_table);
                 rv_jiangjin.LocalReport.DataSources.Add(rpt_ds_table);
 
-                ReportDataSource rpt_ds_cht = new ReportDataSource("DataSet2", sds_gerenjiangjin_cht);
-                rv_jiangjin.LocalReport.DataSources.Add(rpt_ds_cht);
+                //ReportDataSource rpt_ds_cht = new ReportDataSource("DataSet2", sds_gerenjiangjin_cht);
+                //rv_jiangjin.LocalReport.DataSources.Add(rpt_ds_cht);
 
                 rv_jiangjin.LocalReport.Refresh();
             }

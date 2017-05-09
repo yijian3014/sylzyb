@@ -176,11 +176,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="rpt_banzhu_jiangjin.rdlc" />
-    <EmbeddedResource Include="rpt_cht_hb.rdlc" />
-    <EmbeddedResource Include="rpt_cht_lb.rdlc" />
-    <EmbeddedResource Include="rpt_cht_ls.rdlc" />
-    <EmbeddedResource Include="rpt_cht_tb.rdlc" />
-    <EmbeddedResource Include="rpt_cht_zb.rdlc" />
     <EmbeddedResource Include="rpt_geren_jiangjin.rdlc" />
     <EmbeddedResource Include="rpt_khzj.rdlc" />
     <EmbeddedResource Include="rpt_kh_lc.rdlc" />
