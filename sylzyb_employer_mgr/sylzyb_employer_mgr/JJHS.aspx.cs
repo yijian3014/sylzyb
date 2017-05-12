@@ -218,17 +218,17 @@ namespace sylzyb_employer_mgr
 
         protected void Bt_V2_Insert_Click(object sender, EventArgs e)//点击检查（提交）按钮时触发（PS：打开页面后，首次点击会弹出一个提示框，内容为输入的信息。再次点击才会提交。）
         {
-            if (TB_V2_CFZJ.Text != "" && TB_V2_LDJJ.Text != "" && TB_V2_GLJ.Text != "")
+            if (TB_V2_CFZJ.Text != "" && TB_V2_LDJJ.Text != "" && TB_V2_GLJ.Text != "" && TB_V2_ZZGS.Text != "" && TB_V2_QT1.Text != "" && TB_V2_QT2.Text != "" && TB_V2_QT3.Text != "")
             {   //检查是否有文本框为空。
                 int n;//为检查所输入内容是否是整数创建的变量。
-                if (int.TryParse(TB_V2_CFZJ.Text, out n) && int.TryParse(TB_V2_LDJJ.Text, out n) && int.TryParse(TB_V2_GLJ.Text, out n))
+                if (int.TryParse(TB_V2_CFZJ.Text, out n) && int.TryParse(TB_V2_LDJJ.Text, out n) && int.TryParse(TB_V2_GLJ.Text, out n) && int.TryParse(TB_V2_ZZGS.Text, out n) && int.TryParse(TB_V2_QT1.Text, out n) && int.TryParse(TB_V2_QT2.Text, out n) && int.TryParse(TB_V2_QT3.Text, out n))
                 {//检查输入内容是否为整数。
 
                     if (Convert.ToBoolean(Label17.Text))
                     {   //Label17.Text初始内容为true，首次点击时会弹出提示框提醒用户检查所输入的内容，然后将Label17的Text改为false，Bt_V2_Insert的Text改为提交。
                         Label17.Text = "false";
                         Bt_V2_Insert.Text = "提交";
-                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "message", "<script language='javascript' defer>alert('请检查：\\n奖金日期为："+DDL_V2_Year.Text+DDL_V2_Month.Text+"。\\n厂发总奖为："+TB_V2_CFZJ .Text+"。\\n车间领导奖金为："+TB_V2_LDJJ.Text+"。\\n管理奖为："+TB_V2_GLJ.Text+"。\\n若检查无误请点击提交按钮，提交数据。');</script>");
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "message", "<script language='javascript' defer>alert('请检查：\\n奖金日期为：" + DDL_V2_Year.Text + DDL_V2_Month.Text + "。\\n厂发总奖为：" + TB_V2_CFZJ.Text + "。\\n自主改善将为："+TB_V2_ZZGS.Text+"。\\n车间领导奖金为：" + TB_V2_LDJJ.Text + "。\\n管理奖为：" + TB_V2_GLJ.Text + "。\\n其它一为："+TB_V2_QT1.Text+"。\\n其它二为："+TB_V2_QT2.Text+"。\\n其它三为："+TB_V2_QT3.Text+"。\\n若检查无误请点击提交按钮，提交数据。');</script>");
                     }
                     else
                     {//第二次点击Bt_V2_Insert时执行存储过程，将数据提交至数据库。
@@ -245,6 +245,9 @@ namespace sylzyb_employer_mgr
                         sqlCmd.Parameters.Add("@ZZGS", SqlDbType.Decimal).Value = TB_V2_ZZGS.Text;
                         sqlCmd.Parameters.Add("@LDJJ", SqlDbType.Decimal).Value = TB_V2_LDJJ.Text;
                         sqlCmd.Parameters.Add("@GLJ", SqlDbType.Decimal).Value = TB_V2_GLJ.Text;
+                        sqlCmd.Parameters.Add("@QT1", SqlDbType.Decimal).Value = TB_V2_QT1.Text;
+                        sqlCmd.Parameters.Add("@QT2", SqlDbType.Decimal).Value = TB_V2_QT2.Text;
+                        sqlCmd.Parameters.Add("@QT3", SqlDbType.Decimal).Value = TB_V2_QT3.Text;
                         sqlCmd.Parameters.Add("@BonusDate", SqlDbType.Int).Value = DDL_V2_Year.Text + DDL_V2_Month.Text;
                         sqlCon.Open();
                         if (sqlCmd.ExecuteNonQuery() > 0)

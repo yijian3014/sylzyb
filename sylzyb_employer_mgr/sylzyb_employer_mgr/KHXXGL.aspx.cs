@@ -670,7 +670,9 @@ namespace sylzyb_employer_mgr
                         + "," + khgl_shenpi.convert_str(tbx_shenpi_yj.Text, Session["RealName"].ToString(), 3)
                         + "," + rbl_shenpi_nextORprevious.SelectedItem.Text + ",getdate()", false);
                     UI_disp_code = 0;
-                    throw new Exception("有会签人员没有审理该考核。些操作会保留审批内容，如要强制转交请选择“强制”模式。");
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('还有会签人员没有审理该考核。您签署的意见将被留存！');</script>");
+
+      
 
                 }
 
@@ -689,7 +691,7 @@ namespace sylzyb_employer_mgr
 
         protected void btn_shenpi_cancel_Click(object sender, EventArgs e)
         {
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('审批操作取消数据未同步！该功能尚未完善!" + e.ToString() + "');</script>");
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('审批操作取消，数据未同步！" + e.ToString() + "');</script>");
             UI_disp_code = 0;
             rbl_gailan_cx_SelectedIndexChanged(null, new EventArgs());
             Page_Load(sender, e);
@@ -1331,7 +1333,7 @@ namespace sylzyb_employer_mgr
                         rbl_shenpi_step.Visible = false;
                         cbl_shenpi_next_persion.Visible = false;
                         if (lb_shenpi_wei_huiqianren.Text != "空")
-                            Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('会签状态，审批意见只做存储，流程不向其它节点运转！');</script>");
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('会签状态，审批意见只做存储，流程不向其它节点运转！如需强制转交，请选钩选强制模式！');</script>");
                         else
                         {
                             rbl_shenpi_nextORprevious.SelectedIndex = -1;

@@ -13,7 +13,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style="width: 900px; height: 944px;">
+    <div style="width: 900px; height: 1147px;">
     
         <asp:Panel ID="Panel1" runat="server" Height="68px" HorizontalAlign="Center">
             <br />
@@ -165,6 +165,21 @@
                     <asp:Label ID="Label10" runat="server" Text="管理奖："></asp:Label>
                     <asp:Label ID="Label12" runat="server" ForeColor="White" Text="大间隔"></asp:Label>
                     <asp:TextBox ID="TB_V2_GLJ" runat="server" MaxLength="10"></asp:TextBox>
+                    <br />
+                    <br />
+                    <asp:Label ID="Label20" runat="server" Text="其它一："></asp:Label>
+                    <asp:Label ID="Label21" runat="server" ForeColor="White" Text="大间隔"></asp:Label>
+                    <asp:TextBox ID="TB_V2_QT1" runat="server" MaxLength="10">0</asp:TextBox>
+                    <br />
+                    <br />
+                    <asp:Label ID="Label22" runat="server" Text="其它二："></asp:Label>
+                    <asp:Label ID="Label23" runat="server" ForeColor="White" Text="大间隔"></asp:Label>
+                    <asp:TextBox ID="TB_V2_QT2" runat="server" MaxLength="10">0</asp:TextBox>
+                    <br />
+                    <br />
+                    <asp:Label ID="Label24" runat="server" Text="其它三："></asp:Label>
+                    <asp:Label ID="Label25" runat="server" ForeColor="White" Text="大间隔"></asp:Label>
+                    <asp:TextBox ID="TB_V2_QT3" runat="server" MaxLength="10">0</asp:TextBox>
                     <br />
                     <asp:Label ID="Label17" runat="server" ForeColor="White" Text="true"></asp:Label>
                     <br />

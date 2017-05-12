@@ -608,7 +608,7 @@
                     </td>
                     <td class="sty_khxd_dv_tb2_tr_td_value">
                      
-                        <asp:TextBox ID="tbx_khxd_AppBy" runat="server"  Width="100%" Hight="auto" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="tbx_khxd_AppBy" runat="server"  Width="100%" Hight="auto" TextMode="MultiLine" Height="104px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -625,7 +625,7 @@
                     </td>
 
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:TextBox ID="tbx_khxd_Step_1_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="tbx_khxd_Step_1_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"  Height="104px"></asp:TextBox>
                     </td>
                 </tr>
 
@@ -644,7 +644,7 @@
                     </td>
 
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:TextBox ID="tbx_khxd_step_2_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="tbx_khxd_step_2_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"  Height="104px"></asp:TextBox>
                     </td>
                 </tr>
 
@@ -665,7 +665,7 @@
                     </td>
 
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:TextBox ID="tbx_khxd_step_3_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="tbx_khxd_step_3_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"  Height="104px"></asp:TextBox>
                     </td>
                 </tr>
 
@@ -686,7 +686,7 @@
                     </td>
 
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:TextBox ID="tbx_khxd_step_4_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="tbx_khxd_step_4_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"  Height="104px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -704,7 +704,7 @@
                     </td>
 
                     <td class="sty_khxd_dv_tb_tr_td_value">
-                        <asp:TextBox ID="tbx_khxd_step_5_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="tbx_khxd_step_5_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine" Height="104px"></asp:TextBox>
                     </td>
                 </tr>
 
