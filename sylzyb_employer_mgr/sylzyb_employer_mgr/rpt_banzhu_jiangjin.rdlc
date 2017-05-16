@@ -874,14 +874,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="G_Other21">
+                    <Textbox Name="G_ZZGS">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Fields!G_ZZGS.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -890,7 +890,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>G_Other21</rd:DefaultName>
+                      <rd:DefaultName>G_ZZGS</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1100,6 +1100,22 @@
         </Field>
         <Field Name="AverageBonus">
           <DataField>AverageBonus</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="G_ZZGS">
+          <DataField>G_ZZGS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="G_QT1">
+          <DataField>G_QT1</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="G_QT2">
+          <DataField>G_QT2</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="G_QT3">
+          <DataField>G_QT3</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>

@@ -377,6 +377,14 @@ namespace sylzyb_employer_mgr {
             
             private global::System.Data.DataColumn columnAverageBonus;
             
+            private global::System.Data.DataColumn columnG_ZZGS;
+            
+            private global::System.Data.DataColumn columnG_QT1;
+            
+            private global::System.Data.DataColumn columnG_QT2;
+            
+            private global::System.Data.DataColumn columnG_QT3;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public Syl_Bonus_GroupDataTable() {
@@ -524,6 +532,38 @@ namespace sylzyb_employer_mgr {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn G_ZZGSColumn {
+                get {
+                    return this.columnG_ZZGS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn G_QT1Column {
+                get {
+                    return this.columnG_QT1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn G_QT2Column {
+                get {
+                    return this.columnG_QT2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn G_QT3Column {
+                get {
+                    return this.columnG_QT3;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -559,7 +599,24 @@ namespace sylzyb_employer_mgr {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Syl_Bonus_GroupRow AddSyl_Bonus_GroupRow(int G_BonusDate, int OrderOfShow, string G_GroupName, decimal G_Coefficient, decimal G_BaseBonus, decimal G_DueBonus, decimal G_PlantApp, decimal G_DepartmentApp, decimal G_Other1, decimal G_Other2, int NumOfPeople, decimal G_ActualBonus, decimal AverageBonus) {
+            public Syl_Bonus_GroupRow AddSyl_Bonus_GroupRow(
+                        int G_BonusDate, 
+                        int OrderOfShow, 
+                        string G_GroupName, 
+                        decimal G_Coefficient, 
+                        decimal G_BaseBonus, 
+                        decimal G_DueBonus, 
+                        decimal G_PlantApp, 
+                        decimal G_DepartmentApp, 
+                        decimal G_Other1, 
+                        decimal G_Other2, 
+                        int NumOfPeople, 
+                        decimal G_ActualBonus, 
+                        decimal AverageBonus, 
+                        decimal G_ZZGS, 
+                        decimal G_QT1, 
+                        decimal G_QT2, 
+                        decimal G_QT3) {
                 Syl_Bonus_GroupRow rowSyl_Bonus_GroupRow = ((Syl_Bonus_GroupRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -575,7 +632,11 @@ namespace sylzyb_employer_mgr {
                         G_Other2,
                         NumOfPeople,
                         G_ActualBonus,
-                        AverageBonus};
+                        AverageBonus,
+                        G_ZZGS,
+                        G_QT1,
+                        G_QT2,
+                        G_QT3};
                 rowSyl_Bonus_GroupRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSyl_Bonus_GroupRow);
                 return rowSyl_Bonus_GroupRow;
@@ -619,6 +680,10 @@ namespace sylzyb_employer_mgr {
                 this.columnNumOfPeople = base.Columns["NumOfPeople"];
                 this.columnG_ActualBonus = base.Columns["G_ActualBonus"];
                 this.columnAverageBonus = base.Columns["AverageBonus"];
+                this.columnG_ZZGS = base.Columns["G_ZZGS"];
+                this.columnG_QT1 = base.Columns["G_QT1"];
+                this.columnG_QT2 = base.Columns["G_QT2"];
+                this.columnG_QT3 = base.Columns["G_QT3"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -652,6 +717,14 @@ namespace sylzyb_employer_mgr {
                 base.Columns.Add(this.columnG_ActualBonus);
                 this.columnAverageBonus = new global::System.Data.DataColumn("AverageBonus", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAverageBonus);
+                this.columnG_ZZGS = new global::System.Data.DataColumn("G_ZZGS", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnG_ZZGS);
+                this.columnG_QT1 = new global::System.Data.DataColumn("G_QT1", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnG_QT1);
+                this.columnG_QT2 = new global::System.Data.DataColumn("G_QT2", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnG_QT2);
+                this.columnG_QT3 = new global::System.Data.DataColumn("G_QT3", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnG_QT3);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -1996,6 +2069,70 @@ namespace sylzyb_employer_mgr {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal G_ZZGS {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSyl_Bonus_Group.G_ZZGSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Group”中列“G_ZZGS”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSyl_Bonus_Group.G_ZZGSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal G_QT1 {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSyl_Bonus_Group.G_QT1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Group”中列“G_QT1”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSyl_Bonus_Group.G_QT1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal G_QT2 {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSyl_Bonus_Group.G_QT2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Group”中列“G_QT2”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSyl_Bonus_Group.G_QT2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal G_QT3 {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSyl_Bonus_Group.G_QT3Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Group”中列“G_QT3”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSyl_Bonus_Group.G_QT3Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsG_BonusDateNull() {
                 return this.IsNull(this.tableSyl_Bonus_Group.G_BonusDateColumn);
             }
@@ -2148,6 +2285,54 @@ namespace sylzyb_employer_mgr {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetAverageBonusNull() {
                 this[this.tableSyl_Bonus_Group.AverageBonusColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsG_ZZGSNull() {
+                return this.IsNull(this.tableSyl_Bonus_Group.G_ZZGSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetG_ZZGSNull() {
+                this[this.tableSyl_Bonus_Group.G_ZZGSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsG_QT1Null() {
+                return this.IsNull(this.tableSyl_Bonus_Group.G_QT1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetG_QT1Null() {
+                this[this.tableSyl_Bonus_Group.G_QT1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsG_QT2Null() {
+                return this.IsNull(this.tableSyl_Bonus_Group.G_QT2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetG_QT2Null() {
+                this[this.tableSyl_Bonus_Group.G_QT2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsG_QT3Null() {
+                return this.IsNull(this.tableSyl_Bonus_Group.G_QT3Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetG_QT3Null() {
+                this[this.tableSyl_Bonus_Group.G_QT3Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -3284,6 +3469,10 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("NumOfPeople", "NumOfPeople");
             tableMapping.ColumnMappings.Add("G_ActualBonus", "G_ActualBonus");
             tableMapping.ColumnMappings.Add("AverageBonus", "AverageBonus");
+            tableMapping.ColumnMappings.Add("G_ZZGS", "G_ZZGS");
+            tableMapping.ColumnMappings.Add("G_QT1", "G_QT1");
+            tableMapping.ColumnMappings.Add("G_QT2", "G_QT2");
+            tableMapping.ColumnMappings.Add("G_QT3", "G_QT3");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -3292,38 +3481,46 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Syl_Bonus_Group] ([G_BonusDate], [OrderOfShow], [G_GroupName], [G_Coefficient], [G_BaseBonus], [G_DueBonus], [G_PlantApp], [G_DepartmentApp], [G_Other1], [G_Other2], [NumOfPeople], [G_ActualBonus], [AverageBonus]) VALUES (@G_BonusDate, @OrderOfShow, @G_GroupName, @G_Coefficient, @G_BaseBonus, @G_DueBonus, @G_PlantApp, @G_DepartmentApp, @G_Other1, @G_Other2, @NumOfPeople, @G_ActualBonus, @AverageBonus)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Syl_Bonus_Group] ([G_BonusDate], [OrderOfShow], [G_GroupName], [G_Coefficient], [G_BaseBonus], [G_DueBonus], [G_PlantApp], [G_DepartmentApp], [G_ZZGS], [G_QT1], [G_QT2], [G_QT3], [G_Other1], [G_Other2], [NumOfPeople], [G_ActualBonus], [AverageBonus]) VALUES (@G_BonusDate, @OrderOfShow, @G_GroupName, @G_Coefficient, @G_BaseBonus, @G_DueBonus, @G_PlantApp, @G_DepartmentApp, @G_ZZGS, @G_QT1, @G_QT2, @G_QT3, @G_Other1, @G_Other2, @NumOfPeople, @G_ActualBonus, @AverageBonus)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_BonusDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "G_BonusDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderOfShow", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderOfShow", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_GroupName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "G_GroupName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_Coefficient", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 3, "G_Coefficient", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_BaseBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 3, "G_BaseBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_DueBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "G_DueBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_PlantApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "G_PlantApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_DepartmentApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "G_DepartmentApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_Other1", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 3, "G_Other1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_Other2", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "G_Other2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_Coefficient", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 3, "G_Coefficient", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_BaseBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 3, "G_BaseBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_DueBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_DueBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_PlantApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_PlantApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_DepartmentApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_DepartmentApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_ZZGS", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_ZZGS", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_QT1", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_QT1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_QT2", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_QT2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_QT3", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_QT3", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_Other1", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 3, "G_Other1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_Other2", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_Other2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NumOfPeople", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumOfPeople", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_ActualBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "G_ActualBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AverageBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "AverageBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_ActualBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_ActualBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AverageBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "AverageBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Syl_Bonus_Group] SET [G_BonusDate] = @G_BonusDate, [OrderOfShow] = @OrderOfShow, [G_GroupName] = @G_GroupName, [G_Coefficient] = @G_Coefficient, [G_BaseBonus] = @G_BaseBonus, [G_DueBonus] = @G_DueBonus, [G_PlantApp] = @G_PlantApp, [G_DepartmentApp] = @G_DepartmentApp, [G_Other1] = @G_Other1, [G_Other2] = @G_Other2, [NumOfPeople] = @NumOfPeople, [G_ActualBonus] = @G_ActualBonus, [AverageBonus] = @AverageBonus WHERE (([ID] = @Original_ID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Syl_Bonus_Group] SET [G_BonusDate] = @G_BonusDate, [OrderOfShow] = @OrderOfShow, [G_GroupName] = @G_GroupName, [G_Coefficient] = @G_Coefficient, [G_BaseBonus] = @G_BaseBonus, [G_DueBonus] = @G_DueBonus, [G_PlantApp] = @G_PlantApp, [G_DepartmentApp] = @G_DepartmentApp, [G_ZZGS] = @G_ZZGS, [G_QT1] = @G_QT1, [G_QT2] = @G_QT2, [G_QT3] = @G_QT3, [G_Other1] = @G_Other1, [G_Other2] = @G_Other2, [NumOfPeople] = @NumOfPeople, [G_ActualBonus] = @G_ActualBonus, [AverageBonus] = @AverageBonus WHERE (([ID] = @Original_ID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_BonusDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "G_BonusDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderOfShow", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderOfShow", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_GroupName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "G_GroupName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_Coefficient", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 3, "G_Coefficient", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_BaseBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 3, "G_BaseBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_DueBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "G_DueBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_PlantApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "G_PlantApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_DepartmentApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "G_DepartmentApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_Other1", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 3, "G_Other1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_Other2", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "G_Other2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_Coefficient", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 3, "G_Coefficient", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_BaseBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 3, "G_BaseBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_DueBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_DueBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_PlantApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_PlantApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_DepartmentApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_DepartmentApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_ZZGS", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_ZZGS", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_QT1", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_QT1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_QT2", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_QT2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_QT3", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_QT3", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_Other1", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 3, "G_Other1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_Other2", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_Other2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NumOfPeople", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumOfPeople", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_ActualBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "G_ActualBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AverageBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "AverageBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_ActualBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "G_ActualBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AverageBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "AverageBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
@@ -3340,9 +3537,7 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, G_BonusDate, OrderOfShow, G_GroupName, G_Coefficient, G_BaseBonus, G_D" +
-                "ueBonus, G_PlantApp, G_DepartmentApp, G_Other1, G_Other2, NumOfPeople, G_ActualB" +
-                "onus, AverageBonus FROM dbo.Syl_Bonus_Group";
+            this._commandCollection[0].CommandText = "SELECT * FROM dbo.Syl_Bonus_Group";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3425,7 +3620,24 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> G_BonusDate, global::System.Nullable<int> OrderOfShow, string G_GroupName, global::System.Nullable<decimal> G_Coefficient, global::System.Nullable<decimal> G_BaseBonus, global::System.Nullable<decimal> G_DueBonus, global::System.Nullable<decimal> G_PlantApp, global::System.Nullable<decimal> G_DepartmentApp, global::System.Nullable<decimal> G_Other1, global::System.Nullable<decimal> G_Other2, global::System.Nullable<int> NumOfPeople, global::System.Nullable<decimal> G_ActualBonus, global::System.Nullable<decimal> AverageBonus) {
+        public virtual int Insert(
+                    global::System.Nullable<int> G_BonusDate, 
+                    global::System.Nullable<int> OrderOfShow, 
+                    string G_GroupName, 
+                    global::System.Nullable<decimal> G_Coefficient, 
+                    global::System.Nullable<decimal> G_BaseBonus, 
+                    global::System.Nullable<decimal> G_DueBonus, 
+                    global::System.Nullable<decimal> G_PlantApp, 
+                    global::System.Nullable<decimal> G_DepartmentApp, 
+                    global::System.Nullable<decimal> G_ZZGS, 
+                    global::System.Nullable<decimal> G_QT1, 
+                    global::System.Nullable<decimal> G_QT2, 
+                    global::System.Nullable<decimal> G_QT3, 
+                    global::System.Nullable<decimal> G_Other1, 
+                    global::System.Nullable<decimal> G_Other2, 
+                    global::System.Nullable<int> NumOfPeople, 
+                    global::System.Nullable<decimal> G_ActualBonus, 
+                    global::System.Nullable<decimal> AverageBonus) {
             if ((G_BonusDate.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(G_BonusDate.Value));
             }
@@ -3474,35 +3686,59 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((G_Other1.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((decimal)(G_Other1.Value));
+            if ((G_ZZGS.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((decimal)(G_ZZGS.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((G_Other2.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(G_Other2.Value));
+            if ((G_QT1.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(G_QT1.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((NumOfPeople.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((int)(NumOfPeople.Value));
+            if ((G_QT2.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((decimal)(G_QT2.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((G_ActualBonus.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((decimal)(G_ActualBonus.Value));
+            if ((G_QT3.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((decimal)(G_QT3.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((AverageBonus.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((decimal)(AverageBonus.Value));
+            if ((G_Other1.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((decimal)(G_Other1.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            if ((G_Other2.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((decimal)(G_Other2.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            if ((NumOfPeople.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[14].Value = ((int)(NumOfPeople.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            if ((G_ActualBonus.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[15].Value = ((decimal)(G_ActualBonus.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            if ((AverageBonus.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[16].Value = ((decimal)(AverageBonus.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3524,7 +3760,25 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> G_BonusDate, global::System.Nullable<int> OrderOfShow, string G_GroupName, global::System.Nullable<decimal> G_Coefficient, global::System.Nullable<decimal> G_BaseBonus, global::System.Nullable<decimal> G_DueBonus, global::System.Nullable<decimal> G_PlantApp, global::System.Nullable<decimal> G_DepartmentApp, global::System.Nullable<decimal> G_Other1, global::System.Nullable<decimal> G_Other2, global::System.Nullable<int> NumOfPeople, global::System.Nullable<decimal> G_ActualBonus, global::System.Nullable<decimal> AverageBonus, int Original_ID) {
+        public virtual int Update(
+                    global::System.Nullable<int> G_BonusDate, 
+                    global::System.Nullable<int> OrderOfShow, 
+                    string G_GroupName, 
+                    global::System.Nullable<decimal> G_Coefficient, 
+                    global::System.Nullable<decimal> G_BaseBonus, 
+                    global::System.Nullable<decimal> G_DueBonus, 
+                    global::System.Nullable<decimal> G_PlantApp, 
+                    global::System.Nullable<decimal> G_DepartmentApp, 
+                    global::System.Nullable<decimal> G_ZZGS, 
+                    global::System.Nullable<decimal> G_QT1, 
+                    global::System.Nullable<decimal> G_QT2, 
+                    global::System.Nullable<decimal> G_QT3, 
+                    global::System.Nullable<decimal> G_Other1, 
+                    global::System.Nullable<decimal> G_Other2, 
+                    global::System.Nullable<int> NumOfPeople, 
+                    global::System.Nullable<decimal> G_ActualBonus, 
+                    global::System.Nullable<decimal> AverageBonus, 
+                    int Original_ID) {
             if ((G_BonusDate.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(G_BonusDate.Value));
             }
@@ -3573,37 +3827,61 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((G_Other1.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((decimal)(G_Other1.Value));
+            if ((G_ZZGS.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((decimal)(G_ZZGS.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((G_Other2.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(G_Other2.Value));
+            if ((G_QT1.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(G_QT1.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((NumOfPeople.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(NumOfPeople.Value));
+            if ((G_QT2.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(G_QT2.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((G_ActualBonus.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((decimal)(G_ActualBonus.Value));
+            if ((G_QT3.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((decimal)(G_QT3.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((AverageBonus.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((decimal)(AverageBonus.Value));
+            if ((G_Other1.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((decimal)(G_Other1.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_ID));
+            if ((G_Other2.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((decimal)(G_Other2.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            if ((NumOfPeople.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(NumOfPeople.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            if ((G_ActualBonus.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((decimal)(G_ActualBonus.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            if ((AverageBonus.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((decimal)(AverageBonus.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3774,19 +4052,19 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_GroupName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "P_GroupName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WorkerName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WorkerName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDCard", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDCard", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Coefficient", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "P_Coefficient", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_BaseBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 3, "P_BaseBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_DueBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "P_DueBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_PlantApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "P_PlantApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_DepartmentApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "P_DepartmentApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_GroupApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "P_GroupApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other1", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "P_Other1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other2", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "P_Other2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other3", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "P_Other3", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other4", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "P_Other4", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other5", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 3, "P_Other5", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DutyBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "DutyBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_ActualBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "P_ActualBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Coefficient", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Coefficient", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_BaseBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 3, "P_BaseBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_DueBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_DueBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_PlantApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_PlantApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_DepartmentApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_DepartmentApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_GroupApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_GroupApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other1", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Other1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other2", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Other2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other3", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Other3", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other4", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Other4", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other5", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 3, "P_Other5", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DutyBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "DutyBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_ActualBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_ActualBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Syl_Bonus_Person] SET [P_BonusDate] = @P_BonusDate, [P_GroupName] = @P_GroupName, [WorkerName] = @WorkerName, [IDCard] = @IDCard, [P_Coefficient] = @P_Coefficient, [P_BaseBonus] = @P_BaseBonus, [P_DueBonus] = @P_DueBonus, [P_PlantApp] = @P_PlantApp, [P_DepartmentApp] = @P_DepartmentApp, [P_GroupApp] = @P_GroupApp, [P_Other1] = @P_Other1, [P_Other2] = @P_Other2, [P_Other3] = @P_Other3, [P_Other4] = @P_Other4, [P_Other5] = @P_Other5, [DutyBonus] = @DutyBonus, [P_ActualBonus] = @P_ActualBonus WHERE (([ID] = @Original_ID))";
@@ -3795,19 +4073,19 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_GroupName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "P_GroupName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WorkerName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WorkerName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDCard", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDCard", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Coefficient", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "P_Coefficient", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_BaseBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 3, "P_BaseBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_DueBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "P_DueBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_PlantApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "P_PlantApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_DepartmentApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "P_DepartmentApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_GroupApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "P_GroupApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other1", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "P_Other1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other2", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "P_Other2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other3", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "P_Other3", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other4", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "P_Other4", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other5", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 3, "P_Other5", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DutyBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "DutyBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_ActualBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 0, "P_ActualBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Coefficient", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Coefficient", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_BaseBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 3, "P_BaseBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_DueBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_DueBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_PlantApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_PlantApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_DepartmentApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_DepartmentApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_GroupApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_GroupApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other1", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Other1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other2", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Other2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other3", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Other3", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other4", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Other4", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other5", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 3, "P_Other5", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DutyBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "DutyBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_ActualBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_ActualBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
@@ -3824,9 +4102,7 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, P_BonusDate, P_GroupName, WorkerName, IDCard, P_Coefficient, P_BaseBon" +
-                "us, P_DueBonus, P_PlantApp, P_DepartmentApp, P_GroupApp, P_Other1, P_Other2, P_O" +
-                "ther3, P_Other4, P_Other5, DutyBonus, P_ActualBonus FROM dbo.Syl_Bonus_Person";
+            this._commandCollection[0].CommandText = "SELECT* FROM dbo.Syl_Bonus_Person";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
