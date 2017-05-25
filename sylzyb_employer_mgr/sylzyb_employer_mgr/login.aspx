@@ -82,7 +82,7 @@
                         <asp:Label ID="Label2" runat="server" Text="密码："></asp:Label>
                     </td>
                     <td class="tbx_nm_mm">
-                        <asp:TextBox ID="tbx_lg_pas" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="tbx_lg_pas" runat="server" TextMode="Password"></asp:TextBox>
                     </td>
                     <td class="td_left"></td>
 

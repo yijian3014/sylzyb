@@ -84,6 +84,9 @@
       <DependentUpon>data_fx_cht.aspx</DependentUpon>
     </Compile>
     <Compile Include="db.cs" />
+    <Compile Include="dzswDataSet.cs">
+      <DependentUpon>dzswDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dzswDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

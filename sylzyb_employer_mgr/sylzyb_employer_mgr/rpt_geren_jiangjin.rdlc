@@ -936,7 +936,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!P_Other5.Value</Value>
+                              <Value />
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -993,14 +993,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="P_Other2">
+                    <Textbox Name="P_ZZGS">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!P_Other2.Value</Value>
+                              <Value>=Fields!P_ZZGS.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1009,7 +1009,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>P_Other2</rd:DefaultName>
+                      <rd:DefaultName>P_ZZGS</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1210,24 +1210,8 @@
           <DataField>P_GroupApp</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="P_Other1">
-          <DataField>P_Other1</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="P_Other2">
-          <DataField>P_Other2</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="P_Other3">
-          <DataField>P_Other3</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="P_Other4">
-          <DataField>P_Other4</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="P_Other5">
-          <DataField>P_Other5</DataField>
+        <Field Name="P_ZZGS">
+          <DataField>P_ZZGS</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="DutyBonus">

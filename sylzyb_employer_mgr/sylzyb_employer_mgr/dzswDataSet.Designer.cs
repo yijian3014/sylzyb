@@ -26,9 +26,9 @@ namespace sylzyb_employer_mgr {
         
         private Syl_Bonus_GroupDataTable tableSyl_Bonus_Group;
         
-        private Syl_Bonus_PersonDataTable tableSyl_Bonus_Person;
-        
         private Syl_AppWorkerinfoDataTable tableSyl_AppWorkerinfo;
+        
+        private Syl_Bonus_PersonDataTable tableSyl_Bonus_Person;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -61,11 +61,11 @@ namespace sylzyb_employer_mgr {
                 if ((ds.Tables["Syl_Bonus_Group"] != null)) {
                     base.Tables.Add(new Syl_Bonus_GroupDataTable(ds.Tables["Syl_Bonus_Group"]));
                 }
-                if ((ds.Tables["Syl_Bonus_Person"] != null)) {
-                    base.Tables.Add(new Syl_Bonus_PersonDataTable(ds.Tables["Syl_Bonus_Person"]));
-                }
                 if ((ds.Tables["Syl_AppWorkerinfo"] != null)) {
                     base.Tables.Add(new Syl_AppWorkerinfoDataTable(ds.Tables["Syl_AppWorkerinfo"]));
+                }
+                if ((ds.Tables["Syl_Bonus_Person"] != null)) {
+                    base.Tables.Add(new Syl_Bonus_PersonDataTable(ds.Tables["Syl_Bonus_Person"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -99,9 +99,9 @@ namespace sylzyb_employer_mgr {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public Syl_Bonus_PersonDataTable Syl_Bonus_Person {
+        public Syl_AppWorkerinfoDataTable Syl_AppWorkerinfo {
             get {
-                return this.tableSyl_Bonus_Person;
+                return this.tableSyl_AppWorkerinfo;
             }
         }
         
@@ -109,9 +109,9 @@ namespace sylzyb_employer_mgr {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public Syl_AppWorkerinfoDataTable Syl_AppWorkerinfo {
+        public Syl_Bonus_PersonDataTable Syl_Bonus_Person {
             get {
-                return this.tableSyl_AppWorkerinfo;
+                return this.tableSyl_Bonus_Person;
             }
         }
         
@@ -185,11 +185,11 @@ namespace sylzyb_employer_mgr {
                 if ((ds.Tables["Syl_Bonus_Group"] != null)) {
                     base.Tables.Add(new Syl_Bonus_GroupDataTable(ds.Tables["Syl_Bonus_Group"]));
                 }
-                if ((ds.Tables["Syl_Bonus_Person"] != null)) {
-                    base.Tables.Add(new Syl_Bonus_PersonDataTable(ds.Tables["Syl_Bonus_Person"]));
-                }
                 if ((ds.Tables["Syl_AppWorkerinfo"] != null)) {
                     base.Tables.Add(new Syl_AppWorkerinfoDataTable(ds.Tables["Syl_AppWorkerinfo"]));
+                }
+                if ((ds.Tables["Syl_Bonus_Person"] != null)) {
+                    base.Tables.Add(new Syl_Bonus_PersonDataTable(ds.Tables["Syl_Bonus_Person"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -230,16 +230,16 @@ namespace sylzyb_employer_mgr {
                     this.tableSyl_Bonus_Group.InitVars();
                 }
             }
-            this.tableSyl_Bonus_Person = ((Syl_Bonus_PersonDataTable)(base.Tables["Syl_Bonus_Person"]));
-            if ((initTable == true)) {
-                if ((this.tableSyl_Bonus_Person != null)) {
-                    this.tableSyl_Bonus_Person.InitVars();
-                }
-            }
             this.tableSyl_AppWorkerinfo = ((Syl_AppWorkerinfoDataTable)(base.Tables["Syl_AppWorkerinfo"]));
             if ((initTable == true)) {
                 if ((this.tableSyl_AppWorkerinfo != null)) {
                     this.tableSyl_AppWorkerinfo.InitVars();
+                }
+            }
+            this.tableSyl_Bonus_Person = ((Syl_Bonus_PersonDataTable)(base.Tables["Syl_Bonus_Person"]));
+            if ((initTable == true)) {
+                if ((this.tableSyl_Bonus_Person != null)) {
+                    this.tableSyl_Bonus_Person.InitVars();
                 }
             }
         }
@@ -254,10 +254,10 @@ namespace sylzyb_employer_mgr {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableSyl_Bonus_Group = new Syl_Bonus_GroupDataTable();
             base.Tables.Add(this.tableSyl_Bonus_Group);
-            this.tableSyl_Bonus_Person = new Syl_Bonus_PersonDataTable();
-            base.Tables.Add(this.tableSyl_Bonus_Person);
             this.tableSyl_AppWorkerinfo = new Syl_AppWorkerinfoDataTable();
             base.Tables.Add(this.tableSyl_AppWorkerinfo);
+            this.tableSyl_Bonus_Person = new Syl_Bonus_PersonDataTable();
+            base.Tables.Add(this.tableSyl_Bonus_Person);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -268,13 +268,13 @@ namespace sylzyb_employer_mgr {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeSyl_Bonus_Person() {
+        private bool ShouldSerializeSyl_AppWorkerinfo() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeSyl_AppWorkerinfo() {
+        private bool ShouldSerializeSyl_Bonus_Person() {
             return false;
         }
         
@@ -337,10 +337,10 @@ namespace sylzyb_employer_mgr {
         public delegate void Syl_Bonus_GroupRowChangeEventHandler(object sender, Syl_Bonus_GroupRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void Syl_Bonus_PersonRowChangeEventHandler(object sender, Syl_Bonus_PersonRowChangeEvent e);
+        public delegate void Syl_AppWorkerinfoRowChangeEventHandler(object sender, Syl_AppWorkerinfoRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void Syl_AppWorkerinfoRowChangeEventHandler(object sender, Syl_AppWorkerinfoRowChangeEvent e);
+        public delegate void Syl_Bonus_PersonRowChangeEventHandler(object sender, Syl_Bonus_PersonRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -865,526 +865,6 @@ namespace sylzyb_employer_mgr {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class Syl_Bonus_PersonDataTable : global::System.Data.TypedTableBase<Syl_Bonus_PersonRow> {
-            
-            private global::System.Data.DataColumn columnID;
-            
-            private global::System.Data.DataColumn columnP_BonusDate;
-            
-            private global::System.Data.DataColumn columnP_GroupName;
-            
-            private global::System.Data.DataColumn columnWorkerName;
-            
-            private global::System.Data.DataColumn columnIDCard;
-            
-            private global::System.Data.DataColumn columnP_Coefficient;
-            
-            private global::System.Data.DataColumn columnP_BaseBonus;
-            
-            private global::System.Data.DataColumn columnP_DueBonus;
-            
-            private global::System.Data.DataColumn columnP_PlantApp;
-            
-            private global::System.Data.DataColumn columnP_DepartmentApp;
-            
-            private global::System.Data.DataColumn columnP_GroupApp;
-            
-            private global::System.Data.DataColumn columnP_Other1;
-            
-            private global::System.Data.DataColumn columnP_Other2;
-            
-            private global::System.Data.DataColumn columnP_Other3;
-            
-            private global::System.Data.DataColumn columnP_Other4;
-            
-            private global::System.Data.DataColumn columnP_Other5;
-            
-            private global::System.Data.DataColumn columnDutyBonus;
-            
-            private global::System.Data.DataColumn columnP_ActualBonus;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Syl_Bonus_PersonDataTable() {
-                this.TableName = "Syl_Bonus_Person";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal Syl_Bonus_PersonDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected Syl_Bonus_PersonDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IDColumn {
-                get {
-                    return this.columnID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn P_BonusDateColumn {
-                get {
-                    return this.columnP_BonusDate;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn P_GroupNameColumn {
-                get {
-                    return this.columnP_GroupName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn WorkerNameColumn {
-                get {
-                    return this.columnWorkerName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IDCardColumn {
-                get {
-                    return this.columnIDCard;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn P_CoefficientColumn {
-                get {
-                    return this.columnP_Coefficient;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn P_BaseBonusColumn {
-                get {
-                    return this.columnP_BaseBonus;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn P_DueBonusColumn {
-                get {
-                    return this.columnP_DueBonus;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn P_PlantAppColumn {
-                get {
-                    return this.columnP_PlantApp;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn P_DepartmentAppColumn {
-                get {
-                    return this.columnP_DepartmentApp;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn P_GroupAppColumn {
-                get {
-                    return this.columnP_GroupApp;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn P_Other1Column {
-                get {
-                    return this.columnP_Other1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn P_Other2Column {
-                get {
-                    return this.columnP_Other2;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn P_Other3Column {
-                get {
-                    return this.columnP_Other3;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn P_Other4Column {
-                get {
-                    return this.columnP_Other4;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn P_Other5Column {
-                get {
-                    return this.columnP_Other5;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DutyBonusColumn {
-                get {
-                    return this.columnDutyBonus;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn P_ActualBonusColumn {
-                get {
-                    return this.columnP_ActualBonus;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Syl_Bonus_PersonRow this[int index] {
-                get {
-                    return ((Syl_Bonus_PersonRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Syl_Bonus_PersonRowChangeEventHandler Syl_Bonus_PersonRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Syl_Bonus_PersonRowChangeEventHandler Syl_Bonus_PersonRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Syl_Bonus_PersonRowChangeEventHandler Syl_Bonus_PersonRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Syl_Bonus_PersonRowChangeEventHandler Syl_Bonus_PersonRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddSyl_Bonus_PersonRow(Syl_Bonus_PersonRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Syl_Bonus_PersonRow AddSyl_Bonus_PersonRow(
-                        int P_BonusDate, 
-                        string P_GroupName, 
-                        string WorkerName, 
-                        string IDCard, 
-                        decimal P_Coefficient, 
-                        decimal P_BaseBonus, 
-                        decimal P_DueBonus, 
-                        decimal P_PlantApp, 
-                        decimal P_DepartmentApp, 
-                        decimal P_GroupApp, 
-                        decimal P_Other1, 
-                        decimal P_Other2, 
-                        decimal P_Other3, 
-                        decimal P_Other4, 
-                        decimal P_Other5, 
-                        decimal DutyBonus, 
-                        decimal P_ActualBonus) {
-                Syl_Bonus_PersonRow rowSyl_Bonus_PersonRow = ((Syl_Bonus_PersonRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        P_BonusDate,
-                        P_GroupName,
-                        WorkerName,
-                        IDCard,
-                        P_Coefficient,
-                        P_BaseBonus,
-                        P_DueBonus,
-                        P_PlantApp,
-                        P_DepartmentApp,
-                        P_GroupApp,
-                        P_Other1,
-                        P_Other2,
-                        P_Other3,
-                        P_Other4,
-                        P_Other5,
-                        DutyBonus,
-                        P_ActualBonus};
-                rowSyl_Bonus_PersonRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSyl_Bonus_PersonRow);
-                return rowSyl_Bonus_PersonRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Syl_Bonus_PersonRow FindByID(int ID) {
-                return ((Syl_Bonus_PersonRow)(this.Rows.Find(new object[] {
-                            ID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                Syl_Bonus_PersonDataTable cln = ((Syl_Bonus_PersonDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new Syl_Bonus_PersonDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnID = base.Columns["ID"];
-                this.columnP_BonusDate = base.Columns["P_BonusDate"];
-                this.columnP_GroupName = base.Columns["P_GroupName"];
-                this.columnWorkerName = base.Columns["WorkerName"];
-                this.columnIDCard = base.Columns["IDCard"];
-                this.columnP_Coefficient = base.Columns["P_Coefficient"];
-                this.columnP_BaseBonus = base.Columns["P_BaseBonus"];
-                this.columnP_DueBonus = base.Columns["P_DueBonus"];
-                this.columnP_PlantApp = base.Columns["P_PlantApp"];
-                this.columnP_DepartmentApp = base.Columns["P_DepartmentApp"];
-                this.columnP_GroupApp = base.Columns["P_GroupApp"];
-                this.columnP_Other1 = base.Columns["P_Other1"];
-                this.columnP_Other2 = base.Columns["P_Other2"];
-                this.columnP_Other3 = base.Columns["P_Other3"];
-                this.columnP_Other4 = base.Columns["P_Other4"];
-                this.columnP_Other5 = base.Columns["P_Other5"];
-                this.columnDutyBonus = base.Columns["DutyBonus"];
-                this.columnP_ActualBonus = base.Columns["P_ActualBonus"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnID);
-                this.columnP_BonusDate = new global::System.Data.DataColumn("P_BonusDate", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnP_BonusDate);
-                this.columnP_GroupName = new global::System.Data.DataColumn("P_GroupName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnP_GroupName);
-                this.columnWorkerName = new global::System.Data.DataColumn("WorkerName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWorkerName);
-                this.columnIDCard = new global::System.Data.DataColumn("IDCard", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIDCard);
-                this.columnP_Coefficient = new global::System.Data.DataColumn("P_Coefficient", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnP_Coefficient);
-                this.columnP_BaseBonus = new global::System.Data.DataColumn("P_BaseBonus", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnP_BaseBonus);
-                this.columnP_DueBonus = new global::System.Data.DataColumn("P_DueBonus", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnP_DueBonus);
-                this.columnP_PlantApp = new global::System.Data.DataColumn("P_PlantApp", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnP_PlantApp);
-                this.columnP_DepartmentApp = new global::System.Data.DataColumn("P_DepartmentApp", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnP_DepartmentApp);
-                this.columnP_GroupApp = new global::System.Data.DataColumn("P_GroupApp", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnP_GroupApp);
-                this.columnP_Other1 = new global::System.Data.DataColumn("P_Other1", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnP_Other1);
-                this.columnP_Other2 = new global::System.Data.DataColumn("P_Other2", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnP_Other2);
-                this.columnP_Other3 = new global::System.Data.DataColumn("P_Other3", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnP_Other3);
-                this.columnP_Other4 = new global::System.Data.DataColumn("P_Other4", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnP_Other4);
-                this.columnP_Other5 = new global::System.Data.DataColumn("P_Other5", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnP_Other5);
-                this.columnDutyBonus = new global::System.Data.DataColumn("DutyBonus", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDutyBonus);
-                this.columnP_ActualBonus = new global::System.Data.DataColumn("P_ActualBonus", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnP_ActualBonus);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnID}, true));
-                this.columnID.AutoIncrement = true;
-                this.columnID.AutoIncrementSeed = -1;
-                this.columnID.AutoIncrementStep = -1;
-                this.columnID.AllowDBNull = false;
-                this.columnID.ReadOnly = true;
-                this.columnID.Unique = true;
-                this.columnP_GroupName.MaxLength = 20;
-                this.columnWorkerName.MaxLength = 20;
-                this.columnIDCard.MaxLength = 30;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Syl_Bonus_PersonRow NewSyl_Bonus_PersonRow() {
-                return ((Syl_Bonus_PersonRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new Syl_Bonus_PersonRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(Syl_Bonus_PersonRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.Syl_Bonus_PersonRowChanged != null)) {
-                    this.Syl_Bonus_PersonRowChanged(this, new Syl_Bonus_PersonRowChangeEvent(((Syl_Bonus_PersonRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.Syl_Bonus_PersonRowChanging != null)) {
-                    this.Syl_Bonus_PersonRowChanging(this, new Syl_Bonus_PersonRowChangeEvent(((Syl_Bonus_PersonRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.Syl_Bonus_PersonRowDeleted != null)) {
-                    this.Syl_Bonus_PersonRowDeleted(this, new Syl_Bonus_PersonRowChangeEvent(((Syl_Bonus_PersonRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.Syl_Bonus_PersonRowDeleting != null)) {
-                    this.Syl_Bonus_PersonRowDeleting(this, new Syl_Bonus_PersonRowChangeEvent(((Syl_Bonus_PersonRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveSyl_Bonus_PersonRow(Syl_Bonus_PersonRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dzswDataSet ds = new dzswDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "Syl_Bonus_PersonDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class Syl_AppWorkerinfoDataTable : global::System.Data.TypedTableBase<Syl_AppWorkerinfoRow> {
             
             private global::System.Data.DataColumn columnID;
@@ -1794,6 +1274,453 @@ namespace sylzyb_employer_mgr {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "Syl_AppWorkerinfoDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class Syl_Bonus_PersonDataTable : global::System.Data.TypedTableBase<Syl_Bonus_PersonRow> {
+            
+            private global::System.Data.DataColumn columnID;
+            
+            private global::System.Data.DataColumn columnP_BonusDate;
+            
+            private global::System.Data.DataColumn columnP_GroupName;
+            
+            private global::System.Data.DataColumn columnWorkerName;
+            
+            private global::System.Data.DataColumn columnIDCard;
+            
+            private global::System.Data.DataColumn columnP_Coefficient;
+            
+            private global::System.Data.DataColumn columnP_BaseBonus;
+            
+            private global::System.Data.DataColumn columnP_DueBonus;
+            
+            private global::System.Data.DataColumn columnP_PlantApp;
+            
+            private global::System.Data.DataColumn columnP_DepartmentApp;
+            
+            private global::System.Data.DataColumn columnP_GroupApp;
+            
+            private global::System.Data.DataColumn columnP_ZZGS;
+            
+            private global::System.Data.DataColumn columnDutyBonus;
+            
+            private global::System.Data.DataColumn columnP_ActualBonus;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public Syl_Bonus_PersonDataTable() {
+                this.TableName = "Syl_Bonus_Person";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal Syl_Bonus_PersonDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected Syl_Bonus_PersonDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn P_BonusDateColumn {
+                get {
+                    return this.columnP_BonusDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn P_GroupNameColumn {
+                get {
+                    return this.columnP_GroupName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn WorkerNameColumn {
+                get {
+                    return this.columnWorkerName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDCardColumn {
+                get {
+                    return this.columnIDCard;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn P_CoefficientColumn {
+                get {
+                    return this.columnP_Coefficient;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn P_BaseBonusColumn {
+                get {
+                    return this.columnP_BaseBonus;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn P_DueBonusColumn {
+                get {
+                    return this.columnP_DueBonus;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn P_PlantAppColumn {
+                get {
+                    return this.columnP_PlantApp;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn P_DepartmentAppColumn {
+                get {
+                    return this.columnP_DepartmentApp;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn P_GroupAppColumn {
+                get {
+                    return this.columnP_GroupApp;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn P_ZZGSColumn {
+                get {
+                    return this.columnP_ZZGS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DutyBonusColumn {
+                get {
+                    return this.columnDutyBonus;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn P_ActualBonusColumn {
+                get {
+                    return this.columnP_ActualBonus;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public Syl_Bonus_PersonRow this[int index] {
+                get {
+                    return ((Syl_Bonus_PersonRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event Syl_Bonus_PersonRowChangeEventHandler Syl_Bonus_PersonRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event Syl_Bonus_PersonRowChangeEventHandler Syl_Bonus_PersonRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event Syl_Bonus_PersonRowChangeEventHandler Syl_Bonus_PersonRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event Syl_Bonus_PersonRowChangeEventHandler Syl_Bonus_PersonRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddSyl_Bonus_PersonRow(Syl_Bonus_PersonRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public Syl_Bonus_PersonRow AddSyl_Bonus_PersonRow(int P_BonusDate, string P_GroupName, string WorkerName, string IDCard, decimal P_Coefficient, decimal P_BaseBonus, decimal P_DueBonus, decimal P_PlantApp, decimal P_DepartmentApp, decimal P_GroupApp, decimal P_ZZGS, decimal DutyBonus, decimal P_ActualBonus) {
+                Syl_Bonus_PersonRow rowSyl_Bonus_PersonRow = ((Syl_Bonus_PersonRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        P_BonusDate,
+                        P_GroupName,
+                        WorkerName,
+                        IDCard,
+                        P_Coefficient,
+                        P_BaseBonus,
+                        P_DueBonus,
+                        P_PlantApp,
+                        P_DepartmentApp,
+                        P_GroupApp,
+                        P_ZZGS,
+                        DutyBonus,
+                        P_ActualBonus};
+                rowSyl_Bonus_PersonRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSyl_Bonus_PersonRow);
+                return rowSyl_Bonus_PersonRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public Syl_Bonus_PersonRow FindByID(int ID) {
+                return ((Syl_Bonus_PersonRow)(this.Rows.Find(new object[] {
+                            ID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                Syl_Bonus_PersonDataTable cln = ((Syl_Bonus_PersonDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new Syl_Bonus_PersonDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnID = base.Columns["ID"];
+                this.columnP_BonusDate = base.Columns["P_BonusDate"];
+                this.columnP_GroupName = base.Columns["P_GroupName"];
+                this.columnWorkerName = base.Columns["WorkerName"];
+                this.columnIDCard = base.Columns["IDCard"];
+                this.columnP_Coefficient = base.Columns["P_Coefficient"];
+                this.columnP_BaseBonus = base.Columns["P_BaseBonus"];
+                this.columnP_DueBonus = base.Columns["P_DueBonus"];
+                this.columnP_PlantApp = base.Columns["P_PlantApp"];
+                this.columnP_DepartmentApp = base.Columns["P_DepartmentApp"];
+                this.columnP_GroupApp = base.Columns["P_GroupApp"];
+                this.columnP_ZZGS = base.Columns["P_ZZGS"];
+                this.columnDutyBonus = base.Columns["DutyBonus"];
+                this.columnP_ActualBonus = base.Columns["P_ActualBonus"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnP_BonusDate = new global::System.Data.DataColumn("P_BonusDate", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnP_BonusDate);
+                this.columnP_GroupName = new global::System.Data.DataColumn("P_GroupName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnP_GroupName);
+                this.columnWorkerName = new global::System.Data.DataColumn("WorkerName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnWorkerName);
+                this.columnIDCard = new global::System.Data.DataColumn("IDCard", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIDCard);
+                this.columnP_Coefficient = new global::System.Data.DataColumn("P_Coefficient", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnP_Coefficient);
+                this.columnP_BaseBonus = new global::System.Data.DataColumn("P_BaseBonus", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnP_BaseBonus);
+                this.columnP_DueBonus = new global::System.Data.DataColumn("P_DueBonus", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnP_DueBonus);
+                this.columnP_PlantApp = new global::System.Data.DataColumn("P_PlantApp", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnP_PlantApp);
+                this.columnP_DepartmentApp = new global::System.Data.DataColumn("P_DepartmentApp", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnP_DepartmentApp);
+                this.columnP_GroupApp = new global::System.Data.DataColumn("P_GroupApp", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnP_GroupApp);
+                this.columnP_ZZGS = new global::System.Data.DataColumn("P_ZZGS", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnP_ZZGS);
+                this.columnDutyBonus = new global::System.Data.DataColumn("DutyBonus", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDutyBonus);
+                this.columnP_ActualBonus = new global::System.Data.DataColumn("P_ActualBonus", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnP_ActualBonus);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
+                this.columnID.AutoIncrement = true;
+                this.columnID.AutoIncrementSeed = -1;
+                this.columnID.AutoIncrementStep = -1;
+                this.columnID.AllowDBNull = false;
+                this.columnID.ReadOnly = true;
+                this.columnID.Unique = true;
+                this.columnP_GroupName.MaxLength = 20;
+                this.columnWorkerName.MaxLength = 20;
+                this.columnIDCard.MaxLength = 30;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public Syl_Bonus_PersonRow NewSyl_Bonus_PersonRow() {
+                return ((Syl_Bonus_PersonRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new Syl_Bonus_PersonRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(Syl_Bonus_PersonRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.Syl_Bonus_PersonRowChanged != null)) {
+                    this.Syl_Bonus_PersonRowChanged(this, new Syl_Bonus_PersonRowChangeEvent(((Syl_Bonus_PersonRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.Syl_Bonus_PersonRowChanging != null)) {
+                    this.Syl_Bonus_PersonRowChanging(this, new Syl_Bonus_PersonRowChangeEvent(((Syl_Bonus_PersonRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.Syl_Bonus_PersonRowDeleted != null)) {
+                    this.Syl_Bonus_PersonRowDeleted(this, new Syl_Bonus_PersonRowChangeEvent(((Syl_Bonus_PersonRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.Syl_Bonus_PersonRowDeleting != null)) {
+                    this.Syl_Bonus_PersonRowDeleting(this, new Syl_Bonus_PersonRowChangeEvent(((Syl_Bonus_PersonRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveSyl_Bonus_PersonRow(Syl_Bonus_PersonRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dzswDataSet ds = new dzswDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "Syl_Bonus_PersonDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2339,508 +2266,6 @@ namespace sylzyb_employer_mgr {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class Syl_Bonus_PersonRow : global::System.Data.DataRow {
-            
-            private Syl_Bonus_PersonDataTable tableSyl_Bonus_Person;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal Syl_Bonus_PersonRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableSyl_Bonus_Person = ((Syl_Bonus_PersonDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int ID {
-                get {
-                    return ((int)(this[this.tableSyl_Bonus_Person.IDColumn]));
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int P_BonusDate {
-                get {
-                    try {
-                        return ((int)(this[this.tableSyl_Bonus_Person.P_BonusDateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_BonusDate”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.P_BonusDateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string P_GroupName {
-                get {
-                    try {
-                        return ((string)(this[this.tableSyl_Bonus_Person.P_GroupNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_GroupName”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.P_GroupNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string WorkerName {
-                get {
-                    try {
-                        return ((string)(this[this.tableSyl_Bonus_Person.WorkerNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“WorkerName”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.WorkerNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string IDCard {
-                get {
-                    try {
-                        return ((string)(this[this.tableSyl_Bonus_Person.IDCardColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“IDCard”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.IDCardColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal P_Coefficient {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_CoefficientColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_Coefficient”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.P_CoefficientColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal P_BaseBonus {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_BaseBonusColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_BaseBonus”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.P_BaseBonusColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal P_DueBonus {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_DueBonusColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_DueBonus”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.P_DueBonusColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal P_PlantApp {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_PlantAppColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_PlantApp”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.P_PlantAppColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal P_DepartmentApp {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_DepartmentAppColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_DepartmentApp”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.P_DepartmentAppColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal P_GroupApp {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_GroupAppColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_GroupApp”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.P_GroupAppColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal P_Other1 {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_Other1Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_Other1”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.P_Other1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal P_Other2 {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_Other2Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_Other2”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.P_Other2Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal P_Other3 {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_Other3Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_Other3”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.P_Other3Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal P_Other4 {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_Other4Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_Other4”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.P_Other4Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal P_Other5 {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_Other5Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_Other5”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.P_Other5Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal DutyBonus {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSyl_Bonus_Person.DutyBonusColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“DutyBonus”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.DutyBonusColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal P_ActualBonus {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_ActualBonusColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_ActualBonus”的值为 DBNull。", e);
-                    }
-                }
-                set {
-                    this[this.tableSyl_Bonus_Person.P_ActualBonusColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsP_BonusDateNull() {
-                return this.IsNull(this.tableSyl_Bonus_Person.P_BonusDateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetP_BonusDateNull() {
-                this[this.tableSyl_Bonus_Person.P_BonusDateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsP_GroupNameNull() {
-                return this.IsNull(this.tableSyl_Bonus_Person.P_GroupNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetP_GroupNameNull() {
-                this[this.tableSyl_Bonus_Person.P_GroupNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsWorkerNameNull() {
-                return this.IsNull(this.tableSyl_Bonus_Person.WorkerNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetWorkerNameNull() {
-                this[this.tableSyl_Bonus_Person.WorkerNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsIDCardNull() {
-                return this.IsNull(this.tableSyl_Bonus_Person.IDCardColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetIDCardNull() {
-                this[this.tableSyl_Bonus_Person.IDCardColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsP_CoefficientNull() {
-                return this.IsNull(this.tableSyl_Bonus_Person.P_CoefficientColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetP_CoefficientNull() {
-                this[this.tableSyl_Bonus_Person.P_CoefficientColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsP_BaseBonusNull() {
-                return this.IsNull(this.tableSyl_Bonus_Person.P_BaseBonusColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetP_BaseBonusNull() {
-                this[this.tableSyl_Bonus_Person.P_BaseBonusColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsP_DueBonusNull() {
-                return this.IsNull(this.tableSyl_Bonus_Person.P_DueBonusColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetP_DueBonusNull() {
-                this[this.tableSyl_Bonus_Person.P_DueBonusColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsP_PlantAppNull() {
-                return this.IsNull(this.tableSyl_Bonus_Person.P_PlantAppColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetP_PlantAppNull() {
-                this[this.tableSyl_Bonus_Person.P_PlantAppColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsP_DepartmentAppNull() {
-                return this.IsNull(this.tableSyl_Bonus_Person.P_DepartmentAppColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetP_DepartmentAppNull() {
-                this[this.tableSyl_Bonus_Person.P_DepartmentAppColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsP_GroupAppNull() {
-                return this.IsNull(this.tableSyl_Bonus_Person.P_GroupAppColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetP_GroupAppNull() {
-                this[this.tableSyl_Bonus_Person.P_GroupAppColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsP_Other1Null() {
-                return this.IsNull(this.tableSyl_Bonus_Person.P_Other1Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetP_Other1Null() {
-                this[this.tableSyl_Bonus_Person.P_Other1Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsP_Other2Null() {
-                return this.IsNull(this.tableSyl_Bonus_Person.P_Other2Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetP_Other2Null() {
-                this[this.tableSyl_Bonus_Person.P_Other2Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsP_Other3Null() {
-                return this.IsNull(this.tableSyl_Bonus_Person.P_Other3Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetP_Other3Null() {
-                this[this.tableSyl_Bonus_Person.P_Other3Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsP_Other4Null() {
-                return this.IsNull(this.tableSyl_Bonus_Person.P_Other4Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetP_Other4Null() {
-                this[this.tableSyl_Bonus_Person.P_Other4Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsP_Other5Null() {
-                return this.IsNull(this.tableSyl_Bonus_Person.P_Other5Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetP_Other5Null() {
-                this[this.tableSyl_Bonus_Person.P_Other5Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDutyBonusNull() {
-                return this.IsNull(this.tableSyl_Bonus_Person.DutyBonusColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDutyBonusNull() {
-                this[this.tableSyl_Bonus_Person.DutyBonusColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsP_ActualBonusNull() {
-                return this.IsNull(this.tableSyl_Bonus_Person.P_ActualBonusColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetP_ActualBonusNull() {
-                this[this.tableSyl_Bonus_Person.P_ActualBonusColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class Syl_AppWorkerinfoRow : global::System.Data.DataRow {
             
             private Syl_AppWorkerinfoDataTable tableSyl_AppWorkerinfo;
@@ -3229,6 +2654,396 @@ namespace sylzyb_employer_mgr {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class Syl_Bonus_PersonRow : global::System.Data.DataRow {
+            
+            private Syl_Bonus_PersonDataTable tableSyl_Bonus_Person;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal Syl_Bonus_PersonRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSyl_Bonus_Person = ((Syl_Bonus_PersonDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ID {
+                get {
+                    return ((int)(this[this.tableSyl_Bonus_Person.IDColumn]));
+                }
+                set {
+                    this[this.tableSyl_Bonus_Person.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int P_BonusDate {
+                get {
+                    try {
+                        return ((int)(this[this.tableSyl_Bonus_Person.P_BonusDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_BonusDate”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSyl_Bonus_Person.P_BonusDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string P_GroupName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSyl_Bonus_Person.P_GroupNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_GroupName”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSyl_Bonus_Person.P_GroupNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string WorkerName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSyl_Bonus_Person.WorkerNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“WorkerName”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSyl_Bonus_Person.WorkerNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string IDCard {
+                get {
+                    try {
+                        return ((string)(this[this.tableSyl_Bonus_Person.IDCardColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“IDCard”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSyl_Bonus_Person.IDCardColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal P_Coefficient {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_CoefficientColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_Coefficient”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSyl_Bonus_Person.P_CoefficientColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal P_BaseBonus {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_BaseBonusColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_BaseBonus”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSyl_Bonus_Person.P_BaseBonusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal P_DueBonus {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_DueBonusColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_DueBonus”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSyl_Bonus_Person.P_DueBonusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal P_PlantApp {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_PlantAppColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_PlantApp”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSyl_Bonus_Person.P_PlantAppColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal P_DepartmentApp {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_DepartmentAppColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_DepartmentApp”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSyl_Bonus_Person.P_DepartmentAppColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal P_GroupApp {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_GroupAppColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_GroupApp”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSyl_Bonus_Person.P_GroupAppColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal P_ZZGS {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_ZZGSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_ZZGS”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSyl_Bonus_Person.P_ZZGSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal DutyBonus {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSyl_Bonus_Person.DutyBonusColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“DutyBonus”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSyl_Bonus_Person.DutyBonusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal P_ActualBonus {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSyl_Bonus_Person.P_ActualBonusColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("表“Syl_Bonus_Person”中列“P_ActualBonus”的值为 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.tableSyl_Bonus_Person.P_ActualBonusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsP_BonusDateNull() {
+                return this.IsNull(this.tableSyl_Bonus_Person.P_BonusDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetP_BonusDateNull() {
+                this[this.tableSyl_Bonus_Person.P_BonusDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsP_GroupNameNull() {
+                return this.IsNull(this.tableSyl_Bonus_Person.P_GroupNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetP_GroupNameNull() {
+                this[this.tableSyl_Bonus_Person.P_GroupNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsWorkerNameNull() {
+                return this.IsNull(this.tableSyl_Bonus_Person.WorkerNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetWorkerNameNull() {
+                this[this.tableSyl_Bonus_Person.WorkerNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIDCardNull() {
+                return this.IsNull(this.tableSyl_Bonus_Person.IDCardColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIDCardNull() {
+                this[this.tableSyl_Bonus_Person.IDCardColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsP_CoefficientNull() {
+                return this.IsNull(this.tableSyl_Bonus_Person.P_CoefficientColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetP_CoefficientNull() {
+                this[this.tableSyl_Bonus_Person.P_CoefficientColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsP_BaseBonusNull() {
+                return this.IsNull(this.tableSyl_Bonus_Person.P_BaseBonusColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetP_BaseBonusNull() {
+                this[this.tableSyl_Bonus_Person.P_BaseBonusColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsP_DueBonusNull() {
+                return this.IsNull(this.tableSyl_Bonus_Person.P_DueBonusColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetP_DueBonusNull() {
+                this[this.tableSyl_Bonus_Person.P_DueBonusColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsP_PlantAppNull() {
+                return this.IsNull(this.tableSyl_Bonus_Person.P_PlantAppColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetP_PlantAppNull() {
+                this[this.tableSyl_Bonus_Person.P_PlantAppColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsP_DepartmentAppNull() {
+                return this.IsNull(this.tableSyl_Bonus_Person.P_DepartmentAppColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetP_DepartmentAppNull() {
+                this[this.tableSyl_Bonus_Person.P_DepartmentAppColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsP_GroupAppNull() {
+                return this.IsNull(this.tableSyl_Bonus_Person.P_GroupAppColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetP_GroupAppNull() {
+                this[this.tableSyl_Bonus_Person.P_GroupAppColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsP_ZZGSNull() {
+                return this.IsNull(this.tableSyl_Bonus_Person.P_ZZGSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetP_ZZGSNull() {
+                this[this.tableSyl_Bonus_Person.P_ZZGSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDutyBonusNull() {
+                return this.IsNull(this.tableSyl_Bonus_Person.DutyBonusColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDutyBonusNull() {
+                this[this.tableSyl_Bonus_Person.DutyBonusColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsP_ActualBonusNull() {
+                return this.IsNull(this.tableSyl_Bonus_Person.P_ActualBonusColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetP_ActualBonusNull() {
+                this[this.tableSyl_Bonus_Person.P_ActualBonusColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -3266,22 +3081,22 @@ namespace sylzyb_employer_mgr {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class Syl_Bonus_PersonRowChangeEvent : global::System.EventArgs {
+        public class Syl_AppWorkerinfoRowChangeEvent : global::System.EventArgs {
             
-            private Syl_Bonus_PersonRow eventRow;
+            private Syl_AppWorkerinfoRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Syl_Bonus_PersonRowChangeEvent(Syl_Bonus_PersonRow row, global::System.Data.DataRowAction action) {
+            public Syl_AppWorkerinfoRowChangeEvent(Syl_AppWorkerinfoRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Syl_Bonus_PersonRow Row {
+            public Syl_AppWorkerinfoRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -3300,22 +3115,22 @@ namespace sylzyb_employer_mgr {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class Syl_AppWorkerinfoRowChangeEvent : global::System.EventArgs {
+        public class Syl_Bonus_PersonRowChangeEvent : global::System.EventArgs {
             
-            private Syl_AppWorkerinfoRow eventRow;
+            private Syl_Bonus_PersonRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Syl_AppWorkerinfoRowChangeEvent(Syl_AppWorkerinfoRow row, global::System.Data.DataRowAction action) {
+            public Syl_Bonus_PersonRowChangeEvent(Syl_Bonus_PersonRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Syl_AppWorkerinfoRow Row {
+            public Syl_Bonus_PersonRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -3476,12 +3291,12 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Syl_Bonus_Group] WHERE (([ID] = @Original_ID))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Syl_Bonus_Group] WHERE (([ID] = @Original_ID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Syl_Bonus_Group] ([G_BonusDate], [OrderOfShow], [G_GroupName], [G_Coefficient], [G_BaseBonus], [G_DueBonus], [G_PlantApp], [G_DepartmentApp], [G_ZZGS], [G_QT1], [G_QT2], [G_QT3], [G_Other1], [G_Other2], [NumOfPeople], [G_ActualBonus], [AverageBonus]) VALUES (@G_BonusDate, @OrderOfShow, @G_GroupName, @G_Coefficient, @G_BaseBonus, @G_DueBonus, @G_PlantApp, @G_DepartmentApp, @G_ZZGS, @G_QT1, @G_QT2, @G_QT3, @G_Other1, @G_Other2, @NumOfPeople, @G_ActualBonus, @AverageBonus)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Syl_Bonus_Group] ([G_BonusDate], [OrderOfShow], [G_GroupName], [G_Coefficient], [G_BaseBonus], [G_DueBonus], [G_PlantApp], [G_DepartmentApp], [G_ZZGS], [G_QT1], [G_QT2], [G_QT3], [G_Other1], [G_Other2], [NumOfPeople], [G_ActualBonus], [AverageBonus]) VALUES (@G_BonusDate, @OrderOfShow, @G_GroupName, @G_Coefficient, @G_BaseBonus, @G_DueBonus, @G_PlantApp, @G_DepartmentApp, @G_ZZGS, @G_QT1, @G_QT2, @G_QT3, @G_Other1, @G_Other2, @NumOfPeople, @G_ActualBonus, @AverageBonus)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_BonusDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "G_BonusDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderOfShow", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderOfShow", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3502,7 +3317,7 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AverageBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "AverageBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Syl_Bonus_Group] SET [G_BonusDate] = @G_BonusDate, [OrderOfShow] = @OrderOfShow, [G_GroupName] = @G_GroupName, [G_Coefficient] = @G_Coefficient, [G_BaseBonus] = @G_BaseBonus, [G_DueBonus] = @G_DueBonus, [G_PlantApp] = @G_PlantApp, [G_DepartmentApp] = @G_DepartmentApp, [G_ZZGS] = @G_ZZGS, [G_QT1] = @G_QT1, [G_QT2] = @G_QT2, [G_QT3] = @G_QT3, [G_Other1] = @G_Other1, [G_Other2] = @G_Other2, [NumOfPeople] = @NumOfPeople, [G_ActualBonus] = @G_ActualBonus, [AverageBonus] = @AverageBonus WHERE (([ID] = @Original_ID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Syl_Bonus_Group] SET [G_BonusDate] = @G_BonusDate, [OrderOfShow] = @OrderOfShow, [G_GroupName] = @G_GroupName, [G_Coefficient] = @G_Coefficient, [G_BaseBonus] = @G_BaseBonus, [G_DueBonus] = @G_DueBonus, [G_PlantApp] = @G_PlantApp, [G_DepartmentApp] = @G_DepartmentApp, [G_ZZGS] = @G_ZZGS, [G_QT1] = @G_QT1, [G_QT2] = @G_QT2, [G_QT3] = @G_QT3, [G_Other1] = @G_Other1, [G_Other2] = @G_Other2, [NumOfPeople] = @NumOfPeople, [G_ActualBonus] = @G_ActualBonus, [AverageBonus] = @AverageBonus WHERE (([ID] = @Original_ID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@G_BonusDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "G_BonusDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderOfShow", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderOfShow", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3537,7 +3352,7 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT * FROM dbo.Syl_Bonus_Group";
+            this._commandCollection[0].CommandText = "SELECT   Syl_Bonus_Group.*\r\nFROM      Syl_Bonus_Group";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3908,571 +3723,6 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class Syl_Bonus_PersonTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public Syl_Bonus_PersonTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Syl_Bonus_Person";
-            tableMapping.ColumnMappings.Add("ID", "ID");
-            tableMapping.ColumnMappings.Add("P_BonusDate", "P_BonusDate");
-            tableMapping.ColumnMappings.Add("P_GroupName", "P_GroupName");
-            tableMapping.ColumnMappings.Add("WorkerName", "WorkerName");
-            tableMapping.ColumnMappings.Add("IDCard", "IDCard");
-            tableMapping.ColumnMappings.Add("P_Coefficient", "P_Coefficient");
-            tableMapping.ColumnMappings.Add("P_BaseBonus", "P_BaseBonus");
-            tableMapping.ColumnMappings.Add("P_DueBonus", "P_DueBonus");
-            tableMapping.ColumnMappings.Add("P_PlantApp", "P_PlantApp");
-            tableMapping.ColumnMappings.Add("P_DepartmentApp", "P_DepartmentApp");
-            tableMapping.ColumnMappings.Add("P_GroupApp", "P_GroupApp");
-            tableMapping.ColumnMappings.Add("P_Other1", "P_Other1");
-            tableMapping.ColumnMappings.Add("P_Other2", "P_Other2");
-            tableMapping.ColumnMappings.Add("P_Other3", "P_Other3");
-            tableMapping.ColumnMappings.Add("P_Other4", "P_Other4");
-            tableMapping.ColumnMappings.Add("P_Other5", "P_Other5");
-            tableMapping.ColumnMappings.Add("DutyBonus", "DutyBonus");
-            tableMapping.ColumnMappings.Add("P_ActualBonus", "P_ActualBonus");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Syl_Bonus_Person] WHERE (([ID] = @Original_ID))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Syl_Bonus_Person] ([P_BonusDate], [P_GroupName], [WorkerName], [IDCard], [P_Coefficient], [P_BaseBonus], [P_DueBonus], [P_PlantApp], [P_DepartmentApp], [P_GroupApp], [P_Other1], [P_Other2], [P_Other3], [P_Other4], [P_Other5], [DutyBonus], [P_ActualBonus]) VALUES (@P_BonusDate, @P_GroupName, @WorkerName, @IDCard, @P_Coefficient, @P_BaseBonus, @P_DueBonus, @P_PlantApp, @P_DepartmentApp, @P_GroupApp, @P_Other1, @P_Other2, @P_Other3, @P_Other4, @P_Other5, @DutyBonus, @P_ActualBonus)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_BonusDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "P_BonusDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_GroupName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "P_GroupName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WorkerName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WorkerName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDCard", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDCard", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Coefficient", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Coefficient", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_BaseBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 3, "P_BaseBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_DueBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_DueBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_PlantApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_PlantApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_DepartmentApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_DepartmentApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_GroupApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_GroupApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other1", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Other1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other2", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Other2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other3", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Other3", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other4", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Other4", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other5", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 3, "P_Other5", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DutyBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "DutyBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_ActualBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_ActualBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Syl_Bonus_Person] SET [P_BonusDate] = @P_BonusDate, [P_GroupName] = @P_GroupName, [WorkerName] = @WorkerName, [IDCard] = @IDCard, [P_Coefficient] = @P_Coefficient, [P_BaseBonus] = @P_BaseBonus, [P_DueBonus] = @P_DueBonus, [P_PlantApp] = @P_PlantApp, [P_DepartmentApp] = @P_DepartmentApp, [P_GroupApp] = @P_GroupApp, [P_Other1] = @P_Other1, [P_Other2] = @P_Other2, [P_Other3] = @P_Other3, [P_Other4] = @P_Other4, [P_Other5] = @P_Other5, [DutyBonus] = @DutyBonus, [P_ActualBonus] = @P_ActualBonus WHERE (([ID] = @Original_ID))";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_BonusDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "P_BonusDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_GroupName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "P_GroupName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WorkerName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WorkerName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDCard", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDCard", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Coefficient", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Coefficient", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_BaseBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 3, "P_BaseBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_DueBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_DueBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_PlantApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_PlantApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_DepartmentApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_DepartmentApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_GroupApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_GroupApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other1", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Other1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other2", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Other2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other3", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Other3", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other4", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Other4", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Other5", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 3, "P_Other5", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DutyBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "DutyBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_ActualBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_ActualBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["dzswConnectionString"].ConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT* FROM dbo.Syl_Bonus_Person";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(dzswDataSet.Syl_Bonus_PersonDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual dzswDataSet.Syl_Bonus_PersonDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            dzswDataSet.Syl_Bonus_PersonDataTable dataTable = new dzswDataSet.Syl_Bonus_PersonDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dzswDataSet.Syl_Bonus_PersonDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(dzswDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "Syl_Bonus_Person");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(
-                    global::System.Nullable<int> P_BonusDate, 
-                    string P_GroupName, 
-                    string WorkerName, 
-                    string IDCard, 
-                    global::System.Nullable<decimal> P_Coefficient, 
-                    global::System.Nullable<decimal> P_BaseBonus, 
-                    global::System.Nullable<decimal> P_DueBonus, 
-                    global::System.Nullable<decimal> P_PlantApp, 
-                    global::System.Nullable<decimal> P_DepartmentApp, 
-                    global::System.Nullable<decimal> P_GroupApp, 
-                    global::System.Nullable<decimal> P_Other1, 
-                    global::System.Nullable<decimal> P_Other2, 
-                    global::System.Nullable<decimal> P_Other3, 
-                    global::System.Nullable<decimal> P_Other4, 
-                    global::System.Nullable<decimal> P_Other5, 
-                    global::System.Nullable<decimal> DutyBonus, 
-                    global::System.Nullable<decimal> P_ActualBonus) {
-            if ((P_BonusDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(P_BonusDate.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((P_GroupName == null)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(P_GroupName));
-            }
-            if ((WorkerName == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(WorkerName));
-            }
-            if ((IDCard == null)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(IDCard));
-            }
-            if ((P_Coefficient.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(P_Coefficient.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((P_BaseBonus.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(P_BaseBonus.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((P_DueBonus.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(P_DueBonus.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((P_PlantApp.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(P_PlantApp.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            if ((P_DepartmentApp.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((decimal)(P_DepartmentApp.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((P_GroupApp.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(P_GroupApp.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            if ((P_Other1.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((decimal)(P_Other1.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            if ((P_Other2.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((decimal)(P_Other2.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            if ((P_Other3.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((decimal)(P_Other3.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
-            if ((P_Other4.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((decimal)(P_Other4.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            if ((P_Other5.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[14].Value = ((decimal)(P_Other5.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
-            }
-            if ((DutyBonus.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[15].Value = ((decimal)(DutyBonus.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            if ((P_ActualBonus.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[16].Value = ((decimal)(P_ActualBonus.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    global::System.Nullable<int> P_BonusDate, 
-                    string P_GroupName, 
-                    string WorkerName, 
-                    string IDCard, 
-                    global::System.Nullable<decimal> P_Coefficient, 
-                    global::System.Nullable<decimal> P_BaseBonus, 
-                    global::System.Nullable<decimal> P_DueBonus, 
-                    global::System.Nullable<decimal> P_PlantApp, 
-                    global::System.Nullable<decimal> P_DepartmentApp, 
-                    global::System.Nullable<decimal> P_GroupApp, 
-                    global::System.Nullable<decimal> P_Other1, 
-                    global::System.Nullable<decimal> P_Other2, 
-                    global::System.Nullable<decimal> P_Other3, 
-                    global::System.Nullable<decimal> P_Other4, 
-                    global::System.Nullable<decimal> P_Other5, 
-                    global::System.Nullable<decimal> DutyBonus, 
-                    global::System.Nullable<decimal> P_ActualBonus, 
-                    int Original_ID) {
-            if ((P_BonusDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(P_BonusDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((P_GroupName == null)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(P_GroupName));
-            }
-            if ((WorkerName == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(WorkerName));
-            }
-            if ((IDCard == null)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(IDCard));
-            }
-            if ((P_Coefficient.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(P_Coefficient.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((P_BaseBonus.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(P_BaseBonus.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((P_DueBonus.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(P_DueBonus.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((P_PlantApp.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(P_PlantApp.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            if ((P_DepartmentApp.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((decimal)(P_DepartmentApp.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((P_GroupApp.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(P_GroupApp.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            if ((P_Other1.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(P_Other1.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            if ((P_Other2.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((decimal)(P_Other2.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            if ((P_Other3.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((decimal)(P_Other3.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
-            if ((P_Other4.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((decimal)(P_Other4.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            if ((P_Other5.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((decimal)(P_Other5.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
-            }
-            if ((DutyBonus.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((decimal)(DutyBonus.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            if ((P_ActualBonus.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((decimal)(P_ActualBonus.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_ID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class Syl_AppWorkerinfoTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
@@ -4655,9 +3905,7 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, AppID, FS_DateTime, ApplicantName, ApplicantIDCard, AppName, GroupName" +
-                ", AppIDCard, AppLevel, AppKind, AppAmount, AppContent, AppBy, App_State FROM dbo" +
-                ".Syl_AppWorkerinfo";
+            this._commandCollection[0].CommandText = "SELECT * FROM dbo.Syl_AppWorkerinfo";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4937,6 +4185,476 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class Syl_Bonus_PersonTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public Syl_Bonus_PersonTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "Syl_Bonus_Person";
+            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add("P_BonusDate", "P_BonusDate");
+            tableMapping.ColumnMappings.Add("P_GroupName", "P_GroupName");
+            tableMapping.ColumnMappings.Add("WorkerName", "WorkerName");
+            tableMapping.ColumnMappings.Add("IDCard", "IDCard");
+            tableMapping.ColumnMappings.Add("P_Coefficient", "P_Coefficient");
+            tableMapping.ColumnMappings.Add("P_BaseBonus", "P_BaseBonus");
+            tableMapping.ColumnMappings.Add("P_DueBonus", "P_DueBonus");
+            tableMapping.ColumnMappings.Add("P_PlantApp", "P_PlantApp");
+            tableMapping.ColumnMappings.Add("P_DepartmentApp", "P_DepartmentApp");
+            tableMapping.ColumnMappings.Add("P_GroupApp", "P_GroupApp");
+            tableMapping.ColumnMappings.Add("P_ZZGS", "P_ZZGS");
+            tableMapping.ColumnMappings.Add("DutyBonus", "DutyBonus");
+            tableMapping.ColumnMappings.Add("P_ActualBonus", "P_ActualBonus");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Syl_Bonus_Person] WHERE (([ID] = @Original_ID))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Syl_Bonus_Person] ([P_BonusDate], [P_GroupName], [WorkerName], [IDCard], [P_Coefficient], [P_BaseBonus], [P_DueBonus], [P_PlantApp], [P_DepartmentApp], [P_GroupApp], [P_ZZGS], [DutyBonus], [P_ActualBonus]) VALUES (@P_BonusDate, @P_GroupName, @WorkerName, @IDCard, @P_Coefficient, @P_BaseBonus, @P_DueBonus, @P_PlantApp, @P_DepartmentApp, @P_GroupApp, @P_ZZGS, @DutyBonus, @P_ActualBonus)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_BonusDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "P_BonusDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_GroupName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "P_GroupName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WorkerName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WorkerName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDCard", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDCard", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Coefficient", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Coefficient", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_BaseBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 3, "P_BaseBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_DueBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_DueBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_PlantApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_PlantApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_DepartmentApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_DepartmentApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_GroupApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_GroupApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_ZZGS", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_ZZGS", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DutyBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "DutyBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_ActualBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_ActualBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Syl_Bonus_Person] SET [P_BonusDate] = @P_BonusDate, [P_GroupName] = @P_GroupName, [WorkerName] = @WorkerName, [IDCard] = @IDCard, [P_Coefficient] = @P_Coefficient, [P_BaseBonus] = @P_BaseBonus, [P_DueBonus] = @P_DueBonus, [P_PlantApp] = @P_PlantApp, [P_DepartmentApp] = @P_DepartmentApp, [P_GroupApp] = @P_GroupApp, [P_ZZGS] = @P_ZZGS, [DutyBonus] = @DutyBonus, [P_ActualBonus] = @P_ActualBonus WHERE (([ID] = @Original_ID))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_BonusDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "P_BonusDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_GroupName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "P_GroupName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WorkerName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "WorkerName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDCard", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IDCard", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_Coefficient", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_Coefficient", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_BaseBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 3, "P_BaseBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_DueBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_DueBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_PlantApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_PlantApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_DepartmentApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_DepartmentApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_GroupApp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_GroupApp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_ZZGS", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "P_ZZGS", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DutyBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "DutyBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@P_ActualBonus", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "P_ActualBonus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["dzswConnectionString"].ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT   Syl_Bonus_Person.*\r\nFROM      Syl_Bonus_Person";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(dzswDataSet.Syl_Bonus_PersonDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual dzswDataSet.Syl_Bonus_PersonDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            dzswDataSet.Syl_Bonus_PersonDataTable dataTable = new dzswDataSet.Syl_Bonus_PersonDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(dzswDataSet.Syl_Bonus_PersonDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(dzswDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "Syl_Bonus_Person");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_ID) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(global::System.Nullable<int> P_BonusDate, string P_GroupName, string WorkerName, string IDCard, global::System.Nullable<decimal> P_Coefficient, global::System.Nullable<decimal> P_BaseBonus, global::System.Nullable<decimal> P_DueBonus, global::System.Nullable<decimal> P_PlantApp, global::System.Nullable<decimal> P_DepartmentApp, global::System.Nullable<decimal> P_GroupApp, global::System.Nullable<decimal> P_ZZGS, global::System.Nullable<decimal> DutyBonus, global::System.Nullable<decimal> P_ActualBonus) {
+            if ((P_BonusDate.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(P_BonusDate.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((P_GroupName == null)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(P_GroupName));
+            }
+            if ((WorkerName == null)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(WorkerName));
+            }
+            if ((IDCard == null)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(IDCard));
+            }
+            if ((P_Coefficient.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(P_Coefficient.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((P_BaseBonus.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(P_BaseBonus.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((P_DueBonus.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(P_DueBonus.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((P_PlantApp.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(P_PlantApp.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((P_DepartmentApp.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((decimal)(P_DepartmentApp.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((P_GroupApp.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(P_GroupApp.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((P_ZZGS.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((decimal)(P_ZZGS.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((DutyBonus.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((decimal)(DutyBonus.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((P_ActualBonus.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((decimal)(P_ActualBonus.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(global::System.Nullable<int> P_BonusDate, string P_GroupName, string WorkerName, string IDCard, global::System.Nullable<decimal> P_Coefficient, global::System.Nullable<decimal> P_BaseBonus, global::System.Nullable<decimal> P_DueBonus, global::System.Nullable<decimal> P_PlantApp, global::System.Nullable<decimal> P_DepartmentApp, global::System.Nullable<decimal> P_GroupApp, global::System.Nullable<decimal> P_ZZGS, global::System.Nullable<decimal> DutyBonus, global::System.Nullable<decimal> P_ActualBonus, int Original_ID) {
+            if ((P_BonusDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(P_BonusDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((P_GroupName == null)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(P_GroupName));
+            }
+            if ((WorkerName == null)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(WorkerName));
+            }
+            if ((IDCard == null)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(IDCard));
+            }
+            if ((P_Coefficient.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(P_Coefficient.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((P_BaseBonus.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(P_BaseBonus.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((P_DueBonus.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(P_DueBonus.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((P_PlantApp.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(P_PlantApp.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((P_DepartmentApp.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((decimal)(P_DepartmentApp.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((P_GroupApp.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(P_GroupApp.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((P_ZZGS.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(P_ZZGS.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((DutyBonus.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((decimal)(DutyBonus.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((P_ActualBonus.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((decimal)(P_ActualBonus.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_ID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -4950,9 +4668,9 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
         
         private Syl_Bonus_GroupTableAdapter _syl_Bonus_GroupTableAdapter;
         
-        private Syl_Bonus_PersonTableAdapter _syl_Bonus_PersonTableAdapter;
-        
         private Syl_AppWorkerinfoTableAdapter _syl_AppWorkerinfoTableAdapter;
+        
+        private Syl_Bonus_PersonTableAdapter _syl_Bonus_PersonTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -4988,12 +4706,12 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public Syl_Bonus_PersonTableAdapter Syl_Bonus_PersonTableAdapter {
+        public Syl_AppWorkerinfoTableAdapter Syl_AppWorkerinfoTableAdapter {
             get {
-                return this._syl_Bonus_PersonTableAdapter;
+                return this._syl_AppWorkerinfoTableAdapter;
             }
             set {
-                this._syl_Bonus_PersonTableAdapter = value;
+                this._syl_AppWorkerinfoTableAdapter = value;
             }
         }
         
@@ -5002,12 +4720,12 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public Syl_AppWorkerinfoTableAdapter Syl_AppWorkerinfoTableAdapter {
+        public Syl_Bonus_PersonTableAdapter Syl_Bonus_PersonTableAdapter {
             get {
-                return this._syl_AppWorkerinfoTableAdapter;
+                return this._syl_Bonus_PersonTableAdapter;
             }
             set {
-                this._syl_AppWorkerinfoTableAdapter = value;
+                this._syl_Bonus_PersonTableAdapter = value;
             }
         }
         
@@ -5034,13 +4752,13 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
                             && (this._syl_Bonus_GroupTableAdapter.Connection != null))) {
                     return this._syl_Bonus_GroupTableAdapter.Connection;
                 }
-                if (((this._syl_Bonus_PersonTableAdapter != null) 
-                            && (this._syl_Bonus_PersonTableAdapter.Connection != null))) {
-                    return this._syl_Bonus_PersonTableAdapter.Connection;
-                }
                 if (((this._syl_AppWorkerinfoTableAdapter != null) 
                             && (this._syl_AppWorkerinfoTableAdapter.Connection != null))) {
                     return this._syl_AppWorkerinfoTableAdapter.Connection;
+                }
+                if (((this._syl_Bonus_PersonTableAdapter != null) 
+                            && (this._syl_Bonus_PersonTableAdapter.Connection != null))) {
+                    return this._syl_Bonus_PersonTableAdapter.Connection;
                 }
                 return null;
             }
@@ -5058,10 +4776,10 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
                 if ((this._syl_Bonus_GroupTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._syl_Bonus_PersonTableAdapter != null)) {
+                if ((this._syl_AppWorkerinfoTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._syl_AppWorkerinfoTableAdapter != null)) {
+                if ((this._syl_Bonus_PersonTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -5084,21 +4802,21 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._syl_Bonus_PersonTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Syl_Bonus_Person.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._syl_Bonus_PersonTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._syl_AppWorkerinfoTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Syl_AppWorkerinfo.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._syl_AppWorkerinfoTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._syl_Bonus_PersonTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Syl_Bonus_Person.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._syl_Bonus_PersonTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -5120,19 +4838,19 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._syl_Bonus_PersonTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Syl_Bonus_Person.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._syl_Bonus_PersonTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._syl_AppWorkerinfoTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Syl_AppWorkerinfo.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._syl_AppWorkerinfoTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._syl_Bonus_PersonTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Syl_Bonus_Person.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._syl_Bonus_PersonTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -5146,19 +4864,19 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(dzswDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._syl_AppWorkerinfoTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Syl_AppWorkerinfo.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._syl_AppWorkerinfoTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._syl_Bonus_PersonTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Syl_Bonus_Person.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._syl_Bonus_PersonTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._syl_AppWorkerinfoTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Syl_AppWorkerinfo.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._syl_AppWorkerinfoTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -5213,12 +4931,12 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
                         && (this.MatchTableAdapterConnection(this._syl_Bonus_GroupTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
             }
-            if (((this._syl_Bonus_PersonTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._syl_Bonus_PersonTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
-            }
             if (((this._syl_AppWorkerinfoTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._syl_AppWorkerinfoTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
+            }
+            if (((this._syl_Bonus_PersonTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._syl_Bonus_PersonTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("由 TableAdapterManager 管理的所有 TableAdapter 必须使用相同的连接字符串。");
             }
             global::System.Data.IDbConnection workConnection = this.Connection;
@@ -5261,15 +4979,6 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
                         adaptersWithAcceptChangesDuringUpdate.Add(this._syl_Bonus_GroupTableAdapter.Adapter);
                     }
                 }
-                if ((this._syl_Bonus_PersonTableAdapter != null)) {
-                    revertConnections.Add(this._syl_Bonus_PersonTableAdapter, this._syl_Bonus_PersonTableAdapter.Connection);
-                    this._syl_Bonus_PersonTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._syl_Bonus_PersonTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._syl_Bonus_PersonTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._syl_Bonus_PersonTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._syl_Bonus_PersonTableAdapter.Adapter);
-                    }
-                }
                 if ((this._syl_AppWorkerinfoTableAdapter != null)) {
                     revertConnections.Add(this._syl_AppWorkerinfoTableAdapter, this._syl_AppWorkerinfoTableAdapter.Connection);
                     this._syl_AppWorkerinfoTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -5277,6 +4986,15 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
                     if (this._syl_AppWorkerinfoTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._syl_AppWorkerinfoTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._syl_AppWorkerinfoTableAdapter.Adapter);
+                    }
+                }
+                if ((this._syl_Bonus_PersonTableAdapter != null)) {
+                    revertConnections.Add(this._syl_Bonus_PersonTableAdapter, this._syl_Bonus_PersonTableAdapter.Connection);
+                    this._syl_Bonus_PersonTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._syl_Bonus_PersonTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._syl_Bonus_PersonTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._syl_Bonus_PersonTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._syl_Bonus_PersonTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -5341,13 +5059,13 @@ namespace sylzyb_employer_mgr.dzswDataSetTableAdapters {
                     this._syl_Bonus_GroupTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._syl_Bonus_GroupTableAdapter]));
                     this._syl_Bonus_GroupTableAdapter.Transaction = null;
                 }
-                if ((this._syl_Bonus_PersonTableAdapter != null)) {
-                    this._syl_Bonus_PersonTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._syl_Bonus_PersonTableAdapter]));
-                    this._syl_Bonus_PersonTableAdapter.Transaction = null;
-                }
                 if ((this._syl_AppWorkerinfoTableAdapter != null)) {
                     this._syl_AppWorkerinfoTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._syl_AppWorkerinfoTableAdapter]));
                     this._syl_AppWorkerinfoTableAdapter.Transaction = null;
+                }
+                if ((this._syl_Bonus_PersonTableAdapter != null)) {
+                    this._syl_Bonus_PersonTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._syl_Bonus_PersonTableAdapter]));
+                    this._syl_Bonus_PersonTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
