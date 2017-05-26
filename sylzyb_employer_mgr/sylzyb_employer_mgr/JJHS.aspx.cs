@@ -128,7 +128,32 @@ namespace sylzyb_employer_mgr
             }
             
         }
-
+//--------------------------------声明刷新表格方法开始
+        public void Update_GVGroup()//班组奖金表
+        {
+            string sql;//定义sql语句变量。
+            sql = "SELECT * FROM Syl_Bonus_Group WHERE G_BonusDate=" + DDL_V1_Year.SelectedValue.ToString() + DDL_V1_Month.SelectedValue.ToString() + " ORDER BY OrderOfShow";
+            GV_V1_Group.DataSource = bc.GetDataSet(sql, "Syl_Bonus_Group");
+            GV_V1_Group.DataKeyNames = new string[] { "ID" };
+            GV_V1_Group.DataBind();
+        }
+        public void Update_GVPerson()//个人奖金表
+        {
+            string sql;//定义sql语句变量。
+            sql = "SELECT * FROM Syl_Bonus_Person WHERE P_BonusDate=" + DDL_V1_Year.SelectedValue.ToString() + DDL_V1_Month.SelectedValue.ToString() + " AND P_GroupName='" + DDL_V1_Group.SelectedValue.ToString() + "'";
+            GV_V1_Person.DataSource = bc.GetDataSet(sql, "Syl_Bonus_Person");
+            GV_V1_Person.DataKeyNames = new string[] { "ID" };
+            GV_V1_Person.DataBind();
+        }
+        public void Update_GVBase()//基础奖金表
+        {
+            string sql;//定义sql语句变量。
+            sql = "SELECT * FROM Syl_Bonus_Base WHERE BonusDate=" + DDL_V1_Year.SelectedValue.ToString() + DDL_V1_Month.SelectedValue.ToString();
+            GV_V1_Base.DataSource = bc.GetDataSet(sql, "Syl_Bonus_Base");
+            GV_V1_Base.DataKeyNames = new string[] { "ID" };
+            GV_V1_Base.DataBind();
+        }
+//--------------------------------声明刷新表格方法结束
         protected void DDL_V1_Kind_SelectedIndexChanged(object sender, EventArgs e)//更改DDL_V1_Kind中的选项时触发。
         {
             if (DDL_V1_Kind.SelectedValue.ToString() == "个人")//若选择个人则显示班组选择相应控件。
@@ -146,15 +171,12 @@ namespace sylzyb_employer_mgr
 
         protected void Bt_V1_Select_Click(object sender, EventArgs e)//点击查询按钮时触发
         {
-            string sql;//定义sql语句变量。
+            
 
             if (DDL_V1_Kind.SelectedItem.ToString() == "班组")//若选择为班组，根据页面信息刷新GV_V1_Group表的相应信息。
             {
-                sql = "SELECT * FROM Syl_Bonus_Group WHERE G_BonusDate=" + DDL_V1_Year.SelectedValue.ToString() + DDL_V1_Month.SelectedValue.ToString() + " ORDER BY OrderOfShow";
-                GV_V1_Group.DataSource = bc.GetDataSet(sql, "Syl_Bonus_Group");
-                GV_V1_Group.DataKeyNames = new string[] { "ID" };
-                GV_V1_Group.DataBind();
-
+                //刷新班组奖金表
+                Update_GVGroup();
                 //改变显示的表格。
                 GV_V1_Group.Visible = true;
                 GV_V1_Person.Visible = false;
@@ -163,11 +185,8 @@ namespace sylzyb_employer_mgr
             }
             else if (DDL_V1_Kind.SelectedItem.ToString() == "个人")//若选择不是班组，根据页面信息刷新GV_V1_Person表的相应信息。
             {
-                sql = "SELECT * FROM Syl_Bonus_Person WHERE P_BonusDate=" + DDL_V1_Year.SelectedValue.ToString() + DDL_V1_Month.SelectedValue.ToString() + " AND P_GroupName='" + DDL_V1_Group.SelectedValue.ToString() + "'";
-                GV_V1_Person.DataSource = bc.GetDataSet(sql, "Syl_Bonus_Person");
-                GV_V1_Person.DataKeyNames = new string[] { "ID" };
-                GV_V1_Person.DataBind();
-
+                //刷新个人奖金表
+                Update_GVPerson();
                 //改变显示的表格。
                 GV_V1_Person.Visible = true;
                 GV_V1_Group.Visible = false;
@@ -175,11 +194,9 @@ namespace sylzyb_employer_mgr
             }
             else
             {
-                sql = "SELECT * FROM Syl_Bonus_Base WHERE BonusDate=" + DDL_V1_Year.SelectedValue.ToString() + DDL_V1_Month.SelectedValue.ToString();
-                GV_V1_Base.DataSource = bc.GetDataSet(sql, "Syl_Bonus_Base");
-                GV_V1_Base.DataKeyNames = new string[] { "ID" };
-                GV_V1_Base.DataBind();
-
+                //刷新基础奖金表
+                Update_GVBase();
+                //改变显示的表格。
                 GV_V1_Base.Visible = true;
                 GV_V1_Group.Visible = false;
                 GV_V1_Person.Visible = false;
@@ -284,6 +301,65 @@ namespace sylzyb_employer_mgr
         {
             Response.Write("<script language='javascript'>location.href='Login.aspx';</script>");
             Response.End();
+        }
+
+        protected void GV_V1_Group_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            this.GV_V1_Group.EditIndex = e.NewEditIndex;
+            Update_GVGroup();
+        }
+
+        protected void GV_V1_Group_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            this.GV_V1_Group.EditIndex = e.RowIndex;
+            string ID = this.GV_V1_Group.DataKeys[e.RowIndex].Value.ToString();
+            string Sql;
+            string G_Coefficient = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[2].Controls[0]).Text.Trim();
+            Sql = "Update Syl_Bonus_Group Set G_Coefficient=" + G_Coefficient;
+
+            string G_BaseBonus = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[3].Controls[0]).Text.Trim();
+            Sql += ", G_BaseBonus =" + G_BaseBonus;
+
+            string G_DueBonus = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[4].Controls[0]).Text.Trim();
+            Sql += ", G_DueBonus=" + G_DueBonus;
+
+            string G_PlantApp = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[5].Controls[0]).Text.Trim();
+            Sql += ", G_PlantApp=" + G_PlantApp;
+
+            string G_DepartmentApp = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[6].Controls[0]).Text.Trim();
+            Sql += ", G_DepartmentApp=" + G_DepartmentApp; 
+
+            string G_ZZGS = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[7].Controls[0]).Text.Trim();
+            Sql += ", G_ZZGS=" + G_ZZGS;
+
+            string G_QT1 = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[8].Controls[0]).Text.Trim();
+            Sql += ", G_QT1=" + G_QT1;
+
+            string G_QT2 = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[9].Controls[0]).Text.Trim();
+            Sql += ", G_QT2=" + G_QT2;
+
+            string G_QT3 = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[10].Controls[0]).Text.Trim();
+            Sql += ", G_QT3=" + G_QT3;
+
+            string G_ActualBonus = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[11].Controls[0]).Text.Trim();
+            Sql += ", G_ActualBonus=" + G_ActualBonus;
+
+            string AverageBonus = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[12].Controls[0]).Text.Trim();
+            Sql += ", AverageBonus=" + AverageBonus;
+
+            Sql += "Where ID="+ID;
+            if (bc.ExecSQL(Sql))
+            {
+                Response.Write("<script language=javascript> alert('更改数据成功！')</script>");
+                this.GV_V1_Group.EditIndex = -1;
+            }
+            Update_GVGroup();
+        }
+
+        protected void GV_V1_Group_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            this.GV_V1_Group.EditIndex = -1;
+            Update_GVGroup();
         }
 
 //=================================================================================================各页面使用的代码结束

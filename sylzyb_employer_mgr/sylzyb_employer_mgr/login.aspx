@@ -69,7 +69,7 @@
                 <tr>
                     <td class="td_left"></td>
                     <td class="lb_nm_mm">
-                        <asp:Label ID="Label1" runat="server" Text="登陆名："></asp:Label>
+                        <asp:Label ID="Label1" runat="server" Text="登录名："></asp:Label>
                     </td>
                     <td class="tbx_nm_mm">
                         <asp:TextBox ID="tbx_lg_nm" runat="server"></asp:TextBox>

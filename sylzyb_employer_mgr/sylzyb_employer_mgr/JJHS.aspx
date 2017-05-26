@@ -66,7 +66,7 @@
                     &nbsp;&nbsp;<asp:Button ID="Bt_V1_Select" runat="server" Text="查询" Width="75px" OnClick="Bt_V1_Select_Click" />
                 </asp:Panel>
                 <br />
-                <asp:GridView ID="GV_V1_Group" runat="server" AutoGenerateColumns="False" BorderWidth="1px" CellPadding="4" EnableModelValidation="True" ForeColor="#333333" HorizontalAlign="Center">
+                <asp:GridView ID="GV_V1_Group" runat="server" AutoGenerateColumns="False" BorderWidth="1px" CellPadding="4" EnableModelValidation="True" ForeColor="#333333" HorizontalAlign="Center" Font-Size="10pt" OnRowEditing="GV_V1_Group_RowEditing" OnRowUpdating="GV_V1_Group_RowUpdating" OnRowCancelingEdit="GV_V1_Group_RowCancelingEdit">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:BoundField DataField="G_BonusDate" HeaderText="奖金月份" />
@@ -76,8 +76,13 @@
                         <asp:BoundField DataField="G_DueBonus" HeaderText="应得奖金" />
                         <asp:BoundField DataField="G_PlantApp" HeaderText="厂部考核" />
                         <asp:BoundField DataField="G_DepartmentApp" HeaderText="部门考核" />
+                        <asp:BoundField DataField="G_ZZGS" HeaderText="自主改善" />
+                        <asp:BoundField DataField="G_QT1" HeaderText="其它一" />
+                        <asp:BoundField DataField="G_QT2" HeaderText="其它二" />
+                        <asp:BoundField DataField="G_QT3" HeaderText="其它三" />
                         <asp:BoundField DataField="G_ActualBonus" HeaderText="实际奖金" />
                         <asp:BoundField DataField="AverageBonus" HeaderText="平均奖" />
+                        <asp:CommandField ShowEditButton="True" />
                     </Columns>
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -86,7 +91,7 @@
                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                     <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
                 </asp:GridView>
-                <asp:GridView ID="GV_V1_Person" runat="server" AutoGenerateColumns="False" BorderWidth="1px" CellPadding="4" EnableModelValidation="True" Font-Size="11pt" ForeColor="#333333" HorizontalAlign="Center">
+                <asp:GridView ID="GV_V1_Person" runat="server" AutoGenerateColumns="False" BorderWidth="1px" CellPadding="4" EnableModelValidation="True" Font-Size="8pt" ForeColor="#333333" HorizontalAlign="Center">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:BoundField DataField="P_BonusDate" HeaderText="奖金月份" />
@@ -98,9 +103,13 @@
                         <asp:BoundField DataField="P_DepartmentApp" HeaderText="部门考核" />
                         <asp:BoundField DataField="P_GroupApp" HeaderText="班组考核" />
                         <asp:BoundField DataField="P_Other1" HeaderText="全勤奖" />
-                        <asp:BoundField DataField="P_Other2" HeaderText="自主改善" />
+                        <asp:BoundField DataField="P_ZZGS" HeaderText="自主改善" />
+                        <asp:BoundField HeaderText="其它一" DataField="P_QT1" />
+                        <asp:BoundField HeaderText="其它二" DataField="P_QT2" />
+                        <asp:BoundField HeaderText="其它三" DataField="P_QT3" />
                         <asp:BoundField DataField="DutyBonus" HeaderText="管理奖" />
                         <asp:BoundField DataField="P_ActualBonus" HeaderText="实际奖金" />
+                        <asp:CommandField ShowEditButton="True" />
                     </Columns>
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -115,6 +124,7 @@
                         <asp:BoundField DataField="BonusDate" HeaderText="奖金月份" />
                         <asp:BoundField DataField="BonusKind" HeaderText="奖金种类" />
                         <asp:BoundField DataField="BonusMoney" HeaderText="奖金金额" />
+                        <asp:CommandField ShowEditButton="True" />
                     </Columns>
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
