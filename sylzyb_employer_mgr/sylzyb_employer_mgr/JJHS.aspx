@@ -91,7 +91,7 @@
                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                     <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
                 </asp:GridView>
-                <asp:GridView ID="GV_V1_Person" runat="server" AutoGenerateColumns="False" BorderWidth="1px" CellPadding="4" EnableModelValidation="True" Font-Size="8pt" ForeColor="#333333" HorizontalAlign="Center">
+                <asp:GridView ID="GV_V1_Person" runat="server" AutoGenerateColumns="False" BorderWidth="1px" CellPadding="4" EnableModelValidation="True" Font-Size="8pt" ForeColor="#333333" HorizontalAlign="Center" OnRowCancelingEdit="GV_V1_Person_RowCancelingEdit" OnRowEditing="GV_V1_Person_RowEditing" OnRowUpdating="GV_V1_Person_RowUpdating">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:BoundField DataField="P_BonusDate" HeaderText="奖金月份" />
@@ -102,7 +102,6 @@
                         <asp:BoundField DataField="P_PlantApp" HeaderText="厂部考核" />
                         <asp:BoundField DataField="P_DepartmentApp" HeaderText="部门考核" />
                         <asp:BoundField DataField="P_GroupApp" HeaderText="班组考核" />
-                        <asp:BoundField DataField="P_Other1" HeaderText="全勤奖" />
                         <asp:BoundField DataField="P_ZZGS" HeaderText="自主改善" />
                         <asp:BoundField HeaderText="其它一" DataField="P_QT1" />
                         <asp:BoundField HeaderText="其它二" DataField="P_QT2" />
@@ -118,7 +117,7 @@
                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                     <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
                 </asp:GridView>
-                <asp:GridView ID="GV_V1_Base" runat="server" AutoGenerateColumns="False" BorderWidth="1px" CellPadding="4" EnableModelValidation="True" ForeColor="#333333" HorizontalAlign="Center">
+                <asp:GridView ID="GV_V1_Base" runat="server" AutoGenerateColumns="False" BorderWidth="1px" CellPadding="4" EnableModelValidation="True" ForeColor="#333333" HorizontalAlign="Center" OnRowCancelingEdit="GV_V1_Base_RowCancelingEdit" OnRowEditing="GV_V1_Base_RowEditing" OnRowUpdating="GV_V1_Base_RowUpdating">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:BoundField DataField="BonusDate" HeaderText="奖金月份" />

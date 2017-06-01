@@ -203,9 +203,177 @@ namespace sylzyb_employer_mgr
             }
             
         }
+//--------------------------------修改班组奖金表中的内容开始
+        protected void GV_V1_Group_RowEditing(object sender, GridViewEditEventArgs e)//编辑班组奖金表
+        {
+            this.GV_V1_Group.EditIndex = e.NewEditIndex;
+            Update_GVGroup();
+        }
 
+        protected void GV_V1_Group_RowUpdating(object sender, GridViewUpdateEventArgs e)//修改班组奖金表
+        {
+            this.GV_V1_Group.EditIndex = e.RowIndex;
+            string ID = this.GV_V1_Group.DataKeys[e.RowIndex].Value.ToString();
+            string Sql;
+            string G_Coefficient = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[2].Controls[0]).Text.Trim();
+            if (G_Coefficient == "") G_Coefficient = "0";
+            Sql = "Update Syl_Bonus_Group Set G_Coefficient=" + G_Coefficient;
 
-                
+            string G_BaseBonus = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[3].Controls[0]).Text.Trim();
+            if (G_BaseBonus == "") G_BaseBonus = "0";
+            Sql += ", G_BaseBonus =" + G_BaseBonus;
+
+            string G_DueBonus = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[4].Controls[0]).Text.Trim();
+            if (G_DueBonus == "") G_DueBonus = "0";
+            Sql += ", G_DueBonus=" + G_DueBonus;
+
+            string G_PlantApp = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[5].Controls[0]).Text.Trim();
+            if (G_PlantApp == "") G_PlantApp = "0";
+            Sql += ", G_PlantApp=" + G_PlantApp;
+
+            string G_DepartmentApp = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[6].Controls[0]).Text.Trim();
+            if (G_DepartmentApp == "") G_DepartmentApp = "0";
+            Sql += ", G_DepartmentApp=" + G_DepartmentApp;
+
+            string G_ZZGS = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[7].Controls[0]).Text.Trim();
+            if (G_ZZGS == "") G_ZZGS = "0";
+            Sql += ", G_ZZGS=" + G_ZZGS;
+
+            string G_QT1 = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[8].Controls[0]).Text.Trim();
+            if (G_QT1 == "") G_QT1 = "0";
+            Sql += ", G_QT1=" + G_QT1;
+
+            string G_QT2 = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[9].Controls[0]).Text.Trim();
+            if (G_QT2 == "") G_QT2 = "0";
+            Sql += ", G_QT2=" + G_QT2;
+
+            string G_QT3 = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[10].Controls[0]).Text.Trim();
+            if (G_QT3 == "") G_QT3 = "0";
+            Sql += ", G_QT3=" + G_QT3;
+
+            string G_ActualBonus = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[11].Controls[0]).Text.Trim();
+            if (G_ActualBonus == "") G_ActualBonus = "0";
+            Sql += ", G_ActualBonus=" + G_ActualBonus;
+
+            string AverageBonus = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[12].Controls[0]).Text.Trim();
+            if (AverageBonus == "") AverageBonus = "0";
+            Sql += ", AverageBonus=" + AverageBonus;
+
+            Sql += " Where ID=" + ID;
+            if (bc.ExecSQL(Sql))//执行Sql语句，并判断执行结果。
+            {
+                Response.Write("<script language=javascript> alert('更改数据成功！')</script>");
+                this.GV_V1_Group.EditIndex = -1;
+            }
+            Update_GVGroup();
+        }
+
+        protected void GV_V1_Group_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)//取消编辑班组奖金表
+        {
+            this.GV_V1_Group.EditIndex = -1;
+            Update_GVGroup();
+        }
+//--------------------------------修改班组奖金表中的内容结束
+
+//--------------------------------修改个人奖金表中的内容开始
+        protected void GV_V1_Person_RowEditing(object sender, GridViewEditEventArgs e)//编辑个人奖金表
+        {
+            this.GV_V1_Person.EditIndex = e.NewEditIndex;
+            Update_GVPerson();
+        }
+
+        protected void GV_V1_Person_RowUpdating(object sender, GridViewUpdateEventArgs e)//修改个人奖金表的内容
+        {
+            this.GV_V1_Person.EditIndex = e.RowIndex;
+            string ID = this.GV_V1_Person.DataKeys[e.RowIndex].Value.ToString();
+            string Sql;
+            string P_Coefficient = ((TextBox)this.GV_V1_Person.Rows[e.RowIndex].Cells[2].Controls[0]).Text.Trim();
+            if (P_Coefficient == "") P_Coefficient = "0";
+            Sql = "Update Syl_Bonus_Person Set P_Coefficient=" + P_Coefficient;
+
+            string P_BaseBonus = ((TextBox)this.GV_V1_Person.Rows[e.RowIndex].Cells[3].Controls[0]).Text.Trim();
+            if (P_BaseBonus == "") P_BaseBonus = "0";
+            Sql += ", P_BaseBonus=" + P_BaseBonus;
+
+            string P_DueBonus = ((TextBox)this.GV_V1_Person.Rows[e.RowIndex].Cells[4].Controls[0]).Text.Trim();
+            if (P_DueBonus == "") P_DueBonus = "0";
+            Sql += ", P_DueBonus=" + P_DueBonus;
+
+            string P_PlantApp = ((TextBox)this.GV_V1_Person.Rows[e.RowIndex].Cells[5].Controls[0]).Text.Trim();
+            if (P_PlantApp == "") P_PlantApp = "0";
+            Sql += ", P_PlantApp=" + P_PlantApp;
+
+            string P_GroupApp = ((TextBox)this.GV_V1_Person.Rows[e.RowIndex].Cells[6].Controls[0]).Text.Trim();
+            if (P_GroupApp == "") P_GroupApp = "0";
+            Sql += ", P_GroupApp=" + P_GroupApp;
+
+            string P_ZZGS = ((TextBox)this.GV_V1_Person.Rows[e.RowIndex].Cells[7].Controls[0]).Text.Trim();
+            if (P_ZZGS == "") P_ZZGS = "0";
+            Sql += ", P_ZZGS=" + P_ZZGS;
+
+            string P_QT1 = ((TextBox)this.GV_V1_Person.Rows[e.RowIndex].Cells[8].Controls[0]).Text.Trim();
+            if (P_QT1 == "") P_QT1 = "0";
+            Sql += ", P_QT1=" + P_QT1;
+
+            string P_QT2 = ((TextBox)this.GV_V1_Person.Rows[e.RowIndex].Cells[9].Controls[0]).Text.Trim();
+            if (P_QT2 == "") P_QT2 = "0";
+            Sql += ", P_QT2=" + P_QT2;
+
+            string P_QT3 = ((TextBox)this.GV_V1_Person.Rows[e.RowIndex].Cells[10].Controls[0]).Text.Trim();
+            if (P_QT3 == "") P_QT3 = "0";
+            Sql += ", P_QT3=" + P_QT3;
+
+            string DutyBonus = ((TextBox)this.GV_V1_Person.Rows[e.RowIndex].Cells[11].Controls[0]).Text.Trim();
+            if (DutyBonus == "") DutyBonus = "0";
+            Sql += ", DutyBonus=" + DutyBonus;
+
+            string P_ActualBonus = ((TextBox)this.GV_V1_Person.Rows[e.RowIndex].Cells[12].Controls[0]).Text.Trim();
+            if (P_ActualBonus == "") P_ActualBonus = "0";
+            Sql += ", P_ActualBonus=" + P_ActualBonus;
+
+            Sql += " Where ID=" + ID;
+            if (bc.ExecSQL(Sql))
+            {
+                Response.Write("<script language=javascript> alert('更改数据成功！')</script>");
+                this.GV_V1_Person.EditIndex = -1;
+            }
+            Update_GVPerson();
+        }
+        protected void GV_V1_Person_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)//取消编辑个人奖金表中的内容
+        {
+            this.GV_V1_Person.EditIndex = -1;
+            Update_GVPerson();
+        }
+
+//--------------------------------修改个人奖金表中的内容结束
+//--------------------------------修改基础奖金表中的内容开始
+        protected void GV_V1_Base_RowEditing(object sender, GridViewEditEventArgs e)//编辑基础奖金表
+        {
+            this.GV_V1_Base.EditIndex = e.NewEditIndex;
+            Update_GVBase();
+        }
+        protected void GV_V1_Base_RowUpdating(object sender, GridViewUpdateEventArgs e)//修改基础奖金表中的内容
+        {
+            this.GV_V1_Base.EditIndex = e.RowIndex;
+            string ID = this.GV_V1_Base.DataKeys[e.RowIndex].Value.ToString();
+            string Sql;
+            string BonusMoney = ((TextBox)this.GV_V1_Base.Rows[e.RowIndex].Cells[2].Controls[0]).Text.Trim();
+            if (BonusMoney == "") BonusMoney = "0";
+            Sql = "Update Syl_Bonus_Base Set BonusMoney=" + BonusMoney;
+            Sql += " Where ID=" + ID;
+            if (bc.ExecSQL(Sql))
+            {
+                Response.Write("<script language=javascript> alert('更改数据成功！')</script>");
+                this.GV_V1_Base.EditIndex = -1;
+            }
+            Update_GVBase();
+        }
+        protected void GV_V1_Base_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)//取消修改基础奖金表
+        {
+            this.GV_V1_Base.EditIndex = -1;
+            Update_GVBase();
+        }
+//--------------------------------修改基础奖金表中的内容结束
 //-------------------------------------------------------------------奖金查询页面中的代码结束
 
 //-------------------------------------------------------------------奖金录入页面中的代码开始
@@ -303,64 +471,16 @@ namespace sylzyb_employer_mgr
             Response.End();
         }
 
-        protected void GV_V1_Group_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            this.GV_V1_Group.EditIndex = e.NewEditIndex;
-            Update_GVGroup();
-        }
 
-        protected void GV_V1_Group_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            this.GV_V1_Group.EditIndex = e.RowIndex;
-            string ID = this.GV_V1_Group.DataKeys[e.RowIndex].Value.ToString();
-            string Sql;
-            string G_Coefficient = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[2].Controls[0]).Text.Trim();
-            Sql = "Update Syl_Bonus_Group Set G_Coefficient=" + G_Coefficient;
 
-            string G_BaseBonus = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[3].Controls[0]).Text.Trim();
-            Sql += ", G_BaseBonus =" + G_BaseBonus;
 
-            string G_DueBonus = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[4].Controls[0]).Text.Trim();
-            Sql += ", G_DueBonus=" + G_DueBonus;
 
-            string G_PlantApp = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[5].Controls[0]).Text.Trim();
-            Sql += ", G_PlantApp=" + G_PlantApp;
 
-            string G_DepartmentApp = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[6].Controls[0]).Text.Trim();
-            Sql += ", G_DepartmentApp=" + G_DepartmentApp; 
 
-            string G_ZZGS = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[7].Controls[0]).Text.Trim();
-            Sql += ", G_ZZGS=" + G_ZZGS;
 
-            string G_QT1 = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[8].Controls[0]).Text.Trim();
-            Sql += ", G_QT1=" + G_QT1;
 
-            string G_QT2 = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[9].Controls[0]).Text.Trim();
-            Sql += ", G_QT2=" + G_QT2;
 
-            string G_QT3 = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[10].Controls[0]).Text.Trim();
-            Sql += ", G_QT3=" + G_QT3;
 
-            string G_ActualBonus = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[11].Controls[0]).Text.Trim();
-            Sql += ", G_ActualBonus=" + G_ActualBonus;
-
-            string AverageBonus = ((TextBox)this.GV_V1_Group.Rows[e.RowIndex].Cells[12].Controls[0]).Text.Trim();
-            Sql += ", AverageBonus=" + AverageBonus;
-
-            Sql += "Where ID="+ID;
-            if (bc.ExecSQL(Sql))
-            {
-                Response.Write("<script language=javascript> alert('更改数据成功！')</script>");
-                this.GV_V1_Group.EditIndex = -1;
-            }
-            Update_GVGroup();
-        }
-
-        protected void GV_V1_Group_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            this.GV_V1_Group.EditIndex = -1;
-            Update_GVGroup();
-        }
 
 //=================================================================================================各页面使用的代码结束
     }
