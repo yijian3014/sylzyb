@@ -445,43 +445,48 @@
                 </tr>
             </table>
 
-            <table>
+            <table class="sty_qckh_dv_tb1">
                 <tr>
                     <td>
-                        <asp:GridView ID="gv_App_gailan" runat="server" HorizontalAlign="Center" Width="100%" Height="200px" OnSelectedIndexChanged="gv_App_gailan_SelectedIndexChanged" OnRowDataBound="gv_App_gailan_RowDataBound" AutoGenerateColumns="False" EnableModelValidation="True" Font-Size="Small">
+                        <div style="width:980px;height:400px;overflow:auto;">
+                        <asp:GridView ID="gv_App_gailan" runat="server" HorizontalAlign="Center" Width="960px" Height="200px" OnSelectedIndexChanged="gv_App_gailan_SelectedIndexChanged" OnRowDataBound="gv_App_gailan_RowDataBound" AutoGenerateColumns="False" EnableModelValidation="True" Font-Size="Small">
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False" />
                                 <asp:BoundField DataField="AppID" HeaderText="编号" />
                                 <asp:BoundField DataField="Flow_State" HeaderText="流转状态" />
-                                <asp:BoundField DataField="ApplicantName" HeaderText="提出人姓名" />
-                                <asp:BoundField DataField="ApplicantIDCard" HeaderText="提出人身份证号" />
-                                <asp:BoundField DataField="Applevel" HeaderText="级别" />
-                                <asp:BoundField DataField="AppKind" HeaderText="类型" />
+                                <asp:BoundField DataField="ApplicantName" HeaderText="提出人" />
+                                <asp:BoundField DataField="ApplicantIDCard" HeaderText="提出人身份证号" Visible="False"/>
+                                <asp:BoundField DataField="Applevel" HeaderText="级别" Visible="False"/>
+                                <asp:BoundField DataField="AppKind" HeaderText="类型" Visible="False" />
                                 <asp:BoundField DataField="AppAmount" HeaderText="金额" />
-                                <asp:BoundField DataField="TC_DateTime" HeaderText="提出时间" />
-                                <asp:BoundField DataField="FS_DateTime" HeaderText="事件发生时间" />
-                                <asp:BoundField DataField="AppGroup" HeaderText="被考核人所在班组" />
-                                <asp:BoundField DataField="AppNames" HeaderText="被考核对象" />
-                                <asp:BoundField DataField="AppContent" HeaderText="考核内容" />
-                                <asp:BoundField DataField="AppBy" HeaderText="考核依据" />
+                                <asp:BoundField DataField="TC_DateTime" HeaderText="提出时间" Visible="False"/>
+                                <asp:BoundField DataField="FS_DateTime" HeaderText="发生时间" />
+                                <asp:BoundField DataField="AppGroup" HeaderText="班组" />
+                                <asp:BoundField DataField="AppNames" HeaderText="人员" Visible="False"/>
+                                <asp:BoundField DataField="AppContent" HeaderText="考核内容" >                            
+                                </asp:BoundField>
+                                <asp:BoundField DataField="AppBy" HeaderText="考核依据" >
+                                </asp:BoundField>
 
                                 <%--一级审批--%>
-                                <asp:BoundField DataField="step_1_Oponion" HeaderText="意见汇总（组长）" />
-                                <asp:BoundField DataField="step_1_Comment" HeaderText="评论汇总（组长）" Visible="False" />
+                                <asp:BoundField DataField="step_1_Oponion" HeaderText="组长意见" />
+                                <asp:BoundField DataField="step_1_Comment" HeaderText="组长评论" Visible="False" />
                                 <%--二级审批--%>
-                                <asp:BoundField DataField="step_2_Oponion" HeaderText="意见汇总（工程师）" />
-                                <asp:BoundField DataField="step_2_Comment" HeaderText="批评论汇总（工程师）" Visible="False" />
+                                <asp:BoundField DataField="step_2_Oponion" HeaderText="工程师意见" />
+                                <asp:BoundField DataField="step_2_Comment" HeaderText="工程师评论" Visible="False" />
                                 <%--三级审批--%>
-                                <asp:BoundField DataField="step_3_Oponion" HeaderText="意见汇总（区域主管）" />
-                                <asp:BoundField DataField="step_3_Comment" HeaderText="评论汇总（区域主管）" Visible="False" />
+                                <asp:BoundField DataField="step_3_Oponion" HeaderText="区域主管意见" />
+                                <asp:BoundField DataField="step_3_Comment" HeaderText="区域主管评论" Visible="False" />
                                 <%--四级审批--%>
-                                <asp:BoundField DataField="step_4_Oponion" HeaderText="意见汇总（书记）" />
-                                <asp:BoundField DataField="step_4_Comment" HeaderText="评论汇总（书记）" Visible="False" />
+                                <asp:BoundField DataField="step_4_Oponion" HeaderText="书记意见" />
+                                <asp:BoundField DataField="step_4_Comment" HeaderText="书记评论" Visible="False" />
                                 <%--五级审批--%>
-                                <asp:BoundField DataField="step_5_Oponion" HeaderText="意见汇总（部长）" />
-                                <asp:BoundField DataField="step_5_Comment" HeaderText="评论汇总（部长）" Visible="False" />
+                                <asp:BoundField DataField="step_5_Oponion" HeaderText="部长意见" />
+                                <asp:BoundField DataField="step_5_Comment" HeaderText="部长评论" Visible="False" />
                             </Columns>
+                            <RowStyle Wrap="True" />
                         </asp:GridView>
+                            </div>
                     </td>
                 </tr>
             </table>

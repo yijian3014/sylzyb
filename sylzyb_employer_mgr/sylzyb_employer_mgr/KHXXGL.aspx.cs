@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace sylzyb_employer_mgr
 {
@@ -54,8 +55,10 @@ namespace sylzyb_employer_mgr
                 }
                 else
                 {
-                    tbx_ed_time.Text = DateTime.Now.ToString();
-                    tbx_bg_time.Text = DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-01";
+                  
+                    tbx_bg_time.Text = DateTime.Now.ToString().Substring(0,8)+ "01";
+                    tbx_ed_time.Text = DateTime.Now.Date.ToString().Substring(0,10);
+                    
 
 
                     login_user.Text = System.Web.HttpContext.Current.Session["RealName"].ToString();
@@ -197,14 +200,14 @@ namespace sylzyb_employer_mgr
                 lb_khxd_AppraiseID.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text;
                 lb_khxd_Flow_State.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[2].Text;
                 lb_khxd_ApplicantName.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[3].Text;
-                lb_khxd_ApplicantIDCard.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[4].Text;
-                lb_khxd_Applevel.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[5].Text;
-                lb_khxd_AppKind.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[6].Text;
+                lb_khxd_ApplicantIDCard.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][4].ToString();
+                lb_khxd_Applevel.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][5].ToString();
+                lb_khxd_AppKind.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][6].ToString();
                 lb_khxd_AppAmount.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[7].Text;
-                lb_khxd_TC_DateTime.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[8].Text;
+                lb_khxd_TC_DateTime.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][8].ToString();
                 lb_khxd_FS_DateTime.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[9].Text;
                 lb_khxd_AppGroup.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[10].Text;
-                lb_khxd_AppNames.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[11].Text;
+                lb_khxd_AppNames.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][11].ToString();
                 lb_khxd_AppContent.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][12].ToString();
                 tbx_khxd_AppBy.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][13].ToString();
                 lb_khxd_step_1_Oponion.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][14].ToString();
@@ -1091,7 +1094,7 @@ namespace sylzyb_employer_mgr
             {
                 if (gv_App_gailan.SelectedIndex == -1)
                     throw new Exception("你没有选择待办项，或待办项为空");
-                if (Convert.ToInt32(Session["UserLevel"].ToString()) != 7 || gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[4].Text.Trim() != Session["IDCard"].ToString().Trim())
+                if (Convert.ToInt32(Session["UserLevel"].ToString()) != 7 || ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][4].ToString() != Session["IDCard"].ToString().Trim())
                     throw new Exception("如果你不是管理员或起草人本人，则不具备修改该考核的权限！");
                 if (gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[2].Text.Trim() != Session["UserLevelName"].ToString().Trim())
                     throw new Exception("该流程还未流转到你的角色，数据错误请联系管理员");
