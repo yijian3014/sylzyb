@@ -469,14 +469,14 @@
                                 </asp:BoundField>
 
                                 <%--一级审批--%>
-                                <asp:BoundField DataField="step_1_Oponion" HeaderText="组长意见" />
-                                <asp:BoundField DataField="step_1_Comment" HeaderText="组长评论" Visible="False" />
+                                <asp:BoundField DataField="step_1_Oponion" HeaderText="点检意见" />
+                                <asp:BoundField DataField="step_1_Comment" HeaderText="点检评论" Visible="False" />
                                 <%--二级审批--%>
-                                <asp:BoundField DataField="step_2_Oponion" HeaderText="工程师意见" />
-                                <asp:BoundField DataField="step_2_Comment" HeaderText="工程师评论" Visible="False" />
+                                <asp:BoundField DataField="step_2_Oponion" HeaderText="白班段长或工程师意见" />
+                                <asp:BoundField DataField="step_2_Comment" HeaderText="白班段长或工程师评论" Visible="False" />
                                 <%--三级审批--%>
-                                <asp:BoundField DataField="step_3_Oponion" HeaderText="区域主管意见" />
-                                <asp:BoundField DataField="step_3_Comment" HeaderText="区域主管评论" Visible="False" />
+                                <asp:BoundField DataField="step_3_Oponion" HeaderText="主管领导意见" />
+                                <asp:BoundField DataField="step_3_Comment" HeaderText="主管领导评论" Visible="False" />
                                 <%--四级审批--%>
                                 <asp:BoundField DataField="step_4_Oponion" HeaderText="书记意见" />
                                 <asp:BoundField DataField="step_4_Comment" HeaderText="书记评论" Visible="False" />
@@ -618,7 +618,7 @@
                 </tr>
                 <tr>
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label39" runat="server" Text="组长意见:"></asp:Label>
+                        <asp:Label ID="Label39" runat="server" Text="点检意见:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb2_tr_td_value">
                         <asp:Label ID="lb_khxd_step_1_Oponion" runat="server" Text="空"></asp:Label>
@@ -626,7 +626,7 @@
                 </tr>
                 <tr>
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label14" runat="server" Text="组长评论:"></asp:Label>
+                        <asp:Label ID="Label14" runat="server" Text="点检评论:"></asp:Label>
                     </td>
 
                     <td class="sty_khxd_dv_tb_tr_td_value">
@@ -637,7 +637,7 @@
 
                 <tr>
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label53" runat="server" Text="工程师意见:"></asp:Label>
+                        <asp:Label ID="Label53" runat="server" Text="白班段长或工程师审批意见:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_value">
                         <asp:Label ID="lb_khxd_step_2_Oponion" runat="server" Text="空"></asp:Label>
@@ -645,7 +645,7 @@
                 </tr>
                 <tr>
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label35" runat="server" Text="工程师评论:"></asp:Label>
+                        <asp:Label ID="Label35" runat="server" Text="白班段长或工程师评论:"></asp:Label>
                     </td>
 
                     <td class="sty_khxd_dv_tb_tr_td_value">
@@ -656,7 +656,7 @@
 
                 <tr>
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label16" runat="server" Text="区域主管意见:"></asp:Label>
+                        <asp:Label ID="Label16" runat="server" Text="主管领导意见:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_value">
                         <asp:Label ID="lb_khxd_step_3_Oponion" runat="server" Text="空"></asp:Label>
@@ -666,7 +666,7 @@
                 <tr>
 
                     <td class="sty_khxd_dv_tb2_tr_td_name">
-                        <asp:Label ID="Label17" runat="server" Text="区域主管评论:"></asp:Label>
+                        <asp:Label ID="Label17" runat="server" Text="主管领导评论:"></asp:Label>
                     </td>
 
                     <td class="sty_khxd_dv_tb_tr_td_value">
@@ -676,7 +676,7 @@
 
 
                 <tr>
-                    <td class="sty_khxd_dv_tb2_tr_td_name">
+                    <td class="sty_khxd_dv_tb_tr_td_name">
                         <asp:Label ID="Label18" runat="server" Text="书记意见:"></asp:Label>
                     </td>
                     <td class="sty_khxd_dv_tb_tr_td_value">

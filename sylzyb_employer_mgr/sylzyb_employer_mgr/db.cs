@@ -132,8 +132,21 @@ public class db
     {
         string dt = DateTime.Now.ToString("yyyyMMddHH");
 
-
-
         return dt;
+    }
+    public string get_userlevelname(int userlevel)
+    {
+        string str_name = "";
+       
+        open();
+        SqlCommand cmd = new SqlCommand("select top 1 UserLevelName from [dzsw].[dbo].[Syl_UserInfo] where userlevel="+ userlevel, db_con);
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandType = CommandType.Text;
+        str_name = cmd.ExecuteScalar().ToString();
+        close();
+        if (str_name !="")
+            return str_name;
+        else
+        return "";
     }
 }

@@ -68,6 +68,8 @@
     <Content Include="rpt_jiangjin.aspx" />
     <Content Include="rpt_khlc.aspx" />
     <Content Include="rpt_khzj.aspx" />
+    <Content Include="suspend.aspx" />
+    <Content Include="update.jpg" />
     <Content Include="USERINFO.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -149,6 +151,13 @@
     </Compile>
     <Compile Include="rpt_khzj.aspx.designer.cs">
       <DependentUpon>rpt_khzj.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="suspend.aspx.cs">
+      <DependentUpon>suspend.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="suspend.aspx.designer.cs">
+      <DependentUpon>suspend.aspx</DependentUpon>
     </Compile>
     <Compile Include="USERINFO.aspx.cs">
       <DependentUpon>USERINFO.aspx</DependentUpon>
