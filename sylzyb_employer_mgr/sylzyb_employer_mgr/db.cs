@@ -27,9 +27,14 @@ public class db
         db_con.Close();
     }
 
+    /// <summary>
+    /// 执行一个STRING类型的标准SQL语句，返回执行成工与否的BOOL值。一般执行对表的增删改操作
+    /// </summary>
+    /// <param name="sql">标准SQL语句，需在数据库对对应的表做过测试，并保证期结果状态稳定</param>
+    /// <returns>BOOL值，通过executenonquery返回值判断执行成功与否</returns>
     public bool execsql(string sql)
     {
-        //执行一个增删改操作
+        
         int i = 0;
         open();
         SqlCommand sql_cmd = new SqlCommand(sql, db_con);
@@ -40,9 +45,14 @@ public class db
         else
             return false;
     }
+    /// <summary>
+    /// 返回指定表的SELECT结果集
+    /// </summary>
+    /// <param name="sql">标准SQL的SELECT查询语句</param>
+    /// <returns>返回SELECT的结果集</returns>
     public DataSet build_dataset(string sql)
     {
-        //返回一个数据集
+       
         open();
         SqlDataAdapter rs = new SqlDataAdapter(sql, db_con);
         DataSet ds = new DataSet();
@@ -61,6 +71,14 @@ public class db
         
         return dr;
     }
+
+    /// <summary>
+    /// 判断符合条件的记录是否存在返回BOOL值
+    /// </summary>
+    /// <param name="tablename">数据库内的完整表名</param>
+    /// <param name="key">查询的字段，不能是包含多个字段的字符串</param>
+    /// <param name="value">查询的值，不能是包含多个值的字符串</param>
+    /// <returns>返回是否存在的判定</returns>
     public bool IsRecordExist(string tablename,string key,string value)
     {
         //拼接KEY,VALUE到SQL SELECT语名句中，通过返回值判定表内是否存在记录
@@ -77,6 +95,12 @@ public class db
             return false;
        
     }
+    /// <summary>
+    /// 判断符合条件的记录是否存在返回BOOL值
+    /// </summary>
+    /// <param name="tablename">数据库内的完整表名</param>
+    /// <param name="where">查询条件</param>
+    /// <returns>返回是否存在的判定</returns>
     public bool IsRecordExist(string tablename,string where)
     {
         //拼接KEY,VALUE到SQL SELECT语名句中，通过返回值判定表内是否存在记录
@@ -93,6 +117,13 @@ public class db
             return false;
 
     }
+    /// <summary>
+    /// 通过指定表、指定字段、指定条件、返回结果的第一条记录的值
+    /// </summary>
+    /// <param name="field"></param>
+    /// <param name="table"></param>
+    /// <param name="where"></param>
+    /// <returns></returns>
     public string get_values(string field, string table, string where)
     {
         string tmp_str = "";
@@ -111,7 +142,12 @@ public class db
         }
         else return "";
     }
-   
+   /// <summary>
+   /// 返回指定字段的最大值（MAX()函数处理结果）
+   /// </summary>
+   /// <param name="field"></param>
+   /// <param name="table"></param>
+   /// <returns></returns>
     public int max_id(string field,string table)
     {
         //返回最大ID最大值

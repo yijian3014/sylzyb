@@ -69,7 +69,7 @@ namespace sylzyb_employer_mgr
                     btn_qzxg.Enabled = ck_opt.item("强制修改", 1);
                     btn_qzzj.Enabled = ck_opt.item("强制转交", 1);
                     btn_qzsx.Enabled = ck_opt.item("强制生效", 1);
-                    btn_qckh.Enabled = ck_opt.item("起草考核", 1);
+                    btn_qckh.Enabled = ck_opt.item("考核-提出考核", 1);
                     btn_sckh.Visible = false;
                     btn_khgd.Visible = false;
                     btn_xgkh.Visible = false;
@@ -79,7 +79,6 @@ namespace sylzyb_employer_mgr
                     btn_qzzj.Visible = true;
                     btn_qzxg.Visible = true;
                     btn_qzsc.Visible = true;
-
                     UI_disp_code = 0;
                 }
 
@@ -138,8 +137,9 @@ namespace sylzyb_employer_mgr
                         break;
                     }
             }
-            if((Control)sender!=null)
-            Page.SetFocus((Control)sender);
+            if ((Control)sender != null)
+                Page.SetFocus((Control)sender);
+       
 
 
         }
@@ -220,9 +220,11 @@ namespace sylzyb_employer_mgr
                 tbx_khxd_step_4_Comment.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][21].ToString();
                 lb_khxd_step_5_Oponion.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][22].ToString();
                 tbx_khxd_step_5_Comment.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][23].ToString();
-               
-               
-    }
+
+                tbx_khgl_info.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][25].ToString();
+
+
+            }
             ds_appWorker = khgl_select.select_appworkerinfo(Convert.ToInt32(gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text), tbx_bg_time.Text, tbx_ed_time.Text);
             gv_detail_appworker.DataSource = ds_appWorker;
             gv_detail_appworker.DataBind();
@@ -370,7 +372,7 @@ namespace sylzyb_employer_mgr
             {
                 TimeSpan midTime = DateTime.Parse(tbx_ed_time.Text) - DateTime.Parse(tbx_bg_time.Text);
 
-                if (midTime.Days > 0)
+                if (midTime.Days >= 0)
                     rbl_gailan_cx_SelectedIndexChanged(null, new EventArgs());
                 else { tbx_bg_time.Text = "开发始日期不能大于结束日期"; tbx_bg_time.ForeColor = System.Drawing.Color.Red; }
             }
@@ -463,7 +465,9 @@ namespace sylzyb_employer_mgr
                 Page_Load(sender, e);
                 rbl_gailan_cx_SelectedIndexChanged(null, new EventArgs());
 
-
+                //清除审批状态中的强制项
+                if (ddl_shenpi_zt.Items.Count == 3)
+                    ddl_shenpi_zt.Items.RemoveAt(2);
 
             }
             catch (Exception err)
@@ -615,6 +619,14 @@ namespace sylzyb_employer_mgr
                             old_shenpi_msg = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][25].ToString();
                             break;
                         }
+                    //0管理员
+                    case "管理员":
+                        {
+                            opt_fields = "[Admin_Opt],[Admin_Opt_Comment] ";
+                            //old_shenpi_msg是字段Admin_Opt_Comment的信息
+                            old_shenpi_msg = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][25].ToString();
+                            break;
+                        }
                         //9其它 没有审批权
                         //case "其它":
                         //    {
@@ -633,10 +645,45 @@ namespace sylzyb_employer_mgr
 
                 }
 
+                //使用使用管理员强制特权时，设置未办理用户的状态，包括会签相关
+                if (ddl_shenpi_zt.SelectedIndex.ToString() == "2")
+                {
+                    //---获取转交对象的第一个人名， cbl_shenpi_next_persion.Items[0].Text.Trim()，为保证准确，下面是暂用代码-----------
+                    int j = 0;
+                    for (int i = 0; i < cbl_shenpi_next_persion.Items.Count; i++)
+                        if (cbl_shenpi_next_persion.Items[i].Selected)
+                            j = i;
+                    //------------------------------------------------------------------------------------------
+                    khgl_shenpi.Update_AppraiseInfo(Convert.ToInt32(lb_khxd_AppraiseID.Text), "[Flow_State]," +opt_fields,
+                    rbl_shenpi_step.SelectedItem.Text + "," + ddl_shenpi_zt.SelectedItem.Text + "," 
+                    + old_shenpi_msg + khgl_shenpi.convert_str(tbx_shenpi_yj.Text+"至"+ rbl_shenpi_step.SelectedItem.Text
+                    + cbl_shenpi_next_persion.Items[j].Text.Trim()+"办理 但 "+khgl_shenpi.convert_str(lb_shenpi_wei_huiqianren.Text,Session["RealName"].ToString(),0) + "未参与审批", Session["RealName"].ToString(), 3));
 
+                    khgl_shenpi.Update_AppRun(Convert.ToInt32(lb_khxd_AppraiseID.Text),
+                        lb_khxd_Flow_State.Text,
+                         Session["IDCard"].ToString(), "[App_Comment],[Oponion_State],[Oponion_DateTime]",
+                         khgl_shenpi.convert_str("该人员未参与评审 考核被强制流转", Session["RealName"].ToString(), 3)
+                         + ",(强制)" + rbl_shenpi_nextORprevious.SelectedItem.Text + ",getdate()", true);
 
-                    if (lb_shenpi_shenpimoshi.Text.Trim() == "独立" || lb_shenpi_shenpimoshi.Text.Trim() == "会签" && (lb_shenpi_wei_huiqianren.Text == "空"
-                || (lb_shenpi_wei_huiqianren.Text != "空" && cb_shenpi_qzzj.Checked == true)))
+                    //下面向库中插入下一步经办人
+                    for (int i = 0; i < cbl_shenpi_next_persion.Items.Count; i++)
+                    {
+                        if (cbl_shenpi_next_persion.Items[i].Selected == true)
+                            khgl_shenpi.insert_AppRun(Convert.ToInt32(lb_khxd_AppraiseID.Text), "[Flow_State],[ApproveName],[ApproveIDCard],[Oponion_State]"
+                                , rbl_shenpi_step.SelectedItem.Text + "," + cbl_shenpi_next_persion.Items[i].Text.Trim() + "," + cbl_shenpi_next_persion.Items[i].Value.Trim() + ",待办理");
+                    }
+                    UI_disp_code = 0;
+
+                }
+                else
+                { 
+                   //非管理员强制进的处理
+                if (lb_shenpi_shenpimoshi.Text.Trim() == "独立" 
+                    || lb_shenpi_shenpimoshi.Text.Trim() == "会签" 
+                    && (lb_shenpi_wei_huiqianren.Text == "空"
+                    || (lb_shenpi_wei_huiqianren.Text != "空" && cb_shenpi_qzzj.Checked == true)
+                    )
+                    )
                 {
 
 
@@ -654,8 +701,9 @@ namespace sylzyb_employer_mgr
                     if (cbl_shenpi_next_persion.SelectedIndex == -1)
                         throw new Exception("没有选择下一步经办人");
 
+                    //更新当前经办人数据
                     khgl_shenpi.Update_AppraiseInfo(Convert.ToInt32(lb_khxd_AppraiseID.Text), "[Flow_State]," + opt_fields, rbl_shenpi_step.SelectedItem.Text + "," + ddl_shenpi_zt.SelectedItem.Text
-                   + "," + old_shenpi_msg + khgl_shenpi.convert_str(tbx_shenpi_yj.Text, Session["RealName"].ToString(), 3));
+                   + "," + old_shenpi_msg + khgl_shenpi.convert_str(tbx_shenpi_yj.Text,Session["userlevelname"].ToString()+"  "+Session["RealName"].ToString(), 3));
                     khgl_shenpi.Update_AppRun(Convert.ToInt32(lb_khxd_AppraiseID.Text), Session["UserLevelName"].ToString(),
                         Session["IDCard"].ToString(), "[ApproveOponion],[App_Comment],[Oponion_State],[Oponion_DateTime]", ddl_shenpi_zt.SelectedItem.Text
                         + "," + khgl_shenpi.convert_str(tbx_shenpi_yj.Text, Session["RealName"].ToString(), 3)
@@ -663,7 +711,7 @@ namespace sylzyb_employer_mgr
 
 
                     //------------------------
-                    //在强制模式时，要不要加入对其它会签人员办理状态的变更？
+                    //在强制模式时，对其它会签人员办理状态的变更，以及示办理
                     if (lb_shenpi_wei_huiqianren.Text != "空" && cb_shenpi_qzzj.Checked)
                     {
                         khgl_shenpi.Update_AppraiseInfo(Convert.ToInt32(lb_khxd_AppraiseID.Text), opt_fields, ddl_shenpi_zt.SelectedItem.Text
@@ -671,10 +719,13 @@ namespace sylzyb_employer_mgr
 
                         khgl_shenpi.Update_AppRun(Convert.ToInt32(lb_khxd_AppraiseID.Text), Session["UserLevelName"].ToString(),
                              Session["IDCard"].ToString(), "[App_Comment],[Oponion_State],[Oponion_DateTime]",
-                             khgl_shenpi.convert_str("该会签人员未参与评审考核被强制流转", Session["RealName"].ToString(), 3)
+                             khgl_shenpi.convert_str("该会签人员未参与评审 考核被强制流转", Session["RealName"].ToString(), 3)
                              + ",(强制)" + rbl_shenpi_nextORprevious.SelectedItem.Text + ",getdate()", cb_shenpi_qzzj.Checked);
 
                     }
+                  
+
+
                     //------------------------
                     //下面向库中插入下一步经办人
                     for (int i = 0; i < cbl_shenpi_next_persion.Items.Count; i++)
@@ -688,12 +739,14 @@ namespace sylzyb_employer_mgr
                 }
 
                 else
+
                 if (lb_shenpi_shenpimoshi.Text.Trim() == "会签" && lb_shenpi_wei_huiqianren.Text != "空")
                 {
 
 
                     khgl_shenpi.Update_AppraiseInfo(Convert.ToInt32(lb_khxd_AppraiseID.Text), opt_fields, ddl_shenpi_zt.SelectedItem.Text
-                   + "," + old_shenpi_msg + khgl_shenpi.convert_str(tbx_shenpi_yj.Text, Session["RealName"].ToString(), 3));
+                   + "," + old_shenpi_msg + khgl_shenpi.convert_str(Session["RealName"].ToString()+"的会签意见：" + ddl_shenpi_zt.SelectedItem.Text 
+                   + "会签评论："+tbx_shenpi_yj.Text, Session["RealName"].ToString(), 3));
                     khgl_shenpi.Update_AppRun(Convert.ToInt32(lb_khxd_AppraiseID.Text), Session["UserLevelName"].ToString(),
                         Session["IDCard"].ToString(), "[ApproveOponion],[App_Comment],[Oponion_State],[Oponion_DateTime]", ddl_shenpi_zt.SelectedItem.Text
                         + "," + khgl_shenpi.convert_str(tbx_shenpi_yj.Text, Session["RealName"].ToString(), 3)
@@ -704,10 +757,11 @@ namespace sylzyb_employer_mgr
       
 
                 }
-
+                }
                 rbl_gailan_cx_SelectedIndexChanged(null, new EventArgs());
                 Page_Load(sender, e);
             }
+
             catch (Exception err)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('" + err.Message + "');</script>");
@@ -716,7 +770,7 @@ namespace sylzyb_employer_mgr
             }
         }
 
-    
+
 
         protected void btn_shenpi_cancel_Click(object sender, EventArgs e)
         {
@@ -955,7 +1009,7 @@ namespace sylzyb_employer_mgr
 
                 if (rbl_qckh_nextORprevious.SelectedItem.Text == "转交")
                 {
-                    step = khgl_qichao.get_step_list(Convert.ToInt32(Session["userlevel"].ToString()), rbl_qckh_nextORprevious.SelectedItem.Text, lb_qckh_Flow_State.Text);
+                    step = khgl_qichao.get_step_list(Session["userlevelname"].ToString(), rbl_qckh_nextORprevious.SelectedItem.Text, lb_qckh_Flow_State.Text);
                     if (step != null)
                     {
                         if (step.Length >= 1)
@@ -1318,7 +1372,7 @@ namespace sylzyb_employer_mgr
                         rbl_shenpi_step.Visible = true;
 
                         step = null;
-                        step = khgl_shenpi.get_step_list(Convert.ToInt32(Session["userlevel"].ToString()), rbl_shenpi_nextORprevious.SelectedItem.Text, gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[2].Text);
+                        step = khgl_shenpi.get_step_list(Session["userlevelname"].ToString(), rbl_shenpi_nextORprevious.SelectedItem.Text, gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[2].Text);
                         if (step != null)
                         {
                             if (step.Length > 0)
@@ -1340,7 +1394,7 @@ namespace sylzyb_employer_mgr
                         step = null;
                         rbl_shenpi_step.Visible = true;
 
-                        step = khgl_shenpi.get_step_list(Convert.ToInt32(Session["userlevel"].ToString()), rbl_shenpi_nextORprevious.SelectedItem.Text, gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[2].Text);
+                        step = khgl_shenpi.get_step_list(Session["userlevelname"].ToString(), rbl_shenpi_nextORprevious.SelectedItem.Text, gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[2].Text);
                         if (step != null)
                         {
                             if (step.Length > 0)
@@ -1401,6 +1455,8 @@ namespace sylzyb_employer_mgr
         protected void cbl_shenpi_next_persion_SelectedIndexChanged(object sender, EventArgs e)
         {
             int sel_count = 0;
+            if(cbl_shenpi_next_persion.Items.Count==0)
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('没有人可供选择！');</script>");
 
             for (int i = 0; i < cbl_shenpi_next_persion.Items.Count; i++)
                 if (cbl_shenpi_next_persion.Items[i].Selected)
@@ -1585,9 +1641,11 @@ namespace sylzyb_employer_mgr
                 {
                     UI_disp_code = 2;
                     shenpikaohe_init(Convert.ToInt32(lb_khxd_AppraiseID.Text));
-                    ddl_shenpi_zt.SelectedIndex = -1;
+                   
+                    ddl_shenpi_zt.Items.Add("强制转交");
+                    ddl_shenpi_zt.SelectedIndex = 2;
                     ddl_shenpi_zt.Enabled = false;
-                    tbx_shenpi_yj.Text = "已经被：" + Session["RealName"].ToString() + " 强制转交";
+                    tbx_shenpi_yj.Text = "被：" + Session["RealName"].ToString() + " 强制转交";
                     tbx_shenpi_yj.Enabled = false;
 
                     

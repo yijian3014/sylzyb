@@ -86,6 +86,7 @@ namespace sylzyb_employer_mgr
             }
             if (opt_kind == 1)
                 cv_str += "'+ Char(13)+Char(10)+'该信息由:" + opt_name + " 编辑于: " + DateTime.Now.ToString() + "'+Char(13)+Char(10)+'";
+
             if (opt_kind == 3)
             {
                 cv_str = cv_str.Replace(",", "+char(44)+");
@@ -509,7 +510,7 @@ namespace sylzyb_employer_mgr
                             + "' WHERE [AppID]=" + AppID + " and [Flow_State] like '%" + AppState + "%' and [ApproveIDCard]='" + IDCard + "'and [Oponion_DateTime] is null");
                     }
                 }
-                if (is_qiangzhi)//只有在会签模式时需要更新其它会签人数据
+                if (is_qiangzhi)//只有在会签模式时需要更新其它会签人数据。提取条件是考核ID符合，流程状态符合，更新日期为空Oponion_DateTime必须在最后一个更新
                 {
 
                     for (int j = 0; j < temp_value.Length; j++)
@@ -517,10 +518,10 @@ namespace sylzyb_employer_mgr
                         if (temp_key[j] == "[Oponion_DateTime]")
                         {
                             db_opt.execsql("  UPDATE [dzsw].[dbo].[Syl_SylAppRun]  SET  " + temp_key[j].Trim() + "=" + temp_value[j].Trim()
-                              + " WHERE [AppID]=" + AppID + " and [Flow_State] like '%" + AppState + "%' and [ApproveIDCard]!='" + IDCard + "'and [Oponion_DateTime] is null");
+                              + " WHERE [AppID]=" + AppID + " and [Flow_State] like '%" + AppState + "%' and [Oponion_DateTime] is null");
                         }
                         else db_opt.execsql("  UPDATE [dzsw].[dbo].[Syl_SylAppRun]  SET  " + temp_key[j].Trim() + "='" + temp_value[j].Trim().Replace("+char(44)+", ",")
-                            + "' WHERE [AppID]=" + AppID + " and [Flow_State] like '%" + AppState + "%' and [ApproveIDCard]!='" + IDCard + "'and [Oponion_DateTime] is null");
+                            + "' WHERE [AppID]=" + AppID + " and [Flow_State] like '%" + AppState + "%' and [Oponion_DateTime] is null");
 
 
                     }
@@ -770,13 +771,12 @@ namespace sylzyb_employer_mgr
         /// <param name="next_OR_previous"></param>
         /// <param name="state"></param>
         /// <returns></returns>
-        public string[] get_step_list(int userlevel, string next_OR_previous, string flow_state)
+        public string[] get_step_list(string userlevelname, string next_OR_previous, string flow_state)
         {
             //这个函数本质就是给出角色名，返回与给定角色名有交接关系的下一级角色名。
             // 1:部长,2:书记,3:主管领导,4:工程师,5:点检组长,6:点检
             //1：五级审批,2：四级审批,3：三级审批,4：二级审批,5：一级审批,6：起草
             string value = "";
-            string userlevelname = db_opt.get_userlevelname(userlevel);
             if (userlevelname == "") return null;
 
             if (next_OR_previous == "转交")
@@ -854,7 +854,7 @@ namespace sylzyb_employer_mgr
 
             if (userlevelname == "办事员" || userlevelname == "管理员")
             {
-                value = "部长,书记,主管领导,工程师,白班段组长,安全员,点检,班组长";
+                value = "部长,书记,主管领导,工程师,白班段长,安全员,点检,班组长";
 
             }
 

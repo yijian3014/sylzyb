@@ -169,6 +169,20 @@
               
         </style>
 </head>
+
+<%--    <script>
+        function docKeyPress()
+{
+   if (event.keyCode == 13)
+   {
+       if (event.srcElement == document.getElementById('tbx_bg_time') || event.srcElement == document.getElementById('tbx_ed_time'))
+          document.getElementById('btn_reflesh').click();
+           
+      event.cancelBubble = true;
+      event.returnValue = false;
+   }
+}
+</script>--%>
 <body>
     <form id="fm" runat="server" class="sty_fm">
         <asp:Label ID="Label26" runat="server" Text="考核管理" Font-Bold="True" Font-Size="Larger"></asp:Label>
@@ -616,7 +630,7 @@
                         <asp:TextBox ID="tbx_khxd_AppBy" runat="server"  Width="100%" Hight="auto" TextMode="MultiLine" Height="104px"></asp:TextBox>
                     </td>
                 </tr>
-                <tr>
+
                     <td class="sty_khxd_dv_tb2_tr_td_name">
                         <asp:Label ID="Label39" runat="server" Text="点检意见:"></asp:Label>
                     </td>
@@ -712,8 +726,16 @@
                         <asp:TextBox ID="tbx_khxd_step_5_Comment" runat="server" Width="100%" Hight="auto" TextMode="MultiLine" Height="104px"></asp:TextBox>
                     </td>
                 </tr>
-
-            </table>
+                <tr>
+                    <td >
+                        <asp:Label ID="Label34" runat="server" Text="管理信息："></asp:Label>
+                        </td>
+                       <td class="sty_khxd_dv_tb2_tr_td_value">
+                     
+                        <asp:TextBox ID="tbx_khgl_info" runat="server"  Width="100%" Hight="auto" TextMode="MultiLine" Height="104px"></asp:TextBox>
+                    </td>
+                    </tr>
+                </table>
             <asp:GridView ID="gv_detail_appworker" runat="server" HorizontalAlign="Center" Width="100%" Height="100px" AutoGenerateColumns="False" EnableModelValidation="True" Font-Size="Small">
                 <Columns>
                     
