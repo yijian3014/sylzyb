@@ -16,6 +16,12 @@ namespace sylzyb_employer_mgr
        
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Buffer = true;
+            Response.ExpiresAbsolute = System.DateTime.Now.AddSeconds(-1);
+            Response.Expires = 0;
+            Response.CacheControl = "no-cache";
+            Response.AddHeader("Pragma", "No-Cache");
+
             System.Web.HttpContext.Current.Session["ISSuperUser"] = "false";
             System.Web.HttpContext.Current.Session["RealName"] = "";
             System.Web.HttpContext.Current.Session["IDCard"] = "";

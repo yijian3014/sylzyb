@@ -36,7 +36,11 @@ namespace sylzyb_employer_mgr
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Response.Buffer = true;
+            Response.ExpiresAbsolute = System.DateTime.Now.AddSeconds(-1);
+            Response.Expires = 0;
+            Response.CacheControl = "no-cache";
+            Response.AddHeader("Pragma", "No-Cache");
 
             if (!IsPostBack)
             {
@@ -51,7 +55,7 @@ namespace sylzyb_employer_mgr
                     System.Web.HttpContext.Current.Session["UserPower"] = "";
                     System.Web.HttpContext.Current.Session["ModulePower"] = "";
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>alert('您尚未登陆或登陆超时');location.href='Login.aspx';</script>");
-
+                    Response.Redirect("login.aspx");
                 }
                 else
                 {
@@ -657,7 +661,7 @@ namespace sylzyb_employer_mgr
                     khgl_shenpi.Update_AppraiseInfo(Convert.ToInt32(lb_khxd_AppraiseID.Text), "[Flow_State]," +opt_fields,
                     rbl_shenpi_step.SelectedItem.Text + "," + ddl_shenpi_zt.SelectedItem.Text + "," 
                     + old_shenpi_msg + khgl_shenpi.convert_str(tbx_shenpi_yj.Text+"至"+ rbl_shenpi_step.SelectedItem.Text
-                    + cbl_shenpi_next_persion.Items[j].Text.Trim()+"办理 但 "+khgl_shenpi.convert_str(lb_shenpi_wei_huiqianren.Text,Session["RealName"].ToString(),0) + "未参与审批", Session["RealName"].ToString(), 3));
+                    + cbl_shenpi_next_persion.Items[j].Text.Trim()+"办理 但 "+lb_shenpi_wei_huiqianren.Text + "未参与审批", Session["RealName"].ToString(), 3));
 
                     khgl_shenpi.Update_AppRun(Convert.ToInt32(lb_khxd_AppraiseID.Text),
                         lb_khxd_Flow_State.Text,
@@ -783,8 +787,8 @@ namespace sylzyb_employer_mgr
         protected void ddl_qckh_AppGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
             //这个方法同步填充被考核人员GRIDVIEW。编缉，但不同步到数据表，通过确定扫描GRIDVIEW 对应的单元格。
-
-            dv_qicaokaohe.Visible = true;
+          
+           dv_qicaokaohe.Visible = true;
             ds_worker = khgl_qichao.select_WorkerInfo(ddl_qckh_AppGroup.SelectedItem.Text);
             cbl_workers.Items.Clear();
             for (int i = 0; i < ds_worker.Tables[0].Rows.Count; i++)

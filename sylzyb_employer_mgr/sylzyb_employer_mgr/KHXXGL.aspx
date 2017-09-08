@@ -1,11 +1,20 @@
-﻿<%@ Page Language="C#" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="KHXXGL.aspx.cs" MaintainScrollPositionOnPostBack = "true"  Inherits="sylzyb_employer_mgr.KHGL" %>
+﻿<%@ Page Language="C#" EnableEventValidation="false" AutoEventWireup="true" MaintainScrollPositionOnPostback="true" CodeBehind="KHXXGL.aspx.cs" Inherits="sylzyb_employer_mgr.KHGL" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+  
+
+    
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+
+  <meta http-equiv="Expires" content="0"/> 
+<meta http-equiv="Cache-Control" content="no-cache"/> 
+<meta http-equiv="Pragma" content="no-cache"/> 
+
+
+    <title>员工考核项管理</title>
     <style type="text/css">
         .sty_fm {
             text-align: center;
@@ -170,19 +179,7 @@
         </style>
 </head>
 
-<%--    <script>
-        function docKeyPress()
-{
-   if (event.keyCode == 13)
-   {
-       if (event.srcElement == document.getElementById('tbx_bg_time') || event.srcElement == document.getElementById('tbx_ed_time'))
-          document.getElementById('btn_reflesh').click();
-           
-      event.cancelBubble = true;
-      event.returnValue = false;
-   }
-}
-</script>--%>
+
 <body>
     <form id="fm" runat="server" class="sty_fm">
         <asp:Label ID="Label26" runat="server" Text="考核管理" Font-Bold="True" Font-Size="Larger"></asp:Label>
@@ -197,7 +194,7 @@
             <table id="tb1" class="sty_qckh_dv_tb1">
                 <tr>
                     <td>
-                        <asp:Label ID="Label11" runat="server" Text="点检考核" Font-Bold="False" Font-Size="Larger"></asp:Label>
+                        <asp:Label ID="Label11" runat="server" Text="起草考核" Font-Bold="False" Font-Size="Larger"></asp:Label>
                     </td>
                 </tr>
             </table>
@@ -309,7 +306,7 @@
                
                 <tr>
                     <td style="text-align: left;">
-                        <asp:CheckBoxList ID="cbl_workers" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" AutoPostBack="True">
+                        <asp:CheckBoxList ID="cbl_workers" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
                         </asp:CheckBoxList>
                     </td>
                 </tr>
