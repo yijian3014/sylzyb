@@ -177,8 +177,12 @@
       
               
         </style>
-</head>
 
+</head>
+    <script "JavaScript"> 
+    //用于禁用IE的回退功能
+        javascript: window.history.forward(1);       
+</script> 
 
 <body>
     <form id="fm" runat="server" class="sty_fm">
@@ -460,11 +464,13 @@
                 <tr>
                     <td>
                         <div style="width:980px;height:400px;overflow:auto;">
-                        <asp:GridView ID="gv_App_gailan" runat="server" HorizontalAlign="Center" Width="960px" Height="200px" OnSelectedIndexChanged="gv_App_gailan_SelectedIndexChanged" OnRowDataBound="gv_App_gailan_RowDataBound" AutoGenerateColumns="False" EnableModelValidation="True" Font-Size="Small">
+                        <asp:GridView ID="gv_App_gailan" runat="server" HorizontalAlign="Center" Width="960px" Height="200px" OnSelectedIndexChanged="gv_App_gailan_SelectedIndexChanged" OnRowDataBound="gv_App_gailan_RowDataBound" AutoGenerateColumns="False" EnableModelValidation="True" Font-Size="Small" AllowPaging="True" OnPageIndexChanging="gv_App_gailan_PageIndexChanging">
                             <Columns>
                                 <asp:BoundField DataField="ID" HeaderText="ID" Visible="False" />
                                 <asp:BoundField DataField="AppID" HeaderText="编号" />
-                                <asp:BoundField DataField="Flow_State" HeaderText="流转状态" />
+                                <asp:BoundField DataField="Flow_State" HeaderText="流转状态" >
+                                <HeaderStyle Width="30px" />
+                                </asp:BoundField>
                                 <asp:BoundField DataField="ApplicantName" HeaderText="提出人" />
                                 <asp:BoundField DataField="ApplicantIDCard" HeaderText="提出人身份证号" Visible="False"/>
                                 <asp:BoundField DataField="Applevel" HeaderText="级别" Visible="False"/>
@@ -480,19 +486,29 @@
                                 </asp:BoundField>
 
                                 <%--一级审批--%>
-                                <asp:BoundField DataField="step_1_Oponion" HeaderText="点检意见" />
+                                <asp:BoundField DataField="step_1_Oponion" HeaderText="点检意见" >
+                                <HeaderStyle Width="30px" />
+                                </asp:BoundField>
                                 <asp:BoundField DataField="step_1_Comment" HeaderText="点检评论" Visible="False" />
                                 <%--二级审批--%>
-                                <asp:BoundField DataField="step_2_Oponion" HeaderText="白班段长或工程师意见" />
+                                <asp:BoundField DataField="step_2_Oponion" HeaderText="白班段长或工程师意见" >
+                                <HeaderStyle Width="70px" />
+                                </asp:BoundField>
                                 <asp:BoundField DataField="step_2_Comment" HeaderText="白班段长或工程师评论" Visible="False" />
                                 <%--三级审批--%>
-                                <asp:BoundField DataField="step_3_Oponion" HeaderText="主管领导意见" />
+                                <asp:BoundField DataField="step_3_Oponion" HeaderText="主管领导意见" >
+                                <HeaderStyle Width="50px" />
+                                </asp:BoundField>
                                 <asp:BoundField DataField="step_3_Comment" HeaderText="主管领导评论" Visible="False" />
                                 <%--四级审批--%>
-                                <asp:BoundField DataField="step_4_Oponion" HeaderText="书记意见" />
+                                <asp:BoundField DataField="step_4_Oponion" HeaderText="书记意见" >
+                                <HeaderStyle Width="30px" />
+                                </asp:BoundField>
                                 <asp:BoundField DataField="step_4_Comment" HeaderText="书记评论" Visible="False" />
                                 <%--五级审批--%>
-                                <asp:BoundField DataField="step_5_Oponion" HeaderText="部长意见" />
+                                <asp:BoundField DataField="step_5_Oponion" HeaderText="部长意见" >
+                                <HeaderStyle Width="30px" />
+                                </asp:BoundField>
                                 <asp:BoundField DataField="step_5_Comment" HeaderText="部长评论" Visible="False" />
                             </Columns>
                             <RowStyle Wrap="True" />

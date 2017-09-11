@@ -13,6 +13,7 @@ namespace sylzyb_employer_mgr
 {
     public partial class KHGL : System.Web.UI.Page
     {
+
         public static string sel_string = "select * from [dzsw].[dbo].[Syl_AppraiseInfo] where  TC_DateTime between  dateadd(month,-2,getdate()) and getdate()  order by Applevel AppKind desc, AppGroup,TC_DateTime";
         db ds = new db();
         public DataSet ds1 = new DataSet();
@@ -41,6 +42,19 @@ namespace sylzyb_employer_mgr
             Response.Expires = 0;
             Response.CacheControl = "no-cache";
             Response.AddHeader("Pragma", "No-Cache");
+
+           // bool isNewSession = HttpContext.Current.Session.IsNewSession;
+           //if (isNewSession)
+           // {
+           //     string strCookieHeader = HttpContext.Current.Request.Headers["Cookie"];
+
+           //     if (null != strCookieHeader && strCookieHeader.IndexOf("ASP.NET_SessionId") >= 0)
+           //     {
+           //         Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>alert('网页禁址IE回退/前进按钮功能，请重新登陆！');location.href='Login.aspx';</script>");
+           //         Response.Redirect("login.aspx");
+           //      }
+           // }
+
 
             if (!IsPostBack)
             {
@@ -232,6 +246,7 @@ namespace sylzyb_employer_mgr
             ds_appWorker = khgl_select.select_appworkerinfo(Convert.ToInt32(gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text), tbx_bg_time.Text, tbx_ed_time.Text);
             gv_detail_appworker.DataSource = ds_appWorker;
             gv_detail_appworker.DataBind();
+            
         }
         protected void gv_App_gailan_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -251,7 +266,7 @@ namespace sylzyb_employer_mgr
 
             }
             UI_disp_code = 0;
-
+            
         }
 
 
@@ -1140,12 +1155,16 @@ namespace sylzyb_employer_mgr
                 if (ds_AppraiseInfo.Tables.Count > 0)
                     if (ds_AppraiseInfo.Tables[0].Rows.Count > 0)
                     {
+                        //gv_App_gailan.PageIndex = 1;
                         gv_App_gailan.DataSource = ds_AppraiseInfo;
+                  
                         gv_App_gailan.DataBind();
                     }
                     else
                     {
-                        gv_App_gailan.DataSource = "";
+                        gv_App_gailan.PageIndex = 0;
+                        gv_App_gailan.DataSource = null;
+
                         gv_App_gailan.DataBind();
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('没有相关数据！');</script>");
 
@@ -1156,11 +1175,14 @@ namespace sylzyb_employer_mgr
             }
             else
             {
-                gv_App_gailan.DataSource = "";
+                gv_App_gailan.PageIndex =0;
+                gv_App_gailan.DataSource = null;
+
                 gv_App_gailan.DataBind();
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('没有相关数据！');</script>");
                 Page_Load(sender, e);
             }
+            
         }
 
         protected void cb_qckh_ksfz_CheckedChanged(object sender, EventArgs e)
@@ -1664,6 +1686,13 @@ namespace sylzyb_employer_mgr
             Page_Load(sender, e);
         }
 
-        
+ 
+
+        protected void gv_App_gailan_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+gv_App_gailan.PageIndex = e.NewPageIndex;
+            gv_App_gailan.DataSource = ds_AppraiseInfo;
+            gv_App_gailan.DataBind();
+        }
     }
 }
