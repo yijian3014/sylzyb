@@ -17,8 +17,15 @@ namespace sylzyb_employer_mgr
         Check ck = new Check();
         protected void Page_Load(object sender, EventArgs e)
         {
+
             try
             {
+                Response.Buffer = true;
+                Response.ExpiresAbsolute = System.DateTime.Now.AddSeconds(-1);
+                Response.Expires = 0;
+                Response.CacheControl = "no-cache";
+                Response.AddHeader("pragma", "NO-Cache");
+                
                 if (ck.Module("报表", 0))
                 {
                     if (!IsPostBack)

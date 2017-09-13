@@ -32,6 +32,11 @@ namespace sylzyb_employer_mgr
         {
             try
             {
+                Response.Buffer = true;
+                Response.ExpiresAbsolute = System.DateTime.Now.AddSeconds(-1);
+                Response.Expires = 0;
+                Response.CacheControl = "no-cache";
+                Response.AddHeader("pragma", "No-Cache");
                 if (ck.item("奖金报表", 5))
                 {
                     if (!IsPostBack)

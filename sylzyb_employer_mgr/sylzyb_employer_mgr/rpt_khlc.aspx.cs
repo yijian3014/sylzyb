@@ -24,6 +24,12 @@ namespace sylzyb_employer_mgr
         Check ck = new Check();
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Buffer = true;
+            Response.Expires = 0;
+            Response.ExpiresAbsolute = System.DateTime.Now.AddSeconds(-1);
+            Response.CacheControl = "no-cache";
+            Response.AddHeader("pragma", "No-Cache");
+
             if (ck.item("考核流程报表", 5))
             {
                 if (!IsPostBack)

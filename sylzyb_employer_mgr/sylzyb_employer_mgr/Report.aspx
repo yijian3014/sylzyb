@@ -7,6 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
 </head>
+    <script type="text/javascript">
+        window.history.forward(1);
+       
+    </script>
 <body style="width:auto 1024px; text-align:center; float:none;margin:auto;" >
   <form id="form2" runat="server"  style="text-align:center;width:auto 1024px;height:auto 1000px;float:none;margin:auto;" >
        <div>

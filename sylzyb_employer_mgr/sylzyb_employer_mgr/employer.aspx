@@ -38,6 +38,9 @@
         }
     </style>
 </head>
+    <script type="text/javascript">
+        window.history.forward(1);
+    </script>
 <body>
       <form id="form1" runat="server" class="fm">
         <asp:Label ID="Label26" runat="server" Text="原料作业部员工信息管理" Font-Bold="True" Font-Size="Larger"></asp:Label> 
@@ -68,25 +71,30 @@
                     </td>
                     <td style="width:20%;text-align:center;">
     <asp:Label ID="Label10" runat="server" Text="班别："></asp:Label>
-                        <asp:DropDownList ID="DropDownList1" runat="server">
+                        <asp:DropDownList ID="ddl_class" runat="server" AutoPostBack="True" OnSelectedIndexChanged="btn_info_cx_Click">
+                            <asp:ListItem Value="*" Selected="True">全部</asp:ListItem>
                             <asp:ListItem>甲班</asp:ListItem>
                             <asp:ListItem>乙班</asp:ListItem>
                             <asp:ListItem>丙班</asp:ListItem>
                             <asp:ListItem>丁班</asp:ListItem>
-                            <asp:ListItem>常白</asp:ListItem>
-                            <asp:ListItem>管理</asp:ListItem>
-                            <asp:ListItem>其它</asp:ListItem>
-                            <asp:ListItem Value="*">全部</asp:ListItem>
+                            <asp:ListItem>白班</asp:ListItem>
+                            <asp:ListItem>铸铁</asp:ListItem> 
+                            <asp:ListItem>污泥</asp:ListItem>
+                            <asp:ListItem>机关</asp:ListItem>                          
+                            <asp:ListItem>综合</asp:ListItem>
+                         
                         </asp:DropDownList>
 
                     </td>
    <td style="width:25%;text-align:center;">
-                        <asp:Label ID="Label27" runat="server" Text="姓名拼音简写：" Visible="False"></asp:Label>
+                        <asp:Label ID="Label27" runat="server" Text="姓名拼音简写："></asp:Label>
 
-                        <asp:TextBox ID="tbx_xmsy" runat="server" Width="111px" AutoPostBack="true" Visible="False"></asp:TextBox>
+                        <asp:TextBox ID="tbx_xmsy" runat="server" Width="111px" AutoPostBack="true" OnTextChanged="btn_info_cx_Click" ></asp:TextBox>
+
+                    
        </td>
           <td style="width:5%;text-align:center;">
-                        <asp:Button ID="btn_info_cx" runat="server" Text="查询" OnClick="btn_info_cx_Click" Visible="False" />
+                        <asp:Button ID="btn_info_cx" runat="server" Text="查询" OnClick="btn_info_cx_Click"  />
 
                     </td>
                 </tr>
@@ -133,6 +141,7 @@
                      </td>  
                      <td class="auto-style1">
                         <asp:TextBox ID="tbx_WorkerName" runat="server"></asp:TextBox>
+                         <asp:Label ID="lb_pyjx_name" runat="server" style="color:red" Visible="False"></asp:Label>
                     </td>
                     </tr>
                 <tr>

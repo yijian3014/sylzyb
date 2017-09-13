@@ -46,6 +46,9 @@
      
     </style>
 </head>
+    <script type="text/javascript">
+        window.history.forward(1);
+    </script>
 <body>
     <form id="form1" runat="server">
         <div class="dv">

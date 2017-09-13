@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 
+
 /*
 界面权限定义
 员工信息查询：2
@@ -20,6 +21,8 @@ namespace sylzyb_employer_mgr
 {
     public partial class employer_mgr : System.Web.UI.Page
     {
+        public string name_pi = "我是一只小小丫";
+
         public Check option_ck = new Check();
         public static string sel_string = "";
         public static string option_sql = "";
@@ -31,6 +34,11 @@ namespace sylzyb_employer_mgr
         private int item_kind = 2;
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Buffer = true;
+            Response.Expires = 0;
+            Response.ExpiresAbsolute = System.DateTime.Now.AddSeconds(-1);
+            Response.CacheControl = "no-cache";
+            Response.AddHeader("pragma", "No-Cache");
             if (!IsPostBack)
             {
 
@@ -44,12 +52,14 @@ namespace sylzyb_employer_mgr
                     System.Web.HttpContext.Current.Session["UserPower"] = "";
                     System.Web.HttpContext.Current.Session["ModulePower"] = "";
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>alert('您尚未登陆或登陆超时');location.href='Login.aspx';</script>");
-
+                    Response.Redirect("login.aspx");
                 }
                 else
                 {
                     login_user.Text = System.Web.HttpContext.Current.Session["RealName"].ToString();
-                    sel_string = "select * from [dzsw].[dbo].[Syl_WorkerInfo] ";
+                    ddl_class.SelectedItem.Text = "全部";
+                        sel_string = "select * from [dzsw].[dbo].[Syl_WorkerInfo] order by WorkerName";
+              
                 }
             }
             btn_emp_add.Visible = option_ck.item("添加员工信息", item_kind);
@@ -77,8 +87,9 @@ namespace sylzyb_employer_mgr
 
             login_user.Text = System.Web.HttpContext.Current.Session["RealName"].ToString();
 
-        }
 
+        }
+    
         protected void btn_back_Click(object sender, EventArgs e)
         {
             Response.Redirect("login.aspx");
@@ -111,6 +122,13 @@ namespace sylzyb_employer_mgr
                     tbx_SalaryCoefficient.Text = dr_select_row["SalaryCoefficient"].ToString();
                     tbx_DutyCoefficient.Text = dr_select_row["DutyCoefficient"].ToString();
                     ddl_is_paiqian.SelectedItem.Text = dr_select_row["Is_PaiQian"].ToString();
+                    lb_pyjx_name.Text = "";
+                    string  str= NPinyin.Pinyin.GetPinyin(tbx_WorkerName.Text).ToUpper();
+                    string[] name = str.Split(' ');
+                    for (int i = 0; i < name.Length; i++)
+                    {
+                        lb_pyjx_name.Text += name[i].ToString().Substring(0, 1);
+                    }
                 }
             }
         }
@@ -174,6 +192,7 @@ namespace sylzyb_employer_mgr
                 {
 
                     option_sql = "update  [dzsw].[dbo].[Syl_WorkerInfo] set WorkerName='" + tbx_WorkerName.Text.Trim()
+                        + "',[PYJX_NAME]='" + lb_pyjx_name.Text
                          + "',IDCard='" + tbx_IDCard.Text.Trim()
                          + "',GroupName='" + tbx_GroupName.Text.Trim() + "',Job='" + tbx_Job.Text.Trim() + "',Duties='" + tbx_Duties.Text.Trim()
                          + "',SalaryCoefficient='" + Convert.ToDecimal(tbx_SalaryCoefficient.Text.Trim())
@@ -315,7 +334,7 @@ namespace sylzyb_employer_mgr
             ddl_is_paiqian.Enabled = true;
 
 
-            if (GridView1.SelectedIndex==0)
+            if (GridView1.SelectedIndex<0)
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('还没选择要编辑的员工！');</script>");
             else
             {
@@ -336,6 +355,30 @@ namespace sylzyb_employer_mgr
         protected void btn_info_cx_Click(object sender, EventArgs e)
         {
 
+            if (tbx_xmsy.Text != "")
+                if (ddl_class.SelectedItem.Text == "全部")
+                    sel_string = edit_sql_str("*", "[dzsw].[dbo].[Syl_WorkerInfo]", " and [PYJX_NAME] like '%" + tbx_xmsy.Text.ToUpper() + "%' ", "order by [WorkerName]");
+                else
+                    sel_string = edit_sql_str("*", "[dzsw].[dbo].[Syl_WorkerInfo]", " and GroupName like '%"
+                        + ddl_class.SelectedItem.Text + "%'  and [PYJX_NAME] like '%" + tbx_xmsy.Text.ToUpper() + "%'", "order by [WorkerName]");
+            else
+             if (ddl_class.SelectedItem.Text == "全部")
+                sel_string = edit_sql_str("*", "[dzsw].[dbo].[Syl_WorkerInfo]", " ", "order by [WorkerName]");
+            else
+                sel_string = edit_sql_str("*", "[dzsw].[dbo].[Syl_WorkerInfo]", " and GroupName like '%"
+                    + ddl_class.SelectedItem.Text + "%' ", "order by [WorkerName]");
+            ds = db_opt.build_dataset(sel_string);
+            GridView1.DataSource = ds;
+            GridView1.DataBind();
+
         }
+
+
+        public string edit_sql_str(string fields, string table, string where, string order)
+        {
+            return "select "+fields+" from " + table+ " where  1=1  " + where + " " + order;
+        }
+       
+
     }
 }

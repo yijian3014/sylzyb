@@ -8,6 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
 </head>
+    <script type="text/javascript">
+        window.history.forward(1);
+    </script>
 <body>
     <form id="form1" runat="server">
     

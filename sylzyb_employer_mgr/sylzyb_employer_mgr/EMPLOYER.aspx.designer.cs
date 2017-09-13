@@ -103,13 +103,13 @@ namespace sylzyb_employer_mgr {
         protected global::System.Web.UI.WebControls.Label Label10;
         
         /// <summary>
-        /// DropDownList1 控件。
+        /// ddl_class 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_class;
         
         /// <summary>
         /// Label27 控件。
@@ -200,6 +200,15 @@ namespace sylzyb_employer_mgr {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbx_WorkerName;
+        
+        /// <summary>
+        /// lb_pyjx_name 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_pyjx_name;
         
         /// <summary>
         /// Label5 控件。
