@@ -651,7 +651,7 @@ namespace sylzyb_employer_mgr
                   && db_opt.execsql("update [dzsw].[dbo].[Syl_SylAppRun] set [ApproveOponion]='归档',[App_Comment]='考核已经生效，数据已归档！' ,[Oponion_State]='生效',[Oponion_DateTime]=getdate() where AppID = " + AppID + " and [Oponion_DateTime] is null"))
 
             {
-
+                //下面段代码是在干麻？想不明白。考核运行信息只保留2个月的，考核项只保留两年内的？---太粗，太暴了！
                 db_opt.execsql("delete [dzsw].[dbo].[Syl_SylAppRun]  where [Oponion_DateTime]<dateadd(month,-2, getdate())");
                 db_opt.execsql("delete [dzsw].[dbo].[Syl_AppWorkerinfo]  where [FS_DateTime]<dateadd(year,-2,getdate())");
 
@@ -784,7 +784,7 @@ namespace sylzyb_employer_mgr
                 switch (flow_state)
                 {
                     case "办事员":
-                        value = "部长,书记,主管领导,工程师,白班段长,安全员,点检,班组长";
+                        value = "";
                         break;
                     case "部长":
                         value = "办事员";
@@ -821,7 +821,7 @@ namespace sylzyb_employer_mgr
                     //    value = "部长,书记,主管领导,工程师,点检组长,安全员,点检";
                     //    break;
                     case "办事员":
-                        value = "部长,书记,主管领导,工程师,白班段长,安全员,点检,班组长";
+                        value = "部长";
                         break;
                     case "部长":
                         value = "书记";
@@ -852,7 +852,7 @@ namespace sylzyb_employer_mgr
 
             }
 
-            if (userlevelname == "办事员" || userlevelname == "管理员")
+            if ( userlevelname == "管理员")
             {
                 value = "部长,书记,主管领导,工程师,白班段长,安全员,点检,班组长";
 

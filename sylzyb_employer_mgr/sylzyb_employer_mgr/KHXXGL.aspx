@@ -450,7 +450,7 @@
                           
                     </td>
                      <td style="text-align:left;">
-                         <asp:Button ID="btn_qzzj" runat="server" Text="强制转交" OnClick="btn_qzzj_Click" Visible="False" />
+                         <asp:Button ID="btn_qzzj" runat="server" Text="强制转交" OnClick="btn_qzzj_Click" Visible="False" Height="21px" />
                          <asp:Button ID="btn_qzsc" runat="server" Text="强制删除" OnClick="btn_qzsc_Click" Visible="False" />
                           <asp:Button ID="btn_qzxg" runat="server" Text="强制修改" OnClick="btn_qzxg_Click" Visible="False" />
                           <asp:Button ID="btn_qzsx" runat="server" Text="强制生效" OnClick="btn_qzsx_Click" Visible="False" />

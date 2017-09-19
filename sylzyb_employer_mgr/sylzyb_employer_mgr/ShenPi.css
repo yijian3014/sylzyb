@@ -1,0 +1,22 @@
+﻿body {
+   
+    margin:0 auto;
+
+ width:980px;
+
+}
+form {
+
+width:100%;
+}
+table { 
+    text-align:left;
+    width:100%;
+}
+
+.button_row{
+    text-align:center;
+}
+.div_shenpi {
+    text-align: center;
+}

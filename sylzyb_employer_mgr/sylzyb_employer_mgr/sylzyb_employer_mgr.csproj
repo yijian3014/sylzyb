@@ -65,6 +65,8 @@
     <Content Include="rpt_jiangjin.aspx" />
     <Content Include="rpt_khlc.aspx" />
     <Content Include="rpt_khzj.aspx" />
+    <Content Include="ShenPi.aspx" />
+    <Content Include="ShenPi.css" />
     <Content Include="suspend.aspx" />
     <Content Include="update.jpg" />
     <Content Include="USERINFO.aspx" />
@@ -151,6 +153,13 @@
     </Compile>
     <Compile Include="rpt_khzj.aspx.designer.cs">
       <DependentUpon>rpt_khzj.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShenPi.aspx.cs">
+      <DependentUpon>ShenPi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShenPi.aspx.designer.cs">
+      <DependentUpon>ShenPi.aspx</DependentUpon>
     </Compile>
     <Compile Include="suspend.aspx.cs">
       <DependentUpon>suspend.aspx</DependentUpon>

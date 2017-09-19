@@ -285,27 +285,39 @@ namespace sylzyb_employer_mgr
 
         protected void btn_shenpikaohe_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (Session["UserLevelName"].ToString() == "办事员" && lb_khxd_Flow_State.Text=="办事员")
+                {
+                    throw new Exception("提示：办事员不可以参与审批，直接点“升效”按钮使流程生效");
+                }
+            
 
             if (gv_App_gailan.SelectedIndex != -1)
-            {
-                // 此处加入对是否为起起草人的判定，按程序设定起草人不允许审批，只允许修改考核、删除考核、
-                if (Session["IDCard"].ToString()!= ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][4].ToString())
                 {
-                    UI_disp_code = 2;
-                    shenpikaohe_init(Convert.ToInt32(lb_khxd_AppraiseID.Text));
+                    // 此处加入对是否为起起草人的判定，按程序设定起草人不允许审批，只允许修改考核、删除考核、
+                    if (Session["IDCard"].ToString() != ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][4].ToString())
+                    {
+                        UI_disp_code = 2;
+                        shenpikaohe_init(Convert.ToInt32(lb_khxd_AppraiseID.Text));
 
-                    Page_Load(sender, e);
+                        Page_Load(sender, e);
+                    }
+                    else
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "<script>alert('你是该项考核的起草人，不允许审批，只允许修改或删除！');</script>");
+
+
                 }
                 else
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "<script>alert('你是该项考核的起草人，不允许审批，只允许修改或删除！');</script>");
+                {
 
-
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "<script>alert('请先从表中选择待办项');</script>");
+                }
             }
-            else
+            catch (Exception err)
             {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('" + err.Message + "');</script>");
 
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "<script>alert('请先从表中选择待办项');</script>");
             }
 
         }
@@ -663,6 +675,8 @@ namespace sylzyb_employer_mgr
                         //    }
 
                 }
+
+         
 
                 //使用使用管理员强制特权时，设置未办理用户的状态，包括会签相关
                 if (ddl_shenpi_zt.SelectedIndex.ToString() == "2")
@@ -1341,7 +1355,11 @@ namespace sylzyb_employer_mgr
             }
         }
 
-
+       /// <summary>
+       /// 些功能用于升效归档，存在的问题是只写入固定的信息没有与界面审批单形成关系
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
         protected void btn_khgd_Click(object sender, EventArgs e)
         {
 
@@ -1661,31 +1679,40 @@ namespace sylzyb_employer_mgr
         }
         protected void btn_qzzj_Click(object sender, EventArgs e)
         {
-            if (ck_opt.item("强制转交", 1))
+            try
             {
-                if (gv_App_gailan.SelectedIndex != -1)
-                {
-                    UI_disp_code = 2;
-                    shenpikaohe_init(Convert.ToInt32(lb_khxd_AppraiseID.Text));
-                   
-                    ddl_shenpi_zt.Items.Add("强制转交");
-                    ddl_shenpi_zt.SelectedIndex = 2;
-                    ddl_shenpi_zt.Enabled = false;
-                    tbx_shenpi_yj.Text = "被：" + Session["RealName"].ToString() + " 强制转交";
-                    tbx_shenpi_yj.Enabled = false;
+                if (Session["UserLevelName"].ToString() == "办事员")
+                    throw new Exception("办事员由于角色特性，无法向任意步骤强制提交，请用管理员角色处理强制转交");
 
-                    
-                }
-                else
+                if (ck_opt.item("强制转交", 1))
                 {
-                    UI_disp_code = 0;
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "<script>alert('请先从表中选择待办项');</script>");
-                  
+                    if (gv_App_gailan.SelectedIndex != -1)
+                    {
+                        UI_disp_code = 2;
+                        shenpikaohe_init(Convert.ToInt32(lb_khxd_AppraiseID.Text));
+
+                        ddl_shenpi_zt.Items.Add("强制转交");
+                        ddl_shenpi_zt.SelectedIndex = 2;
+                        ddl_shenpi_zt.Enabled = false;
+                        tbx_shenpi_yj.Text = "被：" + Session["RealName"].ToString() + " 强制转交";
+                        tbx_shenpi_yj.Enabled = false;
+
+
+                    }
+                    else
+                    {
+                        UI_disp_code = 0;
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "<script>alert('请先从表中选择待办项');</script>");
+
+                    }
                 }
+                Page_Load(sender, e);
             }
-            Page_Load(sender, e);
-        }
-
+            catch (Exception err)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "<script>alert('" + err.Message + "');</script>");
+            }
+}
  
 
         protected void gv_App_gailan_PageIndexChanging(object sender, GridViewPageEventArgs e)

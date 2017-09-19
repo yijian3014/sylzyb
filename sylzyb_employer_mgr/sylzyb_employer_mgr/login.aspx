@@ -97,13 +97,10 @@
 
                     <td colspan="4">
                         <asp:Button ID="btn_login" runat="server" Text="登陆" OnClick="btn_login_Click" />
+                        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
                     </td>
                 </tr>
-                <tr>
-                    <td style="text-align:center;" colspan="4">
-                        <asp:Label ID="Label3" runat="server" Text="平台所有操作生成的数据属测试数据，未正式生效！" ForeColor="Red" Font-Size="Small"></asp:Label>
-                    </td>
-                </tr>
+             
             </table>
         </div>
     </form>
