@@ -650,17 +650,43 @@ namespace sylzyb_employer_mgr
                 && db_opt.execsql("update [dzsw].[dbo].[Syl_AppWorkerinfo]  set [App_State]= '生效' where AppID = " + AppID)
                   && db_opt.execsql("update [dzsw].[dbo].[Syl_SylAppRun] set [ApproveOponion]='归档',[App_Comment]='考核已经生效，数据已归档！' ,[Oponion_State]='生效',[Oponion_DateTime]=getdate() where AppID = " + AppID + " and [Oponion_DateTime] is null"))
 
-            {
-                //下面段代码是在干麻？想不明白。考核运行信息只保留2个月的，考核项只保留两年内的？---太粗，太暴了！
-                db_opt.execsql("delete [dzsw].[dbo].[Syl_SylAppRun]  where [Oponion_DateTime]<dateadd(month,-2, getdate())");
-                db_opt.execsql("delete [dzsw].[dbo].[Syl_AppWorkerinfo]  where [FS_DateTime]<dateadd(year,-2,getdate())");
-
+            {           
                 return true;
             }
             else
                 return false;
 
         }
+        /// <summary>
+        /// 用于清除不需要的考核项
+        /// </summary>
+        /// <param name="bgdate">开始日期</param>
+        /// <param name="eddate">结束日期</param>
+        /// <returns></returns>
+        public bool clean_kh(string bgdate, string eddate)
+        {
+            DataSet clean_items = new DataSet();
+            clean_items = db_opt.build_dataset("select * from [dzsw].[dbo].[Syl_AppraiseInfo] where TC_DATETIME BETWEEN '" + bgdate + "' AND '" + eddate + "'");
+            if (clean_items.Tables[0].Rows.Count > 0)
+                for (int i = 0; i < clean_items.Tables[0].Rows.Count; i++)
+                {
+                    if (delete_AppFlow(Convert.ToInt32(clean_items.Tables[0].Rows[i][1].ToString())) == true)
+                    {
+                        clean_items.Clear();
+                        clean_items.Clone();
+                        return true;
+                    }
+
+
+                }
+            else
+                clean_items.Clear();
+            clean_items.Clone();
+            return false;
+
+        }
+
+
         public bool weijingbanren_fengkou(int AppID, string wei_ApproveIDCard, string ApproveIDCard)
         {
             if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[AppID]=" + AppID + "and ApproveIDCard='" + wei_ApproveIDCard + "' and  [Oponion_DateTime] is null"))
@@ -687,7 +713,7 @@ namespace sylzyb_employer_mgr
         /// <param name="bgtime"></param>
         /// <param name="edtime"></param>
         /// <returns></returns>
-        public DataSet select_appworkerinfo(int flow_id, string bgtime, string edtime)
+        public DataSet select_appworkerinfo(int flow_id)
         {
             //返回被考核的人员
             DataSet ds = new DataSet();
@@ -696,68 +722,78 @@ namespace sylzyb_employer_mgr
             return ds;
         }
 
-
         /// <summary>
-        /// 返回指定条件的考核流程数据集，主要用于总览
+        /// 通过拼音简写获取员工姓名字符串
         /// </summary>
-        /// <param name="param1"></param>
-        /// <param name="param2"></param>
-        /// <param name="param3"></param>
+        /// <param name="pingyinjianxie"></param>
         /// <returns></returns>
-        public DataSet select_zhonglan(string bgdatetime, string eddatetime)
+        public string get_worker_name_str(string pingyinjianxie)
         {
-
+            string temp_name = "";
             DataSet ds = new DataSet();
-            ds = db_opt.build_dataset("select * from [dzsw].[dbo].[Syl_AppraiseInfo] where TC_DateTime between '"
-                + bgdatetime + "' and dateadd(day,1,convert(datetime, '" + eddatetime
-                + "')) order by  TC_DateTime desc, AppID");
+            ds = db_opt.build_dataset("select [WorkerName] FROM[dzsw].[dbo].[Syl_WorkerInfo] where upper(pyjx_name) like '%" 
+                + pingyinjianxie + "%'");
+            foreach (DataRow aa in ds.Tables[0].Rows)
+                temp_name +="'"+aa[0].ToString() + "',";
+            if (temp_name != "")
+                temp_name = temp_name.Substring(0, temp_name.Length - 1);
+
+            return temp_name;
+
+        }
+        /// <summary>
+        /// 通过指定条件返回总览数据集
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public DataSet select_zhonglan(string where)
+        {
+            
+            DataSet ds = new DataSet();
+             ds = db_opt.build_dataset("select * from [dzsw].[dbo].[Syl_AppraiseInfo] where 1=1 "+where+ " order by  FS_DateTime desc, AppID");
 
 
             return ds;
         }
         /// <summary>
-        ///  //返回待办考核流程数据集，主要用于填充待办
+        /// 通过指定的身份证号，流程状态,指定搜索条件返回待办理的结果数据集
         /// </summary>
-        /// <param name="bgdatetime"></param>
-        /// <param name="eddatetime"></param>
         /// <param name="idcard"></param>
         /// <param name="flow_state"></param>
         /// <returns></returns>
-        public DataSet select_daiban(string bgdatetime, string eddatetime, string idcard, string flow_state)
+        public DataSet select_daiban(string idcard, string flow_state,string where)
         {
 
             DataSet ds = new DataSet();
             if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[ApproveIDCard]", idcard) && (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[Oponion_State]", "待办理")
                 || db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[Oponion_State]", "回退")))
-
-                ds = db_opt.build_dataset("select a.* from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] and a.TC_DateTime between '"
-                  + bgdatetime + "' and dateadd(day,1,convert(datetime, '" + eddatetime
-                + "'))  and a.[Flow_State]='" + flow_state + "' and b.[ApproveIDCard]='" + idcard
+                ds = db_opt.build_dataset("select a.* from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] "
+                   +where
+                    +" and a.[Flow_State]='" + flow_state + "' and b.[ApproveIDCard]='" + idcard
                   + "' and  b.[Oponion_State]='待办理'"
-                  + " order by  a.TC_DateTime desc, a.AppID");
+                  + " order by  a.FS_DateTime desc, a.AppID");
             else
                 ds = null;
             return ds;
 
         }
+
         /// <summary>
-        ///  //返回已办结考核流程数据集，主要用于填充已办结
+        /// 通过指定的身份证号，流程状态，指定搜索条件返已办结的结果数据集
         /// </summary>
-        /// <param name="bgdatetime"></param>
-        /// <param name="eddatetime"></param>
         /// <param name="idcard"></param>
         /// <param name="flow_state"></param>
         /// <returns></returns>
-        public DataSet select_yibanjie(string bgdatetime, string eddatetime, string idcard, string flow_state)
+        public DataSet select_yibanjie( string idcard, string flow_state,string where)
         {
 
             DataSet ds = new DataSet();
 
 
-            ds = db_opt.build_dataset("select distinct a.* from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] and a.TC_DateTime between '"
-              + bgdatetime + "' and dateadd(day,1,convert(datetime, '" + eddatetime
-            + "'))   and (b.[Flow_State]='" + flow_state + "' or a.[Flow_State] like '%生效%'or b.[Flow_State] like '%起草%') and( b.[Oponion_State] like '%转交%' or  b.[Oponion_State] like '%回退%'or  b.[Oponion_State] like '%会签%'or  b.[Oponion_State] like '%生效%') and b.[ApproveIDCard]='" + idcard
-              + "' order by  a.TC_DateTime desc, a.AppID");
+            ds = db_opt.build_dataset("select distinct a.* from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] "
+                +where
+             + "  and (b.[Flow_State]='" + flow_state + "' or a.[Flow_State] like '%生效%'or b.[Flow_State] like '%起草%') and( b.[Oponion_State] like '%转交%' or  b.[Oponion_State] like '%回退%'or  b.[Oponion_State] like '%会签%'or  b.[Oponion_State] like '%生效%') and b.[ApproveIDCard]='" + idcard
+              + "' order by  a.FS_DateTime desc, a.AppID");
             return ds;
         }
         public bool update_shenpi_field(string idcard, string flow_id, string field1, string field2, string field3)
@@ -784,7 +820,7 @@ namespace sylzyb_employer_mgr
                 switch (flow_state)
                 {
                     case "办事员":
-                        value = "";
+                        value = "部长";
                         break;
                     case "部长":
                         value = "办事员";

@@ -122,13 +122,7 @@ namespace sylzyb_employer_mgr
                     tbx_SalaryCoefficient.Text = dr_select_row["SalaryCoefficient"].ToString();
                     tbx_DutyCoefficient.Text = dr_select_row["DutyCoefficient"].ToString();
                     ddl_is_paiqian.SelectedItem.Text = dr_select_row["Is_PaiQian"].ToString();
-                    lb_pyjx_name.Text = "";
-                    string  str= NPinyin.Pinyin.GetPinyin(tbx_WorkerName.Text).ToUpper();
-                    string[] name = str.Split(' ');
-                    for (int i = 0; i < name.Length; i++)
-                    {
-                        lb_pyjx_name.Text += name[i].ToString().Substring(0, 1);
-                    }
+                   
                 }
             }
         }
@@ -143,11 +137,11 @@ namespace sylzyb_employer_mgr
             String evt = Page.ClientScript.GetPostBackClientHyperlink(sender as GridView, "Select$" + e.Row.RowIndex.ToString());
             e.Row.Attributes.Add("onclick", evt);
         }
- 
+
         protected void btn_ok_Click(object sender, EventArgs e)
         {
             btn_ok.Visible = false;
-                     Boolean bool_isexist = db_opt.IsRecordExist("[dzsw].[dbo].[Syl_WorkerInfo]", "IDCard", tbx_IDCard.Text.Trim());
+            Boolean bool_isexist = db_opt.IsRecordExist("[dzsw].[dbo].[Syl_WorkerInfo]", "IDCard", tbx_IDCard.Text.Trim());
             if (option_sql != "") option_sql = "";
             try
             {
@@ -167,16 +161,22 @@ namespace sylzyb_employer_mgr
                 }
 
 
-
+                lb_pyjx_name.Text = "";
+                string str = NPinyin.Pinyin.GetPinyin(tbx_WorkerName.Text).ToUpper();
+                string[] name = str.Split(' ');
+                for (int i = 0; i < name.Length; i++)
+                {
+                    lb_pyjx_name.Text += name[i].ToString().Substring(0, 1);
+                }
                 if (string.Compare(option_method, "insert") == 0 && !bool_isexist)
                 {
-                  
-                    option_sql = "insert into [dzsw].[dbo].[Syl_WorkerInfo] (WorkerName,IDCard,GroupName,Job,Duties,SalaryCoefficient,DutyCoefficient,Is_PaiQian)values('"
-                    + tbx_WorkerName.Text + "','" + tbx_IDCard.Text.Trim() + "','"
+
+                    option_sql = "insert into [dzsw].[dbo].[Syl_WorkerInfo] (WorkerName,[PYJX_NAME],IDCard,GroupName,Job,Duties,SalaryCoefficient,DutyCoefficient,Is_PaiQian)values('"
+                    + tbx_WorkerName.Text + "','" + lb_pyjx_name.Text + "','" + tbx_IDCard.Text.Trim() + "','"
                     + tbx_GroupName.Text + "','" + tbx_Job.Text + "','" + tbx_Duties.Text + "','"
                     + Convert.ToDecimal(tbx_DutyCoefficient.Text.Trim()) + "','"
                     + Convert.ToDecimal(tbx_DutyCoefficient.Text.Trim()) + "','"
-                    +ddl_is_paiqian.SelectedItem.Text+"')";
+                    + ddl_is_paiqian.SelectedItem.Text + "')";
                 }
                 else
                  if (string.Compare(option_method, "insert") == 0 && bool_isexist)
@@ -188,9 +188,9 @@ namespace sylzyb_employer_mgr
                      if (string.Compare(option_method, "delete") == 0 && !bool_isexist)
                     throw new Exception("用户不存在: " + tbx_IDCard.Text.Trim());
 
+
                 if (string.Compare(option_method, "update") == 0 && bool_isexist)
                 {
-
                     option_sql = "update  [dzsw].[dbo].[Syl_WorkerInfo] set WorkerName='" + tbx_WorkerName.Text.Trim()
                         + "',[PYJX_NAME]='" + lb_pyjx_name.Text
                          + "',IDCard='" + tbx_IDCard.Text.Trim()

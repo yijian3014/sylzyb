@@ -39,7 +39,9 @@ namespace sylzyb_employer_mgr
                 else
                 {
                     btn_exit_Click(sender, e);
+
                     throw new Exception("你没有权限进入该模块");
+                   
                 }
 
             }
@@ -76,8 +78,9 @@ namespace sylzyb_employer_mgr
             Session["UserName"] = "";
             Session["UserRName"] = "";
             Session["UserRule"] = "";
+        
             Response.Redirect("login.aspx");
-        }
+          }
 
     }
 }

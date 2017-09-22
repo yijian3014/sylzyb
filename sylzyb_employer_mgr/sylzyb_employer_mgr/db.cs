@@ -34,17 +34,23 @@ public class db
     /// <returns>BOOL值，通过executenonquery返回值判断执行成功与否</returns>
     public bool execsql(string sql)
     {
-        
-        int i = 0;
-        open();
-        SqlCommand sql_cmd = new SqlCommand(sql, db_con);
-        i=sql_cmd.ExecuteNonQuery();
-        close();
-        if (i > 0)
-            return true;
-        else
-            return false;
-    }
+        try
+        {
+            int i = 0;
+            open();
+            SqlCommand sql_cmd = new SqlCommand(sql, db_con);
+            i = sql_cmd.ExecuteNonQuery();
+            close();
+            if (i > 0)
+                return true;
+            else
+                return false;
+        }
+        catch (Exception err)
+        {
+            throw new Exception("数据操作出现语法错误，请联系管理员排除后台程序问题");
+        }
+        }
     /// <summary>
     /// 返回指定表的SELECT结果集
     /// </summary>
@@ -52,14 +58,19 @@ public class db
     /// <returns>返回SELECT的结果集</returns>
     public DataSet build_dataset(string sql)
     {
-       
-        open();
-        SqlDataAdapter rs = new SqlDataAdapter(sql, db_con);
-        DataSet ds = new DataSet();
-        rs.Fill(ds);
-        close();
-        return ds;
-      
+        try
+        {
+            open();
+            SqlDataAdapter rs = new SqlDataAdapter(sql, db_con);
+            DataSet ds = new DataSet();
+            rs.Fill(ds);
+            close();
+            return ds;
+        }
+        catch (Exception e)
+        {
+            throw new Exception("数据操作出现语法错误，请注意输入的字符是否符合标准");
+        }
     }
 
     public SqlDataReader datareader(string sql)

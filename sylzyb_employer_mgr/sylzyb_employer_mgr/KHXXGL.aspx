@@ -176,6 +176,11 @@
         }
       
               
+        .auto-style4 {
+            height: 31px;
+        }
+      
+              
         </style>
 
 </head>
@@ -331,6 +336,7 @@
                                 <asp:BoundField DataField="ApplicantName" HeaderText="考核提出人姓名" Visible="False" />
                                 <asp:BoundField DataField="ApplicantIDCard" HeaderText="考核提出人身份证号" Visible="False" />
                                 <asp:BoundField DataField="AppName" HeaderText="被考核人姓名" />
+                                 <asp:BoundField DataField="GroupName" HeaderText="班组" Visible="False"  />                              
                                 <asp:BoundField DataField="AppIDCard" HeaderText="被考核人身份证号" />
                                 <asp:BoundField DataField="Applevel" HeaderText="考核级别" />
                                 <asp:BoundField DataField="AppKind" HeaderText="考核类型" />
@@ -424,16 +430,56 @@
                         </asp:RadioButtonList>
                     </td>
                     <td>
-                        <asp:Label ID="Label43" runat="server" Text="（提出）开始时间："></asp:Label>
-                        <asp:TextBox ID="tbx_bg_time" runat="server" OnTextChanged="DateCheck" Width="120px"></asp:TextBox>
-                    </td>
+                        </td>
                     <td style="text-align:left;">
-                        <asp:Label ID="Label44" runat="server" Text="（提出）结束时间："></asp:Label>
-                        <asp:TextBox ID="tbx_ed_time" runat="server" OnTextChanged="DateCheck" Width="120px"></asp:TextBox>
-                        <asp:Button ID="btn_reflash" runat="server" OnClick="btn_reflash_Click" Text="刷新" />
-                    </td>
+                       </td>
                   
                 </tr>
+               <tr>
+                   <td class="auto-style4"> 
+                       <asp:DropDownList ID="ddl_fs_or_tc" runat="server">
+                        <asp:ListItem Value="1">提出时间</asp:ListItem>
+                        <asp:ListItem Value="2">发生时间</asp:ListItem>
+                       </asp:DropDownList>
+                   
+                       <asp:DropDownList ID="ddl_year" runat="server" Width="80px">
+                           <asp:ListItem Value="2017">2017</asp:ListItem>
+                           <asp:ListItem Value="2018">2018</asp:ListItem>
+                           <asp:ListItem Value="2019">2019</asp:ListItem>
+                           <asp:ListItem Value="2020">2020</asp:ListItem>
+                       </asp:DropDownList>
+                            <asp:Label ID="Label52" runat="server" Text="年"></asp:Label> 
+                       <asp:DropDownList ID="ddl_month" runat="server" Width="80px">
+                           <asp:ListItem Value="01">01</asp:ListItem>
+                           <asp:ListItem Value="02">02</asp:ListItem>
+                           <asp:ListItem Value="03">03</asp:ListItem>
+                            <asp:ListItem Value="04">04</asp:ListItem>
+                           <asp:ListItem Value="05">05</asp:ListItem>
+                           <asp:ListItem Value="06">06</asp:ListItem>
+                            <asp:ListItem Value="07">07</asp:ListItem>
+                           <asp:ListItem Value="08">08</asp:ListItem>
+                           <asp:ListItem Value="09">09</asp:ListItem>
+                            <asp:ListItem Value="10">10</asp:ListItem>
+                           <asp:ListItem Value="11">11</asp:ListItem>
+                           <asp:ListItem Value="12">12</asp:ListItem>
+                       </asp:DropDownList>
+                       <asp:Label ID="Label37" runat="server" Text="月"></asp:Label> 
+                     </td>
+                   <td class="auto-style4">
+                 <asp:Label ID="Label42" runat="server" Text="提出人姓名拼音简写："></asp:Label>
+                                           
+                       <asp:TextBox ID="tbx_tcr_name" runat="server" Height="19px" Width="100px"></asp:TextBox>
+
+                   </td>
+ <td class="auto-style4">
+                        <asp:Label ID="Label48" runat="server" Text="流程ID："></asp:Label>
+                        <asp:TextBox ID="tbx_appid" runat="server" Width="100px"></asp:TextBox>
+                                              <asp:Button ID="btn_search" runat="server" OnClick="btn_search_Click" Text="刷新" />
+
+                    </td>
+                    
+               </tr>
+       
                 <tr >
                     <td style="text-align:left;">
                          <asp:Button ID="btn_qckh" runat="server" Text="提出" OnClick="btn_qckh_Click" Width="60px"/>
@@ -444,6 +490,7 @@
                         <asp:Button ID="btn_shenpikaohe" runat="server" Text="审批" OnClick="btn_shenpikaohe_Click" Visible="False" Width="60px"/>
                       
                         <asp:Button ID="btn_khgd" runat="server" Text="归档" OnClick="btn_khgd_Click" Visible="False" Width="60px"/>
+                        
                     </td>
                     
                      <td>
@@ -454,6 +501,7 @@
                          <asp:Button ID="btn_qzsc" runat="server" Text="强制删除" OnClick="btn_qzsc_Click" Visible="False" />
                           <asp:Button ID="btn_qzxg" runat="server" Text="强制修改" OnClick="btn_qzxg_Click" Visible="False" />
                           <asp:Button ID="btn_qzsx" runat="server" Text="强制生效" OnClick="btn_qzsx_Click" Visible="False" />
+                          <asp:Button ID="btn_khql" runat="server" Text="考核清理" OnClick="btn_khql_Click" Width="60px"/>
                     </td>
                    
 

@@ -14,7 +14,7 @@ namespace sylzyb_employer_mgr
     public partial class KHGL : System.Web.UI.Page
     {
 
-        public static string sel_string = "select * from [dzsw].[dbo].[Syl_AppraiseInfo] where  TC_DateTime between  dateadd(month,-2,getdate()) and getdate()  order by Applevel AppKind desc, AppGroup,TC_DateTime";
+        public static string sel_string = "select * from [dzsw].[dbo].[Syl_AppraiseInfo] order by TC_DateTime";
         db ds = new db();
         public DataSet ds1 = new DataSet();
         public static string lb;
@@ -34,7 +34,6 @@ namespace sylzyb_employer_mgr
         public static int UI_disp_code = 0;
 
 
-
         protected void Page_Load(object sender, EventArgs e)
         {
             Response.Buffer = true;
@@ -42,19 +41,6 @@ namespace sylzyb_employer_mgr
             Response.Expires = 0;
             Response.CacheControl = "no-cache";
             Response.AddHeader("Pragma", "No-Cache");
-
-           // bool isNewSession = HttpContext.Current.Session.IsNewSession;
-           //if (isNewSession)
-           // {
-           //     string strCookieHeader = HttpContext.Current.Request.Headers["Cookie"];
-
-           //     if (null != strCookieHeader && strCookieHeader.IndexOf("ASP.NET_SessionId") >= 0)
-           //     {
-           //         Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script language='javascript'>alert('网页禁址IE回退/前进按钮功能，请重新登陆！');location.href='Login.aspx';</script>");
-           //         Response.Redirect("login.aspx");
-           //      }
-           // }
-
 
             if (!IsPostBack)
             {
@@ -74,13 +60,13 @@ namespace sylzyb_employer_mgr
                 else
                 {
                   
-                    tbx_bg_time.Text = DateTime.Now.ToString().Substring(0,8)+ "01";
-                    tbx_ed_time.Text = DateTime.Now.Date.ToString().Substring(0,10);
-                    
-
+                   
+                    ddl_year.SelectedItem.Text = DateTime.Now.Year.ToString();
+                    ddl_month.SelectedItem.Text = DateTime.Now.Month.ToString().PadLeft(2,'0');
 
                     login_user.Text = System.Web.HttpContext.Current.Session["RealName"].ToString();
-                    ds_AppraiseInfo = khgl_select.select_zhonglan(tbx_bg_time.Text, tbx_ed_time.Text);
+                    ds_AppraiseInfo = khgl_select.select_zhonglan( "AND convert(NVARCHAR(7),[TC_DateTime], 120) = '" + ddl_year.SelectedItem.Text + "-" + ddl_month.SelectedItem.Text + "'");
+
                     gv_App_gailan.DataSource = ds_AppraiseInfo;
                     gv_App_gailan.DataBind();
                     btn_qzsc.Enabled = ck_opt.item("强制删除", 1);
@@ -88,8 +74,12 @@ namespace sylzyb_employer_mgr
                     btn_qzzj.Enabled = ck_opt.item("强制转交", 1);
                     btn_qzsx.Enabled = ck_opt.item("强制生效", 1);
                     btn_qckh.Enabled = ck_opt.item("考核-提出考核", 1);
+                    btn_khql.Enabled = ck_opt.item("考核清理", 1);
+                   
                     btn_sckh.Visible = false;
-                    btn_khgd.Visible = false;
+                    if (rbl_gailan_cx.SelectedIndex == 1)
+                    { btn_khgd.Visible = ck_opt.item("归档", 1); }
+
                     btn_xgkh.Visible = false;
 
                     btn_qckh.Visible = true;
@@ -243,7 +233,7 @@ namespace sylzyb_employer_mgr
 
 
             }
-            ds_appWorker = khgl_select.select_appworkerinfo(Convert.ToInt32(gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text), tbx_bg_time.Text, tbx_ed_time.Text);
+            ds_appWorker = khgl_select.select_appworkerinfo(Convert.ToInt32(gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text));
             gv_detail_appworker.DataSource = ds_appWorker;
             gv_detail_appworker.DataBind();
             
@@ -282,7 +272,11 @@ namespace sylzyb_employer_mgr
             e.Row.Attributes.Add("onclick", evt);
 
         }
-
+        /// <summary>
+        /// 进入审批考核单元，管理员，办事员不可以审批考核
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_shenpikaohe_Click(object sender, EventArgs e)
         {
             try
@@ -305,8 +299,6 @@ namespace sylzyb_employer_mgr
                     }
                     else
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "<script>alert('你是该项考核的起草人，不允许审批，只允许修改或删除！');</script>");
-
-
                 }
                 else
                 {
@@ -393,28 +385,7 @@ namespace sylzyb_employer_mgr
             }
 
         }
-        protected void btn_reflash_Click(object sender, EventArgs e)
-        {
-
-            DateTime bg_t, ed_t;
-            bool bg = DateTime.TryParse(tbx_bg_time.Text, out bg_t);
-            bool ed = DateTime.TryParse(tbx_ed_time.Text, out ed_t);
-            if (bg && ed)
-            {
-                TimeSpan midTime = DateTime.Parse(tbx_ed_time.Text) - DateTime.Parse(tbx_bg_time.Text);
-
-                if (midTime.Days >= 0)
-                    rbl_gailan_cx_SelectedIndexChanged(null, new EventArgs());
-                else { tbx_bg_time.Text = "开发始日期不能大于结束日期"; tbx_bg_time.ForeColor = System.Drawing.Color.Red; }
-            }
-            else
-            {
-                if (!bg) { tbx_bg_time.Text = "正确格式:YYYY-MM-DD或YYYY/M/D"; tbx_bg_time.ForeColor = System.Drawing.Color.Red; }
-                if (!ed) { tbx_ed_time.Text = "正确格式:YYYY-MM-DD或YYYY/M/D"; tbx_ed_time.ForeColor = System.Drawing.Color.Red; }
-            }
-
-        }
-
+       
         protected void btn_qckh_ok_Click(object sender, EventArgs e)
 
         {
@@ -492,7 +463,7 @@ namespace sylzyb_employer_mgr
                         + "," + cbl_qckh_next_persion.Items[i].Text.Trim() + "," + cbl_qckh_next_persion.Items[i].Value.Trim() + ",待办理");
                 }
                 UI_disp_code = 0;
-                btn_reflash_Click(sender, e);
+                btn_search_Click(sender, e);
                 Page_Load(sender, e);
                 rbl_gailan_cx_SelectedIndexChanged(null, new EventArgs());
 
@@ -576,10 +547,14 @@ namespace sylzyb_employer_mgr
             Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('操作取消数据未同步！');</script>");
             UI_disp_code = 0;
 
-            btn_reflash_Click(sender, e);
+            btn_search_Click(sender, e);
             Page_Load(sender, e);
         }
-
+        /// <summary>
+        /// 用于提交审批结果
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_shenpi_ok_Click(object sender, EventArgs e)
         {
             string opt_fields = "";
@@ -825,10 +800,10 @@ namespace sylzyb_employer_mgr
                 //cbl_workers.Items.Add(ds_worker.Tables[0].Rows[i][1].ToString());
                 cbl_workers.Items.Add("");
                 cbl_workers.Items[i].Text = ds_worker.Tables[0].Rows[i][1].ToString();
-                cbl_workers.Items[i].Value = ds_worker.Tables[0].Rows[i][2].ToString();
+                cbl_workers.Items[i].Value = ds_worker.Tables[0].Rows[i][3].ToString();
             }
 
-            ds_appWorker = khgl_qichao.select_appworkerinfo(Convert.ToInt32(lb_qckh_AppraiseID.Text), tbx_bg_time.Text, tbx_ed_time.Text);
+            ds_appWorker = khgl_qichao.select_appworkerinfo(Convert.ToInt32(lb_qckh_AppraiseID.Text));
 
             if (ds_appWorker != null)
                 if (ds_appWorker.Tables.Count > 0)
@@ -858,17 +833,17 @@ namespace sylzyb_employer_mgr
             {
                 ((GridView)sender).Rows[i].BackColor = System.Drawing.Color.White;
                 ((GridView)sender).EditIndex = -1;
-                gv_AppWorker.Rows[i].Cells[9].Controls[3].Visible = false;
+                gv_AppWorker.Rows[i].Cells[10].Controls[3].Visible = false;
             }
             if (((GridView)sender).SelectedIndex >= 0)
             //表格表头索引是-1，要屏蔽
             {
                 gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].BackColor = System.Drawing.Color.BlanchedAlmond;
 
-                gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].Cells[9].Controls[1].Visible = true;
+                gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].Cells[10].Controls[1].Visible = true;
 
-                gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].Cells[9].Controls[3].Visible = true;
-                gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].Cells[9].Controls[1].Focus();
+                gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].Cells[10].Controls[3].Visible = true;
+                gv_AppWorker.Rows[gv_AppWorker.SelectedIndex].Cells[10].Controls[1].Focus();
 
             }
         }
@@ -946,12 +921,12 @@ namespace sylzyb_employer_mgr
             decimal tmp_sum = 0;
             for (int j = 0; j < gv_AppWorker.Rows.Count; j++)
             {
-                tmp_value = ((TextBox)gv_AppWorker.Rows[j].Cells[9].Controls[1]).Text.Trim();
+                tmp_value = ((TextBox)gv_AppWorker.Rows[j].Cells[10].Controls[1]).Text.Trim();
                 if (Regex.IsMatch(tmp_value, @"\d{1,}.\d{1,}|[-]\d{1,}.\d{1,}|\d{1,}|[-]\d{1,}") && (tmp_value != "" || tmp_value == "0"))
                 {
                     if (khgl_qichao.Update_AppWorkerInfo(Convert.ToInt32(lb_qckh_AppraiseID.Text), gv_AppWorker.Rows[j].Cells[6].Text.Trim(), "[AppAmount]", tmp_value))
                         gv_AppWorker.Rows[j].Cells[9].Controls[3].Visible = false;
-                    tmp_sum += Convert.ToDecimal(((TextBox)gv_AppWorker.Rows[j].Cells[9].Controls[1]).Text.Trim());
+                    tmp_sum += Convert.ToDecimal(((TextBox)gv_AppWorker.Rows[j].Cells[10].Controls[1]).Text.Trim());
                 }
                 else
                 {
@@ -1006,6 +981,7 @@ namespace sylzyb_employer_mgr
                                 + cbl_workers.Items[i].Text.Trim() + "," + cbl_workers.Items[i].Value + "," + tmp_ksfz + ",未生效");
                         }
                         else
+                            //修改考核，不同之处是修改人可能是管理员或办事员
                             khgl_qichao.insert_single_AppWorkerInfo(Convert.ToInt32(lb_qckh_AppraiseID.Text), cbl_workers.Items[i].Value,
                                 "[ApplicantName],[GroupName],[ApplicantIDCard],[AppName],[AppIDCard],[AppAmount],[App_State]",
                                 lb_qckh_ApplicantName.Text + "," + ddl_qckh_AppGroup.SelectedItem.Text.Trim() + "," + khgl_qichao.Get_idcard_str(lb_qckh_ApplicantName.Text) + ","
@@ -1014,15 +990,16 @@ namespace sylzyb_employer_mgr
 
                     }
                 }
-                ds_appWorker = khgl_qichao.select_appworkerinfo(Convert.ToInt32(lb_qckh_AppraiseID.Text), tbx_bg_time.Text, tbx_ed_time.Text);
+                //考核员工的选取存传入日期是什么意图？
+                ds_appWorker = khgl_qichao.select_appworkerinfo(Convert.ToInt32(lb_qckh_AppraiseID.Text));
                 gv_AppWorker.DataSource = ds_appWorker;
                 gv_AppWorker.DataBind();
                 for (int i = 0; i < ds_appWorker.Tables[0].Rows.Count; i++)
                     if (ds_appWorker.Tables[0].Rows[i][10].ToString() != "")
                     {
 
-                        gv_AppWorker.Rows[i].Cells[9].Controls[1].Visible = true;
-                        ((TextBox)gv_AppWorker.Rows[i].Cells[9].Controls[1]).Text = ds_appWorker.Tables[0].Rows[i][10].ToString();
+                        gv_AppWorker.Rows[i].Cells[10].Controls[1].Visible = true;
+                        ((TextBox)gv_AppWorker.Rows[i].Cells[10].Controls[1]).Text = ds_appWorker.Tables[0].Rows[i][10].ToString();
                         tmp_sum += Convert.ToDecimal(ds_appWorker.Tables[0].Rows[i][10].ToString());
                     }
 
@@ -1117,86 +1094,113 @@ namespace sylzyb_employer_mgr
 
         protected void rbl_gailan_cx_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ds_AppraiseInfo != null)
-                if (ds_AppraiseInfo.Tables.Count > 0)
-                    if (ds_AppraiseInfo.Tables[0].Rows.Count > 0)
-                        ds_AppraiseInfo.Clear();
-            gv_App_gailan.SelectedIndex = -1;
-            if (rbl_gailan_cx.SelectedIndex == 0)
+            try
             {
-                ds_AppraiseInfo = khgl_select.select_zhonglan(tbx_bg_time.Text, tbx_ed_time.Text);
-                btn_shenpikaohe.Visible = false;
-                btn_xgkh.Visible = false;
-                btn_khgd.Visible = false;
-                btn_sckh.Visible = false;
-                btn_qckh.Visible = true;
-                btn_qzsx.Visible = true;
-                dv_gailan.Visible = true;
-                dv_shenpi.Visible = false;
-                dv_khxd.Visible = false;
+                //设置WHERE条件
+                string str_where = "";
+                if (ddl_fs_or_tc.SelectedItem.Text == "提出时间")
+                    //将库内日期为“2017-09”格式
+                    str_where += "AND convert(NVARCHAR(7),[TC_DateTime],120)='" + ddl_year.SelectedItem.Text + "-" + ddl_month.SelectedItem.Text + "'";
+                if (ddl_fs_or_tc.SelectedItem.Text == "发生时间")
+                    str_where += "AND convert(NVARCHAR(7),[FS_DateTime],120)='" + ddl_year.SelectedItem.Text + "-" + ddl_month.SelectedItem.Text + "'";
+
+                if (tbx_tcr_name.Text != "")
+                    str_where += "and [ApplicantName] in (" + khgl_select.get_worker_name_str(tbx_tcr_name.Text.ToUpper().Trim()) + ")";
+                if (tbx_appid.Text != "")
+                {
+                    str_where += "and [AppID]=" + tbx_appid.Text.Trim();
+                }
+
+                //开始重置数据集
+                if (ds_AppraiseInfo != null)
+                    if (ds_AppraiseInfo.Tables.Count > 0)
+                        if (ds_AppraiseInfo.Tables[0].Rows.Count > 0)
+                            ds_AppraiseInfo.Clear();
+                gv_App_gailan.SelectedIndex = -1;
+                //总览
+                if (rbl_gailan_cx.SelectedIndex == 0)
+                {
+                    ds_AppraiseInfo = khgl_select.select_zhonglan(str_where);
+                    //ds_AppraiseInfo = khgl_select.select_zhonglan(tbx_bg_time.Text, tbx_ed_time.Text);
+                    btn_shenpikaohe.Visible = false;
+                    btn_xgkh.Visible = false;
+                    btn_khgd.Visible = false;
+                    btn_sckh.Visible = false;
+                    btn_qckh.Visible = true;
+                    btn_qzsx.Visible = true;
+                    dv_gailan.Visible = true;
+                    dv_shenpi.Visible = false;
+                    dv_khxd.Visible = false;
+                }
+                //待办
+                if (rbl_gailan_cx.SelectedIndex == 1)
+                {
+                    ds_AppraiseInfo = khgl_select.select_daiban(Session["IDCARD"].ToString(), Session["UserLevelName"].ToString(), str_where);
+                    btn_shenpikaohe.Visible = true;
+                    btn_xgkh.Visible = true;
+                    btn_khgd.Visible = true;
+                    btn_sckh.Visible = true;
+                    btn_qckh.Visible = true;
+                    btn_qzsx.Visible = true;
+                    dv_gailan.Visible = true;
+                    dv_shenpi.Visible = false;
+                    dv_khxd.Visible = false;
+                }
+                //已办结
+                if (rbl_gailan_cx.SelectedIndex == 2)
+                {
+                    ds_AppraiseInfo = khgl_select.select_yibanjie(Session["IDCARD"].ToString(), Session["UserLevelName"].ToString(), str_where);
+
+                    btn_shenpikaohe.Visible = false;
+                    btn_xgkh.Visible = false;
+                    btn_khgd.Visible = false;
+                    btn_sckh.Visible = false;
+                    btn_qckh.Visible = true;
+                    btn_qzsx.Visible = true;
+                    dv_shenpi.Visible = false;
+                    dv_gailan.Visible = true;
+                    dv_khxd.Visible = false;
+
+                }
+
+                if (ds_AppraiseInfo != null)
+                {
+                    if (ds_AppraiseInfo.Tables.Count > 0)
+                        if (ds_AppraiseInfo.Tables[0].Rows.Count > 0)
+                        {
+                            //gv_App_gailan.PageIndex = 1;
+                            gv_App_gailan.DataSource = ds_AppraiseInfo;
+
+                            gv_App_gailan.DataBind();
+                        }
+                        else
+                        {
+                            gv_App_gailan.PageIndex = 0;
+                            gv_App_gailan.DataSource = null;
+
+                            gv_App_gailan.DataBind();
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('没有相关数据！');</script>");
+
+                            Page_Load(sender, e);
+                        }
+
+
+                }
+                else
+                {
+                    gv_App_gailan.PageIndex = 0;
+                    gv_App_gailan.DataSource = null;
+
+                    gv_App_gailan.DataBind();
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('没有相关数据！');</script>");
+                    Page_Load(sender, e);
+                }
             }
-            if (rbl_gailan_cx.SelectedIndex == 1)
+            catch (Exception err)
             {
-                ds_AppraiseInfo = khgl_select.select_daiban(tbx_bg_time.Text, tbx_ed_time.Text, Session["IDCARD"].ToString(), Session["UserLevelName"].ToString());
-                btn_shenpikaohe.Visible = true;
-                btn_xgkh.Visible = true;
-                btn_khgd.Visible = true;
-                btn_sckh.Visible = true;
-                btn_qckh.Visible = true;
-                btn_qzsx.Visible = true;
-                dv_gailan.Visible = true;
-                dv_shenpi.Visible = false;
-                dv_khxd.Visible = false;
-            }
-            if (rbl_gailan_cx.SelectedIndex == 2)
-            {
-                ds_AppraiseInfo = khgl_select.select_yibanjie(tbx_bg_time.Text, tbx_ed_time.Text, Session["IDCARD"].ToString(), Session["UserLevelName"].ToString());
-
-                btn_shenpikaohe.Visible = false;
-                btn_xgkh.Visible = false;
-                btn_khgd.Visible = false;
-                btn_sckh.Visible = false;
-                btn_qckh.Visible = true;
-                btn_qzsx.Visible = true;
-                dv_shenpi.Visible = false;
-                dv_gailan.Visible = true;
-                dv_khxd.Visible = false;
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('"+err.Message+"');</script>");
 
             }
-
-            if (ds_AppraiseInfo != null)
-            {
-                if (ds_AppraiseInfo.Tables.Count > 0)
-                    if (ds_AppraiseInfo.Tables[0].Rows.Count > 0)
-                    {
-                        //gv_App_gailan.PageIndex = 1;
-                        gv_App_gailan.DataSource = ds_AppraiseInfo;
-                  
-                        gv_App_gailan.DataBind();
-                    }
-                    else
-                    {
-                        gv_App_gailan.PageIndex = 0;
-                        gv_App_gailan.DataSource = null;
-
-                        gv_App_gailan.DataBind();
-                        Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('没有相关数据！');</script>");
-
-                        Page_Load(sender, e);
-                    }
-
-
-            }
-            else
-            {
-                gv_App_gailan.PageIndex =0;
-                gv_App_gailan.DataSource = null;
-
-                gv_App_gailan.DataBind();
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('没有相关数据！');</script>");
-                Page_Load(sender, e);
-            }
-            
         }
 
         protected void cb_qckh_ksfz_CheckedChanged(object sender, EventArgs e)
@@ -1325,8 +1329,8 @@ namespace sylzyb_employer_mgr
                 if ((Session["UserLevelName"].ToString() != "办事员") && Session["IDCard"].ToString() != ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][4].ToString())
                     throw new Exception("一般用户只允许在流程运转至起草阶段，才允许删除自己发的流程！请确认自己是否为起草人！");
 
-                if ( khgl_shenpi.selectitem_is_exists(Convert.ToInt16(ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][1].ToString().Trim()))==true)
-                    if (khgl_shenpi.delete_AppFlow(Convert.ToInt32(ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][1].ToString())))
+                if ( khgl_shenpi.selectitem_is_exists(Convert.ToInt16(gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text.Trim()))==true)
+                    if (khgl_shenpi.delete_AppFlow(Convert.ToInt32(gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text)))
                     {
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('编号：" + gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text + "的考核已经删除');</script>");
                         rbl_gailan_cx_SelectedIndexChanged(this,e);
@@ -1526,6 +1530,7 @@ namespace sylzyb_employer_mgr
 
         protected void btn_qzsx_Click(object sender, EventArgs e)
         {
+
             try
             {
                 if (gv_App_gailan.SelectedIndex == -1)
@@ -1560,7 +1565,7 @@ namespace sylzyb_employer_mgr
 
                                     if (khgl_gl.guidang_AppFlow(Convert.ToInt32(ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][1].ToString()), Session["IDCard"].ToString()))
 
-                                        throw new Exception("编号：" + ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][1].ToString() + "已经生效");
+                                        throw new Exception("编号：" +gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text + "已经生效");
                                     else
 
                                         throw new Exception("强制生效操作失败!");
@@ -1608,7 +1613,7 @@ namespace sylzyb_employer_mgr
                             {
 
 
-                                if (khgl_shenpi.delete_AppFlow(Convert.ToInt32(ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][1].ToString())))
+                                if (khgl_shenpi.delete_AppFlow(Convert.ToInt32(gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text)))
                                 {
 
                                     throw new Exception("编号：" + gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text + "的考核已经删除");
@@ -1721,5 +1726,40 @@ gv_App_gailan.PageIndex = e.NewPageIndex;
             gv_App_gailan.DataSource = ds_AppraiseInfo;
             gv_App_gailan.DataBind();
         }
+
+        protected void btn_khql_Click(object sender, EventArgs e)
+        {
+            string str_appid = "";
+            string str_appcontext = "";
+            
+            for (int i = 0; i < gv_App_gailan.Rows.Count; i++)
+            {
+               
+               str_appid += gv_App_gailan.Rows[i].Cells[1].Text + "|";
+               str_appcontext += gv_App_gailan.Rows[i].Cells[12].Text + "|";
+            }
+           
+            if (gv_App_gailan.Rows.Count > 0)
+            {
+                str_appid=str_appid.Substring(0, str_appid.Length - 1);
+                //Server.Transfer("clean_item_select.aspx?app_id=" + str_appid+"&appcontext="+str_appcontext,true);
+          //   Server.Execute("clean_item_select.aspx?ds_ql_items=" + ds_AppraiseInfo, true);
+            }
+            else
+
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "<script>alert('要被清理删除的考核项为空');</script>");
+
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "<script>alert('该功能尚不成熟，正处于测试阶段！');</script>");
+
+            //khgl_gl.clean_kh(tbx_bg_time.Text, tbx_ed_time.Text);
+
+        }
+
+        protected void btn_search_Click(object sender, EventArgs e)
+        {
+            rbl_gailan_cx_SelectedIndexChanged(this,null);
+
+        }
+
     }
 }

@@ -54,6 +54,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="clean_item_select.aspx" />
+    <Content Include="clean_item_select.css" />
     <Content Include="data_fx_cht.aspx" />
     <Content Include="EMPLOYER.aspx">
       <BrowseToURL>~/employer.aspx</BrowseToURL>
@@ -76,6 +78,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Check.cs" />
+    <Compile Include="clean_item_select.aspx.cs">
+      <DependentUpon>clean_item_select.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="clean_item_select.aspx.designer.cs">
+      <DependentUpon>clean_item_select.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ConnectSQL.cs" />
     <Compile Include="data_fx_cht.aspx.cs">
       <DependentUpon>data_fx_cht.aspx</DependentUpon>
