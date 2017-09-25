@@ -61,8 +61,8 @@ namespace sylzyb_employer_mgr
                 {
                   
                    
-                    ddl_year.SelectedItem.Text = DateTime.Now.Year.ToString();
-                    ddl_month.SelectedItem.Text = DateTime.Now.Month.ToString().PadLeft(2,'0');
+                    ddl_year.SelectedValue= DateTime.Now.Year.ToString();
+                    ddl_month.SelectedValue= DateTime.Now.Month.ToString().PadLeft(2,'0');
 
                     login_user.Text = System.Web.HttpContext.Current.Session["RealName"].ToString();
                     ds_AppraiseInfo = khgl_select.select_zhonglan( "AND convert(NVARCHAR(7),[TC_DateTime], 120) = '" + ddl_year.SelectedItem.Text + "-" + ddl_month.SelectedItem.Text + "'");
@@ -205,31 +205,62 @@ namespace sylzyb_employer_mgr
 
             if (gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text != "")
             {
+                ////说明：前台VISIBLE=FALSE时，必须用DS数据源，不能用GV数据。
                 lb_khxd_AppraiseID.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text;
                 lb_khxd_Flow_State.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[2].Text;
                 lb_khxd_ApplicantName.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[3].Text;
-                lb_khxd_ApplicantIDCard.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][4].ToString();
-                lb_khxd_Applevel.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][5].ToString();
-                lb_khxd_AppKind.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][6].ToString();
+                //lb_khxd_ApplicantIDCard.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[4].Text;
+                lb_khxd_ApplicantIDCard.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex + 10 * gv_App_gailan.PageIndex][4].ToString();
+
+
+                //lb_khxd_Applevel.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[5].Text;
+                lb_khxd_Applevel.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex + 10 * gv_App_gailan.PageIndex][5].ToString();
+
+
+                //lb_khxd_AppKind.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[6].Text;
+                lb_khxd_AppKind.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex + 10 * gv_App_gailan.PageIndex][6].ToString();
+
+
                 lb_khxd_AppAmount.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[7].Text;
-                lb_khxd_TC_DateTime.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][8].ToString();
+                //lb_khxd_TC_DateTime.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[8].Text;
+                lb_khxd_TC_DateTime.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex + 10 * gv_App_gailan.PageIndex][8].ToString();
+
+
                 lb_khxd_FS_DateTime.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[9].Text;
                 lb_khxd_AppGroup.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[10].Text;
-                lb_khxd_AppNames.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][11].ToString();
-                lb_khxd_AppContent.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][12].ToString();
-                tbx_khxd_AppBy.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][13].ToString();
-                lb_khxd_step_1_Oponion.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][14].ToString();
-                tbx_khxd_Step_1_Comment.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][15].ToString();
-                lb_khxd_step_2_Oponion.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][16].ToString();
-                tbx_khxd_step_2_Comment.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][17].ToString();
-                lb_khxd_step_3_Oponion.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][18].ToString();
-                tbx_khxd_step_3_Comment.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][19].ToString();
-                lb_khxd_step_4_Oponion.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][20].ToString();
-                tbx_khxd_step_4_Comment.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][21].ToString();
-                lb_khxd_step_5_Oponion.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][22].ToString();
-                tbx_khxd_step_5_Comment.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][23].ToString();
+                //lb_khxd_AppNames.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[11].Text; 
+                lb_khxd_AppNames.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex + 10 * gv_App_gailan.PageIndex][11].ToString();
 
-                tbx_khgl_info.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][25].ToString();
+
+                lb_khxd_AppContent.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[12].Text;
+                //tbx_khxd_AppBy.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[13].Text;
+                tbx_khxd_AppBy.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex + 10 * gv_App_gailan.PageIndex][13].ToString();
+
+                lb_khxd_step_1_Oponion.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[14].Text;
+                //  tbx_khxd_Step_1_Comment.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[15].Text;
+                tbx_khxd_Step_1_Comment.Text= ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex + 10 * gv_App_gailan.PageIndex][15].ToString();
+                lb_khxd_step_2_Oponion.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[16].Text;
+                //tbx_khxd_step_2_Comment.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[17].Text;
+                tbx_khxd_step_2_Comment.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex + 10 * gv_App_gailan.PageIndex][17].ToString();
+
+                lb_khxd_step_3_Oponion.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[18].Text;
+               // tbx_khxd_step_3_Comment.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[19].Text;
+                tbx_khxd_step_3_Comment.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex + 10 * gv_App_gailan.PageIndex][19].ToString();
+
+                lb_khxd_step_4_Oponion.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[20].Text;
+                //tbx_khxd_step_4_Comment.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[21].Text;
+                tbx_khxd_step_4_Comment.Text = tbx_khgl_info.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex + 10 * gv_App_gailan.PageIndex][20].ToString();
+
+
+                lb_khxd_step_5_Oponion.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[22].Text;
+                //tbx_khxd_step_5_Comment.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[23].Text;
+                tbx_khxd_step_5_Comment.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex + 10 * gv_App_gailan.PageIndex][23].ToString();
+
+
+
+                //
+                tbx_khgl_info.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex+10 * gv_App_gailan.PageIndex][25].ToString();
+               // tbx_khgl_info.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[25].Text;
 
 
             }
@@ -290,7 +321,7 @@ namespace sylzyb_employer_mgr
             if (gv_App_gailan.SelectedIndex != -1)
                 {
                     // 此处加入对是否为起起草人的判定，按程序设定起草人不允许审批，只允许修改考核、删除考核、
-                    if (Session["IDCard"].ToString() != ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][4].ToString())
+                    if (Session["IDCard"].ToString() != gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[4].Text)
                     {
                         UI_disp_code = 2;
                         shenpikaohe_init(Convert.ToInt32(lb_khxd_AppraiseID.Text));
@@ -462,6 +493,7 @@ namespace sylzyb_employer_mgr
                         khgl_qichao.insert_AppRun(Convert.ToInt32(lb_qckh_AppraiseID.Text), "[Flow_State],[ApproveName],[ApproveIDCard],[Oponion_State]", rbl_qckh_step.SelectedItem.Text
                         + "," + cbl_qckh_next_persion.Items[i].Text.Trim() + "," + cbl_qckh_next_persion.Items[i].Value.Trim() + ",待办理");
                 }
+                
                 UI_disp_code = 0;
                 btn_search_Click(sender, e);
                 Page_Load(sender, e);
@@ -474,9 +506,10 @@ namespace sylzyb_employer_mgr
             }
             catch (Exception err)
             {
+                dv_qicaokaohe.Visible = false;
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('" + err.Message + "');</script>");
-
-           }
+              
+            }
 
         }
 
@@ -494,7 +527,7 @@ namespace sylzyb_employer_mgr
 
                 }
              
-                string old_AppBy = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][13].ToString();
+                string old_AppBy = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex*10*gv_App_gailan.PageIndex][13].ToString();
 
                 if (tbx_qckh_FS_DateTime.Text == "" || tbx_qckh_FS_DateTime.Text == "正确格式:YYYY - MM - DD或YYYY / M / D")
                     throw new Exception("发生时间不允许为空");
@@ -512,7 +545,7 @@ namespace sylzyb_employer_mgr
                 btn_appworker_add.Enabled = false;
 
                 khgl_qichao.Update_AppRun(Convert.ToInt32(lb_qckh_AppraiseID.Text), lb_qckh_Flow_State.Text,
-                    ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][4].ToString(), "[ApproveOponion],[App_Comment],[Oponion_DateTime]",
+                    gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[4].Text, "[ApproveOponion],[App_Comment],[Oponion_DateTime]",
                      khgl_shenpi.convert_str(tbx_qckh_AppContent.Text, Session["RealName"].ToString(), 0)
                     + "," + khgl_shenpi.convert_str(old_AppBy + tbx_qckh_AppBy.Text, Session["RealName"].ToString(), 1)
                 + ",getdate()", false);
@@ -534,6 +567,7 @@ namespace sylzyb_employer_mgr
             }
             catch (Exception err)
             {
+                dv_qicaokaohe.Visible = false;
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('" + err.Message + "！');</script>");
 
             }
@@ -622,7 +656,7 @@ namespace sylzyb_employer_mgr
                         {
                             opt_fields = "[Admin_Opt],[Admin_Opt_Comment] ";
                             //old_shenpi_msg是字段Admin_Opt_Comment的信息
-                            old_shenpi_msg = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][25].ToString();
+                            old_shenpi_msg = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[25].Text; ;
                             break;
                         }
                     //0管理员
@@ -630,7 +664,7 @@ namespace sylzyb_employer_mgr
                         {
                             opt_fields = "[Admin_Opt],[Admin_Opt_Comment] ";
                             //old_shenpi_msg是字段Admin_Opt_Comment的信息
-                            old_shenpi_msg = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][25].ToString();
+                            old_shenpi_msg = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[25].Text; ;
                             break;
                         }
                         //9其它 没有审批权
@@ -1252,18 +1286,18 @@ namespace sylzyb_employer_mgr
         public void edit_kaohe_init(int AppID)
         {
 
-            lb_qckh_AppraiseID.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][1].ToString();
-            lb_qckh_Flow_State.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][2].ToString();
-            lb_qckh_ApplicantName.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][3].ToString();
-            ddl_qckh_Applevel.SelectedItem.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][5].ToString();
-            ddl_qckh_AppKind.SelectedItem.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][6].ToString();
+            lb_qckh_AppraiseID.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text;
+            lb_qckh_Flow_State.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[2].Text;
+            lb_qckh_ApplicantName.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[3].Text;
+            ddl_qckh_Applevel.SelectedItem.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[5].Text;
+            ddl_qckh_AppKind.SelectedItem.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[6].Text;
 
-            lb_qckh_AppAmount.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][7].ToString();
-            lb_qckh_TC_DateTime.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][8].ToString();
-            tbx_qckh_FS_DateTime.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][9].ToString();
-            ddl_qckh_AppGroup.SelectedItem.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][10].ToString();
-            tbx_qckh_AppContent.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][12].ToString();
-            tbx_qckh_AppBy.Text = ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][13].ToString();
+            lb_qckh_AppAmount.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[7].Text;
+            lb_qckh_TC_DateTime.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[8].Text;
+            tbx_qckh_FS_DateTime.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[9].Text;
+            ddl_qckh_AppGroup.SelectedItem.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[11].Text;
+            tbx_qckh_AppContent.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[12].Text;
+            tbx_qckh_AppBy.Text = gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[13].Text;
 
 
             //rbl_qckh_nextORprevious.SelectedItem.Text= ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][14].ToString();
@@ -1324,9 +1358,9 @@ namespace sylzyb_employer_mgr
 
                 if (gv_App_gailan.SelectedIndex == -1)
                     throw new Exception("还没选择要删除的流程，请选择！");
-                if ((Session["UserLevelName"].ToString() != "办事员") && (Session["UserLevelName"].ToString() != ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][2].ToString()))
+                if ((Session["UserLevelName"].ToString() != "办事员") && (Session["UserLevelName"].ToString() != gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[2].Text))
                     throw new Exception("一般用户只允许在流程运转至起草阶段，才允许删除自己发的流程！请确认流程流转状态！");
-                if ((Session["UserLevelName"].ToString() != "办事员") && Session["IDCard"].ToString() != ds_AppraiseInfo.Tables[0].Rows[gv_App_gailan.SelectedIndex][4].ToString())
+                if ((Session["UserLevelName"].ToString() != "办事员") && Session["IDCard"].ToString() !=  gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[4].Text)
                     throw new Exception("一般用户只允许在流程运转至起草阶段，才允许删除自己发的流程！请确认自己是否为起草人！");
 
                 if ( khgl_shenpi.selectitem_is_exists(Convert.ToInt16(gv_App_gailan.Rows[gv_App_gailan.SelectedIndex].Cells[1].Text.Trim()))==true)

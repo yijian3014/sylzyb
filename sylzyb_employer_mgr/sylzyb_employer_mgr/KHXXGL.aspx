@@ -187,7 +187,18 @@
     <script "JavaScript"> 
     //用于禁用IE的回退功能
         javascript: window.history.forward(1);       
-</script> 
+
+        function document.onkeydown()
+        {
+            if (event.keyCode == 13) {
+                if (event.srcElement == document.getElementById('ddl_fs_or_tc') || event.srcElement == document.getElementById('ddl_year') || event.srcElement == document.getElementById('ddl_month') || event.srcElement == document.getElementById('tbx_tcr_name') || event.srcElement == document.getElementById('tbx_appid'))
+                    document.getElementById('btn_search').click();
+
+                event.cancelBubble = true;
+                event.returnValue = false;
+            }
+        }
+</script>
 
 <body>
     <form id="fm" runat="server" class="sty_fm">
@@ -198,8 +209,9 @@
             <asp:Label ID="login_user" runat="server" Text=""></asp:Label>
 
             <asp:Button ID="btn_exit" runat="server" Text="退出登陆" OnClick="btn_exit_Click" />
+             
         </div>
-        <div id="dv_qicaokaohe" runat="server"  class="sty_qckh_dv">
+        <div id="dv_qicaokaohe" runat="server"  class="sty_qckh_dv" visible="False">
             <table id="tb1" class="sty_qckh_dv_tb1">
                 <tr>
                     <td>
@@ -558,6 +570,11 @@
                                 <HeaderStyle Width="30px" />
                                 </asp:BoundField>
                                 <asp:BoundField DataField="step_5_Comment" HeaderText="部长评论" Visible="False" />
+                                 <%--管理员操作--%>
+                                <asp:BoundField DataField="Admin_Opt" HeaderText="管理操作" >
+                                     <HeaderStyle Width="30px" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="Admin_Opt_Comment" HeaderText="管理日志"  Visible="False" />
                             </Columns>
                             <RowStyle Wrap="True" />
                         </asp:GridView>
@@ -569,7 +586,7 @@
         </div>
 
 
-        <div id="dv_khxd" runat="server" class="sty_khxd_dv">
+        <div id="dv_khxd" runat="server" class="sty_khxd_dv" visible="False">
             <table class="sty_khxd_dv_tb">
                 <tr>
                     <td class="sty_khxd_dv_tb_tr_td"></td>
@@ -818,7 +835,7 @@
               
             </asp:GridView>
         </div>
-        <div id="dv_shenpi" runat="server" class="sty_shenpi_dv">
+        <div id="dv_shenpi" runat="server" class="sty_shenpi_dv" visible="False">
             <asp:Label ID="Label1" runat="server" Text="审批" Font-Bold="False" Font-Size="Larger"></asp:Label>
             <hr />
             <table class="sty_shenpi_dv_tb">
