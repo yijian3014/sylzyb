@@ -181,6 +181,11 @@
         }
       
               
+        .auto-style5 {
+            height: 24px;
+        }
+      
+              
         </style>
 
 </head>
@@ -311,7 +316,7 @@
                   
                         </td>
                         <td class="sty_qckh_dv_tb2_tr_td_value">
-                        <asp:TextBox ID="tbx_qckh_ksfz" runat="server" Enabled="False" CssClass="auto-style2" >0</asp:TextBox>
+                        <asp:TextBox ID="tbx_qckh_ksfz" runat="server" Enabled="False" CssClass="auto-style2" AutoPostBack="True" OnTextChanged="tbx_qckh_ksfz_TextChanged" >0</asp:TextBox>
                        
                         </td>
                         <td class="sty_qckh_dv_tb2_tr_td_value">
@@ -326,7 +331,7 @@
             <table id="tb3" class="sty_qckh_dv_tb3">
                
                 <tr>
-                    <td style="text-align: left;">
+                    <td style="text-align: left;" class="auto-style5">
                         <asp:CheckBoxList ID="cbl_workers" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
                         </asp:CheckBoxList>
                     </td>
@@ -334,7 +339,8 @@
                 <tr>
                     <td style="text-align: right;">
                           <asp:Button ID="btn_appworker_add" runat="server" OnClick="btn_appworker_add_Click" Text="添加并刷新" />
-                     
+                            <asp:Button ID="btn_gv_AppMount_Update" runat="server" Text="更新" OnClick="qckh_update_AppMount"  />
+                               
                     </td>
 
                 </tr>
@@ -346,7 +352,7 @@
                                 <asp:BoundField DataField="AppID" HeaderText="考核编号" />
                                 <asp:BoundField DataField="FS_DateTime" HeaderText="考核发生时间" />
                                 <asp:BoundField DataField="ApplicantName" HeaderText="考核提出人姓名" Visible="False" />
-                                <asp:BoundField DataField="ApplicantIDCard" HeaderText="考核提出人身份证号" Visible="False" />
+                                <asp:BoundField DataField="ApplicantIDCard" HeaderText="考核提出人身份证号" Visible="False"  />
                                 <asp:BoundField DataField="AppName" HeaderText="被考核人姓名" />
                                  <asp:BoundField DataField="GroupName" HeaderText="班组" Visible="False"  />                              
                                 <asp:BoundField DataField="AppIDCard" HeaderText="被考核人身份证号" />
@@ -355,8 +361,7 @@
                                 <asp:TemplateField HeaderText="考核金额">
                                     <ItemTemplate>
                                        <asp:TextBox ID="tbx_gv_AppAmount" runat="server"  Width="175px" Visible="False" ></asp:TextBox>
-                                        <asp:Button ID="btn_gv_AppMount_Update" runat="server" Text="更新" Visible="False" OnClick="qckh_update_AppMount"  />
-                                    </ItemTemplate>
+                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <%--<asp:BoundField DataField="AppAmount" HeaderText="考核金额" />--%>
                                 <asp:BoundField DataField="AppContent" HeaderText="考核内容" />

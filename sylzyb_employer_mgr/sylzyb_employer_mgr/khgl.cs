@@ -379,6 +379,22 @@ namespace sylzyb_employer_mgr
             }
             return false;
         }
+
+        public bool clear_error_data(int AppID)
+        {
+
+            //delete_AppWorkerInfo(AppID);
+            //delete_AppRun( AppID);
+            //delete_AppFlow( AppID);
+            //if (IsExists("[dzsw].[dbo].[Syl_AppWorkerinfo]", "AppID=" + AppID.ToString()) &&
+            //        IsExists("[dzsw].[dbo].[Syl_SylAppRun]", "AppID=" + AppID.ToString()) &&
+            //      IsExists("[dzsw].[dbo].[Syl_AppraiseInfo]", "AppID=" + AppID.ToString()))
+            //      return false;
+            //else
+            //    return true;
+            //此函数主要用于三表数据脏清除，由于没有数据回流滚，目前没有理想方案
+            return false;
+        }
         /// <summary>
         /// 根据AppID更新指定列数据
         /// </summary>
@@ -443,13 +459,17 @@ namespace sylzyb_employer_mgr
 
         public bool delete_AppRun(int AppID)
         {
-            return true;
+            if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[AppID]=" + AppID))
+
+                if (db_opt.execsql("delete from [dzsw].[dbo].[Syl_SylAppRun] where AppID=" + AppID))
+                    return true;
+            return false;
         }
         public string select_wei_huiqianren(int AppID, string dangqianbanliren_idcard)
         {
             DataSet ds;
             string ret_str = "";
-            ds = db_opt.build_dataset("SELECT[ApproveName] from[dzsw].[dbo].[Syl_SylAppRun] where  appid =" + AppID + " and [Oponion_State] = '待办理' and [ApproveIDCard] <> '" + dangqianbanliren_idcard + "'");
+            ds = db_opt.build_dataset("SELECT[ApproveName] from [dzsw].[dbo].[Syl_SylAppRun] where  appid =" + AppID + " and [Oponion_State] = '待办理' and [ApproveIDCard] <> '" + dangqianbanliren_idcard + "'");
             if (ds != null)
                 if (ds.Tables[0] != null)
                     if (ds.Tables[0].Rows.Count > 0)
@@ -763,7 +783,9 @@ namespace sylzyb_employer_mgr
         /// <returns></returns>
         public DataSet select_daiban(string idcard, string flow_state,string where)
         {
-
+            if (Convert.ToInt16( where.IndexOf("[AppID]"))> 0)
+           where= where.Replace("[AppID]", "a.[AppID]");
+            
             DataSet ds = new DataSet();
             if (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[ApproveIDCard]", idcard) && (db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[Oponion_State]", "待办理")
                 || db_opt.IsRecordExist("[dzsw].[dbo].[Syl_SylAppRun]", "[Oponion_State]", "回退")))

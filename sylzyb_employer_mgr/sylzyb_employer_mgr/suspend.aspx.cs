@@ -13,5 +13,10 @@ namespace sylzyb_employer_mgr
         {
 
         }
+
+        protected void btn_reback_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("login.aspx", false);
+        }
     }
 }

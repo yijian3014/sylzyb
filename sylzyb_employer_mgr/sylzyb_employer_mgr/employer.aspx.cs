@@ -21,8 +21,7 @@ namespace sylzyb_employer_mgr
 {
     public partial class employer_mgr : System.Web.UI.Page
     {
-        public string name_pi = "我是一只小小丫";
-
+        
         public Check option_ck = new Check();
         public static string sel_string = "";
         public static string option_sql = "";
@@ -161,13 +160,16 @@ namespace sylzyb_employer_mgr
                 }
 
 
+                //文字转拼音简写处理
                 lb_pyjx_name.Text = "";
+                //引用其它名称空间方法，必须写全 NPinyin.Pinyin.GetPinyin();
                 string str = NPinyin.Pinyin.GetPinyin(tbx_WorkerName.Text).ToUpper();
                 string[] name = str.Split(' ');
                 for (int i = 0; i < name.Length; i++)
                 {
                     lb_pyjx_name.Text += name[i].ToString().Substring(0, 1);
                 }
+                //文字转拼音简写处理完闭，页面级公共变量lb_pyjx_name被赋值。
                 if (string.Compare(option_method, "insert") == 0 && !bool_isexist)
                 {
 

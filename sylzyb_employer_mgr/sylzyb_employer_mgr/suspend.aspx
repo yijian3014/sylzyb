@@ -19,7 +19,11 @@
 <body>
     <form id="form1" runat="server">
         <div class="auto-style2">
-            <img class="auto-style1" src="update.jpg" /></div>
+            <img class="auto-style1" src="update.jpg" />
+            <br />
+            <asp:Button ID="btn_reback" runat="server" Text="跳转至登陆窗体" OnClick="btn_reback_Click" />
+        </div>
+
     </form>
 </body>
 </html>
