@@ -814,7 +814,7 @@ namespace sylzyb_employer_mgr
 
             ds = db_opt.build_dataset("select distinct a.* from [dzsw].[dbo].[Syl_AppraiseInfo] a,[dzsw].[dbo].[Syl_SylAppRun] b where a.[AppID]=b.[AppID] "
                 +where
-             + "  and (b.[Flow_State]='" + flow_state + "' or a.[Flow_State] like '%生效%'or b.[Flow_State] like '%起草%') and( b.[Oponion_State] like '%转交%' or  b.[Oponion_State] like '%回退%'or  b.[Oponion_State] like '%会签%'or  b.[Oponion_State] like '%生效%') and b.[ApproveIDCard]='" + idcard
+             + "  and (a.[Flow_State]<>'" + flow_state + "' or a.[Flow_State] like '%生效%'or a.[Flow_State] like '%起草%') and( b.[Oponion_State] like '%转交%' or  b.[Oponion_State] like '%回退%'or  b.[Oponion_State] like '%会签%'or  b.[Oponion_State] like '%生效%') and b.[ApproveIDCard]='" + idcard
               + "' order by  a.FS_DateTime desc, a.AppID");
             return ds;
         }

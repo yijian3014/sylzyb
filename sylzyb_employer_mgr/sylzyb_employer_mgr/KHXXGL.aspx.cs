@@ -474,29 +474,38 @@ namespace sylzyb_employer_mgr
                 dv_qicaokaohe.Visible = false;
                 dv_gailan.Visible = true;
                 btn_appworker_add.Enabled = false;
-
+                if(
                 khgl_qichao.Update_AppRun(Convert.ToInt32(lb_qckh_AppraiseID.Text), "起草", Session["IDCard"].ToString(), "[ApproveOponion],[App_Comment],[Oponion_State],[Oponion_DateTime]",
                      khgl_shenpi.convert_str(tbx_qckh_AppContent.Text, Session["RealName"].ToString(), 0)
                     + "," + khgl_shenpi.convert_str(tbx_qckh_AppBy.Text, Session["RealName"].ToString(), 0)
-                + "," + rbl_qckh_nextORprevious.SelectedItem.Text + ",getdate()", false);
+                + "," + rbl_qckh_nextORprevious.SelectedItem.Text + ",getdate()", false)&&
 
                 khgl_qichao.Update_AppraiseInfo(Convert.ToInt32(lb_qckh_AppraiseID.Text), "[Flow_State],[Applevel],[AppKind] ,[AppAmount] ,[TC_DateTime] ,[FS_DateTime],[AppGroup],[AppNames] ,[AppContent] ,[AppBy]", rbl_qckh_step.SelectedItem.Text
                 + "," + ddl_qckh_Applevel.SelectedItem.Text.Trim() + "," + ddl_qckh_AppKind.SelectedItem.Text.Trim() + "," + lb_qckh_AppAmount.Text + ",getdate(),"
                 + tbx_qckh_FS_DateTime.Text.Trim() + "," + ddl_qckh_AppGroup.SelectedItem.Text.Trim() + "," + AppName_str.Trim()
                 + "," + khgl_shenpi.convert_str(tbx_qckh_AppContent.Text, Session["RealName"].ToString(), 0)
-                + "," + khgl_shenpi.convert_str(tbx_qckh_AppBy.Text, Session["RealName"].ToString(), 0));
+                + "," + khgl_shenpi.convert_str(tbx_qckh_AppBy.Text, Session["RealName"].ToString(), 0))&&
 
                 khgl_qichao.Update_AppWorkerInfo(Convert.ToInt32(lb_qckh_AppraiseID.Text), "[FS_DateTime],[AppLevel],[AppKind],[AppContent],[AppBy]", tbx_qckh_FS_DateTime.Text
                 + "," + ddl_qckh_Applevel.SelectedItem.Text.Trim() + "," + ddl_qckh_AppKind.SelectedItem.Text.Trim()
                  + "," + khgl_shenpi.convert_str(tbx_qckh_AppContent.Text, Session["RealName"].ToString(), 0)
-                 + "," + khgl_shenpi.convert_str(tbx_qckh_AppBy.Text, Session["RealName"].ToString(), 0));
+                 + "," + khgl_shenpi.convert_str(tbx_qckh_AppBy.Text, Session["RealName"].ToString(), 0)))
 
                 //      khgl_qichao.update_flow(Convert.ToInt32(lb_qckh_AppraiseID.Text), lb_qckh_Flow_State.Text, Session["IDCard"].ToString(),
                 //          khgl_shenpi.convert_str(tbx_qckh_AppContent.Text, Session["RealName"].ToString(), 0)
                 //    , khgl_shenpi.convert_str(tbx_qckh_AppBy.Text, Session["RealName"].ToString(), 0)
                 //, rbl_qckh_nextORprevious.SelectedItem.Text, ddl_qckh_Applevel.SelectedItem.Text.Trim(), ddl_qckh_AppKind.SelectedItem.Text.Trim(), lb_qckh_AppAmount.Text,
                 //          tbx_qckh_FS_DateTime.Text.Trim(), ddl_qckh_AppGroup.SelectedItem.Text.Trim(), AppName_str.Trim());
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('考核起草成功！');</script>");
+                else
+                {
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('考核起草失败，请关闭浏览器重新登陆，重新发起考核流程！');</script>");
+                    //if (khgl_shenpi.clear_error_data(Convert.ToInt32(lb_qckh_AppraiseID.Text)))
 
+                    //    Page.ClientScript.RegisterStartupScript(this.GetType(), "message", "<script>alert('修改失败，脏数据将被清除！');</script>");
+                    //else
+                    //    throw new Exception("脏数据清除失败请联系管理员反应情况，并关闭浏览器重新登陆，或者重新发起考核，并联系办事员处理无效考核流程。");
+                }
 
                 for (int i = 0; i < cbl_qckh_next_persion.Items.Count; i++)
                 {
